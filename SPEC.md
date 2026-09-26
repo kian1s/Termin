@@ -10,6 +10,8 @@ Built for **RevenueCat Shipaton 2026, Next Gen Award** (student category).
 
 ## 0. Instructions for the coding agent
 
+**Design:** all UI follows `DESIGN.md` (feel, theme, colors, fonts, card layouts). Read it together with this file before building any screen.
+
 Read this whole file before writing code. Then work **one phase at a time** (section 9) and stop after each phase.
 
 1. **The owner is a beginner.** After each phase, explain in plain language what you built, which files changed, and exactly how to test it on the phone or emulator.
@@ -106,7 +108,9 @@ Validate the files with a small script: every field present, IDs unique, no empt
 ### 4.2 Word feed
 - Vertical, full-screen, swipe-to-scroll feed, one card per word.
 - Each card shows the word, part of speech, level badge, definition, example sentence, and the translation into the native language.
-- Buttons: **Heart** (save to the default "Favorites" set) and **Add to set** (a sheet listing sets, with a "+ New set" option).
+- **Translation visibility:** the first time a word is shown, its translation is visible. When an already-seen word comes up again, the translation is blurred with "Tap to reveal". Seen word IDs are stored locally (see DESIGN.md section 5).
+- **Pronunciation:** a speaker button next to the word reads it aloud with `expo-speech` (works in Expo Go), using the learning language's voice (`en-US`, `fr-FR`, `de-DE`, `es-ES`, `pt-PT`).
+- Buttons: **Speaker** (pronunciation), **Heart** (save to the default "Favorites" set) and **Add to set** (a sheet listing sets, with a "+ New set" option).
 - The feed is filtered by the current settings, and the order is shuffled.
 - **Done when:** scrolling is smooth through 100+ cards and saving works.
 
@@ -134,7 +138,23 @@ Validate the files with a small script: every field present, IDs unique, no empt
 - The recording is sent to the Worker's `/transcribe` endpoint (section 6). The transcript fills the text box, and the user can edit it before submitting for grading.
 - Show a short "Transcribing…" state. On failure, keep the text box so the user can type instead.
 
-### 4.7 Settings
+### 4.7 Progress
+- A **Progress** tab (tabs become Feed, Sets, Progress, Settings).
+- Shows: words seen, words saved, words learned (reached box 4), a bar showing how many saved words are in each Leitner box (1 to 4), reviews answered today, and the current and best streak.
+- All numbers are computed from local data. No accounts.
+- **Done when:** saving and reviewing words visibly changes the numbers, and they survive a restart.
+
+### 4.8 Streak
+- A day counts toward the streak when the user answers at least one review card or views at least 10 cards that day.
+- The current streak shows as a small flame and number in the feed header, and on the Progress tab. Missing a full day resets it to 0. Best streak is kept.
+- **Done when:** the streak increases on a new day with activity (test by changing the stored last-active date) and resets after a missed day.
+
+### 4.9 Daily reminder
+- In Settings: a toggle and a time picker for a daily local notification, such as "3 words are waiting for review" (or "Keep your 4-day streak going").
+- Uses `expo-notifications`, **local notifications only**. Ask for permission when the toggle is first turned on. Verify early that local notifications fire in Expo Go on iOS. If they do not, stop and report.
+- **Done when:** a reminder set 2 minutes ahead arrives on the iPhone.
+
+### 4.10 Settings
 - Edit languages, level, and categories.
 - Show Pro status. **Restore purchases** button. Link to the paywall.
 
@@ -196,10 +216,9 @@ Rules:
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 
-## 7. Stretch (only if Phases 1 to 6 are done)
+## 7. Stretch
 
-- **Daily reminder:** a local notification at a time the user picks, such as "3 words are waiting for review".
-- **Streak counter** on the feed header.
+None for now. Daily reminder and streak moved into the MVP (4.8 and 4.9).
 
 ## 8. Out of scope
 
@@ -210,14 +229,14 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 | Day | Phase | Goal | Test |
 |---|---|---|---|
 | Thu 24 | 0. Setup | Create the Expo app, git, and a public GitHub repo with an MIT license. Set up `.gitignore` with `.env`. Install the RevenueCat AI Toolkit. | The app opens in Expo Go on the phone. |
-| Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, and Settings. | Scroll, change settings, restart. |
-| Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling. | Save 3 words and see them come back as reviews. |
+| Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings. Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
+| Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, and the streak. | Save 3 words, see them come back as reviews, and see Progress and the streak update. |
 | Sat 26 | 3. Content | Generate and check the dataset, review the flags, load the real data. | The feed shows real words for each language. |
 | Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, and locked teaser cards. | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
-| Tue 29 | 8. Polish and stretch | Visual polish, empty states, error states, reminders if time allows. | A full run with no crashes. |
+| Tue 29 | 8. Reminder and polish | Daily reminder, visual polish, empty states, error states. | A full run with no crashes. |
 | Wed 30 | 9. Submit | README, screenshots, demo video, Devpost submission. | Everything on the checklist below. |
 
 If behind schedule, cut in this order: reminders, then voice, then shrink the dataset to 8 per combination. **Never cut the RevenueCat purchase flow.**
