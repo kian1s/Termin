@@ -229,17 +229,17 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 | Day | Phase | Goal | Test |
 |---|---|---|---|
 | Thu 24 | 0. Setup | Create the Expo app, git, and a public GitHub repo with an MIT license. Set up `.gitignore` with `.env`. Install the RevenueCat AI Toolkit. | The app opens in Expo Go on the phone. |
-| Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings. Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
+| Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings including the daily reminder (4.9). Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
 | Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, and the streak. | Save 3 words, see them come back as reviews, and see Progress and the streak update. |
 | Sat 26 | 3. Content | Generate and check the dataset, review the flags, load the real data. | The feed shows real words for each language. |
 | Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, and locked teaser cards. | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
-| Tue 29 | 8. Reminder and polish | Daily reminder, visual polish, empty states, error states. | A full run with no crashes. |
+| Tue 29 | 8. Polish | Visual polish, empty states, error states. | A full run with no crashes. |
 | Wed 30 | 9. Submit | README, screenshots, demo video, Devpost submission. | Everything on the checklist below. |
 
-If behind schedule, cut in this order: reminders, then voice, then shrink the dataset to 8 per combination. **Never cut the RevenueCat purchase flow.**
+If behind schedule, cut in this order: voice, then shrink the dataset to 8 per combination. **Never cut the RevenueCat purchase flow.**
 
 ## 10. Submission checklist
 

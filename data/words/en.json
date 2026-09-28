@@ -1,0 +1,242 @@
+[
+  {
+    "id": "en-b1-academic-001",
+    "lang": "en",
+    "level": "B1",
+    "category": "academic",
+    "word": "evidence",
+    "partOfSpeech": "noun",
+    "definition": "Facts or information that show whether something is true.",
+    "example": "The report offers little evidence that the new policy has reduced traffic.",
+    "translations": {
+      "fr": { "word": "preuves", "definition": "Faits ou informations qui montrent si quelque chose est vrai." },
+      "de": { "word": "Belege", "definition": "Fakten oder Informationen, die zeigen, ob etwas wahr ist." },
+      "es": { "word": "pruebas", "definition": "Hechos o información que muestran si algo es cierto." },
+      "pt": { "word": "provas", "definition": "Dados ou informações que mostram se algo é verdadeiro." }
+    }
+  },
+  {
+    "id": "en-b1-academic-002",
+    "lang": "en",
+    "level": "B1",
+    "category": "academic",
+    "word": "summarize",
+    "partOfSpeech": "verb",
+    "definition": "To give only the main points of something.",
+    "example": "Please summarize the article in three sentences before the seminar.",
+    "translations": {
+      "fr": { "word": "résumer", "definition": "Présenter seulement les points principaux de quelque chose." },
+      "de": { "word": "zusammenfassen", "definition": "Nur die wichtigsten Punkte von etwas wiedergeben." },
+      "es": { "word": "resumir", "definition": "Presentar solo los puntos principales de algo." },
+      "pt": { "word": "resumir", "definition": "Apresentar apenas os pontos principais de algo." }
+    }
+  },
+  {
+    "id": "en-b1-debate-001",
+    "lang": "en",
+    "level": "B1",
+    "category": "debate",
+    "word": "disagree",
+    "partOfSpeech": "verb",
+    "definition": "To have a different opinion from someone else.",
+    "example": "I disagree with you about the cost, but I like the idea itself.",
+    "translations": {
+      "fr": { "word": "être en désaccord", "definition": "Avoir une opinion différente de celle de quelqu'un." },
+      "de": { "word": "anderer Meinung sein", "definition": "Eine andere Meinung als jemand anderes haben." },
+      "es": { "word": "discrepar", "definition": "Tener una opinión diferente de la de otra persona." },
+      "pt": { "word": "discordar", "definition": "Ter uma opinião diferente da de outra pessoa." }
+    }
+  },
+  {
+    "id": "en-b1-idioms-001",
+    "lang": "en",
+    "level": "B1",
+    "category": "idioms",
+    "word": "break the ice",
+    "partOfSpeech": "idiom",
+    "definition": "To say or do something that helps people relax when they first meet.",
+    "example": "Our teacher told a funny story to break the ice on the first day.",
+    "translations": {
+      "fr": { "word": "briser la glace", "definition": "Dire ou faire quelque chose pour détendre l'atmosphère lors d'une première rencontre." },
+      "de": { "word": "das Eis brechen", "definition": "Etwas sagen oder tun, damit sich Menschen beim ersten Treffen entspannen." },
+      "es": { "word": "romper el hielo", "definition": "Decir o hacer algo para que la gente se relaje al conocerse." },
+      "pt": { "word": "quebrar o gelo", "definition": "Dizer ou fazer algo para que as pessoas se descontraiam ao conhecer-se." }
+    }
+  },
+  {
+    "id": "en-b2-academic-001",
+    "lang": "en",
+    "level": "B2",
+    "category": "academic",
+    "word": "significant",
+    "partOfSpeech": "adjective",
+    "definition": "Large or important enough to have an effect or to be noticed.",
+    "example": "There was a significant rise in applications after the fees were cut.",
+    "translations": {
+      "fr": { "word": "significatif", "definition": "Assez important pour avoir un effet ou être remarqué." },
+      "de": { "word": "erheblich", "definition": "Groß oder wichtig genug, um eine Wirkung zu haben oder bemerkt zu werden." },
+      "es": { "word": "significativo", "definition": "Lo bastante grande o importante como para tener efecto o notarse." },
+      "pt": { "word": "significativo", "definition": "Suficientemente grande ou importante para ter efeito ou ser notado." }
+    }
+  },
+  {
+    "id": "en-b2-debate-001",
+    "lang": "en",
+    "level": "B2",
+    "category": "debate",
+    "word": "counterargument",
+    "partOfSpeech": "noun",
+    "definition": "An argument that opposes another argument.",
+    "example": "She predicted the main counterargument and answered it before anyone raised it.",
+    "translations": {
+      "fr": { "word": "contre-argument", "definition": "Argument qui s'oppose à un autre argument." },
+      "de": { "word": "Gegenargument", "definition": "Ein Argument, das einem anderen Argument widerspricht." },
+      "es": { "word": "contraargumento", "definition": "Argumento que se opone a otro argumento." },
+      "pt": { "word": "contra-argumento", "definition": "Argumento que se opõe a outro argumento." }
+    }
+  },
+  {
+    "id": "en-b2-debate-002",
+    "lang": "en",
+    "level": "B2",
+    "category": "debate",
+    "word": "concede",
+    "partOfSpeech": "verb",
+    "definition": "To admit, often unwillingly, that something is true.",
+    "example": "He conceded that the plan was expensive but insisted it was worth it.",
+    "translations": {
+      "fr": { "word": "concéder", "definition": "Admettre, souvent à contrecœur, que quelque chose est vrai." },
+      "de": { "word": "einräumen", "definition": "Zugeben, oft widerwillig, dass etwas wahr ist." },
+      "es": { "word": "conceder", "definition": "Admitir, a menudo a regañadientes, que algo es cierto." },
+      "pt": { "word": "conceder", "definition": "Admitir, muitas vezes a contragosto, que algo é verdade." }
+    }
+  },
+  {
+    "id": "en-b2-idioms-001",
+    "lang": "en",
+    "level": "B2",
+    "category": "idioms",
+    "word": "a double-edged sword",
+    "partOfSpeech": "idiom",
+    "definition": "Something that has both good and bad effects.",
+    "example": "Early fame can be a double-edged sword for young athletes.",
+    "translations": {
+      "fr": { "word": "une arme à double tranchant", "definition": "Quelque chose qui a des effets à la fois positifs et négatifs." },
+      "de": { "word": "ein zweischneidiges Schwert", "definition": "Etwas, das sowohl gute als auch schlechte Folgen hat." },
+      "es": { "word": "un arma de doble filo", "definition": "Algo que tiene efectos buenos y malos a la vez." },
+      "pt": { "word": "uma faca de dois gumes", "definition": "Algo que tem efeitos bons e maus ao mesmo tempo." }
+    }
+  },
+  {
+    "id": "en-c1-academic-001",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "nuanced",
+    "partOfSpeech": "adjective",
+    "definition": "Showing an awareness of subtle differences in meaning or opinion.",
+    "example": "The essay offers a nuanced reading of the poet's early work.",
+    "translations": {
+      "fr": { "word": "nuancé", "definition": "Qui tient compte de différences subtiles." },
+      "de": { "word": "differenziert", "definition": "Feine Unterschiede berücksichtigend." },
+      "es": { "word": "matizado", "definition": "Que tiene en cuenta diferencias sutiles." },
+      "pt": { "word": "matizado", "definition": "Que tem em conta diferenças subtis." }
+    }
+  },
+  {
+    "id": "en-c1-academic-002",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "corroborate",
+    "partOfSpeech": "verb",
+    "definition": "To confirm or support a statement or theory with new evidence.",
+    "example": "Two independent studies corroborate the original findings.",
+    "translations": {
+      "fr": { "word": "corroborer", "definition": "Confirmer ou appuyer une affirmation par de nouvelles preuves." },
+      "de": { "word": "untermauern", "definition": "Eine Aussage oder Theorie durch neue Belege bestätigen." },
+      "es": { "word": "corroborar", "definition": "Confirmar o respaldar una afirmación con nuevas pruebas." },
+      "pt": { "word": "corroborar", "definition": "Confirmar ou apoiar uma afirmação com novas provas." }
+    }
+  },
+  {
+    "id": "en-c1-debate-001",
+    "lang": "en",
+    "level": "C1",
+    "category": "debate",
+    "word": "untenable",
+    "partOfSpeech": "adjective",
+    "definition": "Not able to be defended against criticism or attack.",
+    "example": "Once the data was published, the minister's position became untenable.",
+    "translations": {
+      "fr": { "word": "intenable", "definition": "Qui ne peut pas être défendu face aux critiques." },
+      "de": { "word": "unhaltbar", "definition": "Nicht gegen Kritik zu verteidigen." },
+      "es": { "word": "insostenible", "definition": "Que no se puede defender frente a las críticas." },
+      "pt": { "word": "insustentável", "definition": "Que não pode ser defendido contra críticas." }
+    }
+  },
+  {
+    "id": "en-c1-idioms-001",
+    "lang": "en",
+    "level": "C1",
+    "category": "idioms",
+    "word": "play devil's advocate",
+    "partOfSpeech": "idiom",
+    "definition": "To argue against an idea, even if you agree with it, in order to test it.",
+    "example": "Let me play devil's advocate: what if the cheaper option is actually better?",
+    "translations": {
+      "fr": { "word": "se faire l'avocat du diable", "definition": "Défendre la position contraire, même sans y croire, pour tester une idée." },
+      "de": { "word": "den Advocatus Diaboli spielen", "definition": "Eine Gegenposition vertreten, auch ohne sie zu teilen, um eine Idee zu prüfen." },
+      "es": { "word": "hacer de abogado del diablo", "definition": "Defender la postura contraria, aunque no se comparta, para poner a prueba una idea." },
+      "pt": { "word": "fazer de advogado do diabo", "definition": "Defender a posição contrária, mesmo sem concordar, para testar uma ideia." }
+    }
+  },
+  {
+    "id": "en-c2-academic-001",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "epistemic",
+    "partOfSpeech": "adjective",
+    "definition": "Relating to knowledge and to how we come to know things.",
+    "example": "The paper raises epistemic questions about what counts as reliable data.",
+    "translations": {
+      "fr": { "word": "épistémique", "definition": "Relatif à la connaissance et à la manière dont on sait les choses." },
+      "de": { "word": "epistemisch", "definition": "Die Erkenntnis und die Art, wie wir etwas wissen, betreffend." },
+      "es": { "word": "epistémico", "definition": "Relativo al conocimiento y a cómo sabemos las cosas." },
+      "pt": { "word": "epistémico", "definition": "Relativo ao conhecimento e à forma como sabemos as coisas." }
+    }
+  },
+  {
+    "id": "en-c2-debate-001",
+    "lang": "en",
+    "level": "C2",
+    "category": "debate",
+    "word": "specious",
+    "partOfSpeech": "adjective",
+    "definition": "Seeming reasonable at first, but actually wrong.",
+    "example": "His specious reasoning fell apart under cross-examination.",
+    "translations": {
+      "fr": { "word": "spécieux", "definition": "Qui semble juste au premier abord mais qui est en réalité faux." },
+      "de": { "word": "fadenscheinig", "definition": "Auf den ersten Blick einleuchtend, aber eigentlich falsch." },
+      "es": { "word": "especioso", "definition": "Que parece razonable a primera vista pero en realidad es falso." },
+      "pt": { "word": "especioso", "definition": "Que parece razoável à primeira vista, mas na verdade é falso." }
+    }
+  },
+  {
+    "id": "en-c2-idioms-001",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a Pyrrhic victory",
+    "partOfSpeech": "idiom",
+    "definition": "A win that costs the winner so much that it is hardly worth it.",
+    "example": "The lawsuit was a Pyrrhic victory: they won the case but lost their biggest client.",
+    "translations": {
+      "fr": { "word": "une victoire à la Pyrrhus", "definition": "Victoire obtenue à un prix si élevé qu'elle ne vaut presque rien." },
+      "de": { "word": "ein Pyrrhussieg", "definition": "Ein Sieg, der so teuer erkauft ist, dass er kaum etwas wert ist." },
+      "es": { "word": "una victoria pírrica", "definition": "Victoria que cuesta tanto que apenas vale la pena." },
+      "pt": { "word": "uma vitória de Pirro", "definition": "Vitória que custa tanto que quase não compensa." }
+    }
+  }
+]
