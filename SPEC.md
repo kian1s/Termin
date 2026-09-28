@@ -150,13 +150,24 @@ Validate the files with a small script: every field present, IDs unique, no empt
 - **Done when:** the streak increases on a new day with activity (test by changing the stored last-active date) and resets after a missed day.
 
 ### 4.9 Daily reminder
-- In Settings: a toggle and a time picker for a daily local notification, such as "3 words are waiting for review" (or "Keep your 4-day streak going").
-- Uses `expo-notifications`, **local notifications only**. Ask for permission when the toggle is first turned on. Verify early that local notifications fire in Expo Go on iOS. If they do not, stop and report.
-- **Done when:** a reminder set 2 minutes ahead arrives on the iPhone.
+- In Settings: a toggle and a time picker for a daily local notification.
+- Uses `expo-notifications`, **local notifications only**. Ask for permission when the toggle is first turned on. Verified in Phase 1: local notifications arrive on the iPhone lock screen in Expo Go. They do not show while the app is open, which is acceptable.
+- **Smart reminders (added after Phase 1):**
+  - Instead of one repeating notification, schedule each of the next 7 days individually (one-time date triggers). Reschedule all of them every time the app opens, and whenever the reminder settings change.
+  - **Randomized time:** each day's reminder fires at a random minute within ±30 minutes of the time the user picked (clamped to the same day).
+  - **A word in every reminder:** each notification quizzes one word, such as "Do you remember what *untenable* means?". Prefer a saved word (due for review first, then any saved word). If nothing is saved, use a new word from the user's feed filters that they have not seen yet, such as "New word: *specious*. Do you know what it means?". Do not repeat the same word within the 7 scheduled days when enough words exist.
+  - Tapping the notification opens the app on the feed.
+- **Done when:** a reminder set 2 minutes ahead arrives on the iPhone, and the scheduled reminders for the coming days contain different words.
 
 ### 4.10 Settings
 - Edit languages, level, and categories.
 - Show Pro status. **Restore purchases** button. Link to the paywall.
+
+### 4.11 Natural pronunciation
+- The speaker button should sound as human as possible instead of the default robotic voice.
+- **Step 1 (on-device, Phase 8):** with `expo-speech`, list the available voices for the learning language and pick the best quality one (Premium, then Enhanced, then default). In Settings, show a short hint explaining that better voices can be downloaded for free in iOS Settings → Accessibility → Spoken Content → Voices.
+- **Step 2 (optional, after Phase 6 if time allows):** a `POST /speak` endpoint on the Worker that returns natural AI-generated speech for a word, played with `expo-audio`, with caching and a daily limit per `deviceId`. Fall back to on-device speech on any error.
+- **Done when:** with an Enhanced or Premium voice installed, the word is read with that voice.
 
 ## 5. Monetization (RevenueCat)
 
@@ -230,13 +241,13 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 |---|---|---|---|
 | Thu 24 | 0. Setup | Create the Expo app, git, and a public GitHub repo with an MIT license. Set up `.gitignore` with `.env`. Install the RevenueCat AI Toolkit. | The app opens in Expo Go on the phone. |
 | Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings including the daily reminder (4.9). Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
-| Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, and the streak. | Save 3 words, see them come back as reviews, and see Progress and the streak update. |
+| Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, the streak, and smart reminders (4.9). | Save 3 words, see them come back as reviews, and see Progress and the streak update. A reminder quizzes a saved word. |
 | Sat 26 | 3. Content | Generate and check the dataset, review the flags, load the real data. | The feed shows real words for each language. |
 | Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, and locked teaser cards. | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
-| Tue 29 | 8. Polish | Visual polish, empty states, error states. | A full run with no crashes. |
+| Tue 29 | 8. Polish | Visual polish (including onboarding), empty states, error states, natural pronunciation step 1 (4.11). | A full run with no crashes. |
 | Wed 30 | 9. Submit | README, screenshots, demo video, Devpost submission. | Everything on the checklist below. |
 
 If behind schedule, cut in this order: voice, then shrink the dataset to 8 per combination. **Never cut the RevenueCat purchase flow.**
