@@ -1,13 +1,12 @@
 import { Lang, Settings, WordEntry } from '@/lib/types';
 
-// Words are bundled with the app. Phase 1 ships ~15 English sample words;
-// the other languages are filled in Phase 3.
+// Words are bundled with the app, generated and checked by scripts/dataset.
 const WORDS: Record<Lang, WordEntry[]> = {
   en: require('../../data/words/en.json'),
-  fr: [],
-  de: [],
-  es: [],
-  pt: [],
+  fr: require('../../data/words/fr.json'),
+  de: require('../../data/words/de.json'),
+  es: require('../../data/words/es.json'),
+  pt: require('../../data/words/pt.json'),
 };
 
 export function wordsFor(settings: Settings): WordEntry[] {

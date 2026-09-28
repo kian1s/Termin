@@ -1,0 +1,547 @@
+{
+  "en-b2-academic-014": {
+    "definition": "To accept or admit that something is true or exists."
+  },
+  "en-c1-academic-028": {
+    "definition": "Used to say that something can be supported with good reasons, even if not everyone agrees."
+  },
+  "en-c1-academic-030": {
+    "definition": "Used to introduce a result or conclusion that follows from what was just said."
+  },
+  "en-c1-academic-036": {
+    "definition": "Although; used before a short phrase that adds a limitation."
+  },
+  "en-c2-academic-001": {
+    "example": "Two independent witnesses corroborated the driver's account of the accident."
+  },
+  "en-c2-academic-015": {
+    "definition": "Most noticeable or important."
+  },
+  "en-b1-everyday-028": {
+    "example": "He says he's never been to Paris; in fact, he lived there for two years."
+  },
+  "en-b2-everyday-001": {
+    "example": "He copied his friend's homework, and because the teacher couldn't prove it, he got away with it."
+  },
+  "en-c2-everyday-017": {
+    "definition": "To behave in a rude or unfair way that is not acceptable."
+  },
+  "en-b2-idioms-019": {
+    "example": "Her surname is on the tip of my tongue, but I just can't remember it."
+  },
+  "en-c1-idioms-019": {
+    "example": "He made a mountain out of a molehill, complaining for hours about a ten-minute delay."
+  },
+  "de-b1-everyday-014": {
+    "translations": {
+      "fr": {
+        "word": "n'avoir aucune idée",
+        "definition": "Ne pas connaître ou comprendre quelque chose."
+      }
+    }
+  },
+  "de-b2-everyday-014": {
+    "translations": {
+      "pt": {
+        "word": "dar nos nervos a alguém",
+        "definition": "Irritar ou aborrecer muito alguém."
+      }
+    }
+  },
+  "de-b2-everyday-028": {
+    "translations": {
+      "es": {
+        "word": "eso pasa de la raya",
+        "definition": "Ser excesivo o inaceptable."
+      }
+    }
+  },
+  "de-b2-everyday-030": {
+    "translations": {
+      "en": {
+        "word": "clear up a question",
+        "definition": "Make a question or point clear by discussing it."
+      }
+    }
+  },
+  "de-b2-everyday-036": {
+    "translations": {
+      "en": {
+        "word": "tone of communication",
+        "definition": "The way people speak to one another."
+      },
+      "fr": {
+        "word": "le ton",
+        "definition": "La manière dont les gens se parlent."
+      },
+      "es": {
+        "word": "el tono",
+        "definition": "La manera en que las personas se hablan."
+      },
+      "pt": {
+        "word": "o tom",
+        "definition": "A maneira como as pessoas falam umas com as outras."
+      }
+    }
+  },
+  "de-c1-everyday-014": {
+    "example": "Nach langer Diskussion konnte sie sich mit ihrem Vorschlag im Team durchsetzen."
+  },
+  "de-b1-idioms-008": {
+    "translations": {
+      "es": {
+        "word": "tener potra",
+        "definition": "Tener mucha suerte, a menudo sin esperarlo."
+      }
+    }
+  },
+  "de-b2-idioms-018": {
+    "translations": {
+      "es": {
+        "word": "ir por libre",
+        "definition": "Actuar de forma independiente, sin seguir al grupo."
+      }
+    }
+  },
+  "de-c1-idioms-013": {
+    "translations": {
+      "en": {
+        "word": "skate on thin ice",
+        "definition": "To put oneself in a risky situation."
+      }
+    }
+  },
+  "de-c1-idioms-017": {
+    "translations": {
+      "fr": {
+        "word": "monter sur la tête de quelqu'un",
+        "definition": "Abuser de la patience de quelqu'un et ne pas le respecter."
+      }
+    }
+  },
+  "de-c2-work-010": {
+    "translations": {
+      "en": {
+        "word": "put something to the test",
+        "definition": "To examine something carefully to see if it still works well."
+      },
+      "es": {
+        "word": "poner algo a prueba",
+        "definition": "Examinar algo cuidadosamente para comprobar si sigue siendo adecuado."
+      },
+      "pt": {
+        "word": "pôr algo à prova",
+        "definition": "Examinar algo com cuidado para verificar se continua a ser adequado."
+      }
+    }
+  },
+  "es-b1-academic-005": {
+    "translations": {
+      "fr": {
+        "word": "le sujet",
+        "definition": "Ce dont on parle ou ce qu'on étudie."
+      },
+      "pt": {
+        "word": "o tema",
+        "definition": "Assunto sobre o qual se fala, escreve ou estuda."
+      }
+    }
+  },
+  "es-b1-academic-017": {
+    "example": "Por una parte, el estudio confirma la tendencia; por otra, revela importantes diferencias regionales."
+  },
+  "es-c2-academic-020": {
+    "example": "La paradoja es que cuantos más datos reúne, menos segura parece su conclusión."
+  },
+  "es-b1-everyday-015": {
+    "translations": {
+      "de": {
+        "word": "das ist mir egal",
+        "definition": "Keine Vorliebe für eine der angebotenen Möglichkeiten haben."
+      }
+    }
+  },
+  "es-b2-everyday-035": {
+    "translations": {
+      "pt": {
+        "word": "deixar alguém pendurado",
+        "definition": "Não aparecer a um encontro combinado e fazer outra pessoa esperar."
+      }
+    }
+  },
+  "es-c1-everyday-011": {
+    "example": "Siempre me echas en cara que llegué tarde a tu cumpleaños, aunque ya te pedí perdón."
+  },
+  "es-c1-everyday-022": {
+    "example": "No es la más guapa del grupo, pero tiene un punto que atrae a todo el mundo."
+  },
+  "es-c2-everyday-003": {
+    "translations": {
+      "pt": {
+        "word": "fazer das tripas coração",
+        "definition": "Ganhar coragem para fazer algo difícil."
+      }
+    }
+  },
+  "es-b1-idioms-001": {
+    "example": "Como mañana hay examen, Luis tiene que ponerse las pilas y empezar a estudiar."
+  },
+  "es-b2-idioms-001": {
+    "translations": {
+      "pt": {
+        "word": "estar pelos cabelos",
+        "definition": "Estar muito aborrecido ou cansado de alguém ou de alguma coisa."
+      }
+    }
+  },
+  "es-b2-idioms-006": {
+    "translations": {
+      "de": {
+        "word": "zwischen Hammer und Amboss sein",
+        "definition": "Vor zwei schwierigen Möglichkeiten mit unangenehmen Folgen stehen."
+      }
+    }
+  },
+  "es-b2-idioms-009": {
+    "translations": {
+      "de": {
+        "word": "das Rennen machen",
+        "definition": "Am Ende gewinnen oder den eigenen Willen erreichen."
+      }
+    }
+  },
+  "es-c2-idioms-009": {
+    "translations": {
+      "fr": {
+        "word": "ça barde",
+        "definition": "Une dispute ou une bagarre éclate avec beaucoup de bruit."
+      }
+    }
+  },
+  "fr-b1-everyday-002": {
+    "translations": {
+      "de": {
+        "word": "recht haben",
+        "definition": "Die richtige Meinung oder Antwort haben."
+      }
+    }
+  },
+  "fr-b1-everyday-023": {
+    "example": "J'allais prendre la voiture, puis j'ai changé d'avis en voyant les embouteillages."
+  },
+  "fr-b2-everyday-027": {
+    "translations": {
+      "es": {
+        "word": "me apetece",
+        "definition": "Tener ganas de hacer o probar algo."
+      },
+      "pt": {
+        "word": "apetece-me",
+        "definition": "Ter vontade de fazer ou experimentar alguma coisa."
+      }
+    }
+  },
+  "fr-c1-everyday-016": {
+    "word": "à force de",
+    "definition": "Grâce à la répétition ou à la durée d'une action, un résultat finit par arriver."
+  },
+  "fr-c2-everyday-014": {
+    "translations": {
+      "de": {
+        "word": "nicht lange um den heißen Brei herumreden",
+        "definition": "Etwas direkt sagen, ohne lange Umschweife."
+      }
+    }
+  },
+  "fr-b2-idioms-018": {
+    "example": "Comme il a la main verte, son balcon est couvert de plantes magnifiques."
+  },
+  "fr-c1-idioms-016": {
+    "translations": {
+      "de": {
+        "word": "wie aus dem Ei gepellt sein",
+        "definition": "Sehr elegant und gepflegt angezogen sein."
+      }
+    }
+  },
+  "fr-c1-idioms-017": {
+    "translations": {
+      "de": {
+        "word": "Vitamin B haben",
+        "definition": "Einfluss oder nützliche Kontakte haben."
+      }
+    }
+  },
+  "fr-c2-work-004": {
+    "translations": {
+      "en": {
+        "word": "scope of responsibility",
+        "definition": "The limits of the subjects or tasks a team can handle."
+      }
+    }
+  },
+  "fr-c2-work-015": {
+    "example": "Après les premiers retours, nous devons revoir les modalités de l'accord avec notre fournisseur."
+  },
+  "pt-c1-academic-004": {
+    "definition": "Relação direta entre uma causa e o efeito que dela resulta."
+  },
+  "pt-c1-academic-007": {
+    "translations": {
+      "es": {
+        "word": "la salvedad",
+        "definition": "Matiz que limita el alcance de una afirmación."
+      }
+    }
+  },
+  "pt-b2-everyday-029": {
+    "word": "fazer triste figura",
+    "example": "Ao tentar contar a anedota, fez triste figura e ninguém riu."
+  },
+  "pt-c1-everyday-014": {
+    "translations": {
+      "es": {
+        "word": "hacerse el desentendido",
+        "definition": "Fingir que no se sabe lo que ocurre."
+      }
+    }
+  },
+  "pt-c1-everyday-019": {
+    "word": "não ser de meias-medidas",
+    "example": "A diretora não é de meias-medidas: cancelou o projeto naquele dia."
+  },
+  "pt-c1-everyday-025": {
+    "word": "ser injusto"
+  },
+  "pt-b2-idioms-013": {
+    "word": "dar água pela barba",
+    "definition": "Dar muito trabalho ou causar grandes dificuldades.",
+    "example": "Com dois prazos urgentes e metade da equipa de baixa, este projeto está a dar-nos água pela barba.",
+    "translations": {
+      "en": {
+        "word": "be a real handful",
+        "definition": "To cause a lot of work or trouble."
+      },
+      "fr": {
+        "word": "donner du fil à retordre",
+        "definition": "Causer beaucoup de difficultés."
+      },
+      "de": {
+        "word": "jemandem zu schaffen machen",
+        "definition": "Jemandem große Schwierigkeiten bereiten."
+      },
+      "es": {
+        "word": "dar guerra",
+        "definition": "Causar muchas molestias o trabajo."
+      }
+    }
+  },
+  "pt-c1-idioms-002": {
+    "translations": {
+      "en": {
+        "word": "be like a bear with a sore head",
+        "definition": "To be irritable and unfriendly."
+      },
+      "es": {
+        "word": "estar de uñas",
+        "definition": "Estar irritado y poco dispuesto a tratar con los demás."
+      }
+    }
+  },
+  "pt-c1-work-019": {
+    "translations": {
+      "en": {
+        "word": "to add a caveat",
+        "definition": "To mention a condition or limit before fully accepting an idea."
+      }
+    }
+  },
+  "pt-c1-work-029": {
+    "example": "Vou assegurar que todos recebam a versão final antes do prazo."
+  },
+  "en-c1-academic-033": {
+    "example": "Early results revealed a regional bias; accordingly, we expanded the sample."
+  },
+  "en-c1-everyday-014": {
+    "translations": {
+      "es": {
+        "word": "tomárselo como algo personal"
+      }
+    }
+  },
+  "en-c1-everyday-019": {
+    "translations": {
+      "pt": {
+        "word": "dar nos nervos a alguém"
+      }
+    }
+  },
+  "en-c2-everyday-009": {
+    "example": "Whether the meeting is on Monday or Tuesday is neither here nor there; what matters is the agenda."
+  },
+  "en-c2-everyday-025": {
+    "translations": {
+      "es": {
+        "word": "verle el farol a alguien"
+      }
+    }
+  },
+  "en-b1-idioms-015": {
+    "translations": {
+      "de": {
+        "word": "nicht ganz auf dem Damm sein"
+      }
+    }
+  },
+  "en-b2-idioms-003": {
+    "translations": {
+      "es": {
+        "word": "llamar a la puerta equivocada"
+      },
+      "pt": {
+        "word": "bater à porta errada"
+      }
+    }
+  },
+  "en-b2-idioms-007": {
+    "example": "Our inspector does everything by the book, even when everyone is in a hurry."
+  },
+  "en-b2-idioms-025": {
+    "definition": "The advantages of two different things at the same time."
+  },
+  "en-c1-idioms-025": {
+    "translations": {
+      "es": {
+        "word": "la pelota está en tu tejado"
+      }
+    }
+  },
+  "en-c2-idioms-006": {
+    "translations": {
+      "de": {
+        "word": "die Vitaminspritze"
+      }
+    }
+  },
+  "en-c2-idioms-020": {
+    "translations": {
+      "fr": {
+        "word": "rire le dernier"
+      },
+      "de": {
+        "word": "zuletzt lachen"
+      },
+      "es": {
+        "word": "reír el último"
+      }
+    }
+  },
+  "de-b2-everyday-021": {
+    "level": "B1"
+  },
+  "de-b2-everyday-022": {
+    "level": "B1"
+  },
+  "de-b2-everyday-023": {
+    "level": "B1"
+  },
+  "es-b2-everyday-036": {
+    "level": "B1"
+  },
+  "es-b2-everyday-037": {
+    "level": "B1"
+  },
+  "es-b2-everyday-040": {
+    "level": "B1"
+  },
+  "pt-b2-work-011": {
+    "level": "B1"
+  },
+  "fr-b2-academic-011": {
+    "level": "B1"
+  },
+  "fr-b2-academic-033": {
+    "level": "B1"
+  },
+  "fr-b2-academic-036": {
+    "level": "B1"
+  },
+  "fr-b2-academic-038": {
+    "level": "B1"
+  },
+  "en-b2-everyday-030": {
+    "level": "B1"
+  },
+  "en-b2-everyday-035": {
+    "level": "B1"
+  },
+  "en-c1-academic-011": {
+    "level": "B2"
+  },
+  "en-c1-academic-013": {
+    "level": "B2"
+  },
+  "en-c1-work-002": {
+    "level": "B2"
+  },
+  "en-c1-work-005": {
+    "level": "B2"
+  },
+  "de-c1-work-005": {
+    "level": "B2"
+  },
+  "de-c1-everyday-031": {
+    "level": "B2"
+  },
+  "es-c1-everyday-035": {
+    "level": "B2"
+  },
+  "es-c1-work-020": {
+    "level": "B2"
+  },
+  "fr-c1-everyday-030": {
+    "level": "B2"
+  },
+  "fr-c1-everyday-031": {
+    "level": "B2"
+  },
+  "pt-c1-everyday-024": {
+    "level": "B2"
+  },
+  "de-c2-academic-024": {
+    "level": "B2"
+  },
+  "de-c2-idioms-022": {
+    "level": "B2"
+  },
+  "de-c2-idioms-023": {
+    "level": "B2"
+  },
+  "fr-c2-academic-018": {
+    "level": "B2"
+  },
+  "fr-c2-everyday-018": {
+    "level": "B2"
+  },
+  "pt-c2-everyday-014": {
+    "level": "B2"
+  },
+  "pt-c2-everyday-015": {
+    "level": "B2"
+  },
+  "en-c2-idioms-012": {
+    "level": "B2"
+  },
+  "de-c2-everyday-002": {
+    "level": "C1"
+  },
+  "es-c2-academic-021": {
+    "level": "C1"
+  },
+  "fr-c2-academic-019": {
+    "level": "C1"
+  },
+  "fr-c2-idioms-008": {
+    "level": "C1"
+  }
+}

@@ -58,11 +58,21 @@ Next Gen judging criteria: a clear, useful, original idea, meaningful progress t
 - **Learning language:** English, French, German, Spanish, Portuguese (`en fr de es pt`).
 - **Native language:** the same five. It must differ from the learning language. It is used for translations and AI feedback.
 - **Levels:** B1, B2, C1, C2.
-- **Categories:** `academic` (essays, analysis), `debate` (argument, persuasion), `idioms`.
+- **Categories:** `academic` (essays, analysis, argument, linking words; includes the former Debate words), `everyday` (natural conversation, collocations, phrasal verbs, register), `work` (meetings, emails, negotiation), `idioms` (fixed expressions with a non-literal meaning). Debate was dropped as a category in Phase 3; learners can build a Debate set instead. Details in `DATASET.md`.
 
 ### Dataset size
 
-12 words per (language, level, category) gives 5 × 4 × 3 × 12 = **720 entries**. If generation or checking runs late, cut to 8 per combination (480 entries).
+Up to **475 words per language** (2,375 in total). Each number is a **cap**, not a quota: the generator returns fewer rather than invent filler, and the checker drops weak entries. The caps are the same for all five languages.
+
+| Category | B1 | B2 | C1 | C2 | Total |
+|---|---|---|---|---|---|
+| Academic | 25 | 40 | 40 | 30 | 135 |
+| Everyday | 30 | 40 | 35 | 25 | 130 |
+| Work | 20 | 30 | 30 | 20 | 100 |
+| Idioms | 15 | 30 | 35 | 30 | 110 |
+| **Total** | **90** | **140** | **140** | **105** | **475** |
+
+If review runs late, ship the entries that already passed.
 
 ### Word entry schema
 
@@ -70,10 +80,10 @@ One JSON file per learning language: `data/words/<lang>.json`, an array of:
 
 ```json
 {
-  "id": "en-c1-debate-004",
+  "id": "en-c1-academic-004",
   "lang": "en",
   "level": "C1",
-  "category": "debate",
+  "category": "academic",
   "word": "untenable",
   "partOfSpeech": "adjective",
   "definition": "Not able to be defended against criticism or attack.",
@@ -91,12 +101,20 @@ One JSON file per learning language: `data/words/<lang>.json`, an array of:
 
 ### Generation and checking
 
-1. Write `scripts/generate-words.ts`. It calls OpenRouter using `OPENROUTER_API_KEY` from a local `.env`, with **model A** for generation. It produces the JSON above in batches of 12 per combination. The prompt must request words that are really at that CEFR level, have no duplicates, and use original example sentences.
-2. Write `scripts/check-words.ts`. It uses a **different model B** to review every entry. It checks the definition, example usage, level fit, and each translation. It **flags** problems with a reason and does not rewrite anything. Output goes to `data/review/flags.json`.
-3. The owner reviews all flagged entries, plus 20 random entries in each language they can read. Fix or delete bad entries.
-4. The app loads the JSON bundled inside the app. It never generates words at runtime.
+The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scripts/dataset/` and run with Node on the owner's PC, never in the app.
 
-Validate the files with a small script: every field present, IDs unique, no empty strings.
+1. **Pick candidate words** (model A): bare words, 1.5× the cap per combination.
+2. **Filter** (model B scores level and category fit; a script removes repeats within a language and keeps the cap).
+3. **Write entries** (model A): batches of 10, strict JSON, 4 translations.
+4. **Script checks:** every field present, no empty strings, unique IDs, no repeated word in a language, the word (or a form of it) in the example, and the definition compared with Wiktionary (a very close match is a serious flag).
+5. **Model review** (model B, from a different company than A): flags only, each with a reason and a severity (serious or minor).
+6. **Serious flags** get one automatic retry with the reason; still flagged after that, the entry is dropped.
+7. **Owner review:** remaining minor flags plus 10 random entries per level, in `data/review/`.
+8. **Ship:** `data/words/<lang>.json`, bundled in the app. It never generates words at runtime.
+
+**Writing rules:** common and useful words at their CEFR level; original definitions and examples (never quoted); definitions in simpler words than the headword, under 20 words; examples 8 to 20 words; European Portuguese, Spain Spanish, France French; nouns in German, French, Spanish and Portuguese include their article; idiom translations use an equivalent idiom or a short plain explanation, never word for word.
+
+**Limits:** the OpenRouter key has a $10 limit and the scripts stop at $9.50 of tracked spend (raised from $8 during the full run). Progress is saved per combination so a crash costs nothing already paid for.
 
 ## 4. Features (MVP)
 
@@ -169,14 +187,30 @@ Validate the files with a small script: every field present, IDs unique, no empt
 - **Step 2 (optional, after Phase 6 if time allows):** a `POST /speak` endpoint on the Worker that returns natural AI-generated speech for a word, played with `expo-audio`, with caching and a daily limit per `deviceId`. Fall back to on-device speech on any error.
 - **Done when:** with an Enhanced or Premium voice installed, the word is read with that voice.
 
+### 4.12 Blending stretch words (Phase 4)
+- Learners who do well get "stretch" cards from one level up, from the categories they picked, decided on the phone from the Leitner boxes and recent review answers.
+
+| Learner state | Rule (last 20 reviews) | Feed |
+|---|---|---|
+| Normal | Default | Only the chosen level |
+| Ready | 80%+ correct and 15+ words in box 3 or higher | 1 stretch card in every 8 |
+| Strong | 90%+ correct | 1 stretch card in every 5 |
+| Running out | 80% of the level's words seen | One-time card: "You're ready for C1. Switch level?" |
+| Struggling | Under 60% correct | No stretch cards until accuracy recovers |
+
+- Stretch cards show a small **Stretch · C1** badge. Saving and reviewing work as normal.
+- If the level above is Pro and the user is free, stretch cards are locked teasers ("You're ready for C1") that open the paywall, at most one per 15 cards.
+- A development-only Settings row, "Simulate strong learner", makes it testable.
+- **Done when:** with "Simulate strong learner" on, stretch cards appear at the expected rate, and a free B2 learner sees locked C1 teasers.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Pro
 
 | | Free | Pro |
 |---|---|---|
-| Levels | B1, B2 | B1 to C2 |
-| Categories | Academic, Debate | plus Idioms |
+| Levels | B1, B2 | B1 to C2 (Idioms at every level) |
+| Categories | Academic, Everyday, Work | plus Idioms |
 | Sets | Favorites + 2 custom | Unlimited |
 | AI Coach checks | 3 per day | 50 per day |
 
@@ -242,15 +276,15 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 | Thu 24 | 0. Setup | Create the Expo app, git, and a public GitHub repo with an MIT license. Set up `.gitignore` with `.env`. Install the RevenueCat AI Toolkit. | The app opens in Expo Go on the phone. |
 | Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings including the daily reminder (4.9). Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
 | Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, the streak, and smart reminders (4.9). | Save 3 words, see them come back as reviews, and see Progress and the streak update. A reminder quizzes a saved word. |
-| Sat 26 | 3. Content | Generate and check the dataset, review the flags, load the real data. | The feed shows real words for each language. |
-| Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, and locked teaser cards. | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
+| Sat 26 | 3. Content | Run the dataset pipeline in `DATASET.md` (test batch first), review the flags, load the real data. | The feed shows real words for each language. |
+| Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, locked teaser cards, and blending (4.12). | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
 | Tue 29 | 8. Polish | Visual polish (including onboarding), empty states, error states, natural pronunciation step 1 (4.11). | A full run with no crashes. |
 | Wed 30 | 9. Submit | README, screenshots, demo video, Devpost submission. | Everything on the checklist below. |
 
-If behind schedule, cut in this order: voice, then shrink the dataset to 8 per combination. **Never cut the RevenueCat purchase flow.**
+If behind schedule, cut in this order: voice, then blending, then ship a smaller dataset (only entries that passed review). **Never cut the RevenueCat purchase flow.**
 
 ## 10. Submission checklist
 

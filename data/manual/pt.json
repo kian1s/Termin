@@ -1,0 +1,2046 @@
+[
+  {
+    "id": "pt-c1-academic-m01",
+    "lang": "pt",
+    "level": "C1",
+    "category": "academic",
+    "word": "a lacuna",
+    "partOfSpeech": "noun",
+    "definition": "Falha ou parte em falta num estudo, num argumento ou num conhecimento.",
+    "example": "O artigo identifica uma lacuna na investigação sobre o trabalho remoto em zonas rurais.",
+    "translations": {
+      "en": {
+        "word": "gap",
+        "definition": "A missing part in research, an argument or knowledge."
+      },
+      "fr": {
+        "word": "la lacune",
+        "definition": "Partie manquante dans une recherche, un raisonnement ou un savoir."
+      },
+      "de": {
+        "word": "die Lücke",
+        "definition": "Ein fehlender Teil in einer Forschung, einem Argument oder im Wissen."
+      },
+      "es": {
+        "word": "la laguna",
+        "definition": "Parte que falta en una investigación, un argumento o un conocimiento."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-academic-m02",
+    "lang": "pt",
+    "level": "C1",
+    "category": "academic",
+    "word": "o pressuposto",
+    "partOfSpeech": "noun",
+    "definition": "Ideia aceite como verdadeira antes de se começar um raciocínio.",
+    "example": "O estudo parte do pressuposto de que todos os alunos têm acesso à internet.",
+    "translations": {
+      "en": {
+        "word": "assumption",
+        "definition": "An idea accepted as true before reasoning begins."
+      },
+      "fr": {
+        "word": "le présupposé",
+        "definition": "Idée admise comme vraie avant de commencer un raisonnement."
+      },
+      "de": {
+        "word": "die Voraussetzung",
+        "definition": "Eine Annahme, die man vor einer Überlegung als wahr betrachtet."
+      },
+      "es": {
+        "word": "el presupuesto",
+        "definition": "Idea que se acepta como verdadera antes de empezar a razonar."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-academic-m03",
+    "lang": "pt",
+    "level": "C1",
+    "category": "academic",
+    "word": "ponderar",
+    "partOfSpeech": "verb",
+    "definition": "Pensar com cuidado nas vantagens e desvantagens antes de decidir.",
+    "example": "A autora pondera os custos e os benefícios da medida antes de tirar conclusões.",
+    "translations": {
+      "en": {
+        "word": "weigh up",
+        "definition": "To think carefully about advantages and disadvantages before deciding."
+      },
+      "fr": {
+        "word": "peser le pour et le contre",
+        "definition": "Réfléchir aux avantages et aux inconvénients avant de décider."
+      },
+      "de": {
+        "word": "abwägen",
+        "definition": "Vor- und Nachteile sorgfältig bedenken, bevor man entscheidet."
+      },
+      "es": {
+        "word": "sopesar",
+        "definition": "Pensar con cuidado en las ventajas y los inconvenientes antes de decidir."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-academic-m01",
+    "lang": "pt",
+    "level": "C2",
+    "category": "academic",
+    "word": "a dicotomia",
+    "partOfSpeech": "noun",
+    "definition": "Divisão de algo em duas partes opostas ou muito diferentes.",
+    "example": "O ensaio rejeita a dicotomia entre crescimento económico e proteção do ambiente.",
+    "translations": {
+      "en": {
+        "word": "dichotomy",
+        "definition": "A division into two opposing or very different parts."
+      },
+      "fr": {
+        "word": "la dichotomie",
+        "definition": "Division d'une chose en deux parties opposées."
+      },
+      "de": {
+        "word": "die Dichotomie",
+        "definition": "Die Teilung in zwei gegensätzliche Teile."
+      },
+      "es": {
+        "word": "la dicotomía",
+        "definition": "División de algo en dos partes opuestas."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-academic-m02",
+    "lang": "pt",
+    "level": "C2",
+    "category": "academic",
+    "word": "o paradigma",
+    "partOfSpeech": "noun",
+    "definition": "Modelo de pensamento aceite numa área, que orienta a forma de estudar um tema.",
+    "example": "A descoberta obrigou os investigadores a rever o paradigma dominante na disciplina.",
+    "translations": {
+      "en": {
+        "word": "paradigm",
+        "definition": "An accepted model of thinking that guides how a subject is studied."
+      },
+      "fr": {
+        "word": "le paradigme",
+        "definition": "Modèle de pensée admis qui guide l'étude d'un domaine."
+      },
+      "de": {
+        "word": "das Paradigma",
+        "definition": "Ein anerkanntes Denkmodell, das die Forschung in einem Fach lenkt."
+      },
+      "es": {
+        "word": "el paradigma",
+        "definition": "Modelo de pensamiento aceptado que orienta el estudio de un tema."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-academic-m03",
+    "lang": "pt",
+    "level": "C2",
+    "category": "academic",
+    "word": "escamotear",
+    "partOfSpeech": "verb",
+    "definition": "Esconder ou ignorar de propósito um facto incómodo.",
+    "example": "O relatório escamoteia os dados negativos e só apresenta os resultados favoráveis.",
+    "translations": {
+      "en": {
+        "word": "gloss over",
+        "definition": "To deliberately hide or ignore an inconvenient fact."
+      },
+      "fr": {
+        "word": "escamoter",
+        "definition": "Cacher ou passer sous silence un fait gênant."
+      },
+      "de": {
+        "word": "unter den Teppich kehren",
+        "definition": "Eine unangenehme Tatsache absichtlich verbergen oder übergehen."
+      },
+      "es": {
+        "word": "escamotear",
+        "definition": "Ocultar o pasar por alto a propósito un hecho incómodo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-academic-m04",
+    "lang": "pt",
+    "level": "C2",
+    "category": "academic",
+    "word": "dirimir",
+    "partOfSpeech": "verb",
+    "definition": "Resolver de forma definitiva uma dúvida ou um conflito.",
+    "example": "Só um estudo mais amplo poderá dirimir a questão entre as duas escolas de pensamento.",
+    "translations": {
+      "en": {
+        "word": "settle",
+        "definition": "To resolve a doubt or dispute once and for all."
+      },
+      "fr": {
+        "word": "trancher",
+        "definition": "Résoudre définitivement un doute ou un désaccord."
+      },
+      "de": {
+        "word": "beilegen",
+        "definition": "Einen Zweifel oder Streit endgültig klären."
+      },
+      "es": {
+        "word": "dirimir",
+        "definition": "Resolver de forma definitiva una duda o un conflicto."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-everyday-m01",
+    "lang": "pt",
+    "level": "B2",
+    "category": "everyday",
+    "word": "estar à rasca",
+    "partOfSpeech": "expression",
+    "definition": "Estar numa situação difícil ou com muita pressa para resolver algo.",
+    "example": "Estou à rasca com o relatório, preciso de o entregar daqui a uma hora.",
+    "translations": {
+      "en": {
+        "word": "be in a tight spot",
+        "definition": "To be in a difficult situation or under pressure."
+      },
+      "fr": {
+        "word": "être dans le pétrin",
+        "definition": "Être dans une situation difficile."
+      },
+      "de": {
+        "word": "in der Klemme stecken",
+        "definition": "In einer schwierigen Lage sein."
+      },
+      "es": {
+        "word": "estar en apuros",
+        "definition": "Estar en una situación difícil o con mucha prisa."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-everyday-m02",
+    "lang": "pt",
+    "level": "B2",
+    "category": "everyday",
+    "word": "fazer de conta",
+    "partOfSpeech": "expression",
+    "definition": "Agir como se algo fosse verdade, sabendo que não é.",
+    "example": "O Tiago fez de conta que não me viu e continuou a andar.",
+    "translations": {
+      "en": {
+        "word": "pretend",
+        "definition": "To act as if something were true when it is not."
+      },
+      "fr": {
+        "word": "faire semblant",
+        "definition": "Agir comme si une chose était vraie alors qu'elle ne l'est pas."
+      },
+      "de": {
+        "word": "so tun, als ob",
+        "definition": "Sich verhalten, als wäre etwas wahr, obwohl es das nicht ist."
+      },
+      "es": {
+        "word": "hacer como si",
+        "definition": "Actuar como si algo fuera verdad sin serlo."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-everyday-m03",
+    "lang": "pt",
+    "level": "B2",
+    "category": "everyday",
+    "word": "dar jeito",
+    "partOfSpeech": "expression",
+    "definition": "Ser útil ou conveniente numa situação.",
+    "example": "Se puderes levar-me à estação amanhã, dava-me muito jeito.",
+    "translations": {
+      "en": {
+        "word": "come in handy",
+        "definition": "To be useful or convenient in a situation."
+      },
+      "fr": {
+        "word": "arranger",
+        "definition": "Être pratique ou utile dans une situation."
+      },
+      "de": {
+        "word": "gelegen kommen",
+        "definition": "In einer Situation nützlich oder praktisch sein."
+      },
+      "es": {
+        "word": "venir bien",
+        "definition": "Ser útil o conveniente en una situación."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m01",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "vir a propósito",
+    "partOfSpeech": "expression",
+    "definition": "Surgir no momento certo ou ter relação com o que se está a dizer.",
+    "example": "A tua pergunta vem mesmo a propósito, estávamos agora a falar disso.",
+    "translations": {
+      "en": {
+        "word": "come at the right time",
+        "definition": "To happen at the right moment or be relevant to what is being said."
+      },
+      "fr": {
+        "word": "tomber à point",
+        "definition": "Arriver au bon moment ou être en rapport avec le sujet."
+      },
+      "de": {
+        "word": "gerade recht kommen",
+        "definition": "Im richtigen Moment kommen oder zum Thema passen."
+      },
+      "es": {
+        "word": "venir a cuento",
+        "definition": "Surgir en el momento adecuado o tener relación con lo que se dice."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m02",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "levar a peito",
+    "partOfSpeech": "expression",
+    "definition": "Ficar muito afetado ou ofendido com algo.",
+    "example": "Não leves a peito o comentário dele, estava só cansado.",
+    "translations": {
+      "en": {
+        "word": "take to heart",
+        "definition": "To be strongly affected or offended by something."
+      },
+      "fr": {
+        "word": "prendre à cœur",
+        "definition": "Être très touché ou vexé par quelque chose."
+      },
+      "de": {
+        "word": "sich zu Herzen nehmen",
+        "definition": "Sich von etwas stark treffen oder kränken lassen."
+      },
+      "es": {
+        "word": "tomarse a pecho",
+        "definition": "Sentirse muy afectado u ofendido por algo."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m03",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "tirar a limpo",
+    "partOfSpeech": "expression",
+    "definition": "Descobrir a verdade sobre um assunto duvidoso.",
+    "example": "Vou falar com a vizinha para tirar isto a limpo de uma vez.",
+    "translations": {
+      "en": {
+        "word": "get to the bottom of",
+        "definition": "To find out the truth about a doubtful matter."
+      },
+      "fr": {
+        "word": "tirer au clair",
+        "definition": "Découvrir la vérité sur une affaire douteuse."
+      },
+      "de": {
+        "word": "Klarheit schaffen",
+        "definition": "Die Wahrheit über eine unklare Sache herausfinden."
+      },
+      "es": {
+        "word": "poner en claro",
+        "definition": "Descubrir la verdad sobre un asunto dudoso."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m04",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "estar-se a marimbar",
+    "partOfSpeech": "expression",
+    "definition": "Não se importar nada com algo (informal).",
+    "example": "Ele está-se a marimbar para as regras do condomínio e faz barulho até tarde.",
+    "translations": {
+      "en": {
+        "word": "not give a damn",
+        "definition": "To not care at all about something (informal)."
+      },
+      "fr": {
+        "word": "s'en ficher",
+        "definition": "Ne pas se soucier du tout de quelque chose (familier)."
+      },
+      "de": {
+        "word": "jemandem schnuppe sein",
+        "definition": "Sich überhaupt nicht für etwas interessieren (umgangssprachlich)."
+      },
+      "es": {
+        "word": "importar un pepino",
+        "definition": "No importar nada algo (coloquial)."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m05",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "ter a lata de",
+    "partOfSpeech": "expression",
+    "definition": "Ter o atrevimento de fazer algo pouco adequado.",
+    "example": "Chegou uma hora atrasado e ainda teve a lata de se queixar do jantar.",
+    "translations": {
+      "en": {
+        "word": "have the nerve to",
+        "definition": "To be bold enough to do something inappropriate."
+      },
+      "fr": {
+        "word": "avoir le culot de",
+        "definition": "Avoir l'audace de faire quelque chose d'inapproprié."
+      },
+      "de": {
+        "word": "die Frechheit besitzen",
+        "definition": "So dreist sein, etwas Unpassendes zu tun."
+      },
+      "es": {
+        "word": "tener la cara de",
+        "definition": "Atreverse a hacer algo poco adecuado."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-everyday-m06",
+    "lang": "pt",
+    "level": "C1",
+    "category": "everyday",
+    "word": "ir dar ao mesmo",
+    "partOfSpeech": "expression",
+    "definition": "Ter o mesmo resultado, seja qual for a opção.",
+    "example": "Podes ir pela autoestrada ou pela nacional, vai dar ao mesmo.",
+    "translations": {
+      "en": {
+        "word": "come to the same thing",
+        "definition": "To have the same result whichever option is chosen."
+      },
+      "fr": {
+        "word": "revenir au même",
+        "definition": "Avoir le même résultat, quelle que soit l'option."
+      },
+      "de": {
+        "word": "auf dasselbe hinauslaufen",
+        "definition": "Das gleiche Ergebnis haben, egal welche Möglichkeit man wählt."
+      },
+      "es": {
+        "word": "venir a ser lo mismo",
+        "definition": "Tener el mismo resultado, sea cual sea la opción."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m01",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "dar para o torto",
+    "partOfSpeech": "expression",
+    "definition": "Começar a correr mal.",
+    "example": "A festa estava animada, mas às onze a conversa deu para o torto.",
+    "translations": {
+      "en": {
+        "word": "go pear-shaped",
+        "definition": "To start going wrong."
+      },
+      "fr": {
+        "word": "tourner au vinaigre",
+        "definition": "Commencer à mal tourner."
+      },
+      "de": {
+        "word": "aus dem Ruder laufen",
+        "definition": "Anfangen, schiefzugehen."
+      },
+      "es": {
+        "word": "torcerse",
+        "definition": "Empezar a salir mal."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m02",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "ficar a remoer",
+    "partOfSpeech": "expression",
+    "definition": "Continuar a pensar muito tempo num problema ou numa ofensa.",
+    "example": "Fiquei a remoer aquela discussão a noite inteira e não consegui dormir.",
+    "translations": {
+      "en": {
+        "word": "brood over",
+        "definition": "To keep thinking about a problem or insult for a long time."
+      },
+      "fr": {
+        "word": "ruminer",
+        "definition": "Penser longtemps à un problème ou à une offense."
+      },
+      "de": {
+        "word": "grübeln",
+        "definition": "Lange über ein Problem oder eine Kränkung nachdenken."
+      },
+      "es": {
+        "word": "darle vueltas",
+        "definition": "Seguir pensando mucho tiempo en un problema o una ofensa."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m03",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "o descaramento",
+    "partOfSpeech": "noun",
+    "definition": "Falta de vergonha ao fazer algo abusivo.",
+    "example": "Que descaramento! Estacionou em frente à minha garagem e foi almoçar.",
+    "translations": {
+      "en": {
+        "word": "cheek",
+        "definition": "A shameless lack of respect when doing something unfair."
+      },
+      "fr": {
+        "word": "le culot",
+        "definition": "Manque de gêne en faisant quelque chose d'abusif."
+      },
+      "de": {
+        "word": "die Unverschämtheit",
+        "definition": "Schamloses Verhalten, wenn man etwas Unfaires tut."
+      },
+      "es": {
+        "word": "la desfachatez",
+        "definition": "Falta de vergüenza al hacer algo abusivo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m04",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "às tantas",
+    "partOfSpeech": "expression",
+    "definition": "A certa altura, muitas vezes sem se saber bem quando.",
+    "example": "Estávamos a conversar no café e, às tantas, reparámos que já era meia-noite.",
+    "translations": {
+      "en": {
+        "word": "at some point",
+        "definition": "At a certain moment, often without knowing exactly when."
+      },
+      "fr": {
+        "word": "à un moment donné",
+        "definition": "À un certain moment, souvent sans savoir exactement quand."
+      },
+      "de": {
+        "word": "irgendwann",
+        "definition": "Zu einem bestimmten Zeitpunkt, oft ohne genau zu wissen, wann."
+      },
+      "es": {
+        "word": "en un momento dado",
+        "definition": "En cierto momento, a menudo sin saber bien cuándo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m05",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "de mão beijada",
+    "partOfSpeech": "expression",
+    "definition": "Sem esforço, como se fosse oferecido.",
+    "example": "Ninguém lhe deu o cargo de mão beijada; trabalhou anos para chegar lá.",
+    "translations": {
+      "en": {
+        "word": "on a plate",
+        "definition": "Without any effort, as if it were given away."
+      },
+      "fr": {
+        "word": "sur un plateau",
+        "definition": "Sans effort, comme si c'était offert."
+      },
+      "de": {
+        "word": "auf dem Silbertablett",
+        "definition": "Ohne Anstrengung, als würde man es geschenkt bekommen."
+      },
+      "es": {
+        "word": "en bandeja",
+        "definition": "Sin esfuerzo, como si fuera un regalo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m06",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "sem mais nem menos",
+    "partOfSpeech": "expression",
+    "definition": "De repente e sem qualquer explicação.",
+    "example": "Sem mais nem menos, ela levantou-se e saiu da reunião.",
+    "translations": {
+      "en": {
+        "word": "out of the blue",
+        "definition": "Suddenly and without any explanation."
+      },
+      "fr": {
+        "word": "sans crier gare",
+        "definition": "Soudainement et sans aucune explication."
+      },
+      "de": {
+        "word": "mir nichts, dir nichts",
+        "definition": "Plötzlich und ohne jede Erklärung."
+      },
+      "es": {
+        "word": "sin más ni más",
+        "definition": "De repente y sin ninguna explicación."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m07",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "fazer-se caro",
+    "partOfSpeech": "expression",
+    "definition": "Fingir pouco interesse para ser mais desejado ou valorizado.",
+    "example": "Ele gosta do convite, mas está a fazer-se caro antes de aceitar.",
+    "translations": {
+      "en": {
+        "word": "play hard to get",
+        "definition": "To pretend to be uninterested in order to seem more desirable."
+      },
+      "fr": {
+        "word": "se faire désirer",
+        "definition": "Feindre le désintérêt pour paraître plus désirable."
+      },
+      "de": {
+        "word": "sich rar machen",
+        "definition": "Desinteresse vortäuschen, um begehrter zu wirken."
+      },
+      "es": {
+        "word": "hacerse de rogar",
+        "definition": "Fingir poco interés para parecer más deseado."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m08",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "a torto e a direito",
+    "partOfSpeech": "expression",
+    "definition": "Sem cuidado nem critério, em todas as direções.",
+    "example": "Ele distribui críticas a torto e a direito, sem pensar nas consequências.",
+    "translations": {
+      "en": {
+        "word": "left, right and centre",
+        "definition": "Carelessly and without judgement, in every direction."
+      },
+      "fr": {
+        "word": "à tort et à travers",
+        "definition": "Sans réfléchir, dans tous les sens."
+      },
+      "de": {
+        "word": "wahllos",
+        "definition": "Ohne Sorgfalt und ohne Auswahl, in alle Richtungen."
+      },
+      "es": {
+        "word": "a diestro y siniestro",
+        "definition": "Sin cuidado ni criterio, en todas direcciones."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-everyday-m09",
+    "lang": "pt",
+    "level": "C2",
+    "category": "everyday",
+    "word": "estar pelos ajustes",
+    "partOfSpeech": "expression",
+    "definition": "Aceitar as condições propostas.",
+    "example": "Se o preço baixar um pouco, estou pelos ajustes e fechamos o negócio.",
+    "translations": {
+      "en": {
+        "word": "go along with it",
+        "definition": "To accept the proposed conditions."
+      },
+      "fr": {
+        "word": "être partant",
+        "definition": "Accepter les conditions proposées."
+      },
+      "de": {
+        "word": "einverstanden sein",
+        "definition": "Mit den vorgeschlagenen Bedingungen zufrieden sein."
+      },
+      "es": {
+        "word": "estar de acuerdo",
+        "definition": "Aceptar las condiciones propuestas."
+      }
+    }
+  },
+  {
+    "id": "pt-b1-idioms-m01",
+    "lang": "pt",
+    "level": "B1",
+    "category": "idioms",
+    "word": "chover a potes",
+    "partOfSpeech": "idiom",
+    "definition": "Chover muito e com força.",
+    "example": "Esta manhã choveu a potes e cheguei ao trabalho completamente encharcado.",
+    "translations": {
+      "en": {
+        "word": "rain cats and dogs",
+        "definition": "To rain very heavily."
+      },
+      "fr": {
+        "word": "pleuvoir des cordes",
+        "definition": "Pleuvoir très fort."
+      },
+      "de": {
+        "word": "in Strömen regnen",
+        "definition": "Sehr stark regnen."
+      },
+      "es": {
+        "word": "llover a cántaros",
+        "definition": "Llover mucho y con fuerza."
+      }
+    }
+  },
+  {
+    "id": "pt-b1-idioms-m02",
+    "lang": "pt",
+    "level": "B1",
+    "category": "idioms",
+    "word": "dormir como uma pedra",
+    "partOfSpeech": "idiom",
+    "definition": "Dormir profundamente, sem acordar.",
+    "example": "Depois da caminhada, dormi como uma pedra até às nove.",
+    "translations": {
+      "en": {
+        "word": "sleep like a log",
+        "definition": "To sleep very deeply without waking."
+      },
+      "fr": {
+        "word": "dormir comme une souche",
+        "definition": "Dormir très profondément."
+      },
+      "de": {
+        "word": "wie ein Stein schlafen",
+        "definition": "Sehr tief und fest schlafen."
+      },
+      "es": {
+        "word": "dormir como un tronco",
+        "definition": "Dormir profundamente, sin despertarse."
+      }
+    }
+  },
+  {
+    "id": "pt-b1-idioms-m03",
+    "lang": "pt",
+    "level": "B1",
+    "category": "idioms",
+    "word": "num abrir e fechar de olhos",
+    "partOfSpeech": "idiom",
+    "definition": "Muito depressa, quase sem se dar por isso.",
+    "example": "Num abrir e fechar de olhos, as férias acabaram e voltámos ao trabalho.",
+    "translations": {
+      "en": {
+        "word": "in the blink of an eye",
+        "definition": "Very quickly, almost without noticing."
+      },
+      "fr": {
+        "word": "en un clin d'œil",
+        "definition": "Très rapidement, presque sans s'en rendre compte."
+      },
+      "de": {
+        "word": "im Handumdrehen",
+        "definition": "Sehr schnell, fast ohne dass man es merkt."
+      },
+      "es": {
+        "word": "en un abrir y cerrar de ojos",
+        "definition": "Muy rápidamente, casi sin darse cuenta."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m01",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ter os pés assentes na terra",
+    "partOfSpeech": "idiom",
+    "definition": "Ser realista e sensato.",
+    "example": "A Marta tem os pés assentes na terra e nunca gasta mais do que ganha.",
+    "translations": {
+      "en": {
+        "word": "have your feet on the ground",
+        "definition": "To be realistic and sensible."
+      },
+      "fr": {
+        "word": "avoir les pieds sur terre",
+        "definition": "Être réaliste et raisonnable."
+      },
+      "de": {
+        "word": "mit beiden Beinen im Leben stehen",
+        "definition": "Realistisch und vernünftig sein."
+      },
+      "es": {
+        "word": "tener los pies en la tierra",
+        "definition": "Ser realista y sensato."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m02",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "matar dois coelhos de uma cajadada",
+    "partOfSpeech": "idiom",
+    "definition": "Resolver duas coisas com uma só ação.",
+    "example": "Fui ao banco e aos correios na mesma rua e matei dois coelhos de uma cajadada.",
+    "translations": {
+      "en": {
+        "word": "kill two birds with one stone",
+        "definition": "To achieve two things with a single action."
+      },
+      "fr": {
+        "word": "faire d'une pierre deux coups",
+        "definition": "Obtenir deux résultats avec une seule action."
+      },
+      "de": {
+        "word": "zwei Fliegen mit einer Klappe schlagen",
+        "definition": "Zwei Dinge mit einer einzigen Handlung erledigen."
+      },
+      "es": {
+        "word": "matar dos pájaros de un tiro",
+        "definition": "Conseguir dos cosas con una sola acción."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m03",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "dar com os burros na água",
+    "partOfSpeech": "idiom",
+    "definition": "Falhar num plano ou numa tentativa.",
+    "example": "Tentaram abrir o restaurante sem experiência e deram com os burros na água.",
+    "translations": {
+      "en": {
+        "word": "come a cropper",
+        "definition": "To fail in a plan or attempt."
+      },
+      "fr": {
+        "word": "se casser les dents",
+        "definition": "Échouer dans un projet ou une tentative."
+      },
+      "de": {
+        "word": "Schiffbruch erleiden",
+        "definition": "Mit einem Plan oder Versuch scheitern."
+      },
+      "es": {
+        "word": "pinchar en hueso",
+        "definition": "Fracasar en un plan o intento."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m04",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "pôr as mãos no fogo por alguém",
+    "partOfSpeech": "idiom",
+    "definition": "Garantir totalmente a honestidade de uma pessoa.",
+    "example": "Ponho as mãos no fogo pelo Rui: ele nunca mentiria à equipa.",
+    "translations": {
+      "en": {
+        "word": "vouch for someone",
+        "definition": "To fully guarantee someone's honesty."
+      },
+      "fr": {
+        "word": "mettre sa main au feu",
+        "definition": "Garantir entièrement l'honnêteté de quelqu'un."
+      },
+      "de": {
+        "word": "für jemanden die Hand ins Feuer legen",
+        "definition": "Voll für die Ehrlichkeit einer Person bürgen."
+      },
+      "es": {
+        "word": "poner la mano en el fuego por alguien",
+        "definition": "Garantizar totalmente la honradez de una persona."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m05",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "chorar sobre leite derramado",
+    "partOfSpeech": "idiom",
+    "definition": "Lamentar algo que já aconteceu e não tem remédio.",
+    "example": "Perdemos o voo, mas não vale a pena chorar sobre leite derramado.",
+    "translations": {
+      "en": {
+        "word": "cry over spilt milk",
+        "definition": "To complain about something that cannot be changed."
+      },
+      "fr": {
+        "word": "pleurer sur le lait renversé",
+        "definition": "Se lamenter sur ce qui ne peut plus être changé."
+      },
+      "de": {
+        "word": "verschütteter Milch nachweinen",
+        "definition": "Etwas beklagen, das man nicht mehr ändern kann."
+      },
+      "es": {
+        "word": "llorar sobre la leche derramada",
+        "definition": "Lamentarse por algo que ya no tiene remedio."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m06",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ser a gota de água",
+    "partOfSpeech": "idiom",
+    "definition": "Ser o último problema que faz alguém perder a paciência.",
+    "example": "O atraso de hoje foi a gota de água, por isso apresentei queixa.",
+    "translations": {
+      "en": {
+        "word": "be the last straw",
+        "definition": "To be the final problem that makes someone lose patience."
+      },
+      "fr": {
+        "word": "être la goutte d'eau qui fait déborder le vase",
+        "definition": "Être le dernier problème qui fait perdre patience."
+      },
+      "de": {
+        "word": "das Fass zum Überlaufen bringen",
+        "definition": "Das letzte Problem sein, das jemanden die Geduld verlieren lässt."
+      },
+      "es": {
+        "word": "ser la gota que colma el vaso",
+        "definition": "Ser el último problema que hace perder la paciencia."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m07",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "estar de mãos atadas",
+    "partOfSpeech": "idiom",
+    "definition": "Não poder fazer nada para ajudar ou mudar uma situação.",
+    "example": "Gostava de te dar mais dias de férias, mas estou de mãos atadas.",
+    "translations": {
+      "en": {
+        "word": "have your hands tied",
+        "definition": "To be unable to do anything to help or change a situation."
+      },
+      "fr": {
+        "word": "avoir les mains liées",
+        "definition": "Ne rien pouvoir faire pour aider ou changer la situation."
+      },
+      "de": {
+        "word": "jemandem sind die Hände gebunden",
+        "definition": "Nichts tun können, um zu helfen oder etwas zu ändern."
+      },
+      "es": {
+        "word": "estar atado de pies y manos",
+        "definition": "No poder hacer nada para ayudar o cambiar algo."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m08",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ter lata",
+    "partOfSpeech": "idiom",
+    "definition": "Ser atrevido ou descarado.",
+    "example": "Ele tem cá uma lata: pediu-me dinheiro emprestado outra vez!",
+    "translations": {
+      "en": {
+        "word": "have a nerve",
+        "definition": "To be cheeky or shameless."
+      },
+      "fr": {
+        "word": "avoir du culot",
+        "definition": "Être effronté ou sans gêne."
+      },
+      "de": {
+        "word": "frech wie Oskar sein",
+        "definition": "Sehr dreist oder unverschämt sein."
+      },
+      "es": {
+        "word": "tener mucha cara",
+        "definition": "Ser atrevido o descarado."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m09",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ver a luz ao fundo do túnel",
+    "partOfSpeech": "idiom",
+    "definition": "Começar a ver o fim de um período difícil.",
+    "example": "Depois de meses de obras, já vemos a luz ao fundo do túnel.",
+    "translations": {
+      "en": {
+        "word": "see the light at the end of the tunnel",
+        "definition": "To start to see the end of a difficult period."
+      },
+      "fr": {
+        "word": "voir le bout du tunnel",
+        "definition": "Commencer à voir la fin d'une période difficile."
+      },
+      "de": {
+        "word": "Licht am Ende des Tunnels sehen",
+        "definition": "Das Ende einer schwierigen Zeit kommen sehen."
+      },
+      "es": {
+        "word": "ver la luz al final del túnel",
+        "definition": "Empezar a ver el fin de una etapa difícil."
+      }
+    }
+  },
+  {
+    "id": "pt-b2-idioms-m10",
+    "lang": "pt",
+    "level": "B2",
+    "category": "idioms",
+    "word": "pôr o carro à frente dos bois",
+    "partOfSpeech": "idiom",
+    "definition": "Fazer as coisas pela ordem errada.",
+    "example": "Comprar móveis antes de ter casa é pôr o carro à frente dos bois.",
+    "translations": {
+      "en": {
+        "word": "put the cart before the horse",
+        "definition": "To do things in the wrong order."
+      },
+      "fr": {
+        "word": "mettre la charrue avant les bœufs",
+        "definition": "Faire les choses dans le mauvais ordre."
+      },
+      "de": {
+        "word": "das Pferd von hinten aufzäumen",
+        "definition": "Die Dinge in der falschen Reihenfolge tun."
+      },
+      "es": {
+        "word": "empezar la casa por el tejado",
+        "definition": "Hacer las cosas en el orden equivocado."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m01",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "fazer ouvidos de mercador",
+    "partOfSpeech": "idiom",
+    "definition": "Fingir que não se ouve um pedido ou uma crítica.",
+    "example": "Pedimos várias vezes para baixar a música, mas o vizinho fez ouvidos de mercador.",
+    "translations": {
+      "en": {
+        "word": "turn a deaf ear",
+        "definition": "To pretend not to hear a request or criticism."
+      },
+      "fr": {
+        "word": "faire la sourde oreille",
+        "definition": "Faire semblant de ne pas entendre une demande."
+      },
+      "de": {
+        "word": "auf Durchzug schalten",
+        "definition": "So tun, als höre man eine Bitte oder Kritik nicht."
+      },
+      "es": {
+        "word": "hacer oídos sordos",
+        "definition": "Fingir que no se oye una petición o una crítica."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m02",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "tirar nabos da púcara",
+    "partOfSpeech": "idiom",
+    "definition": "Tentar obter informações de alguém de forma disfarçada.",
+    "example": "Fez-me muitas perguntas sobre o projeto; estava claramente a tirar nabos da púcara.",
+    "translations": {
+      "en": {
+        "word": "fish for information",
+        "definition": "To try to get information from someone indirectly."
+      },
+      "fr": {
+        "word": "tirer les vers du nez",
+        "definition": "Essayer d'obtenir des informations discrètement."
+      },
+      "de": {
+        "word": "jemanden aushorchen",
+        "definition": "Versuchen, jemandem unauffällig Informationen zu entlocken."
+      },
+      "es": {
+        "word": "tirar de la lengua",
+        "definition": "Intentar sacar información a alguien de forma disimulada."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m03",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "chover no molhado",
+    "partOfSpeech": "idiom",
+    "definition": "Insistir em algo que já foi dito ou já se sabe.",
+    "example": "Repetir que o orçamento é curto é chover no molhado; precisamos de soluções.",
+    "translations": {
+      "en": {
+        "word": "flog a dead horse",
+        "definition": "To keep saying something that is already known or useless."
+      },
+      "fr": {
+        "word": "enfoncer une porte ouverte",
+        "definition": "Dire quelque chose d'évident ou déjà connu."
+      },
+      "de": {
+        "word": "offene Türen einrennen",
+        "definition": "Etwas sagen oder fordern, das längst bekannt ist."
+      },
+      "es": {
+        "word": "llover sobre mojado",
+        "definition": "Insistir en algo ya dicho o ya sabido."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m04",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "nadar em dinheiro",
+    "partOfSpeech": "idiom",
+    "definition": "Ter muito dinheiro.",
+    "example": "Depois de vender a empresa, passou a nadar em dinheiro.",
+    "translations": {
+      "en": {
+        "word": "be rolling in money",
+        "definition": "To be very rich."
+      },
+      "fr": {
+        "word": "rouler sur l'or",
+        "definition": "Avoir beaucoup d'argent."
+      },
+      "de": {
+        "word": "im Geld schwimmen",
+        "definition": "Sehr viel Geld haben."
+      },
+      "es": {
+        "word": "nadar en la abundancia",
+        "definition": "Tener mucho dinero."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m05",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "estar com a corda na garganta",
+    "partOfSpeech": "idiom",
+    "definition": "Estar numa situação muito apertada, sobretudo com dívidas ou prazos.",
+    "example": "Com a renda e o empréstimo, a família está com a corda na garganta.",
+    "translations": {
+      "en": {
+        "word": "be up to your neck",
+        "definition": "To be in a very tight situation, especially with debts or deadlines."
+      },
+      "fr": {
+        "word": "avoir la corde au cou",
+        "definition": "Être dans une situation très difficile, surtout financière."
+      },
+      "de": {
+        "word": "das Wasser steht jemandem bis zum Hals",
+        "definition": "In großer Not sein, besonders wegen Schulden oder Fristen."
+      },
+      "es": {
+        "word": "estar con la soga al cuello",
+        "definition": "Estar en una situación muy apurada."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m06",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "lavar as mãos",
+    "partOfSpeech": "idiom",
+    "definition": "Recusar qualquer responsabilidade por um assunto.",
+    "example": "Se não seguirem o meu conselho, eu lavo as mãos do resultado.",
+    "translations": {
+      "en": {
+        "word": "wash your hands of",
+        "definition": "To refuse any responsibility for a matter."
+      },
+      "fr": {
+        "word": "s'en laver les mains",
+        "definition": "Refuser toute responsabilité dans une affaire."
+      },
+      "de": {
+        "word": "seine Hände in Unschuld waschen",
+        "definition": "Jede Verantwortung für eine Sache ablehnen."
+      },
+      "es": {
+        "word": "lavarse las manos",
+        "definition": "Negarse a asumir responsabilidad por un asunto."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m07",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "não ir com a cara de alguém",
+    "partOfSpeech": "idiom",
+    "definition": "Não simpatizar com uma pessoa, muitas vezes sem razão clara.",
+    "example": "Não sei explicar porquê, mas não vou com a cara do novo colega.",
+    "translations": {
+      "en": {
+        "word": "not take to someone",
+        "definition": "To dislike someone, often for no clear reason."
+      },
+      "fr": {
+        "word": "ne pas pouvoir sentir quelqu'un",
+        "definition": "Ne pas avoir de sympathie pour quelqu'un."
+      },
+      "de": {
+        "word": "jemanden nicht riechen können",
+        "definition": "Jemanden unsympathisch finden, oft ohne klaren Grund."
+      },
+      "es": {
+        "word": "no tragar a alguien",
+        "definition": "No sentir simpatía por una persona."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m08",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "pôr-se a pau",
+    "partOfSpeech": "idiom",
+    "definition": "Estar atento e ter cuidado com um perigo ou engano.",
+    "example": "Põe-te a pau com esse vendedor, ele já enganou vários clientes.",
+    "translations": {
+      "en": {
+        "word": "watch out",
+        "definition": "To be alert and careful about a danger or trick."
+      },
+      "fr": {
+        "word": "se méfier",
+        "definition": "Rester vigilant face à un danger ou une tromperie."
+      },
+      "de": {
+        "word": "auf der Hut sein",
+        "definition": "Wachsam und vorsichtig sein."
+      },
+      "es": {
+        "word": "andarse con ojo",
+        "definition": "Estar atento y tener cuidado."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m09",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "puxar a brasa à sua sardinha",
+    "partOfSpeech": "idiom",
+    "definition": "Tentar tirar vantagem para si próprio de uma situação.",
+    "example": "Na reunião, cada departamento puxou a brasa à sua sardinha.",
+    "translations": {
+      "en": {
+        "word": "look after number one",
+        "definition": "To try to gain an advantage for yourself."
+      },
+      "fr": {
+        "word": "tirer la couverture à soi",
+        "definition": "Chercher son propre avantage dans une situation."
+      },
+      "de": {
+        "word": "sein eigenes Süppchen kochen",
+        "definition": "Nur den eigenen Vorteil suchen."
+      },
+      "es": {
+        "word": "arrimar el ascua a su sardina",
+        "definition": "Intentar sacar provecho propio de una situación."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m10",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "ter macaquinhos no sótão",
+    "partOfSpeech": "idiom",
+    "definition": "Ter ideias estranhas ou desconfianças sem fundamento.",
+    "example": "Achas que o chefe te quer despedir? Tens macaquinhos no sótão.",
+    "translations": {
+      "en": {
+        "word": "have bats in the belfry",
+        "definition": "To have strange ideas or groundless suspicions."
+      },
+      "fr": {
+        "word": "avoir une araignée au plafond",
+        "definition": "Avoir des idées bizarres."
+      },
+      "de": {
+        "word": "einen Vogel haben",
+        "definition": "Seltsame Ideen oder grundlose Verdächtigungen haben."
+      },
+      "es": {
+        "word": "tener pájaros en la cabeza",
+        "definition": "Tener ideas extrañas o sin fundamento."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m11",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "vender gato por lebre",
+    "partOfSpeech": "idiom",
+    "definition": "Enganar alguém dando uma coisa pior do que a prometida.",
+    "example": "O anúncio falava de vista para o mar, mas venderam-nos gato por lebre.",
+    "translations": {
+      "en": {
+        "word": "sell a pup",
+        "definition": "To trick someone by giving something worse than promised."
+      },
+      "fr": {
+        "word": "vendre des vessies pour des lanternes",
+        "definition": "Tromper quelqu'un en lui faisant croire n'importe quoi."
+      },
+      "de": {
+        "word": "jemandem ein X für ein U vormachen",
+        "definition": "Jemanden täuschen und etwas Schlechteres geben als versprochen."
+      },
+      "es": {
+        "word": "dar gato por liebre",
+        "definition": "Engañar dando algo peor de lo prometido."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m12",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "pôr a mão na consciência",
+    "partOfSpeech": "idiom",
+    "definition": "Pensar honestamente no próprio comportamento.",
+    "example": "Antes de criticares os outros, põe a mão na consciência.",
+    "translations": {
+      "en": {
+        "word": "search your conscience",
+        "definition": "To think honestly about your own behaviour."
+      },
+      "fr": {
+        "word": "faire son examen de conscience",
+        "definition": "Réfléchir honnêtement à son propre comportement."
+      },
+      "de": {
+        "word": "sich an die eigene Nase fassen",
+        "definition": "Ehrlich über das eigene Verhalten nachdenken."
+      },
+      "es": {
+        "word": "hacer examen de conciencia",
+        "definition": "Pensar con honestidad en el propio comportamiento."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m13",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "fazer uma tempestade num copo de água",
+    "partOfSpeech": "idiom",
+    "definition": "Exagerar a importância de um pequeno problema.",
+    "example": "Era só um risco no carro; não faças uma tempestade num copo de água.",
+    "translations": {
+      "en": {
+        "word": "make a mountain out of a molehill",
+        "definition": "To exaggerate a small problem."
+      },
+      "fr": {
+        "word": "faire une tempête dans un verre d'eau",
+        "definition": "Exagérer l'importance d'un petit problème."
+      },
+      "de": {
+        "word": "aus einer Mücke einen Elefanten machen",
+        "definition": "Ein kleines Problem stark übertreiben."
+      },
+      "es": {
+        "word": "ahogarse en un vaso de agua",
+        "definition": "Exagerar la importancia de un problema pequeño."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m14",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "estar com a faca e o queijo na mão",
+    "partOfSpeech": "idiom",
+    "definition": "Ter todo o poder para decidir ou agir.",
+    "example": "Agora que é diretora, está com a faca e o queijo na mão para mudar a escola.",
+    "translations": {
+      "en": {
+        "word": "hold all the cards",
+        "definition": "To have full power to decide or act."
+      },
+      "fr": {
+        "word": "avoir toutes les cartes en main",
+        "definition": "Avoir tout le pouvoir pour décider."
+      },
+      "de": {
+        "word": "alle Trümpfe in der Hand haben",
+        "definition": "Die volle Macht haben, zu entscheiden oder zu handeln."
+      },
+      "es": {
+        "word": "tener la sartén por el mango",
+        "definition": "Tener todo el poder para decidir."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m15",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "dar o litro",
+    "partOfSpeech": "idiom",
+    "definition": "Esforçar-se ao máximo.",
+    "example": "A equipa deu o litro na segunda parte e conseguiu empatar o jogo.",
+    "translations": {
+      "en": {
+        "word": "give it your all",
+        "definition": "To make the greatest possible effort."
+      },
+      "fr": {
+        "word": "se donner à fond",
+        "definition": "Faire le maximum d'efforts."
+      },
+      "de": {
+        "word": "alles geben",
+        "definition": "Sich maximal anstrengen."
+      },
+      "es": {
+        "word": "dejarse la piel",
+        "definition": "Esforzarse al máximo."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m16",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "não ter onde cair morto",
+    "partOfSpeech": "idiom",
+    "definition": "Ser extremamente pobre.",
+    "example": "Quando chegou à cidade, não tinha onde cair morto, mas hoje tem três lojas.",
+    "translations": {
+      "en": {
+        "word": "not have a penny to your name",
+        "definition": "To be extremely poor."
+      },
+      "fr": {
+        "word": "être sans le sou",
+        "definition": "Être extrêmement pauvre."
+      },
+      "de": {
+        "word": "arm wie eine Kirchenmaus sein",
+        "definition": "Äußerst arm sein."
+      },
+      "es": {
+        "word": "no tener dónde caerse muerto",
+        "definition": "Ser extremadamente pobre."
+      }
+    }
+  },
+  {
+    "id": "pt-c1-idioms-m17",
+    "lang": "pt",
+    "level": "C1",
+    "category": "idioms",
+    "word": "chamar os bois pelos nomes",
+    "partOfSpeech": "idiom",
+    "definition": "Falar das coisas de forma direta e clara.",
+    "example": "Vamos chamar os bois pelos nomes: o projeto falhou por falta de planeamento.",
+    "translations": {
+      "en": {
+        "word": "call a spade a spade",
+        "definition": "To speak about things directly and plainly."
+      },
+      "fr": {
+        "word": "appeler un chat un chat",
+        "definition": "Dire les choses franchement."
+      },
+      "de": {
+        "word": "das Kind beim Namen nennen",
+        "definition": "Die Dinge direkt und klar aussprechen."
+      },
+      "es": {
+        "word": "llamar al pan, pan y al vino, vino",
+        "definition": "Hablar de las cosas de forma directa."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m01",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "à grande e à francesa",
+    "partOfSpeech": "idiom",
+    "definition": "Com muito luxo e sem olhar a despesas.",
+    "example": "Celebraram o casamento à grande e à francesa, com trezentos convidados.",
+    "translations": {
+      "en": {
+        "word": "in grand style",
+        "definition": "With great luxury and no concern for cost."
+      },
+      "fr": {
+        "word": "en grande pompe",
+        "definition": "Avec beaucoup de luxe, sans regarder à la dépense."
+      },
+      "de": {
+        "word": "auf großem Fuß",
+        "definition": "Mit viel Luxus und ohne auf die Kosten zu achten."
+      },
+      "es": {
+        "word": "a lo grande",
+        "definition": "Con mucho lujo y sin reparar en gastos."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m02",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ir para o maneta",
+    "partOfSpeech": "idiom",
+    "definition": "Estragar-se ou falhar completamente (informal).",
+    "example": "Com a chuva, o piquenique foi para o maneta.",
+    "translations": {
+      "en": {
+        "word": "go down the drain",
+        "definition": "To be ruined or fail completely (informal)."
+      },
+      "fr": {
+        "word": "tomber à l'eau",
+        "definition": "Échouer complètement."
+      },
+      "de": {
+        "word": "den Bach runtergehen",
+        "definition": "Völlig scheitern oder kaputtgehen."
+      },
+      "es": {
+        "word": "irse al traste",
+        "definition": "Estropearse o fracasar por completo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m03",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ser o bombo da festa",
+    "partOfSpeech": "idiom",
+    "definition": "Ser o alvo de todas as críticas ou brincadeiras.",
+    "example": "Sempre que algo corre mal no escritório, o estagiário é o bombo da festa.",
+    "translations": {
+      "en": {
+        "word": "be the whipping boy",
+        "definition": "To be the target of all criticism or jokes."
+      },
+      "fr": {
+        "word": "être la tête de Turc",
+        "definition": "Être la cible de toutes les critiques ou moqueries."
+      },
+      "de": {
+        "word": "der Prügelknabe sein",
+        "definition": "Die Zielscheibe aller Kritik oder Späße sein."
+      },
+      "es": {
+        "word": "ser el blanco de todas las críticas",
+        "definition": "Recibir todas las críticas o burlas."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m04",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ficar a ver a banda passar",
+    "partOfSpeech": "idiom",
+    "definition": "Ficar de fora, sem participar nem tirar proveito.",
+    "example": "Enquanto os concorrentes inovavam, a empresa ficou a ver a banda passar.",
+    "translations": {
+      "en": {
+        "word": "be left on the sidelines",
+        "definition": "To be left out, without taking part or benefiting."
+      },
+      "fr": {
+        "word": "rester sur la touche",
+        "definition": "Rester à l'écart sans participer."
+      },
+      "de": {
+        "word": "das Nachsehen haben",
+        "definition": "Leer ausgehen und nicht beteiligt sein."
+      },
+      "es": {
+        "word": "quedarse al margen",
+        "definition": "Quedarse fuera, sin participar ni beneficiarse."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m05",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "fazer o mal e a caramunha",
+    "partOfSpeech": "idiom",
+    "definition": "Causar um problema e depois queixar-se como se fosse a vítima.",
+    "example": "Partiu o vaso e ainda chorou que o empurraram: fez o mal e a caramunha.",
+    "translations": {
+      "en": {
+        "word": "play the victim after causing trouble",
+        "definition": "To cause a problem and then complain as if you were the victim."
+      },
+      "fr": {
+        "word": "jouer les victimes",
+        "definition": "Causer un tort puis se plaindre comme une victime."
+      },
+      "de": {
+        "word": "sich als Opfer aufspielen",
+        "definition": "Einen Schaden anrichten und sich danach als Opfer darstellen."
+      },
+      "es": {
+        "word": "hacerse la víctima",
+        "definition": "Causar un problema y luego quejarse como si se fuera la víctima."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m06",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "estar com a mosca",
+    "partOfSpeech": "idiom",
+    "definition": "Estar irritado ou mal-humorado.",
+    "example": "Não lhe fales agora do aumento, que ele hoje está com a mosca.",
+    "translations": {
+      "en": {
+        "word": "be in a foul mood",
+        "definition": "To be irritated or bad-tempered."
+      },
+      "fr": {
+        "word": "être de mauvais poil",
+        "definition": "Être irrité ou de mauvaise humeur."
+      },
+      "de": {
+        "word": "mit dem linken Fuß aufgestanden sein",
+        "definition": "Gereizt oder schlecht gelaunt sein."
+      },
+      "es": {
+        "word": "estar de morros",
+        "definition": "Estar irritado o de mal humor."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m07",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "cantar de galo",
+    "partOfSpeech": "idiom",
+    "definition": "Mandar ou falar com arrogância, como se se fosse o chefe.",
+    "example": "Desde que foi promovido, anda a cantar de galo no escritório.",
+    "translations": {
+      "en": {
+        "word": "rule the roost",
+        "definition": "To give orders or speak arrogantly, as if you were in charge."
+      },
+      "fr": {
+        "word": "faire la loi",
+        "definition": "Commander ou parler avec arrogance."
+      },
+      "de": {
+        "word": "den Ton angeben",
+        "definition": "Bestimmen oder überheblich reden, als wäre man der Chef."
+      },
+      "es": {
+        "word": "llevar la voz cantante",
+        "definition": "Mandar o hablar con arrogancia."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m08",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ser um zero à esquerda",
+    "partOfSpeech": "idiom",
+    "definition": "Não ter qualquer valor ou utilidade numa situação.",
+    "example": "Em cozinha sou um zero à esquerda; nem um ovo sei estrelar.",
+    "translations": {
+      "en": {
+        "word": "be a dead loss",
+        "definition": "To have no value or use in a situation."
+      },
+      "fr": {
+        "word": "être une nullité",
+        "definition": "N'avoir aucune valeur ou utilité."
+      },
+      "de": {
+        "word": "eine Null sein",
+        "definition": "In einer Sache völlig unfähig sein."
+      },
+      "es": {
+        "word": "ser un cero a la izquierda",
+        "definition": "No tener ningún valor o utilidad."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m09",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "andar ao deus-dará",
+    "partOfSpeech": "idiom",
+    "definition": "Viver ou agir sem rumo nem cuidado.",
+    "example": "Depois de perder o emprego, andou uns meses ao deus-dará.",
+    "translations": {
+      "en": {
+        "word": "drift aimlessly",
+        "definition": "To live or act without direction or care."
+      },
+      "fr": {
+        "word": "aller à vau-l'eau",
+        "definition": "Aller sans direction ni soin."
+      },
+      "de": {
+        "word": "in den Tag hinein leben",
+        "definition": "Ohne Ziel und Plan leben."
+      },
+      "es": {
+        "word": "ir a la deriva",
+        "definition": "Vivir o actuar sin rumbo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m10",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "estar na berra",
+    "partOfSpeech": "idiom",
+    "definition": "Estar na moda ou muito popular num momento.",
+    "example": "Os patins voltaram a estar na berra entre os adolescentes.",
+    "translations": {
+      "en": {
+        "word": "be all the rage",
+        "definition": "To be very fashionable or popular at a given time."
+      },
+      "fr": {
+        "word": "être à la mode",
+        "definition": "Être très populaire à un moment donné."
+      },
+      "de": {
+        "word": "der letzte Schrei sein",
+        "definition": "Gerade sehr in Mode oder beliebt sein."
+      },
+      "es": {
+        "word": "estar de moda",
+        "definition": "Estar muy de moda en un momento."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m11",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "entrar a matar",
+    "partOfSpeech": "idiom",
+    "definition": "Começar algo de forma muito direta e agressiva.",
+    "example": "A advogada entrou a matar e desmontou logo o primeiro argumento.",
+    "translations": {
+      "en": {
+        "word": "come out all guns blazing",
+        "definition": "To start something in a very direct and aggressive way."
+      },
+      "fr": {
+        "word": "attaquer bille en tête",
+        "definition": "Commencer de façon très directe et agressive."
+      },
+      "de": {
+        "word": "mit der Tür ins Haus fallen",
+        "definition": "Etwas sehr direkt und ohne Umschweife beginnen."
+      },
+      "es": {
+        "word": "entrar a saco",
+        "definition": "Empezar algo de forma muy directa y agresiva."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m12",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ter muita parra e pouca uva",
+    "partOfSpeech": "idiom",
+    "definition": "Parecer impressionante, mas ter pouco valor real.",
+    "example": "O relatório tem muita parra e pouca uva: páginas bonitas e poucas propostas.",
+    "translations": {
+      "en": {
+        "word": "be all show and no substance",
+        "definition": "To look impressive but have little real value."
+      },
+      "fr": {
+        "word": "beaucoup de bruit pour rien",
+        "definition": "Paraître impressionnant sans vraie valeur."
+      },
+      "de": {
+        "word": "viel Lärm um nichts",
+        "definition": "Beeindruckend wirken, aber wenig Inhalt haben."
+      },
+      "es": {
+        "word": "mucho ruido y pocas nueces",
+        "definition": "Parecer impresionante pero tener poco valor real."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m13",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "fazer figura de urso",
+    "partOfSpeech": "idiom",
+    "definition": "Fazer algo ridículo em frente dos outros.",
+    "example": "Esqueci-me da letra a meio da canção e fiz figura de urso no casamento.",
+    "translations": {
+      "en": {
+        "word": "make a fool of yourself",
+        "definition": "To do something ridiculous in front of others."
+      },
+      "fr": {
+        "word": "se ridiculiser",
+        "definition": "Faire quelque chose de ridicule devant les autres."
+      },
+      "de": {
+        "word": "sich zum Affen machen",
+        "definition": "Sich vor anderen lächerlich machen."
+      },
+      "es": {
+        "word": "hacer el ridículo",
+        "definition": "Hacer algo ridículo delante de otros."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m14",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ficar com as calças na mão",
+    "partOfSpeech": "idiom",
+    "definition": "Ficar numa situação muito difícil ou embaraçosa, sem saída.",
+    "example": "O fornecedor desistiu à última hora e deixou-nos com as calças na mão.",
+    "translations": {
+      "en": {
+        "word": "be left in the lurch",
+        "definition": "To be left in a very difficult or embarrassing situation."
+      },
+      "fr": {
+        "word": "se retrouver le bec dans l'eau",
+        "definition": "Se retrouver dans une situation difficile, sans solution."
+      },
+      "de": {
+        "word": "im Regen stehen",
+        "definition": "In einer schwierigen Lage allein gelassen werden."
+      },
+      "es": {
+        "word": "quedarse con el culo al aire",
+        "definition": "Quedar en una situación muy difícil o embarazosa."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m15",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "levar a carta a Garcia",
+    "partOfSpeech": "idiom",
+    "definition": "Conseguir cumprir uma tarefa difícil até ao fim.",
+    "example": "Apesar dos obstáculos, a equipa levou a carta a Garcia e entregou o projeto.",
+    "translations": {
+      "en": {
+        "word": "pull it off",
+        "definition": "To manage to complete a difficult task."
+      },
+      "fr": {
+        "word": "mener sa mission à bien",
+        "definition": "Réussir une tâche difficile jusqu'au bout."
+      },
+      "de": {
+        "word": "es schaffen",
+        "definition": "Eine schwierige Aufgabe erfolgreich zu Ende bringen."
+      },
+      "es": {
+        "word": "llevar a buen puerto",
+        "definition": "Lograr cumplir una tarea difícil."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m16",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ver-se grego",
+    "partOfSpeech": "idiom",
+    "definition": "Ter muita dificuldade para fazer ou perceber algo.",
+    "example": "Vi-me grego para montar aquele armário sem instruções.",
+    "translations": {
+      "en": {
+        "word": "have a hard time",
+        "definition": "To find something very difficult to do or understand."
+      },
+      "fr": {
+        "word": "en voir de toutes les couleurs",
+        "definition": "Avoir beaucoup de mal à faire quelque chose."
+      },
+      "de": {
+        "word": "sich die Zähne ausbeißen",
+        "definition": "Große Schwierigkeiten mit etwas haben."
+      },
+      "es": {
+        "word": "verse negro",
+        "definition": "Tener mucha dificultad para hacer algo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m17",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a montanha pariu um rato",
+    "partOfSpeech": "idiom",
+    "definition": "Um grande anúncio ou esforço deu um resultado muito pequeno.",
+    "example": "Meses de negociação e só mudaram uma vírgula: a montanha pariu um rato.",
+    "translations": {
+      "en": {
+        "word": "a damp squib",
+        "definition": "A big announcement or effort with a very small result."
+      },
+      "fr": {
+        "word": "la montagne a accouché d'une souris",
+        "definition": "Un grand effort qui donne un résultat minime."
+      },
+      "de": {
+        "word": "der Berg kreißte und gebar eine Maus",
+        "definition": "Großer Aufwand mit sehr kleinem Ergebnis."
+      },
+      "es": {
+        "word": "el parto de los montes",
+        "definition": "Un gran anuncio o esfuerzo con un resultado mínimo."
+      }
+    }
+  },
+  {
+    "id": "pt-c2-idioms-m18",
+    "lang": "pt",
+    "level": "C2",
+    "category": "idioms",
+    "word": "meter o Rossio na Betesga",
+    "partOfSpeech": "idiom",
+    "definition": "Tentar pôr algo grande num espaço demasiado pequeno.",
+    "example": "Querem trinta pessoas nesta sala? É meter o Rossio na Betesga.",
+    "translations": {
+      "en": {
+        "word": "squeeze a quart into a pint pot",
+        "definition": "To try to fit something big into a space that is too small."
+      },
+      "fr": {
+        "word": "vouloir faire rentrer tout dans un mouchoir de poche",
+        "definition": "Vouloir faire tenir quelque chose de grand dans un espace trop petit."
+      },
+      "de": {
+        "word": "etwas Unmögliches versuchen",
+        "definition": "Etwas Großes in einen viel zu kleinen Raum zwängen wollen."
+      },
+      "es": {
+        "word": "meter el mar en un vaso",
+        "definition": "Intentar meter algo grande en un espacio demasiado pequeño."
+      }
+    }
+  }
+]

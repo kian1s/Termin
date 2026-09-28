@@ -1,0 +1,1066 @@
+[
+  {
+    "id": "es-c2-academic-m01",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "la entelequia",
+    "partOfSpeech": "noun",
+    "definition": "Idea que parece perfecta pero no puede existir en la realidad.",
+    "example": "Para el autor, un mercado totalmente libre es una entelequia sin base empírica.",
+    "translations": {
+      "en": {
+        "word": "pipe dream",
+        "definition": "An idea that seems perfect but cannot exist in reality."
+      },
+      "fr": {
+        "word": "la chimère",
+        "definition": "Idée parfaite en apparence mais impossible dans la réalité."
+      },
+      "de": {
+        "word": "das Hirngespinst",
+        "definition": "Eine Idee, die perfekt scheint, aber nicht wirklich existieren kann."
+      },
+      "pt": {
+        "word": "a quimera",
+        "definition": "Ideia que parece perfeita mas não pode existir na realidade."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m02",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "dilucidar",
+    "partOfSpeech": "verb",
+    "definition": "Aclarar un asunto difícil hasta entenderlo del todo.",
+    "example": "El estudio intenta dilucidar por qué la medida funcionó en unas regiones y no en otras.",
+    "translations": {
+      "en": {
+        "word": "elucidate",
+        "definition": "To make a difficult matter completely clear."
+      },
+      "fr": {
+        "word": "élucider",
+        "definition": "Rendre clair un problème difficile."
+      },
+      "de": {
+        "word": "aufklären",
+        "definition": "Eine schwierige Frage vollständig klären."
+      },
+      "pt": {
+        "word": "elucidar",
+        "definition": "Esclarecer um assunto difícil até o compreender totalmente."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m03",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "refrendar",
+    "partOfSpeech": "verb",
+    "definition": "Confirmar o apoyar una idea o un resultado con pruebas o autoridad.",
+    "example": "Los nuevos datos refrendan las conclusiones del informe anterior.",
+    "translations": {
+      "en": {
+        "word": "endorse",
+        "definition": "To confirm or support an idea or result with evidence or authority."
+      },
+      "fr": {
+        "word": "entériner",
+        "definition": "Confirmer ou appuyer une idée ou un résultat."
+      },
+      "de": {
+        "word": "bekräftigen",
+        "definition": "Eine Idee oder ein Ergebnis bestätigen oder stützen."
+      },
+      "pt": {
+        "word": "referendar",
+        "definition": "Confirmar ou apoiar uma ideia ou um resultado."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m04",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "la petición de principio",
+    "partOfSpeech": "noun",
+    "definition": "Error que consiste en dar por probado lo que se quiere demostrar.",
+    "example": "Afirmar que la ley es justa porque es legal es una petición de principio.",
+    "translations": {
+      "en": {
+        "word": "begging the question",
+        "definition": "The error of assuming what you are trying to prove."
+      },
+      "fr": {
+        "word": "la pétition de principe",
+        "definition": "Erreur qui consiste à supposer vrai ce qu'on veut démontrer."
+      },
+      "de": {
+        "word": "der Zirkelschluss",
+        "definition": "Der Fehler, das zu Beweisende schon vorauszusetzen."
+      },
+      "pt": {
+        "word": "a petição de princípio",
+        "definition": "Erro que consiste em dar como provado o que se quer demonstrar."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m05",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "subyacente",
+    "partOfSpeech": "adjective",
+    "definition": "Que está debajo de algo y no se ve a primera vista.",
+    "example": "El ensayo analiza el miedo subyacente a los cambios tecnológicos.",
+    "translations": {
+      "en": {
+        "word": "underlying",
+        "definition": "Present beneath the surface and not obvious at first."
+      },
+      "fr": {
+        "word": "sous-jacent",
+        "definition": "Qui existe sous la surface, sans être visible."
+      },
+      "de": {
+        "word": "zugrunde liegend",
+        "definition": "Unter der Oberfläche vorhanden und nicht sofort sichtbar."
+      },
+      "pt": {
+        "word": "subjacente",
+        "definition": "Que está por baixo de algo e não se vê à primeira vista."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m06",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "el paradigma",
+    "partOfSpeech": "noun",
+    "definition": "Modelo de pensamiento aceptado que orienta cómo se estudia un tema.",
+    "example": "Internet cambió el paradigma de la comunicación política en pocos años.",
+    "translations": {
+      "en": {
+        "word": "paradigm",
+        "definition": "An accepted model of thinking that guides how a subject is studied."
+      },
+      "fr": {
+        "word": "le paradigme",
+        "definition": "Modèle de pensée admis qui guide l'étude d'un domaine."
+      },
+      "de": {
+        "word": "das Paradigma",
+        "definition": "Ein anerkanntes Denkmodell, das die Forschung lenkt."
+      },
+      "pt": {
+        "word": "o paradigma",
+        "definition": "Modelo de pensamento aceite que orienta o estudo de um tema."
+      }
+    }
+  },
+  {
+    "id": "es-c2-academic-m07",
+    "lang": "es",
+    "level": "C2",
+    "category": "academic",
+    "word": "abundar en",
+    "partOfSpeech": "verb",
+    "definition": "Añadir más argumentos o detalles a una idea ya expresada.",
+    "example": "En el tercer capítulo, la autora abunda en la relación entre pobreza y salud.",
+    "translations": {
+      "en": {
+        "word": "expand on",
+        "definition": "To add more arguments or details to an idea already stated."
+      },
+      "fr": {
+        "word": "approfondir",
+        "definition": "Ajouter des arguments ou des détails à une idée déjà exprimée."
+      },
+      "de": {
+        "word": "vertiefen",
+        "definition": "Weitere Argumente oder Details zu einer Idee hinzufügen."
+      },
+      "pt": {
+        "word": "desenvolver",
+        "definition": "Acrescentar mais argumentos ou pormenores a uma ideia."
+      }
+    }
+  },
+  {
+    "id": "es-c2-work-m01",
+    "lang": "es",
+    "level": "C2",
+    "category": "work",
+    "word": "el finiquito",
+    "partOfSpeech": "noun",
+    "definition": "Pago final y documento que cierra la relación laboral con una empresa.",
+    "example": "Antes de firmar el finiquito, revisa que incluya las vacaciones no disfrutadas.",
+    "translations": {
+      "en": {
+        "word": "final settlement",
+        "definition": "The final payment and document that ends an employment contract."
+      },
+      "fr": {
+        "word": "le solde de tout compte",
+        "definition": "Paiement final qui clôt la relation de travail."
+      },
+      "de": {
+        "word": "die Schlussabrechnung",
+        "definition": "Die letzte Zahlung, die ein Arbeitsverhältnis abschließt."
+      },
+      "pt": {
+        "word": "o acerto de contas",
+        "definition": "Pagamento final que encerra a relação laboral."
+      }
+    }
+  },
+  {
+    "id": "es-c2-work-m02",
+    "lang": "es",
+    "level": "C2",
+    "category": "work",
+    "word": "la cláusula de rescisión",
+    "partOfSpeech": "noun",
+    "definition": "Parte de un contrato que fija las condiciones o el pago para terminarlo antes.",
+    "example": "El club tuvo que pagar la cláusula de rescisión para fichar al director técnico.",
+    "translations": {
+      "en": {
+        "word": "termination clause",
+        "definition": "A contract term setting the conditions or payment for ending it early."
+      },
+      "fr": {
+        "word": "la clause de résiliation",
+        "definition": "Partie d'un contrat qui fixe les conditions pour y mettre fin."
+      },
+      "de": {
+        "word": "die Kündigungsklausel",
+        "definition": "Vertragsteil, der die Bedingungen für eine vorzeitige Beendigung regelt."
+      },
+      "pt": {
+        "word": "a cláusula de rescisão",
+        "definition": "Parte de um contrato que fixa as condições para o terminar antes."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m01",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "tirar la toalla",
+    "partOfSpeech": "idiom",
+    "definition": "Dejar de intentar algo porque parece imposible.",
+    "example": "Después de tres intentos fallidos, estuvo a punto de tirar la toalla.",
+    "translations": {
+      "en": {
+        "word": "throw in the towel",
+        "definition": "To stop trying because success seems impossible."
+      },
+      "fr": {
+        "word": "jeter l'éponge",
+        "definition": "Abandonner parce que cela semble impossible."
+      },
+      "de": {
+        "word": "das Handtuch werfen",
+        "definition": "Aufgeben, weil etwas unmöglich scheint."
+      },
+      "pt": {
+        "word": "atirar a toalha ao chão",
+        "definition": "Desistir porque algo parece impossível."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m02",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ser la gota que colma el vaso",
+    "partOfSpeech": "idiom",
+    "definition": "Ser el último problema que hace perder la paciencia.",
+    "example": "Su último retraso fue la gota que colmó el vaso y lo despidieron.",
+    "translations": {
+      "en": {
+        "word": "be the last straw",
+        "definition": "To be the final problem that makes someone lose patience."
+      },
+      "fr": {
+        "word": "être la goutte d'eau qui fait déborder le vase",
+        "definition": "Être le dernier problème qui fait perdre patience."
+      },
+      "de": {
+        "word": "das Fass zum Überlaufen bringen",
+        "definition": "Das letzte Problem sein, das die Geduld sprengt."
+      },
+      "pt": {
+        "word": "ser a gota de água",
+        "definition": "Ser o último problema que faz perder a paciência."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m03",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "llover a cántaros",
+    "partOfSpeech": "idiom",
+    "definition": "Llover muchísimo y con fuerza.",
+    "example": "Llovía a cántaros y tuvimos que refugiarnos en un portal.",
+    "translations": {
+      "en": {
+        "word": "rain cats and dogs",
+        "definition": "To rain very heavily."
+      },
+      "fr": {
+        "word": "pleuvoir des cordes",
+        "definition": "Pleuvoir très fort."
+      },
+      "de": {
+        "word": "in Strömen regnen",
+        "definition": "Sehr stark regnen."
+      },
+      "pt": {
+        "word": "chover a potes",
+        "definition": "Chover muito e com força."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m04",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "dormir como un tronco",
+    "partOfSpeech": "idiom",
+    "definition": "Dormir profundamente, sin despertarse.",
+    "example": "Después de la excursión, dormí como un tronco hasta las diez.",
+    "translations": {
+      "en": {
+        "word": "sleep like a log",
+        "definition": "To sleep very deeply."
+      },
+      "fr": {
+        "word": "dormir comme une souche",
+        "definition": "Dormir très profondément."
+      },
+      "de": {
+        "word": "wie ein Stein schlafen",
+        "definition": "Sehr tief und fest schlafen."
+      },
+      "pt": {
+        "word": "dormir como uma pedra",
+        "definition": "Dormir profundamente, sem acordar."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m05",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "irse de la lengua",
+    "partOfSpeech": "idiom",
+    "definition": "Revelar sin querer un secreto que otros te confiaron.",
+    "example": "Mi hermano se fue de la lengua y ahora todos saben lo de la boda.",
+    "translations": {
+      "en": {
+        "word": "let the cat out of the bag",
+        "definition": "To tell something that should have stayed secret."
+      },
+      "fr": {
+        "word": "vendre la mèche",
+        "definition": "Révéler un secret sans le vouloir."
+      },
+      "de": {
+        "word": "sich verplappern",
+        "definition": "Etwas verraten, das geheim bleiben sollte."
+      },
+      "pt": {
+        "word": "dar com a língua nos dentes",
+        "definition": "Contar algo que devia ficar em segredo."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m06",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "dar calabazas",
+    "partOfSpeech": "idiom",
+    "definition": "Rechazar a alguien que muestra interés amoroso.",
+    "example": "Le pidió salir a Lucía, pero ella le dio calabazas.",
+    "translations": {
+      "en": {
+        "word": "turn someone down",
+        "definition": "To reject someone who shows romantic interest."
+      },
+      "fr": {
+        "word": "envoyer promener quelqu'un",
+        "definition": "Repousser quelqu'un qui fait des avances."
+      },
+      "de": {
+        "word": "jemandem einen Korb geben",
+        "definition": "Jemanden abweisen, der romantisches Interesse zeigt."
+      },
+      "pt": {
+        "word": "dar uma tampa",
+        "definition": "Rejeitar alguém que mostra interesse amoroso."
+      }
+    }
+  },
+  {
+    "id": "es-b2-idioms-m07",
+    "lang": "es",
+    "level": "B2",
+    "category": "idioms",
+    "word": "hablar por los codos",
+    "partOfSpeech": "idiom",
+    "definition": "Hablar muchísimo.",
+    "example": "Mi compañero de asiento habló por los codos durante todo el viaje.",
+    "translations": {
+      "en": {
+        "word": "talk nineteen to the dozen",
+        "definition": "To talk a great deal."
+      },
+      "fr": {
+        "word": "être un moulin à paroles",
+        "definition": "Parler énormément."
+      },
+      "de": {
+        "word": "wie ein Wasserfall reden",
+        "definition": "Sehr viel und ununterbrochen reden."
+      },
+      "pt": {
+        "word": "falar pelos cotovelos",
+        "definition": "Falar muitíssimo."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m01",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "ser un pez gordo",
+    "partOfSpeech": "idiom",
+    "definition": "Ser una persona muy importante o poderosa.",
+    "example": "En la gala había varios peces gordos de la banca.",
+    "translations": {
+      "en": {
+        "word": "be a big shot",
+        "definition": "To be a very important or powerful person."
+      },
+      "fr": {
+        "word": "être une grosse légume",
+        "definition": "Être une personne très importante."
+      },
+      "de": {
+        "word": "ein hohes Tier sein",
+        "definition": "Eine sehr wichtige oder mächtige Person sein."
+      },
+      "pt": {
+        "word": "ser um peixe graúdo",
+        "definition": "Ser uma pessoa muito importante ou poderosa."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m02",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "matar dos pájaros de un tiro",
+    "partOfSpeech": "idiom",
+    "definition": "Conseguir dos cosas con una sola acción.",
+    "example": "Aproveché el viaje de trabajo para ver a mi hermana y maté dos pájaros de un tiro.",
+    "translations": {
+      "en": {
+        "word": "kill two birds with one stone",
+        "definition": "To achieve two things with one action."
+      },
+      "fr": {
+        "word": "faire d'une pierre deux coups",
+        "definition": "Obtenir deux résultats avec une seule action."
+      },
+      "de": {
+        "word": "zwei Fliegen mit einer Klappe schlagen",
+        "definition": "Zwei Dinge mit einer Handlung erledigen."
+      },
+      "pt": {
+        "word": "matar dois coelhos de uma cajadada",
+        "definition": "Conseguir duas coisas com uma só ação."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m03",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "ahogarse en un vaso de agua",
+    "partOfSpeech": "idiom",
+    "definition": "Agobiarse por un problema muy pequeño.",
+    "example": "Se ahoga en un vaso de agua cada vez que cambia el horario del tren.",
+    "translations": {
+      "en": {
+        "word": "make heavy weather of something",
+        "definition": "To be overwhelmed by a very small problem."
+      },
+      "fr": {
+        "word": "se noyer dans un verre d'eau",
+        "definition": "Être dépassé par un tout petit problème."
+      },
+      "de": {
+        "word": "an Kleinigkeiten verzweifeln",
+        "definition": "Von einem winzigen Problem überfordert sein."
+      },
+      "pt": {
+        "word": "afogar-se num copo de água",
+        "definition": "Ficar atrapalhado com um problema muito pequeno."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m04",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "llover sobre mojado",
+    "partOfSpeech": "idiom",
+    "definition": "Sumarse un problema a otros que ya existían.",
+    "example": "Primero la avería y ahora la multa: llueve sobre mojado.",
+    "translations": {
+      "en": {
+        "word": "it never rains but it pours",
+        "definition": "One problem adds to others that already exist."
+      },
+      "fr": {
+        "word": "un malheur n'arrive jamais seul",
+        "definition": "Un problème s'ajoute à d'autres."
+      },
+      "de": {
+        "word": "ein Unglück kommt selten allein",
+        "definition": "Ein Problem kommt zu anderen hinzu."
+      },
+      "pt": {
+        "word": "chover no molhado",
+        "definition": "Somar-se um problema a outros que já existiam."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m05",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "hacer de su capa un sayo",
+    "partOfSpeech": "idiom",
+    "definition": "Hacer lo que uno quiere sin tener en cuenta a los demás.",
+    "example": "Nadie le dice nada, así que hace de su capa un sayo con el presupuesto.",
+    "translations": {
+      "en": {
+        "word": "do as you please",
+        "definition": "To do whatever you want without considering others."
+      },
+      "fr": {
+        "word": "n'en faire qu'à sa tête",
+        "definition": "Agir comme on veut sans tenir compte des autres."
+      },
+      "de": {
+        "word": "machen, was man will",
+        "definition": "Tun, was man will, ohne Rücksicht auf andere."
+      },
+      "pt": {
+        "word": "fazer o que lhe dá na real gana",
+        "definition": "Fazer o que se quer sem ter em conta os outros."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m06",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "arrimar el ascua a su sardina",
+    "partOfSpeech": "idiom",
+    "definition": "Buscar el beneficio propio en una situación.",
+    "example": "En la reunión, cada departamento arrimó el ascua a su sardina.",
+    "translations": {
+      "en": {
+        "word": "look after number one",
+        "definition": "To seek your own advantage in a situation."
+      },
+      "fr": {
+        "word": "tirer la couverture à soi",
+        "definition": "Chercher son propre avantage."
+      },
+      "de": {
+        "word": "sein eigenes Süppchen kochen",
+        "definition": "Nur den eigenen Vorteil suchen."
+      },
+      "pt": {
+        "word": "puxar a brasa à sua sardinha",
+        "definition": "Procurar o próprio benefício numa situação."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m07",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "nadar y guardar la ropa",
+    "partOfSpeech": "idiom",
+    "definition": "Intentar beneficiarse de algo sin correr ningún riesgo.",
+    "example": "Quiere invertir en el proyecto sin arriesgar nada: nadar y guardar la ropa.",
+    "translations": {
+      "en": {
+        "word": "have your cake and eat it",
+        "definition": "To try to benefit from something without taking any risk."
+      },
+      "fr": {
+        "word": "avoir le beurre et l'argent du beurre",
+        "definition": "Vouloir tous les avantages sans aucun risque."
+      },
+      "de": {
+        "word": "den Pelz waschen, ohne ihn nass zu machen",
+        "definition": "Einen Vorteil wollen, ohne ein Risiko einzugehen."
+      },
+      "pt": {
+        "word": "sol na eira e chuva no nabal",
+        "definition": "Querer os benefícios sem correr riscos."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m08",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "pinchar en hueso",
+    "partOfSpeech": "idiom",
+    "definition": "Fracasar al intentar conseguir algo de alguien.",
+    "example": "Intentó convencer al director, pero pinchó en hueso.",
+    "translations": {
+      "en": {
+        "word": "draw a blank",
+        "definition": "To fail when trying to get something from someone."
+      },
+      "fr": {
+        "word": "se casser les dents",
+        "definition": "Échouer dans une tentative."
+      },
+      "de": {
+        "word": "auf Granit beißen",
+        "definition": "Mit einem Versuch bei jemandem scheitern."
+      },
+      "pt": {
+        "word": "dar com os burros na água",
+        "definition": "Falhar numa tentativa."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m09",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "dar la campanada",
+    "partOfSpeech": "idiom",
+    "definition": "Causar una gran sorpresa con algo inesperado.",
+    "example": "El equipo pequeño dio la campanada y eliminó al campeón.",
+    "translations": {
+      "en": {
+        "word": "cause a stir",
+        "definition": "To cause a big surprise with something unexpected."
+      },
+      "fr": {
+        "word": "créer la surprise",
+        "definition": "Provoquer une grande surprise."
+      },
+      "de": {
+        "word": "für eine Überraschung sorgen",
+        "definition": "Mit etwas Unerwartetem großes Aufsehen erregen."
+      },
+      "pt": {
+        "word": "dar nas vistas",
+        "definition": "Causar uma grande surpresa."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m10",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "verle las orejas al lobo",
+    "partOfSpeech": "idiom",
+    "definition": "Darse cuenta de un peligro cercano.",
+    "example": "Cuando cerraron la fábrica vecina, muchos empleados le vieron las orejas al lobo.",
+    "translations": {
+      "en": {
+        "word": "see the writing on the wall",
+        "definition": "To realise that danger is close."
+      },
+      "fr": {
+        "word": "sentir le vent tourner",
+        "definition": "Se rendre compte qu'un danger approche."
+      },
+      "de": {
+        "word": "die Zeichen der Zeit erkennen",
+        "definition": "Erkennen, dass eine Gefahr naht."
+      },
+      "pt": {
+        "word": "ver a coisa mal parada",
+        "definition": "Aperceber-se de que um perigo está próximo."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m11",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "estar al pie del cañón",
+    "partOfSpeech": "idiom",
+    "definition": "Seguir trabajando con constancia, incluso en momentos difíciles.",
+    "example": "A sus setenta años, sigue al pie del cañón en la tienda familiar.",
+    "translations": {
+      "en": {
+        "word": "be at the coalface",
+        "definition": "To keep working steadily, even in difficult times."
+      },
+      "fr": {
+        "word": "être sur la brèche",
+        "definition": "Continuer à travailler sans relâche."
+      },
+      "de": {
+        "word": "die Stellung halten",
+        "definition": "Auch in schweren Zeiten beständig weiterarbeiten."
+      },
+      "pt": {
+        "word": "estar no ativo",
+        "definition": "Continuar a trabalhar com constância."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m12",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "tener la mosca detrás de la oreja",
+    "partOfSpeech": "idiom",
+    "definition": "Sospechar que algo no va bien.",
+    "example": "Desde que vi las cuentas, tengo la mosca detrás de la oreja.",
+    "translations": {
+      "en": {
+        "word": "smell a rat",
+        "definition": "To suspect that something is wrong."
+      },
+      "fr": {
+        "word": "avoir la puce à l'oreille",
+        "definition": "Soupçonner que quelque chose ne va pas."
+      },
+      "de": {
+        "word": "den Braten riechen",
+        "definition": "Ahnen, dass etwas nicht stimmt."
+      },
+      "pt": {
+        "word": "estar com a pulga atrás da orelha",
+        "definition": "Desconfiar de que algo não está bem."
+      }
+    }
+  },
+  {
+    "id": "es-c1-idioms-m13",
+    "lang": "es",
+    "level": "C1",
+    "category": "idioms",
+    "word": "pasarse de la raya",
+    "partOfSpeech": "idiom",
+    "definition": "Decir o hacer algo que supera los límites del respeto.",
+    "example": "Con ese comentario sobre su familia te pasaste de la raya.",
+    "translations": {
+      "en": {
+        "word": "overstep the mark",
+        "definition": "To go beyond what is acceptable."
+      },
+      "fr": {
+        "word": "dépasser les bornes",
+        "definition": "Aller au-delà de ce qui est acceptable."
+      },
+      "de": {
+        "word": "zu weit gehen",
+        "definition": "Die Grenze des Akzeptablen überschreiten."
+      },
+      "pt": {
+        "word": "passar das marcas",
+        "definition": "Ir além do que é aceitável."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m01",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "cantar las cuarenta",
+    "partOfSpeech": "idiom",
+    "definition": "Decir a alguien claramente y con enfado lo que ha hecho mal.",
+    "example": "Cuando llegó a las tres de la mañana, su madre le cantó las cuarenta.",
+    "translations": {
+      "en": {
+        "word": "give someone a piece of your mind",
+        "definition": "To tell someone angrily and clearly what they did wrong."
+      },
+      "fr": {
+        "word": "dire ses quatre vérités",
+        "definition": "Dire à quelqu'un ses défauts sans ménagement."
+      },
+      "de": {
+        "word": "jemandem die Leviten lesen",
+        "definition": "Jemandem deutlich und verärgert die Meinung sagen."
+      },
+      "pt": {
+        "word": "dizer das boas",
+        "definition": "Dizer a alguém, com irritação, o que fez de mal."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m02",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "tirar de la manta",
+    "partOfSpeech": "idiom",
+    "definition": "Revelar un secreto o un escándalo que otros querían ocultar.",
+    "example": "Un antiguo empleado tiró de la manta y salió a la luz el fraude.",
+    "translations": {
+      "en": {
+        "word": "blow the whistle",
+        "definition": "To reveal a secret or scandal others wanted hidden."
+      },
+      "fr": {
+        "word": "lever le voile",
+        "definition": "Révéler un secret ou un scandale."
+      },
+      "de": {
+        "word": "auspacken",
+        "definition": "Ein Geheimnis oder einen Skandal enthüllen."
+      },
+      "pt": {
+        "word": "pôr a nu",
+        "definition": "Revelar um segredo ou escândalo que outros queriam esconder."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m03",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "hacer su agosto",
+    "partOfSpeech": "idiom",
+    "definition": "Ganar mucho dinero aprovechando una ocasión.",
+    "example": "Con la ola de calor, los vendedores de ventiladores hicieron su agosto.",
+    "translations": {
+      "en": {
+        "word": "make a killing",
+        "definition": "To earn a lot of money by taking advantage of an opportunity."
+      },
+      "fr": {
+        "word": "faire son beurre",
+        "definition": "Gagner beaucoup d'argent grâce à une occasion."
+      },
+      "de": {
+        "word": "seinen Reibach machen",
+        "definition": "Durch eine Gelegenheit viel Geld verdienen."
+      },
+      "pt": {
+        "word": "fazer a festa",
+        "definition": "Ganhar muito dinheiro aproveitando uma ocasião."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m04",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a la chita callando",
+    "partOfSpeech": "idiom",
+    "definition": "De forma discreta, sin que nadie se dé cuenta.",
+    "example": "A la chita callando, fue comprando todas las acciones de la empresa.",
+    "translations": {
+      "en": {
+        "word": "on the quiet",
+        "definition": "Discreetly, without anyone noticing."
+      },
+      "fr": {
+        "word": "en douce",
+        "definition": "Discrètement, sans que personne s'en aperçoive."
+      },
+      "de": {
+        "word": "klammheimlich",
+        "definition": "Ganz heimlich, ohne dass es jemand merkt."
+      },
+      "pt": {
+        "word": "pela calada",
+        "definition": "De forma discreta, sem ninguém dar por isso."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m05",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "rizar el rizo",
+    "partOfSpeech": "idiom",
+    "definition": "Complicar algo que ya era complicado.",
+    "example": "No hace falta rizar el rizo: el diseño sencillo funciona perfectamente.",
+    "translations": {
+      "en": {
+        "word": "overcomplicate things",
+        "definition": "To make something already complicated even more complex."
+      },
+      "fr": {
+        "word": "chercher midi à quatorze heures",
+        "definition": "Compliquer inutilement les choses."
+      },
+      "de": {
+        "word": "es unnötig kompliziert machen",
+        "definition": "Etwas ohnehin Kompliziertes noch komplizierter machen."
+      },
+      "pt": {
+        "word": "complicar o que é simples",
+        "definition": "Tornar ainda mais complicado algo que já o era."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m06",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "estar a la cuarta pregunta",
+    "partOfSpeech": "idiom",
+    "definition": "No tener nada de dinero.",
+    "example": "A final de mes siempre estoy a la cuarta pregunta.",
+    "translations": {
+      "en": {
+        "word": "be broke",
+        "definition": "To have no money at all."
+      },
+      "fr": {
+        "word": "être fauché",
+        "definition": "N'avoir plus d'argent du tout."
+      },
+      "de": {
+        "word": "pleite sein",
+        "definition": "Überhaupt kein Geld haben."
+      },
+      "pt": {
+        "word": "estar teso",
+        "definition": "Não ter dinheiro nenhum."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m07",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "importar un bledo",
+    "partOfSpeech": "idiom",
+    "definition": "No importar nada en absoluto.",
+    "example": "Me importa un bledo lo que opinen los demás de mi ropa.",
+    "translations": {
+      "en": {
+        "word": "not give a hoot",
+        "definition": "To not matter at all."
+      },
+      "fr": {
+        "word": "s'en moquer comme de l'an quarante",
+        "definition": "Ne pas s'en soucier du tout."
+      },
+      "de": {
+        "word": "jemandem piepegal sein",
+        "definition": "Völlig gleichgültig sein."
+      },
+      "pt": {
+        "word": "estar-se nas tintas",
+        "definition": "Não importar absolutamente nada."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m08",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "ser más papista que el Papa",
+    "partOfSpeech": "idiom",
+    "definition": "Ser más estricto con unas normas que quienes las crearon.",
+    "example": "El nuevo encargado es más papista que el Papa con el código de vestimenta.",
+    "translations": {
+      "en": {
+        "word": "be more Catholic than the Pope",
+        "definition": "To be stricter about rules than the people who made them."
+      },
+      "fr": {
+        "word": "être plus royaliste que le roi",
+        "definition": "Être plus strict que ceux qui ont fait les règles."
+      },
+      "de": {
+        "word": "päpstlicher als der Papst sein",
+        "definition": "Strenger als die Urheber einer Regel sein."
+      },
+      "pt": {
+        "word": "ser mais papista que o Papa",
+        "definition": "Ser mais rigoroso do que quem criou as regras."
+      }
+    }
+  },
+  {
+    "id": "es-c2-idioms-m09",
+    "lang": "es",
+    "level": "C2",
+    "category": "idioms",
+    "word": "dar la puntilla",
+    "partOfSpeech": "idiom",
+    "definition": "Causar el golpe final a algo que ya estaba mal.",
+    "example": "La subida del alquiler le dio la puntilla al pequeño comercio.",
+    "translations": {
+      "en": {
+        "word": "be the final nail in the coffin",
+        "definition": "To give the final blow to something already failing."
+      },
+      "fr": {
+        "word": "donner le coup de grâce",
+        "definition": "Porter le coup final à ce qui allait déjà mal."
+      },
+      "de": {
+        "word": "den Todesstoß versetzen",
+        "definition": "Etwas, das schon schlecht lief, endgültig zerstören."
+      },
+      "pt": {
+        "word": "dar o golpe de misericórdia",
+        "definition": "Dar o golpe final a algo que já estava mal."
+      }
+    }
+  }
+]

@@ -11,7 +11,7 @@ import {
   newReviewState,
   withActivity,
 } from '@/lib/progress';
-import { FAVORITES_ID, ReviewState, Settings, Stats, WordSet } from '@/lib/types';
+import { CATEGORIES, FAVORITES_ID, ReviewState, Settings, Stats, WordSet } from '@/lib/types';
 
 export const DEFAULT_REMINDER = { enabled: false, hour: 19, minute: 0 };
 
@@ -96,6 +96,14 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       }
       if (loadedData.settings && !loadedData.settings.reminder) {
         loadedData.settings = { ...loadedData.settings, reminder: DEFAULT_REMINDER };
+      }
+      if (loadedData.settings) {
+        // Debate was folded into Academic in Phase 3; drop any other unknown IDs.
+        const cats = loadedData.settings.categories.map((c) =>
+          (c as string) === 'debate' ? 'academic' : c
+        );
+        const valid = CATEGORIES.filter((c) => cats.includes(c));
+        loadedData.settings = { ...loadedData.settings, categories: valid.length ? valid : ['academic'] };
       }
       if (!loadedData.sets.some((s) => s.id === FAVORITES_ID)) {
         loadedData.sets = [FAVORITES, ...loadedData.sets];

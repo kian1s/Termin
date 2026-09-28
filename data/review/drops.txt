@@ -1,0 +1,13 @@
+# One entry ID per line. These are left out of the app at build time.
+# English pilot: near-duplicates of other entries
+en-c2-everyday-008
+en-c2-everyday-015
+# Too basic (A1) for this app
+es-b1-everyday-021
+fr-b1-work-011
+pt-b1-academic-023
+# A1/A2 words, too basic for this app
+de-b1-everyday-009
+de-b2-everyday-038
+de-b1-work-016
+es-b1-work-019

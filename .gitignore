@@ -44,3 +44,6 @@ example
 # generated native folders
 /ios
 /android
+
+# word dataset pipeline work files (spend log, caches, intermediate runs)
+/data/pipeline/

@@ -1,0 +1,3334 @@
+[
+  {
+    "id": "en-c2-work-m01",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "golden handshake",
+    "partOfSpeech": "noun",
+    "definition": "A large payment given to a senior employee when they leave a company.",
+    "example": "The outgoing chief executive received a golden handshake worth two years' salary.",
+    "translations": {
+      "fr": {
+        "word": "la prime de départ",
+        "definition": "Somme importante versée à un cadre supérieur qui quitte l'entreprise."
+      },
+      "de": {
+        "word": "die Abfindung",
+        "definition": "Eine hohe Zahlung an eine Führungskraft beim Ausscheiden."
+      },
+      "es": {
+        "word": "la indemnización millonaria",
+        "definition": "Pago elevado a un alto directivo cuando deja la empresa."
+      },
+      "pt": {
+        "word": "a indemnização milionária",
+        "definition": "Pagamento elevado a um alto quadro quando sai da empresa."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m02",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "non-compete clause",
+    "partOfSpeech": "noun",
+    "definition": "A contract term stopping someone from working for a rival for a set time.",
+    "example": "Her non-compete clause prevents her from joining another bank for twelve months.",
+    "translations": {
+      "fr": {
+        "word": "la clause de non-concurrence",
+        "definition": "Clause qui interdit de travailler pour un concurrent pendant un certain temps."
+      },
+      "de": {
+        "word": "das Wettbewerbsverbot",
+        "definition": "Vertragsklausel, die für eine Zeit die Arbeit bei der Konkurrenz verbietet."
+      },
+      "es": {
+        "word": "la cláusula de no competencia",
+        "definition": "Cláusula que prohíbe trabajar para la competencia durante un tiempo."
+      },
+      "pt": {
+        "word": "a cláusula de não concorrência",
+        "definition": "Cláusula que proíbe trabalhar para a concorrência durante algum tempo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m03",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "whistleblower",
+    "partOfSpeech": "noun",
+    "definition": "An employee who reveals illegal or dishonest activity inside an organisation.",
+    "example": "The fraud only came to light after a whistleblower contacted the regulator.",
+    "translations": {
+      "fr": {
+        "word": "le lanceur d'alerte",
+        "definition": "Personne qui révèle des pratiques illégales dans son organisation."
+      },
+      "de": {
+        "word": "der Whistleblower",
+        "definition": "Jemand, der illegale Vorgänge in seiner Organisation aufdeckt."
+      },
+      "es": {
+        "word": "el denunciante",
+        "definition": "Persona que revela actividades ilegales dentro de su organización."
+      },
+      "pt": {
+        "word": "o denunciante",
+        "definition": "Pessoa que revela atividades ilegais dentro da sua organização."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m04",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "fiduciary duty",
+    "partOfSpeech": "noun",
+    "definition": "A legal duty to act in the best interests of another person or organisation.",
+    "example": "Board members have a fiduciary duty to protect the interests of shareholders.",
+    "translations": {
+      "fr": {
+        "word": "l'obligation fiduciaire",
+        "definition": "Obligation légale d'agir dans l'intérêt d'autrui."
+      },
+      "de": {
+        "word": "die Treuepflicht",
+        "definition": "Die rechtliche Pflicht, im Interesse eines anderen zu handeln."
+      },
+      "es": {
+        "word": "el deber fiduciario",
+        "definition": "Obligación legal de actuar en interés de otra persona."
+      },
+      "pt": {
+        "word": "o dever fiduciário",
+        "definition": "Obrigação legal de agir no interesse de outra pessoa."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m05",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "garden leave",
+    "partOfSpeech": "noun",
+    "definition": "A period when a departing employee is paid but told not to work.",
+    "example": "He spent three months on garden leave before starting at the rival firm.",
+    "translations": {
+      "fr": {
+        "word": "la dispense de préavis",
+        "definition": "Période où un salarié qui part est payé mais ne travaille plus."
+      },
+      "de": {
+        "word": "die Freistellung",
+        "definition": "Zeit, in der ein ausscheidender Mitarbeiter bezahlt, aber nicht beschäftigt wird."
+      },
+      "es": {
+        "word": "el permiso retribuido previo a la salida",
+        "definition": "Periodo en que un empleado que se va cobra pero no trabaja."
+      },
+      "pt": {
+        "word": "a dispensa de trabalho remunerada",
+        "definition": "Período em que um trabalhador de saída recebe mas não trabalha."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m06",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "headhunt",
+    "partOfSpeech": "verb",
+    "definition": "To approach someone working elsewhere and offer them a job.",
+    "example": "She was headhunted by a consultancy after her conference presentation.",
+    "translations": {
+      "fr": {
+        "word": "chasser des têtes",
+        "definition": "Recruter une personne qui travaille ailleurs en l'approchant directement."
+      },
+      "de": {
+        "word": "abwerben",
+        "definition": "Jemanden, der woanders arbeitet, gezielt für eine Stelle ansprechen."
+      },
+      "es": {
+        "word": "cazar talentos",
+        "definition": "Captar a alguien que trabaja en otra empresa."
+      },
+      "pt": {
+        "word": "recrutar diretamente",
+        "definition": "Abordar alguém que trabalha noutra empresa para lhe oferecer emprego."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m07",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "gross misconduct",
+    "partOfSpeech": "noun",
+    "definition": "Behaviour at work serious enough to justify immediate dismissal.",
+    "example": "Sharing client data without permission was treated as gross misconduct.",
+    "translations": {
+      "fr": {
+        "word": "la faute grave",
+        "definition": "Comportement au travail qui justifie un licenciement immédiat."
+      },
+      "de": {
+        "word": "das grobe Fehlverhalten",
+        "definition": "Verhalten am Arbeitsplatz, das eine fristlose Kündigung rechtfertigt."
+      },
+      "es": {
+        "word": "la falta muy grave",
+        "definition": "Conducta laboral que justifica el despido inmediato."
+      },
+      "pt": {
+        "word": "a falta grave",
+        "definition": "Comportamento no trabalho que justifica o despedimento imediato."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m08",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "equity stake",
+    "partOfSpeech": "noun",
+    "definition": "The share of a company that a person or firm owns.",
+    "example": "The investor took a twenty percent equity stake in the start-up.",
+    "translations": {
+      "fr": {
+        "word": "la participation au capital",
+        "definition": "Part d'une entreprise détenue par une personne ou une société."
+      },
+      "de": {
+        "word": "die Kapitalbeteiligung",
+        "definition": "Der Anteil an einem Unternehmen, den jemand besitzt."
+      },
+      "es": {
+        "word": "la participación accionarial",
+        "definition": "Parte de una empresa que posee una persona o compañía."
+      },
+      "pt": {
+        "word": "a participação no capital",
+        "definition": "Parte de uma empresa detida por uma pessoa ou sociedade."
+      }
+    }
+  },
+  {
+    "id": "en-c1-idioms-m01",
+    "lang": "en",
+    "level": "C1",
+    "category": "idioms",
+    "word": "cut corners",
+    "partOfSpeech": "idiom",
+    "definition": "Do something badly or cheaply to save time or money.",
+    "example": "The builders cut corners, and the roof started leaking within a year.",
+    "translations": {
+      "fr": {
+        "word": "bâcler le travail",
+        "definition": "Faire quelque chose mal pour gagner du temps ou de l'argent."
+      },
+      "de": {
+        "word": "pfuschen",
+        "definition": "Etwas schlampig machen, um Zeit oder Geld zu sparen."
+      },
+      "es": {
+        "word": "hacer chapuzas",
+        "definition": "Hacer algo mal para ahorrar tiempo o dinero."
+      },
+      "pt": {
+        "word": "fazer as coisas em cima do joelho",
+        "definition": "Fazer algo mal para poupar tempo ou dinheiro."
+      }
+    }
+  },
+  {
+    "id": "en-c1-idioms-m02",
+    "lang": "en",
+    "level": "C1",
+    "category": "idioms",
+    "word": "jump the gun",
+    "partOfSpeech": "idiom",
+    "definition": "Act too soon, before the right moment.",
+    "example": "They jumped the gun by announcing the deal before the contract was signed.",
+    "translations": {
+      "fr": {
+        "word": "griller les étapes",
+        "definition": "Agir trop tôt, avant le bon moment."
+      },
+      "de": {
+        "word": "voreilig handeln",
+        "definition": "Zu früh handeln, vor dem richtigen Zeitpunkt."
+      },
+      "es": {
+        "word": "precipitarse",
+        "definition": "Actuar demasiado pronto."
+      },
+      "pt": {
+        "word": "pôr o carro à frente dos bois",
+        "definition": "Agir cedo demais, antes do momento certo."
+      }
+    }
+  },
+  {
+    "id": "en-c1-idioms-m03",
+    "lang": "en",
+    "level": "C1",
+    "category": "idioms",
+    "word": "back to the drawing board",
+    "partOfSpeech": "idiom",
+    "definition": "Having to start planning again because an idea failed.",
+    "example": "The prototype failed every test, so it's back to the drawing board.",
+    "translations": {
+      "fr": {
+        "word": "retour à la case départ",
+        "definition": "Il faut tout recommencer car l'idée a échoué."
+      },
+      "de": {
+        "word": "zurück auf Anfang",
+        "definition": "Man muss neu planen, weil eine Idee gescheitert ist."
+      },
+      "es": {
+        "word": "volver a empezar de cero",
+        "definition": "Tener que planificar de nuevo porque una idea fracasó."
+      },
+      "pt": {
+        "word": "voltar à estaca zero",
+        "definition": "Ter de planear de novo porque uma ideia falhou."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m01",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a Pyrrhic victory",
+    "partOfSpeech": "idiom",
+    "definition": "A win that costs so much it is almost a defeat.",
+    "example": "The company won the lawsuit, but the legal fees made it a Pyrrhic victory.",
+    "translations": {
+      "fr": {
+        "word": "une victoire à la Pyrrhus",
+        "definition": "Victoire obtenue à un prix si élevé qu'elle ressemble à une défaite."
+      },
+      "de": {
+        "word": "ein Pyrrhussieg",
+        "definition": "Ein Sieg, der so viel kostet, dass er fast eine Niederlage ist."
+      },
+      "es": {
+        "word": "una victoria pírrica",
+        "definition": "Victoria que cuesta tanto que casi es una derrota."
+      },
+      "pt": {
+        "word": "uma vitória de Pirro",
+        "definition": "Vitória que custa tanto que quase é uma derrota."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m02",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "an Achilles' heel",
+    "partOfSpeech": "idiom",
+    "definition": "A weak point that can cause failure.",
+    "example": "Poor customer service has become the airline's Achilles' heel.",
+    "translations": {
+      "fr": {
+        "word": "le talon d'Achille",
+        "definition": "Point faible qui peut causer l'échec."
+      },
+      "de": {
+        "word": "die Achillesferse",
+        "definition": "Eine Schwachstelle, die zum Scheitern führen kann."
+      },
+      "es": {
+        "word": "el talón de Aquiles",
+        "definition": "Punto débil que puede causar el fracaso."
+      },
+      "pt": {
+        "word": "o calcanhar de Aquiles",
+        "definition": "Ponto fraco que pode causar o fracasso."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m03",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a red herring",
+    "partOfSpeech": "idiom",
+    "definition": "Something that distracts attention from the real issue.",
+    "example": "The debate about the logo was a red herring; the real problem was the price.",
+    "translations": {
+      "fr": {
+        "word": "une fausse piste",
+        "definition": "Élément qui détourne l'attention du vrai problème."
+      },
+      "de": {
+        "word": "ein Ablenkungsmanöver",
+        "definition": "Etwas, das vom eigentlichen Problem ablenkt."
+      },
+      "es": {
+        "word": "una cortina de humo",
+        "definition": "Algo que desvía la atención del problema real."
+      },
+      "pt": {
+        "word": "uma manobra de diversão",
+        "definition": "Algo que desvia a atenção do problema real."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m04",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "sour grapes",
+    "partOfSpeech": "idiom",
+    "definition": "Pretending not to want something because you cannot have it.",
+    "example": "He says the promotion wasn't worth it, but that's just sour grapes.",
+    "translations": {
+      "fr": {
+        "word": "les raisins sont trop verts",
+        "definition": "Dénigrer ce qu'on ne peut pas obtenir."
+      },
+      "de": {
+        "word": "die Trauben sind zu sauer",
+        "definition": "So tun, als wolle man nicht, was man nicht bekommen kann."
+      },
+      "es": {
+        "word": "están verdes",
+        "definition": "Despreciar lo que no se puede conseguir."
+      },
+      "pt": {
+        "word": "estão verdes",
+        "definition": "Desdenhar o que não se consegue obter."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m05",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a baptism of fire",
+    "partOfSpeech": "idiom",
+    "definition": "A very difficult first experience of something new.",
+    "example": "Her first week as a nurse, during a flu outbreak, was a baptism of fire.",
+    "translations": {
+      "fr": {
+        "word": "le baptême du feu",
+        "definition": "Première expérience très difficile de quelque chose de nouveau."
+      },
+      "de": {
+        "word": "die Feuertaufe",
+        "definition": "Eine sehr schwierige erste Erfahrung mit etwas Neuem."
+      },
+      "es": {
+        "word": "el bautismo de fuego",
+        "definition": "Primera experiencia muy difícil de algo nuevo."
+      },
+      "pt": {
+        "word": "o batismo de fogo",
+        "definition": "Primeira experiência muito difícil de algo novo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m06",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "a moot point",
+    "partOfSpeech": "idiom",
+    "definition": "A question that no longer matters or cannot be settled.",
+    "example": "Whether we should have hired him is a moot point now that he has resigned.",
+    "translations": {
+      "fr": {
+        "word": "une question sans objet",
+        "definition": "Question qui n'a plus d'importance ou ne peut être tranchée."
+      },
+      "de": {
+        "word": "eine müßige Frage",
+        "definition": "Eine Frage, die keine Rolle mehr spielt."
+      },
+      "es": {
+        "word": "una cuestión discutible",
+        "definition": "Asunto que ya no importa o no se puede resolver."
+      },
+      "pt": {
+        "word": "uma questão sem importância",
+        "definition": "Questão que já não interessa ou não se pode resolver."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m07",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "damn with faint praise",
+    "partOfSpeech": "idiom",
+    "definition": "Criticise someone indirectly by praising them very weakly.",
+    "example": "Calling his novel \"perfectly readable\" was damning it with faint praise.",
+    "translations": {
+      "fr": {
+        "word": "faire un éloge qui tue",
+        "definition": "Critiquer quelqu'un en le louant très faiblement."
+      },
+      "de": {
+        "word": "mit schwachem Lob abtun",
+        "definition": "Jemanden indirekt kritisieren, indem man ihn nur schwach lobt."
+      },
+      "es": {
+        "word": "elogiar con la boca pequeña",
+        "definition": "Criticar a alguien de forma indirecta con un elogio muy débil."
+      },
+      "pt": {
+        "word": "elogiar sem convicção",
+        "definition": "Criticar alguém de forma indireta com um elogio muito fraco."
+      }
+    }
+  },
+  {
+    "id": "en-c2-idioms-m08",
+    "lang": "en",
+    "level": "C2",
+    "category": "idioms",
+    "word": "rest on your laurels",
+    "partOfSpeech": "idiom",
+    "definition": "Stop trying because you are satisfied with past success.",
+    "example": "After winning the award, the team didn't rest on their laurels.",
+    "translations": {
+      "fr": {
+        "word": "se reposer sur ses lauriers",
+        "definition": "Cesser de faire des efforts après un succès."
+      },
+      "de": {
+        "word": "sich auf seinen Lorbeeren ausruhen",
+        "definition": "Nach einem Erfolg keine Mühe mehr geben."
+      },
+      "es": {
+        "word": "dormirse en los laureles",
+        "definition": "Dejar de esforzarse tras un éxito."
+      },
+      "pt": {
+        "word": "dormir sobre os louros",
+        "definition": "Deixar de se esforçar depois de um sucesso."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m01",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "anthropology",
+    "partOfSpeech": "noun",
+    "definition": "The study of human societies, cultures and how they develop.",
+    "example": "She studied anthropology to understand how rituals shape community life.",
+    "translations": {
+      "fr": {
+        "word": "l'anthropologie",
+        "definition": "Étude des sociétés humaines, de leurs cultures et de leur évolution."
+      },
+      "de": {
+        "word": "die Anthropologie",
+        "definition": "Die Wissenschaft von menschlichen Gesellschaften und Kulturen."
+      },
+      "es": {
+        "word": "la antropología",
+        "definition": "Estudio de las sociedades humanas, sus culturas y su evolución."
+      },
+      "pt": {
+        "word": "a antropologia",
+        "definition": "Estudo das sociedades humanas, das suas culturas e da sua evolução."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m02",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "polycentric",
+    "partOfSpeech": "adjective",
+    "definition": "Having several centres of power or activity rather than one.",
+    "example": "The region developed as a polycentric network of small cities instead of one capital.",
+    "translations": {
+      "fr": {
+        "word": "polycentrique",
+        "definition": "Qui a plusieurs centres de pouvoir ou d'activité."
+      },
+      "de": {
+        "word": "polyzentrisch",
+        "definition": "Mit mehreren Macht- oder Aktivitätszentren statt einem."
+      },
+      "es": {
+        "word": "policéntrico",
+        "definition": "Que tiene varios centros de poder o actividad."
+      },
+      "pt": {
+        "word": "policêntrico",
+        "definition": "Que tem vários centros de poder ou de atividade."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m03",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "ubiquitous",
+    "partOfSpeech": "adjective",
+    "definition": "Found everywhere, so common that people hardly notice it.",
+    "example": "Smartphones have become ubiquitous, even in remote mountain villages.",
+    "translations": {
+      "fr": {
+        "word": "omniprésent",
+        "definition": "Présent partout, au point qu'on ne le remarque plus."
+      },
+      "de": {
+        "word": "allgegenwärtig",
+        "definition": "Überall vorhanden, so dass man es kaum noch bemerkt."
+      },
+      "es": {
+        "word": "omnipresente",
+        "definition": "Presente en todas partes, tan común que apenas se nota."
+      },
+      "pt": {
+        "word": "omnipresente",
+        "definition": "Presente em todo o lado, tão comum que quase não se nota."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m04",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "epistemology",
+    "partOfSpeech": "noun",
+    "definition": "The part of philosophy that asks how we know things and what counts as knowledge.",
+    "example": "Her thesis examines the epistemology of scientific models in climate research.",
+    "translations": {
+      "fr": {
+        "word": "l'épistémologie",
+        "definition": "Branche de la philosophie qui étudie la nature de la connaissance."
+      },
+      "de": {
+        "word": "die Erkenntnistheorie",
+        "definition": "Teil der Philosophie, der fragt, wie wir etwas wissen."
+      },
+      "es": {
+        "word": "la epistemología",
+        "definition": "Rama de la filosofía que estudia cómo conocemos las cosas."
+      },
+      "pt": {
+        "word": "a epistemologia",
+        "definition": "Ramo da filosofia que estuda como conhecemos as coisas."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m05",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "hegemony",
+    "partOfSpeech": "noun",
+    "definition": "Strong control or influence of one group or country over others.",
+    "example": "The essay traces the cultural hegemony of Hollywood after the Second World War.",
+    "translations": {
+      "fr": {
+        "word": "l'hégémonie",
+        "definition": "Domination d'un groupe ou d'un pays sur les autres."
+      },
+      "de": {
+        "word": "die Hegemonie",
+        "definition": "Die Vorherrschaft einer Gruppe oder eines Landes über andere."
+      },
+      "es": {
+        "word": "la hegemonía",
+        "definition": "Dominio de un grupo o país sobre otros."
+      },
+      "pt": {
+        "word": "a hegemonia",
+        "definition": "Domínio de um grupo ou país sobre os outros."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m06",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "heuristic",
+    "partOfSpeech": "noun",
+    "definition": "A simple rule of thumb that helps people make decisions quickly.",
+    "example": "Shoppers often rely on a heuristic such as choosing the middle-priced option.",
+    "translations": {
+      "fr": {
+        "word": "l'heuristique",
+        "definition": "Règle simple qui aide à décider rapidement."
+      },
+      "de": {
+        "word": "die Heuristik",
+        "definition": "Eine einfache Faustregel für schnelle Entscheidungen."
+      },
+      "es": {
+        "word": "la heurística",
+        "definition": "Regla sencilla que ayuda a decidir con rapidez."
+      },
+      "pt": {
+        "word": "a heurística",
+        "definition": "Regra simples que ajuda a decidir rapidamente."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m07",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "ontology",
+    "partOfSpeech": "noun",
+    "definition": "The part of philosophy that studies what exists and what kinds of things are real.",
+    "example": "The debate turns on the ontology of numbers: do they exist independently of us?",
+    "translations": {
+      "fr": {
+        "word": "l'ontologie",
+        "definition": "Branche de la philosophie qui étudie ce qui existe."
+      },
+      "de": {
+        "word": "die Ontologie",
+        "definition": "Teil der Philosophie, der untersucht, was existiert."
+      },
+      "es": {
+        "word": "la ontología",
+        "definition": "Rama de la filosofía que estudia lo que existe."
+      },
+      "pt": {
+        "word": "a ontologia",
+        "definition": "Ramo da filosofia que estuda o que existe."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m08",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "dogmatic",
+    "partOfSpeech": "adjective",
+    "definition": "Insisting that your beliefs are right and refusing to consider other views.",
+    "example": "The reviewer found the author too dogmatic to engage with opposing evidence.",
+    "translations": {
+      "fr": {
+        "word": "dogmatique",
+        "definition": "Qui impose ses idées sans accepter la discussion."
+      },
+      "de": {
+        "word": "dogmatisch",
+        "definition": "Auf den eigenen Überzeugungen beharrend, ohne andere Ansichten zu prüfen."
+      },
+      "es": {
+        "word": "dogmático",
+        "definition": "Que impone sus ideas sin aceptar otras opiniones."
+      },
+      "pt": {
+        "word": "dogmático",
+        "definition": "Que impõe as suas ideias sem aceitar outras opiniões."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m09",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "esoteric",
+    "partOfSpeech": "adjective",
+    "definition": "Understood only by a small group with special knowledge.",
+    "example": "The lecture was too esoteric for anyone outside the field of medieval law.",
+    "translations": {
+      "fr": {
+        "word": "ésotérique",
+        "definition": "Compris seulement par un petit groupe de spécialistes."
+      },
+      "de": {
+        "word": "esoterisch",
+        "definition": "Nur für einen kleinen Kreis von Eingeweihten verständlich."
+      },
+      "es": {
+        "word": "esotérico",
+        "definition": "Comprensible solo para un pequeño grupo de especialistas."
+      },
+      "pt": {
+        "word": "esotérico",
+        "definition": "Compreensível apenas para um pequeno grupo de especialistas."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m10",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "taxonomy",
+    "partOfSpeech": "noun",
+    "definition": "A system for sorting things into ordered groups.",
+    "example": "The researchers proposed a new taxonomy of online misinformation.",
+    "translations": {
+      "fr": {
+        "word": "la taxonomie",
+        "definition": "Système de classement en catégories ordonnées."
+      },
+      "de": {
+        "word": "die Taxonomie",
+        "definition": "Ein System zur Einteilung in geordnete Gruppen."
+      },
+      "es": {
+        "word": "la taxonomía",
+        "definition": "Sistema para clasificar cosas en grupos ordenados."
+      },
+      "pt": {
+        "word": "a taxonomia",
+        "definition": "Sistema para classificar coisas em grupos ordenados."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m11",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "anachronism",
+    "partOfSpeech": "noun",
+    "definition": "Something that belongs to a different period of time from the one it appears in.",
+    "example": "A wristwatch in a film about ancient Rome is an obvious anachronism.",
+    "translations": {
+      "fr": {
+        "word": "l'anachronisme",
+        "definition": "Élément qui n'appartient pas à l'époque où il apparaît."
+      },
+      "de": {
+        "word": "der Anachronismus",
+        "definition": "Etwas, das nicht in die Zeit passt, in der es vorkommt."
+      },
+      "es": {
+        "word": "el anacronismo",
+        "definition": "Algo que no corresponde a la época en que aparece."
+      },
+      "pt": {
+        "word": "o anacronismo",
+        "definition": "Algo que não pertence à época em que aparece."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m12",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "axiom",
+    "partOfSpeech": "noun",
+    "definition": "A basic statement accepted as true without needing proof.",
+    "example": "The model rests on the axiom that people act in their own interest.",
+    "translations": {
+      "fr": {
+        "word": "l'axiome",
+        "definition": "Principe de base admis comme vrai sans démonstration."
+      },
+      "de": {
+        "word": "das Axiom",
+        "definition": "Ein Grundsatz, der ohne Beweis als wahr gilt."
+      },
+      "es": {
+        "word": "el axioma",
+        "definition": "Principio básico que se acepta como verdadero sin prueba."
+      },
+      "pt": {
+        "word": "o axioma",
+        "definition": "Princípio básico aceite como verdadeiro sem prova."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m13",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "cogent",
+    "partOfSpeech": "adjective",
+    "definition": "Clear, logical and convincing.",
+    "example": "She presented a cogent case for investing in public transport.",
+    "translations": {
+      "fr": {
+        "word": "convaincant",
+        "definition": "Clair, logique et persuasif."
+      },
+      "de": {
+        "word": "stichhaltig",
+        "definition": "Klar, logisch und überzeugend."
+      },
+      "es": {
+        "word": "convincente",
+        "definition": "Claro, lógico y persuasivo."
+      },
+      "pt": {
+        "word": "convincente",
+        "definition": "Claro, lógico e persuasivo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m14",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "didactic",
+    "partOfSpeech": "adjective",
+    "definition": "Meant to teach, sometimes in a way that feels like lecturing.",
+    "example": "The novel's didactic tone makes its moral lessons feel heavy-handed.",
+    "translations": {
+      "fr": {
+        "word": "didactique",
+        "definition": "Destiné à enseigner, parfois de façon moralisatrice."
+      },
+      "de": {
+        "word": "didaktisch",
+        "definition": "Belehrend, manchmal auf eine aufdringliche Art."
+      },
+      "es": {
+        "word": "didáctico",
+        "definition": "Pensado para enseñar, a veces de forma sermoneadora."
+      },
+      "pt": {
+        "word": "didático",
+        "definition": "Destinado a ensinar, por vezes de forma moralista."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m15",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "erudite",
+    "partOfSpeech": "adjective",
+    "definition": "Having or showing great knowledge from long study.",
+    "example": "The professor's erudite introduction referred to sources in six languages.",
+    "translations": {
+      "fr": {
+        "word": "érudit",
+        "definition": "Qui a de vastes connaissances acquises par l'étude."
+      },
+      "de": {
+        "word": "gelehrt",
+        "definition": "Mit großem Wissen aus langem Studium."
+      },
+      "es": {
+        "word": "erudito",
+        "definition": "Que tiene grandes conocimientos adquiridos por el estudio."
+      },
+      "pt": {
+        "word": "erudito",
+        "definition": "Que tem grandes conhecimentos adquiridos pelo estudo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m16",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "idiosyncratic",
+    "partOfSpeech": "adjective",
+    "definition": "Unusual and typical of one particular person or thing.",
+    "example": "His idiosyncratic spelling made the old letters easy to identify.",
+    "translations": {
+      "fr": {
+        "word": "idiosyncrasique",
+        "definition": "Propre à une personne et assez inhabituel."
+      },
+      "de": {
+        "word": "eigenwillig",
+        "definition": "Ungewöhnlich und typisch für eine bestimmte Person."
+      },
+      "es": {
+        "word": "idiosincrásico",
+        "definition": "Peculiar y propio de una persona concreta."
+      },
+      "pt": {
+        "word": "idiossincrático",
+        "definition": "Peculiar e próprio de uma pessoa concreta."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m17",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "incongruous",
+    "partOfSpeech": "adjective",
+    "definition": "Strange because it does not fit with its surroundings.",
+    "example": "A glass tower looks incongruous among the old stone houses.",
+    "translations": {
+      "fr": {
+        "word": "incongru",
+        "definition": "Étrange parce qu'il ne va pas avec ce qui l'entoure."
+      },
+      "de": {
+        "word": "unpassend",
+        "definition": "Seltsam, weil es nicht zur Umgebung passt."
+      },
+      "es": {
+        "word": "incongruente",
+        "definition": "Extraño porque no encaja con lo que lo rodea."
+      },
+      "pt": {
+        "word": "incongruente",
+        "definition": "Estranho por não combinar com o que o rodeia."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m18",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "nascent",
+    "partOfSpeech": "adjective",
+    "definition": "Just starting to exist and not yet fully developed.",
+    "example": "The country's nascent tech industry still depends on foreign investment.",
+    "translations": {
+      "fr": {
+        "word": "naissant",
+        "definition": "Qui commence à exister et n'est pas encore développé."
+      },
+      "de": {
+        "word": "aufkommend",
+        "definition": "Gerade entstehend und noch nicht voll entwickelt."
+      },
+      "es": {
+        "word": "incipiente",
+        "definition": "Que empieza a existir y aún no está desarrollado."
+      },
+      "pt": {
+        "word": "incipiente",
+        "definition": "Que começa a existir e ainda não está desenvolvido."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m19",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "obfuscate",
+    "partOfSpeech": "verb",
+    "definition": "To make something deliberately unclear or hard to understand.",
+    "example": "The report uses technical language to obfuscate its weak results.",
+    "translations": {
+      "fr": {
+        "word": "obscurcir",
+        "definition": "Rendre volontairement quelque chose confus."
+      },
+      "de": {
+        "word": "verschleiern",
+        "definition": "Etwas absichtlich unklar machen."
+      },
+      "es": {
+        "word": "ofuscar",
+        "definition": "Hacer algo confuso a propósito."
+      },
+      "pt": {
+        "word": "ofuscar",
+        "definition": "Tornar algo confuso de propósito."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m20",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "paucity",
+    "partOfSpeech": "noun",
+    "definition": "A shortage of something that is needed.",
+    "example": "The paucity of reliable records makes the period hard to reconstruct.",
+    "translations": {
+      "fr": {
+        "word": "la pénurie",
+        "definition": "Manque de quelque chose de nécessaire."
+      },
+      "de": {
+        "word": "der Mangel",
+        "definition": "Ein Fehlen von etwas, das gebraucht wird."
+      },
+      "es": {
+        "word": "la escasez",
+        "definition": "Falta de algo necesario."
+      },
+      "pt": {
+        "word": "a escassez",
+        "definition": "Falta de algo necessário."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m21",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "pernicious",
+    "partOfSpeech": "adjective",
+    "definition": "Harmful in a gradual way that is hard to notice.",
+    "example": "The study describes the pernicious effect of constant notifications on attention.",
+    "translations": {
+      "fr": {
+        "word": "pernicieux",
+        "definition": "Nuisible de façon lente et discrète."
+      },
+      "de": {
+        "word": "schädlich",
+        "definition": "Auf schleichende, kaum merkliche Weise schädlich."
+      },
+      "es": {
+        "word": "pernicioso",
+        "definition": "Dañino de forma gradual y poco visible."
+      },
+      "pt": {
+        "word": "pernicioso",
+        "definition": "Nocivo de forma gradual e pouco visível."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m22",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "predicated on",
+    "partOfSpeech": "adjective",
+    "definition": "Based on a particular idea or condition being true.",
+    "example": "The plan is predicated on the assumption that interest rates will stay low.",
+    "translations": {
+      "fr": {
+        "word": "fondé sur",
+        "definition": "Qui repose sur une idée ou une condition."
+      },
+      "de": {
+        "word": "beruhend auf",
+        "definition": "Auf einer bestimmten Annahme oder Bedingung aufgebaut."
+      },
+      "es": {
+        "word": "basado en",
+        "definition": "Que se apoya en una idea o condición."
+      },
+      "pt": {
+        "word": "assente em",
+        "definition": "Que se baseia numa ideia ou condição."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m23",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "quintessential",
+    "partOfSpeech": "adjective",
+    "definition": "Being the most typical example of something.",
+    "example": "The small café with mismatched chairs is the quintessential student hangout.",
+    "translations": {
+      "fr": {
+        "word": "par excellence",
+        "definition": "Qui représente l'exemple le plus typique."
+      },
+      "de": {
+        "word": "typisch schlechthin",
+        "definition": "Das typischste Beispiel für etwas."
+      },
+      "es": {
+        "word": "por excelencia",
+        "definition": "Que es el ejemplo más típico de algo."
+      },
+      "pt": {
+        "word": "por excelência",
+        "definition": "Que é o exemplo mais típico de algo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m24",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "reductive",
+    "partOfSpeech": "adjective",
+    "definition": "Making a complex issue seem too simple.",
+    "example": "Blaming the crisis on one politician is a reductive explanation.",
+    "translations": {
+      "fr": {
+        "word": "réducteur",
+        "definition": "Qui simplifie trop une question complexe."
+      },
+      "de": {
+        "word": "verkürzend",
+        "definition": "Eine komplexe Frage zu stark vereinfachend."
+      },
+      "es": {
+        "word": "reduccionista",
+        "definition": "Que simplifica demasiado un asunto complejo."
+      },
+      "pt": {
+        "word": "redutor",
+        "definition": "Que simplifica demasiado uma questão complexa."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m25",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "spurious",
+    "partOfSpeech": "adjective",
+    "definition": "False, though it may look genuine or logical.",
+    "example": "The article draws a spurious link between chocolate and exam success.",
+    "translations": {
+      "fr": {
+        "word": "fallacieux",
+        "definition": "Faux, même s'il semble vrai ou logique."
+      },
+      "de": {
+        "word": "scheinbar",
+        "definition": "Falsch, auch wenn es echt oder logisch wirkt."
+      },
+      "es": {
+        "word": "espurio",
+        "definition": "Falso, aunque parezca auténtico o lógico."
+      },
+      "pt": {
+        "word": "espúrio",
+        "definition": "Falso, embora pareça autêntico ou lógico."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m26",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "tacit",
+    "partOfSpeech": "adjective",
+    "definition": "Understood without being said aloud.",
+    "example": "There was a tacit agreement that nobody would mention the budget.",
+    "translations": {
+      "fr": {
+        "word": "tacite",
+        "definition": "Compris sans être dit."
+      },
+      "de": {
+        "word": "stillschweigend",
+        "definition": "Verstanden, ohne ausgesprochen zu werden."
+      },
+      "es": {
+        "word": "tácito",
+        "definition": "Que se entiende sin decirse."
+      },
+      "pt": {
+        "word": "tácito",
+        "definition": "Que se entende sem ser dito."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m27",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "teleology",
+    "partOfSpeech": "noun",
+    "definition": "The idea of explaining things by the purpose they seem to serve.",
+    "example": "Critics reject the teleology of stories that present history as steady progress.",
+    "translations": {
+      "fr": {
+        "word": "la téléologie",
+        "definition": "Explication des choses par leur but."
+      },
+      "de": {
+        "word": "die Teleologie",
+        "definition": "Die Erklärung von Dingen durch ihren Zweck."
+      },
+      "es": {
+        "word": "la teleología",
+        "definition": "Explicación de las cosas por su finalidad."
+      },
+      "pt": {
+        "word": "a teleologia",
+        "definition": "Explicação das coisas pela sua finalidade."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m28",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "veracity",
+    "partOfSpeech": "noun",
+    "definition": "The quality of being true or accurate.",
+    "example": "Journalists checked the veracity of the video before publishing it.",
+    "translations": {
+      "fr": {
+        "word": "la véracité",
+        "definition": "Qualité de ce qui est vrai ou exact."
+      },
+      "de": {
+        "word": "der Wahrheitsgehalt",
+        "definition": "Die Eigenschaft, wahr oder genau zu sein."
+      },
+      "es": {
+        "word": "la veracidad",
+        "definition": "Cualidad de ser verdadero o exacto."
+      },
+      "pt": {
+        "word": "a veracidade",
+        "definition": "Qualidade do que é verdadeiro ou exato."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m29",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "zeitgeist",
+    "partOfSpeech": "noun",
+    "definition": "The general mood and ideas typical of a particular period.",
+    "example": "The album captured the anxious zeitgeist of the early pandemic.",
+    "translations": {
+      "fr": {
+        "word": "l'air du temps",
+        "definition": "État d'esprit typique d'une époque."
+      },
+      "de": {
+        "word": "der Zeitgeist",
+        "definition": "Die typische Stimmung und Denkweise einer Epoche."
+      },
+      "es": {
+        "word": "el espíritu de la época",
+        "definition": "Ambiente e ideas típicos de un periodo."
+      },
+      "pt": {
+        "word": "o espírito da época",
+        "definition": "Ambiente e ideias típicos de um período."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m30",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "hermeneutics",
+    "partOfSpeech": "noun",
+    "definition": "The study of how texts and meanings are interpreted.",
+    "example": "The seminar applies hermeneutics to legal texts as well as literature.",
+    "translations": {
+      "fr": {
+        "word": "l'herméneutique",
+        "definition": "Étude de l'interprétation des textes."
+      },
+      "de": {
+        "word": "die Hermeneutik",
+        "definition": "Die Lehre vom Auslegen von Texten."
+      },
+      "es": {
+        "word": "la hermenéutica",
+        "definition": "Estudio de la interpretación de los textos."
+      },
+      "pt": {
+        "word": "a hermenêutica",
+        "definition": "Estudo da interpretação dos textos."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m31",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "heterogeneous",
+    "partOfSpeech": "adjective",
+    "definition": "Made up of parts that are very different from each other.",
+    "example": "The sample was heterogeneous, including students, retirees and shift workers.",
+    "translations": {
+      "fr": {
+        "word": "hétérogène",
+        "definition": "Composé d'éléments très différents."
+      },
+      "de": {
+        "word": "heterogen",
+        "definition": "Aus sehr unterschiedlichen Teilen bestehend."
+      },
+      "es": {
+        "word": "heterogéneo",
+        "definition": "Formado por elementos muy distintos."
+      },
+      "pt": {
+        "word": "heterogéneo",
+        "definition": "Formado por elementos muito diferentes."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m32",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "homogeneous",
+    "partOfSpeech": "adjective",
+    "definition": "Made up of parts that are all very similar.",
+    "example": "The survey group was too homogeneous to reflect the wider population.",
+    "translations": {
+      "fr": {
+        "word": "homogène",
+        "definition": "Composé d'éléments très semblables."
+      },
+      "de": {
+        "word": "homogen",
+        "definition": "Aus sehr ähnlichen Teilen bestehend."
+      },
+      "es": {
+        "word": "homogéneo",
+        "definition": "Formado por elementos muy parecidos."
+      },
+      "pt": {
+        "word": "homogéneo",
+        "definition": "Formado por elementos muito semelhantes."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m33",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "inextricable",
+    "partOfSpeech": "adjective",
+    "definition": "So closely connected that the parts cannot be separated.",
+    "example": "In her view, economic and environmental questions are inextricable.",
+    "translations": {
+      "fr": {
+        "word": "inextricable",
+        "definition": "Si lié qu'on ne peut pas le séparer."
+      },
+      "de": {
+        "word": "untrennbar",
+        "definition": "So eng verbunden, dass man es nicht trennen kann."
+      },
+      "es": {
+        "word": "inseparable",
+        "definition": "Tan unido que no se puede separar."
+      },
+      "pt": {
+        "word": "indissociável",
+        "definition": "Tão ligado que não se pode separar."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m34",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "intractable",
+    "partOfSpeech": "adjective",
+    "definition": "Very difficult to solve or deal with.",
+    "example": "Housing shortages have proved intractable despite decades of reform.",
+    "translations": {
+      "fr": {
+        "word": "insoluble",
+        "definition": "Très difficile à résoudre."
+      },
+      "de": {
+        "word": "hartnäckig",
+        "definition": "Sehr schwer zu lösen oder zu bewältigen."
+      },
+      "es": {
+        "word": "irresoluble",
+        "definition": "Muy difícil de resolver."
+      },
+      "pt": {
+        "word": "insolúvel",
+        "definition": "Muito difícil de resolver."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m35",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "proliferate",
+    "partOfSpeech": "verb",
+    "definition": "To increase quickly in number.",
+    "example": "Fact-checking websites proliferated after the election.",
+    "translations": {
+      "fr": {
+        "word": "proliférer",
+        "definition": "Se multiplier rapidement."
+      },
+      "de": {
+        "word": "sich rasch vermehren",
+        "definition": "Schnell an Zahl zunehmen."
+      },
+      "es": {
+        "word": "proliferar",
+        "definition": "Multiplicarse con rapidez."
+      },
+      "pt": {
+        "word": "proliferar",
+        "definition": "Multiplicar-se rapidamente."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m36",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "dialectical",
+    "partOfSpeech": "adjective",
+    "definition": "Reaching the truth by setting opposing ideas against each other.",
+    "example": "The book follows a dialectical structure, moving from thesis to counterargument.",
+    "translations": {
+      "fr": {
+        "word": "dialectique",
+        "definition": "Qui avance en confrontant des idées opposées."
+      },
+      "de": {
+        "word": "dialektisch",
+        "definition": "Durch die Gegenüberstellung gegensätzlicher Ideen zur Wahrheit gelangend."
+      },
+      "es": {
+        "word": "dialéctico",
+        "definition": "Que busca la verdad enfrentando ideas opuestas."
+      },
+      "pt": {
+        "word": "dialético",
+        "definition": "Que procura a verdade confrontando ideias opostas."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m37",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "sophistry",
+    "partOfSpeech": "noun",
+    "definition": "Clever arguments that sound good but are actually false.",
+    "example": "The minister's defence was dismissed as mere sophistry.",
+    "translations": {
+      "fr": {
+        "word": "la sophistique",
+        "definition": "Raisonnements habiles mais trompeurs."
+      },
+      "de": {
+        "word": "die Sophisterei",
+        "definition": "Geschickte, aber irreführende Argumente."
+      },
+      "es": {
+        "word": "la sofistería",
+        "definition": "Argumentos ingeniosos pero engañosos."
+      },
+      "pt": {
+        "word": "a sofística",
+        "definition": "Argumentos engenhosos mas enganadores."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m38",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "verisimilitude",
+    "partOfSpeech": "noun",
+    "definition": "The quality of seeming true or real.",
+    "example": "Detailed street names give the novel a strong sense of verisimilitude.",
+    "translations": {
+      "fr": {
+        "word": "la vraisemblance",
+        "definition": "Qualité de ce qui paraît vrai ou réel."
+      },
+      "de": {
+        "word": "die Wahrscheinlichkeit",
+        "definition": "Der Eindruck, wahr oder echt zu sein."
+      },
+      "es": {
+        "word": "la verosimilitud",
+        "definition": "Cualidad de parecer verdadero o real."
+      },
+      "pt": {
+        "word": "a verosimilhança",
+        "definition": "Qualidade do que parece verdadeiro ou real."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m39",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "apposite",
+    "partOfSpeech": "adjective",
+    "definition": "Very suitable for the situation.",
+    "example": "The speaker ended with an apposite quotation about patience.",
+    "translations": {
+      "fr": {
+        "word": "pertinent",
+        "definition": "Parfaitement adapté à la situation."
+      },
+      "de": {
+        "word": "treffend",
+        "definition": "Genau passend zur Situation."
+      },
+      "es": {
+        "word": "oportuno",
+        "definition": "Muy adecuado a la situación."
+      },
+      "pt": {
+        "word": "oportuno",
+        "definition": "Muito adequado à situação."
+      }
+    }
+  },
+  {
+    "id": "en-c2-academic-m40",
+    "lang": "en",
+    "level": "C2",
+    "category": "academic",
+    "word": "circumscribe",
+    "partOfSpeech": "verb",
+    "definition": "To limit something within clear boundaries.",
+    "example": "The committee's powers are tightly circumscribed by the constitution.",
+    "translations": {
+      "fr": {
+        "word": "circonscrire",
+        "definition": "Limiter à l'intérieur de bornes précises."
+      },
+      "de": {
+        "word": "eingrenzen",
+        "definition": "Etwas innerhalb klarer Grenzen halten."
+      },
+      "es": {
+        "word": "circunscribir",
+        "definition": "Limitar algo dentro de fronteras claras."
+      },
+      "pt": {
+        "word": "circunscrever",
+        "definition": "Limitar algo dentro de fronteiras claras."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m01",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "empirical",
+    "partOfSpeech": "adjective",
+    "definition": "Based on observation or experiment rather than theory alone.",
+    "example": "The claim sounds reasonable, but there is little empirical evidence for it.",
+    "translations": {
+      "fr": {
+        "word": "empirique",
+        "definition": "Fondé sur l'observation ou l'expérience."
+      },
+      "de": {
+        "word": "empirisch",
+        "definition": "Auf Beobachtung oder Experiment beruhend."
+      },
+      "es": {
+        "word": "empírico",
+        "definition": "Basado en la observación o la experiencia."
+      },
+      "pt": {
+        "word": "empírico",
+        "definition": "Baseado na observação ou na experiência."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m02",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "exacerbate",
+    "partOfSpeech": "verb",
+    "definition": "To make a bad situation even worse.",
+    "example": "Cutting bus routes would exacerbate isolation in rural areas.",
+    "translations": {
+      "fr": {
+        "word": "aggraver",
+        "definition": "Rendre une mauvaise situation encore pire."
+      },
+      "de": {
+        "word": "verschärfen",
+        "definition": "Eine schlechte Lage noch schlimmer machen."
+      },
+      "es": {
+        "word": "agravar",
+        "definition": "Empeorar una situación que ya era mala."
+      },
+      "pt": {
+        "word": "agravar",
+        "definition": "Tornar pior uma situação que já era má."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m03",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "mitigate",
+    "partOfSpeech": "verb",
+    "definition": "To make something harmful less serious.",
+    "example": "Planting trees can mitigate the effects of summer heat in cities.",
+    "translations": {
+      "fr": {
+        "word": "atténuer",
+        "definition": "Rendre quelque chose de nuisible moins grave."
+      },
+      "de": {
+        "word": "abmildern",
+        "definition": "Etwas Schädliches weniger schlimm machen."
+      },
+      "es": {
+        "word": "mitigar",
+        "definition": "Hacer que algo dañino sea menos grave."
+      },
+      "pt": {
+        "word": "atenuar",
+        "definition": "Tornar algo prejudicial menos grave."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m04",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "unprecedented",
+    "partOfSpeech": "adjective",
+    "definition": "Never having happened before.",
+    "example": "The storm caused unprecedented damage to the coastline.",
+    "translations": {
+      "fr": {
+        "word": "sans précédent",
+        "definition": "Qui n'est jamais arrivé auparavant."
+      },
+      "de": {
+        "word": "beispiellos",
+        "definition": "So noch nie da gewesen."
+      },
+      "es": {
+        "word": "sin precedentes",
+        "definition": "Que nunca había ocurrido antes."
+      },
+      "pt": {
+        "word": "sem precedentes",
+        "definition": "Que nunca tinha acontecido antes."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m05",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "plausible",
+    "partOfSpeech": "adjective",
+    "definition": "Reasonable and likely to be true.",
+    "example": "Her explanation for the delay sounded plausible, so nobody questioned it.",
+    "translations": {
+      "fr": {
+        "word": "plausible",
+        "definition": "Raisonnable et probablement vrai."
+      },
+      "de": {
+        "word": "plausibel",
+        "definition": "Vernünftig und wahrscheinlich wahr."
+      },
+      "es": {
+        "word": "verosímil",
+        "definition": "Razonable y probablemente cierto."
+      },
+      "pt": {
+        "word": "plausível",
+        "definition": "Razoável e provavelmente verdadeiro."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m06",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "substantive",
+    "partOfSpeech": "adjective",
+    "definition": "Dealing with real, important matters rather than details.",
+    "example": "The meeting produced no substantive changes to the proposal.",
+    "translations": {
+      "fr": {
+        "word": "substantiel",
+        "definition": "Qui touche aux questions importantes, pas aux détails."
+      },
+      "de": {
+        "word": "substanziell",
+        "definition": "Wesentliche, wichtige Punkte betreffend."
+      },
+      "es": {
+        "word": "sustancial",
+        "definition": "Que trata asuntos importantes y no detalles."
+      },
+      "pt": {
+        "word": "substancial",
+        "definition": "Que trata de questões importantes e não de pormenores."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m07",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "pragmatic",
+    "partOfSpeech": "adjective",
+    "definition": "Dealing with problems in a practical way rather than by theory.",
+    "example": "The council took a pragmatic approach and fixed the worst roads first.",
+    "translations": {
+      "fr": {
+        "word": "pragmatique",
+        "definition": "Qui traite les problèmes de façon concrète."
+      },
+      "de": {
+        "word": "pragmatisch",
+        "definition": "Probleme praktisch statt theoretisch angehend."
+      },
+      "es": {
+        "word": "pragmático",
+        "definition": "Que resuelve los problemas de forma práctica."
+      },
+      "pt": {
+        "word": "pragmático",
+        "definition": "Que resolve os problemas de forma prática."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m08",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "ambivalent",
+    "partOfSpeech": "adjective",
+    "definition": "Having mixed feelings about something.",
+    "example": "Many residents feel ambivalent about the new stadium near their homes.",
+    "translations": {
+      "fr": {
+        "word": "ambivalent",
+        "definition": "Qui ressent des sentiments contradictoires."
+      },
+      "de": {
+        "word": "ambivalent",
+        "definition": "Mit gemischten Gefühlen gegenüber etwas."
+      },
+      "es": {
+        "word": "ambivalente",
+        "definition": "Que tiene sentimientos contradictorios."
+      },
+      "pt": {
+        "word": "ambivalente",
+        "definition": "Que tem sentimentos contraditórios."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m09",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "arbitrary",
+    "partOfSpeech": "adjective",
+    "definition": "Based on chance or personal choice rather than reason.",
+    "example": "The cut-off age of 25 seems arbitrary and is not explained in the report.",
+    "translations": {
+      "fr": {
+        "word": "arbitraire",
+        "definition": "Qui dépend du hasard ou d'un choix personnel."
+      },
+      "de": {
+        "word": "willkürlich",
+        "definition": "Auf Zufall oder persönlicher Laune statt auf Gründen beruhend."
+      },
+      "es": {
+        "word": "arbitrario",
+        "definition": "Que depende del azar o de un capricho, no de razones."
+      },
+      "pt": {
+        "word": "arbitrário",
+        "definition": "Que depende do acaso ou de um capricho, e não de razões."
+      }
+    }
+  },
+  {
+    "id": "en-c1-academic-m10",
+    "lang": "en",
+    "level": "C1",
+    "category": "academic",
+    "word": "discrepancy",
+    "partOfSpeech": "noun",
+    "definition": "A difference between things that should be the same.",
+    "example": "Auditors found a discrepancy between the invoices and the bank records.",
+    "translations": {
+      "fr": {
+        "word": "l'écart",
+        "definition": "Différence entre des choses qui devraient concorder."
+      },
+      "de": {
+        "word": "die Unstimmigkeit",
+        "definition": "Ein Unterschied zwischen Dingen, die übereinstimmen sollten."
+      },
+      "es": {
+        "word": "la discrepancia",
+        "definition": "Diferencia entre cosas que deberían coincidir."
+      },
+      "pt": {
+        "word": "a discrepância",
+        "definition": "Diferença entre coisas que deviam coincidir."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m01",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "synergize",
+    "partOfSpeech": "verb",
+    "definition": "To work together so the result is greater than each part alone.",
+    "example": "The two teams synergized well, combining design skills with technical knowledge.",
+    "translations": {
+      "fr": {
+        "word": "créer des synergies",
+        "definition": "Coopérer pour obtenir plus que chacun seul."
+      },
+      "de": {
+        "word": "Synergien schaffen",
+        "definition": "So zusammenarbeiten, dass das Ergebnis größer ist als die Teile."
+      },
+      "es": {
+        "word": "sinergizar",
+        "definition": "Colaborar para lograr más de lo que cada parte lograría sola."
+      },
+      "pt": {
+        "word": "criar sinergias",
+        "definition": "Colaborar para conseguir mais do que cada parte sozinha."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m02",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "benchmark",
+    "partOfSpeech": "noun",
+    "definition": "A standard used to measure or compare performance.",
+    "example": "Last year's sales figures serve as the benchmark for this quarter.",
+    "translations": {
+      "fr": {
+        "word": "la référence",
+        "definition": "Norme qui sert à mesurer ou comparer des résultats."
+      },
+      "de": {
+        "word": "der Maßstab",
+        "definition": "Ein Standard, an dem Leistung gemessen wird."
+      },
+      "es": {
+        "word": "la referencia",
+        "definition": "Estándar para medir o comparar resultados."
+      },
+      "pt": {
+        "word": "a referência",
+        "definition": "Padrão usado para medir ou comparar resultados."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m03",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "scalable",
+    "partOfSpeech": "adjective",
+    "definition": "Able to grow larger without losing efficiency.",
+    "example": "Investors want a scalable business that can expand to new markets quickly.",
+    "translations": {
+      "fr": {
+        "word": "évolutif",
+        "definition": "Capable de grandir sans perdre en efficacité."
+      },
+      "de": {
+        "word": "skalierbar",
+        "definition": "Wachstumsfähig, ohne an Effizienz zu verlieren."
+      },
+      "es": {
+        "word": "escalable",
+        "definition": "Capaz de crecer sin perder eficacia."
+      },
+      "pt": {
+        "word": "escalável",
+        "definition": "Capaz de crescer sem perder eficiência."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m04",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "onboarding",
+    "partOfSpeech": "noun",
+    "definition": "The process of helping new employees settle into a job.",
+    "example": "Good onboarding helps new staff feel confident in their first month.",
+    "translations": {
+      "fr": {
+        "word": "l'intégration",
+        "definition": "Processus d'accueil des nouveaux salariés."
+      },
+      "de": {
+        "word": "die Einarbeitung",
+        "definition": "Das Einführen neuer Mitarbeiter in ihre Arbeit."
+      },
+      "es": {
+        "word": "la incorporación",
+        "definition": "Proceso para integrar a los nuevos empleados."
+      },
+      "pt": {
+        "word": "a integração",
+        "definition": "Processo de acolhimento de novos colaboradores."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m05",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "bottleneck",
+    "partOfSpeech": "noun",
+    "definition": "A point where work slows down because too much must pass through it.",
+    "example": "Approval by a single manager became a bottleneck for every project.",
+    "translations": {
+      "fr": {
+        "word": "le goulot d'étranglement",
+        "definition": "Point où le travail ralentit à cause d'un blocage."
+      },
+      "de": {
+        "word": "der Engpass",
+        "definition": "Eine Stelle, an der sich Arbeit staut."
+      },
+      "es": {
+        "word": "el cuello de botella",
+        "definition": "Punto donde el trabajo se atasca."
+      },
+      "pt": {
+        "word": "o estrangulamento",
+        "definition": "Ponto onde o trabalho abranda por causa de um bloqueio."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m06",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "incentivize",
+    "partOfSpeech": "verb",
+    "definition": "To encourage people to do something by offering a reward.",
+    "example": "The company incentivizes cycling to work with a monthly bonus.",
+    "translations": {
+      "fr": {
+        "word": "inciter",
+        "definition": "Encourager en offrant une récompense."
+      },
+      "de": {
+        "word": "Anreize schaffen",
+        "definition": "Durch eine Belohnung zu etwas ermutigen."
+      },
+      "es": {
+        "word": "incentivar",
+        "definition": "Animar a hacer algo ofreciendo una recompensa."
+      },
+      "pt": {
+        "word": "incentivar",
+        "definition": "Encorajar a fazer algo oferecendo uma recompensa."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m07",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "outsource",
+    "partOfSpeech": "verb",
+    "definition": "To pay another company to do work instead of doing it yourself.",
+    "example": "The firm outsources its IT support to a company abroad.",
+    "translations": {
+      "fr": {
+        "word": "externaliser",
+        "definition": "Confier un travail à une autre entreprise."
+      },
+      "de": {
+        "word": "auslagern",
+        "definition": "Arbeit an eine andere Firma vergeben."
+      },
+      "es": {
+        "word": "externalizar",
+        "definition": "Encargar un trabajo a otra empresa."
+      },
+      "pt": {
+        "word": "externalizar",
+        "definition": "Entregar um trabalho a outra empresa."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m08",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "mandate",
+    "partOfSpeech": "noun",
+    "definition": "Official authority or permission to carry out a task.",
+    "example": "The new board has a clear mandate to cut costs.",
+    "translations": {
+      "fr": {
+        "word": "le mandat",
+        "definition": "Autorisation officielle de mener une mission."
+      },
+      "de": {
+        "word": "das Mandat",
+        "definition": "Offizieller Auftrag oder Befugnis für eine Aufgabe."
+      },
+      "es": {
+        "word": "el mandato",
+        "definition": "Autoridad oficial para llevar a cabo una tarea."
+      },
+      "pt": {
+        "word": "o mandato",
+        "definition": "Autorização oficial para cumprir uma tarefa."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m09",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "turnover",
+    "partOfSpeech": "noun",
+    "definition": "The rate at which employees leave and have to be replaced.",
+    "example": "High staff turnover makes it hard to keep experienced people.",
+    "translations": {
+      "fr": {
+        "word": "le taux de rotation du personnel",
+        "definition": "Rythme auquel les salariés partent et sont remplacés."
+      },
+      "de": {
+        "word": "die Fluktuation",
+        "definition": "Die Rate, mit der Mitarbeiter gehen und ersetzt werden."
+      },
+      "es": {
+        "word": "la rotación de personal",
+        "definition": "Ritmo al que los empleados se van y se sustituyen."
+      },
+      "pt": {
+        "word": "a rotatividade",
+        "definition": "Ritmo a que os trabalhadores saem e são substituídos."
+      }
+    }
+  },
+  {
+    "id": "en-c1-work-m10",
+    "lang": "en",
+    "level": "C1",
+    "category": "work",
+    "word": "transparency",
+    "partOfSpeech": "noun",
+    "definition": "Openness about decisions and information, so others can see what happens.",
+    "example": "Staff asked for more transparency about how bonuses are calculated.",
+    "translations": {
+      "fr": {
+        "word": "la transparence",
+        "definition": "Ouverture sur les décisions et les informations."
+      },
+      "de": {
+        "word": "die Transparenz",
+        "definition": "Offenheit bei Entscheidungen und Informationen."
+      },
+      "es": {
+        "word": "la transparencia",
+        "definition": "Apertura sobre decisiones e información."
+      },
+      "pt": {
+        "word": "a transparência",
+        "definition": "Abertura sobre decisões e informações."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m09",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "monetize",
+    "partOfSpeech": "verb",
+    "definition": "To find a way of earning money from something.",
+    "example": "The app has millions of users but has not yet found a way to monetize them.",
+    "translations": {
+      "fr": {
+        "word": "monétiser",
+        "definition": "Trouver un moyen de gagner de l'argent avec quelque chose."
+      },
+      "de": {
+        "word": "monetarisieren",
+        "definition": "Einen Weg finden, mit etwas Geld zu verdienen."
+      },
+      "es": {
+        "word": "monetizar",
+        "definition": "Encontrar una forma de ganar dinero con algo."
+      },
+      "pt": {
+        "word": "rentabilizar",
+        "definition": "Encontrar maneira de ganhar dinheiro com algo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m10",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "remit",
+    "partOfSpeech": "noun",
+    "definition": "The area of work that a person or group is responsible for.",
+    "example": "Customer complaints fall outside the remit of the finance team.",
+    "translations": {
+      "fr": {
+        "word": "le champ de compétence",
+        "definition": "Domaine dont une personne ou un groupe est responsable."
+      },
+      "de": {
+        "word": "der Zuständigkeitsbereich",
+        "definition": "Der Bereich, für den jemand verantwortlich ist."
+      },
+      "es": {
+        "word": "el ámbito de competencia",
+        "definition": "Área de la que es responsable una persona o grupo."
+      },
+      "pt": {
+        "word": "o âmbito de competência",
+        "definition": "Área pela qual uma pessoa ou grupo é responsável."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m11",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "fiscal",
+    "partOfSpeech": "adjective",
+    "definition": "Related to government or company money, especially taxes and spending.",
+    "example": "The fiscal year ends in March, so budgets are set in February.",
+    "translations": {
+      "fr": {
+        "word": "fiscal",
+        "definition": "Relatif aux finances, surtout aux impôts et dépenses."
+      },
+      "de": {
+        "word": "fiskalisch",
+        "definition": "Die öffentlichen Finanzen, Steuern und Ausgaben betreffend."
+      },
+      "es": {
+        "word": "fiscal",
+        "definition": "Relativo a las finanzas, sobre todo impuestos y gastos."
+      },
+      "pt": {
+        "word": "fiscal",
+        "definition": "Relativo às finanças, sobretudo impostos e despesas."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m12",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "amortize",
+    "partOfSpeech": "verb",
+    "definition": "To spread the cost of something over a period of time.",
+    "example": "The company will amortize the new software over five years.",
+    "translations": {
+      "fr": {
+        "word": "amortir",
+        "definition": "Répartir un coût sur une certaine période."
+      },
+      "de": {
+        "word": "abschreiben",
+        "definition": "Kosten über einen Zeitraum verteilen."
+      },
+      "es": {
+        "word": "amortizar",
+        "definition": "Repartir un coste a lo largo de un periodo."
+      },
+      "pt": {
+        "word": "amortizar",
+        "definition": "Distribuir um custo ao longo de um período."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m13",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "arbitration",
+    "partOfSpeech": "noun",
+    "definition": "Settling a dispute by letting a neutral person make the decision.",
+    "example": "The pay dispute went to arbitration after talks broke down.",
+    "translations": {
+      "fr": {
+        "word": "l'arbitrage",
+        "definition": "Règlement d'un conflit par une personne neutre."
+      },
+      "de": {
+        "word": "das Schiedsverfahren",
+        "definition": "Beilegung eines Streits durch eine neutrale Person."
+      },
+      "es": {
+        "word": "el arbitraje",
+        "definition": "Resolución de un conflicto por una persona neutral."
+      },
+      "pt": {
+        "word": "a arbitragem",
+        "definition": "Resolução de um conflito por uma pessoa neutra."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m14",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "liquidity",
+    "partOfSpeech": "noun",
+    "definition": "How easily a company can get cash to pay its bills.",
+    "example": "The retailer faced a liquidity crisis after sales collapsed.",
+    "translations": {
+      "fr": {
+        "word": "la liquidité",
+        "definition": "Capacité d'une entreprise à disposer d'argent pour payer."
+      },
+      "de": {
+        "word": "die Liquidität",
+        "definition": "Wie leicht ein Unternehmen Bargeld für Rechnungen hat."
+      },
+      "es": {
+        "word": "la liquidez",
+        "definition": "Capacidad de una empresa para disponer de dinero."
+      },
+      "pt": {
+        "word": "a liquidez",
+        "definition": "Capacidade de uma empresa dispor de dinheiro."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m15",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "procurement",
+    "partOfSpeech": "noun",
+    "definition": "The process of buying goods and services for an organisation.",
+    "example": "Procurement rules require three quotes for any contract over ten thousand euros.",
+    "translations": {
+      "fr": {
+        "word": "les achats",
+        "definition": "Processus d'achat de biens et services pour une organisation."
+      },
+      "de": {
+        "word": "die Beschaffung",
+        "definition": "Der Einkauf von Waren und Dienstleistungen für eine Organisation."
+      },
+      "es": {
+        "word": "la contratación de suministros",
+        "definition": "Proceso de compra de bienes y servicios de una organización."
+      },
+      "pt": {
+        "word": "a aquisição",
+        "definition": "Processo de compra de bens e serviços de uma organização."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m16",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "attrition",
+    "partOfSpeech": "noun",
+    "definition": "A gradual fall in staff numbers as people leave and are not replaced.",
+    "example": "The firm reduced its workforce through attrition rather than layoffs.",
+    "translations": {
+      "fr": {
+        "word": "la réduction naturelle des effectifs",
+        "definition": "Baisse du personnel par départs non remplacés."
+      },
+      "de": {
+        "word": "der natürliche Personalabgang",
+        "definition": "Allmählicher Personalrückgang, weil Stellen nicht nachbesetzt werden."
+      },
+      "es": {
+        "word": "la reducción natural de plantilla",
+        "definition": "Disminución gradual del personal por salidas no cubiertas."
+      },
+      "pt": {
+        "word": "a redução natural de pessoal",
+        "definition": "Diminuição gradual do pessoal por saídas não substituídas."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m17",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "headwinds",
+    "partOfSpeech": "noun",
+    "definition": "Conditions that make progress or growth more difficult.",
+    "example": "Rising energy prices are a major headwind for manufacturers this year.",
+    "translations": {
+      "fr": {
+        "word": "les vents contraires",
+        "definition": "Conditions qui freinent la progression."
+      },
+      "de": {
+        "word": "der Gegenwind",
+        "definition": "Umstände, die Fortschritt oder Wachstum bremsen."
+      },
+      "es": {
+        "word": "los vientos en contra",
+        "definition": "Condiciones que dificultan el avance."
+      },
+      "pt": {
+        "word": "os ventos contrários",
+        "definition": "Condições que dificultam o progresso."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m18",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "optics",
+    "partOfSpeech": "noun",
+    "definition": "How an action looks to the public, regardless of its real effect.",
+    "example": "Giving bonuses during layoffs would be terrible optics.",
+    "translations": {
+      "fr": {
+        "word": "l'image",
+        "definition": "Façon dont une action est perçue par le public."
+      },
+      "de": {
+        "word": "die Außenwirkung",
+        "definition": "Wie eine Handlung in der Öffentlichkeit wirkt."
+      },
+      "es": {
+        "word": "la imagen",
+        "definition": "Cómo percibe el público una acción."
+      },
+      "pt": {
+        "word": "a imagem",
+        "definition": "Como o público percebe uma ação."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m19",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "vested interest",
+    "partOfSpeech": "noun",
+    "definition": "A personal reason for wanting something to happen, often for profit.",
+    "example": "As a shareholder, he has a vested interest in the merger going ahead.",
+    "translations": {
+      "fr": {
+        "word": "l'intérêt personnel",
+        "definition": "Raison personnelle de vouloir un résultat, souvent financière."
+      },
+      "de": {
+        "word": "das Eigeninteresse",
+        "definition": "Ein persönlicher, oft finanzieller Grund für ein bestimmtes Ergebnis."
+      },
+      "es": {
+        "word": "el interés creado",
+        "definition": "Motivo personal, a menudo económico, para desear algo."
+      },
+      "pt": {
+        "word": "o interesse próprio",
+        "definition": "Razão pessoal, muitas vezes financeira, para querer algo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m20",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "sunk cost",
+    "partOfSpeech": "noun",
+    "definition": "Money already spent that cannot be recovered.",
+    "example": "Don't continue the project just because of the sunk cost; judge its future value.",
+    "translations": {
+      "fr": {
+        "word": "le coût irrécupérable",
+        "definition": "Argent déjà dépensé qu'on ne peut pas récupérer."
+      },
+      "de": {
+        "word": "die versunkenen Kosten",
+        "definition": "Bereits ausgegebenes Geld, das nicht zurückkommt."
+      },
+      "es": {
+        "word": "el coste hundido",
+        "definition": "Dinero ya gastado que no se puede recuperar."
+      },
+      "pt": {
+        "word": "o custo irrecuperável",
+        "definition": "Dinheiro já gasto que não se pode recuperar."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m21",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "capitalize on",
+    "partOfSpeech": "phrasal verb",
+    "definition": "To use a situation to gain an advantage.",
+    "example": "The brand capitalized on the viral video by launching a matching product.",
+    "translations": {
+      "fr": {
+        "word": "tirer parti de",
+        "definition": "Profiter d'une situation pour en tirer avantage."
+      },
+      "de": {
+        "word": "Kapital schlagen aus",
+        "definition": "Eine Situation zum eigenen Vorteil nutzen."
+      },
+      "es": {
+        "word": "sacar partido de",
+        "definition": "Aprovechar una situación para obtener ventaja."
+      },
+      "pt": {
+        "word": "tirar partido de",
+        "definition": "Aproveitar uma situação para obter vantagem."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m22",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "consolidate",
+    "partOfSpeech": "verb",
+    "definition": "To combine things into one stronger, more efficient unit.",
+    "example": "The bank plans to consolidate its three regional offices into one.",
+    "translations": {
+      "fr": {
+        "word": "regrouper",
+        "definition": "Réunir plusieurs éléments en un ensemble plus efficace."
+      },
+      "de": {
+        "word": "zusammenlegen",
+        "definition": "Mehrere Teile zu einer stärkeren Einheit verbinden."
+      },
+      "es": {
+        "word": "consolidar",
+        "definition": "Unir varias partes en una unidad más sólida."
+      },
+      "pt": {
+        "word": "consolidar",
+        "definition": "Juntar várias partes numa unidade mais sólida."
+      }
+    }
+  },
+  {
+    "id": "en-c2-work-m23",
+    "lang": "en",
+    "level": "C2",
+    "category": "work",
+    "word": "stagnate",
+    "partOfSpeech": "verb",
+    "definition": "To stop growing or improving.",
+    "example": "Wages have stagnated while living costs keep rising.",
+    "translations": {
+      "fr": {
+        "word": "stagner",
+        "definition": "Cesser de progresser."
+      },
+      "de": {
+        "word": "stagnieren",
+        "definition": "Aufhören zu wachsen oder sich zu verbessern."
+      },
+      "es": {
+        "word": "estancarse",
+        "definition": "Dejar de crecer o mejorar."
+      },
+      "pt": {
+        "word": "estagnar",
+        "definition": "Deixar de crescer ou melhorar."
+      }
+    }
+  },
+  {
+    "id": "en-c1-everyday-m01",
+    "lang": "en",
+    "level": "C1",
+    "category": "everyday",
+    "word": "meticulous",
+    "partOfSpeech": "adjective",
+    "definition": "Very careful and paying attention to every detail.",
+    "example": "She keeps meticulous notes of every expense during a trip.",
+    "translations": {
+      "fr": {
+        "word": "méticuleux",
+        "definition": "Très soigneux et attentif au moindre détail."
+      },
+      "de": {
+        "word": "akribisch",
+        "definition": "Sehr sorgfältig und genau bis ins Detail."
+      },
+      "es": {
+        "word": "meticuloso",
+        "definition": "Muy cuidadoso y atento a cada detalle."
+      },
+      "pt": {
+        "word": "meticuloso",
+        "definition": "Muito cuidadoso e atento a cada pormenor."
+      }
+    }
+  },
+  {
+    "id": "en-c1-everyday-m02",
+    "lang": "en",
+    "level": "C1",
+    "category": "everyday",
+    "word": "frugal",
+    "partOfSpeech": "adjective",
+    "definition": "Careful to spend very little money.",
+    "example": "Living a frugal life let them save for a house in five years.",
+    "translations": {
+      "fr": {
+        "word": "économe",
+        "definition": "Qui dépense très peu d'argent."
+      },
+      "de": {
+        "word": "sparsam",
+        "definition": "Darauf bedacht, sehr wenig Geld auszugeben."
+      },
+      "es": {
+        "word": "austero",
+        "definition": "Que gasta muy poco dinero."
+      },
+      "pt": {
+        "word": "poupado",
+        "definition": "Que gasta muito pouco dinheiro."
+      }
+    }
+  },
+  {
+    "id": "en-c1-everyday-m03",
+    "lang": "en",
+    "level": "C1",
+    "category": "everyday",
+    "word": "candid",
+    "partOfSpeech": "adjective",
+    "definition": "Honest and direct, even about uncomfortable things.",
+    "example": "I appreciated his candid feedback on my first draft.",
+    "translations": {
+      "fr": {
+        "word": "franc",
+        "definition": "Honnête et direct, même sur des sujets gênants."
+      },
+      "de": {
+        "word": "offen",
+        "definition": "Ehrlich und direkt, auch bei unangenehmen Themen."
+      },
+      "es": {
+        "word": "franco",
+        "definition": "Sincero y directo, incluso sobre temas incómodos."
+      },
+      "pt": {
+        "word": "franco",
+        "definition": "Honesto e direto, mesmo sobre temas incómodos."
+      }
+    }
+  },
+  {
+    "id": "en-c1-everyday-m04",
+    "lang": "en",
+    "level": "C1",
+    "category": "everyday",
+    "word": "resilient",
+    "partOfSpeech": "adjective",
+    "definition": "Able to recover quickly after difficulties.",
+    "example": "Children are often more resilient than adults expect after a move.",
+    "translations": {
+      "fr": {
+        "word": "résilient",
+        "definition": "Capable de se remettre vite des difficultés."
+      },
+      "de": {
+        "word": "widerstandsfähig",
+        "definition": "Fähig, sich nach Schwierigkeiten schnell zu erholen."
+      },
+      "es": {
+        "word": "resiliente",
+        "definition": "Capaz de recuperarse pronto tras las dificultades."
+      },
+      "pt": {
+        "word": "resiliente",
+        "definition": "Capaz de recuperar depressa depois de dificuldades."
+      }
+    }
+  },
+  {
+    "id": "en-c1-everyday-m05",
+    "lang": "en",
+    "level": "C1",
+    "category": "everyday",
+    "word": "procrastinate",
+    "partOfSpeech": "verb",
+    "definition": "To keep delaying something you should do.",
+    "example": "I always procrastinate when I have to fill in tax forms.",
+    "translations": {
+      "fr": {
+        "word": "procrastiner",
+        "definition": "Remettre sans cesse à plus tard ce qu'on doit faire."
+      },
+      "de": {
+        "word": "prokrastinieren",
+        "definition": "Etwas, das man tun sollte, immer wieder aufschieben."
+      },
+      "es": {
+        "word": "procrastinar",
+        "definition": "Aplazar una y otra vez algo que se debe hacer."
+      },
+      "pt": {
+        "word": "procrastinar",
+        "definition": "Adiar constantemente algo que se deve fazer."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m01",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "squander",
+    "partOfSpeech": "verb",
+    "definition": "To waste money, time or a chance in a careless way.",
+    "example": "He squandered his savings on gadgets he never used.",
+    "translations": {
+      "fr": {
+        "word": "gaspiller",
+        "definition": "Dépenser ou perdre sans réfléchir de l'argent ou une chance."
+      },
+      "de": {
+        "word": "verschwenden",
+        "definition": "Geld, Zeit oder eine Chance leichtsinnig vergeuden."
+      },
+      "es": {
+        "word": "derrochar",
+        "definition": "Malgastar dinero, tiempo o una oportunidad."
+      },
+      "pt": {
+        "word": "desbaratar",
+        "definition": "Desperdiçar dinheiro, tempo ou uma oportunidade."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m02",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "cantankerous",
+    "partOfSpeech": "adjective",
+    "definition": "Often bad-tempered and ready to argue.",
+    "example": "Our cantankerous neighbour complains about every parked car.",
+    "translations": {
+      "fr": {
+        "word": "acariâtre",
+        "definition": "Souvent de mauvaise humeur et prêt à se disputer."
+      },
+      "de": {
+        "word": "streitsüchtig",
+        "definition": "Oft schlecht gelaunt und auf Streit aus."
+      },
+      "es": {
+        "word": "cascarrabias",
+        "definition": "Que se enfada con facilidad y busca discusión."
+      },
+      "pt": {
+        "word": "rabugento",
+        "definition": "Que está muitas vezes mal-humorado e pronto a discutir."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m03",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "ebullient",
+    "partOfSpeech": "adjective",
+    "definition": "Full of energy, excitement and cheerfulness.",
+    "example": "The ebullient host greeted every guest with a joke.",
+    "translations": {
+      "fr": {
+        "word": "exubérant",
+        "definition": "Plein d'énergie et de bonne humeur."
+      },
+      "de": {
+        "word": "überschwänglich",
+        "definition": "Voller Energie und Begeisterung."
+      },
+      "es": {
+        "word": "exultante",
+        "definition": "Lleno de energía y alegría."
+      },
+      "pt": {
+        "word": "efusivo",
+        "definition": "Cheio de energia e alegria."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m04",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "fastidious",
+    "partOfSpeech": "adjective",
+    "definition": "Very concerned about small details, cleanliness or accuracy.",
+    "example": "He is so fastidious that he irons his socks.",
+    "translations": {
+      "fr": {
+        "word": "pointilleux",
+        "definition": "Très attentif aux détails, à la propreté ou à la précision."
+      },
+      "de": {
+        "word": "pingelig",
+        "definition": "Übertrieben genau bei Details oder Sauberkeit."
+      },
+      "es": {
+        "word": "quisquilloso",
+        "definition": "Muy exigente con los detalles o la limpieza."
+      },
+      "pt": {
+        "word": "picuinhas",
+        "definition": "Muito exigente com pormenores ou limpeza."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m05",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "gregarious",
+    "partOfSpeech": "adjective",
+    "definition": "Enjoying the company of other people.",
+    "example": "Being gregarious, she quickly made friends in her new city.",
+    "translations": {
+      "fr": {
+        "word": "sociable",
+        "definition": "Qui aime la compagnie des autres."
+      },
+      "de": {
+        "word": "gesellig",
+        "definition": "Gern in der Gesellschaft anderer Menschen."
+      },
+      "es": {
+        "word": "sociable",
+        "definition": "Que disfruta de la compañía de otros."
+      },
+      "pt": {
+        "word": "sociável",
+        "definition": "Que gosta da companhia dos outros."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m06",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "impetuous",
+    "partOfSpeech": "adjective",
+    "definition": "Acting quickly without thinking about the results.",
+    "example": "In an impetuous moment, he quit his job by text message.",
+    "translations": {
+      "fr": {
+        "word": "impétueux",
+        "definition": "Qui agit vite sans réfléchir aux conséquences."
+      },
+      "de": {
+        "word": "ungestüm",
+        "definition": "Schnell handelnd, ohne an die Folgen zu denken."
+      },
+      "es": {
+        "word": "impetuoso",
+        "definition": "Que actúa deprisa sin pensar en las consecuencias."
+      },
+      "pt": {
+        "word": "impetuoso",
+        "definition": "Que age depressa sem pensar nas consequências."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m07",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "lackadaisical",
+    "partOfSpeech": "adjective",
+    "definition": "Showing little effort or enthusiasm.",
+    "example": "His lackadaisical attitude to deadlines annoyed the whole team.",
+    "translations": {
+      "fr": {
+        "word": "nonchalant",
+        "definition": "Qui montre peu d'effort ou d'enthousiasme."
+      },
+      "de": {
+        "word": "lustlos",
+        "definition": "Mit wenig Mühe oder Begeisterung."
+      },
+      "es": {
+        "word": "desganado",
+        "definition": "Que muestra poco esfuerzo o entusiasmo."
+      },
+      "pt": {
+        "word": "desleixado",
+        "definition": "Que mostra pouco esforço ou entusiasmo."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m08",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "nonchalant",
+    "partOfSpeech": "adjective",
+    "definition": "Calm and seeming not to care or worry.",
+    "example": "She gave a nonchalant shrug when asked about the exam results.",
+    "translations": {
+      "fr": {
+        "word": "désinvolte",
+        "definition": "Calme et apparemment indifférent."
+      },
+      "de": {
+        "word": "lässig",
+        "definition": "Ruhig und scheinbar unbekümmert."
+      },
+      "es": {
+        "word": "despreocupado",
+        "definition": "Tranquilo y aparentemente indiferente."
+      },
+      "pt": {
+        "word": "descontraído",
+        "definition": "Calmo e aparentemente indiferente."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m09",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "obsequious",
+    "partOfSpeech": "adjective",
+    "definition": "Too eager to please or obey others.",
+    "example": "The obsequious waiter kept refilling our glasses after every sip.",
+    "translations": {
+      "fr": {
+        "word": "obséquieux",
+        "definition": "Trop empressé à plaire ou à obéir."
+      },
+      "de": {
+        "word": "unterwürfig",
+        "definition": "Übertrieben bemüht, anderen zu gefallen."
+      },
+      "es": {
+        "word": "servil",
+        "definition": "Demasiado deseoso de agradar u obedecer."
+      },
+      "pt": {
+        "word": "servil",
+        "definition": "Demasiado ansioso por agradar ou obedecer."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m10",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "petulant",
+    "partOfSpeech": "adjective",
+    "definition": "Behaving in a childish, bad-tempered way when things do not go your way.",
+    "example": "He gave a petulant reply after losing the argument.",
+    "translations": {
+      "fr": {
+        "word": "boudeur",
+        "definition": "Qui se comporte de façon capricieuse quand il n'obtient pas ce qu'il veut."
+      },
+      "de": {
+        "word": "launisch",
+        "definition": "Kindisch schlecht gelaunt, wenn etwas nicht klappt."
+      },
+      "es": {
+        "word": "caprichoso",
+        "definition": "Que se enfada como un niño cuando no consigue lo que quiere."
+      },
+      "pt": {
+        "word": "birrento",
+        "definition": "Que se amua como uma criança quando não consegue o que quer."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m11",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "querulous",
+    "partOfSpeech": "adjective",
+    "definition": "Complaining in a weak, annoyed way.",
+    "example": "The querulous voice on the phone demanded to speak to the manager.",
+    "translations": {
+      "fr": {
+        "word": "geignard",
+        "definition": "Qui se plaint d'un ton irrité."
+      },
+      "de": {
+        "word": "nörgelnd",
+        "definition": "Auf gereizte Weise ständig klagend."
+      },
+      "es": {
+        "word": "quejumbroso",
+        "definition": "Que se queja en tono irritado."
+      },
+      "pt": {
+        "word": "lamuriento",
+        "definition": "Que se queixa em tom irritado."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m12",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "sanguine",
+    "partOfSpeech": "adjective",
+    "definition": "Positive and hopeful, especially in a difficult situation.",
+    "example": "Despite the delays, the organisers remain sanguine about opening on time.",
+    "translations": {
+      "fr": {
+        "word": "optimiste",
+        "definition": "Positif et confiant, surtout face aux difficultés."
+      },
+      "de": {
+        "word": "zuversichtlich",
+        "definition": "Positiv und hoffnungsvoll, besonders in schwierigen Lagen."
+      },
+      "es": {
+        "word": "optimista",
+        "definition": "Positivo y confiado, sobre todo ante dificultades."
+      },
+      "pt": {
+        "word": "otimista",
+        "definition": "Positivo e confiante, sobretudo perante dificuldades."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m13",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "serendipity",
+    "partOfSpeech": "noun",
+    "definition": "The luck of finding something good without looking for it.",
+    "example": "By pure serendipity, I met my future business partner on a delayed train.",
+    "translations": {
+      "fr": {
+        "word": "l'heureux hasard",
+        "definition": "Chance de trouver quelque chose de bien sans le chercher."
+      },
+      "de": {
+        "word": "der glückliche Zufall",
+        "definition": "Das Glück, etwas Gutes zu finden, ohne es zu suchen."
+      },
+      "es": {
+        "word": "la serendipia",
+        "definition": "Suerte de encontrar algo bueno sin buscarlo."
+      },
+      "pt": {
+        "word": "o acaso feliz",
+        "definition": "Sorte de encontrar algo bom sem o procurar."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m14",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "surreptitious",
+    "partOfSpeech": "adjective",
+    "definition": "Done secretly because it would not be approved.",
+    "example": "She took a surreptitious glance at her phone during the meeting.",
+    "translations": {
+      "fr": {
+        "word": "furtif",
+        "definition": "Fait en secret parce que ce ne serait pas approuvé."
+      },
+      "de": {
+        "word": "heimlich",
+        "definition": "Im Verborgenen getan, weil es nicht erlaubt wäre."
+      },
+      "es": {
+        "word": "furtivo",
+        "definition": "Hecho a escondidas porque no estaría permitido."
+      },
+      "pt": {
+        "word": "furtivo",
+        "definition": "Feito às escondidas por não ser permitido."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m15",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "trepidation",
+    "partOfSpeech": "noun",
+    "definition": "Fear or worry about something that is going to happen.",
+    "example": "With some trepidation, he opened the letter from the tax office.",
+    "translations": {
+      "fr": {
+        "word": "l'appréhension",
+        "definition": "Crainte de ce qui va arriver."
+      },
+      "de": {
+        "word": "die Beklommenheit",
+        "definition": "Angst oder Sorge vor etwas Bevorstehendem."
+      },
+      "es": {
+        "word": "la inquietud",
+        "definition": "Miedo o preocupación por algo que va a ocurrir."
+      },
+      "pt": {
+        "word": "a apreensão",
+        "definition": "Medo ou preocupação com algo que vai acontecer."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m16",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "vicarious",
+    "partOfSpeech": "adjective",
+    "definition": "Felt through another person's experiences rather than your own.",
+    "example": "Grandparents often get vicarious pleasure from their grandchildren's travels.",
+    "translations": {
+      "fr": {
+        "word": "par procuration",
+        "definition": "Ressenti à travers l'expérience de quelqu'un d'autre."
+      },
+      "de": {
+        "word": "stellvertretend",
+        "definition": "Durch die Erfahrungen eines anderen erlebt."
+      },
+      "es": {
+        "word": "indirecto",
+        "definition": "Vivido a través de las experiencias de otra persona."
+      },
+      "pt": {
+        "word": "indireto",
+        "definition": "Vivido através das experiências de outra pessoa."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m17",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "whimsical",
+    "partOfSpeech": "adjective",
+    "definition": "Playful and unusual in a charming way.",
+    "example": "The café is full of whimsical details, like teacups hanging from the ceiling.",
+    "translations": {
+      "fr": {
+        "word": "fantaisiste",
+        "definition": "Ludique et original de façon charmante."
+      },
+      "de": {
+        "word": "verspielt",
+        "definition": "Auf charmante Weise ungewöhnlich und fantasievoll."
+      },
+      "es": {
+        "word": "fantasioso",
+        "definition": "Juguetón y original de manera encantadora."
+      },
+      "pt": {
+        "word": "fantasioso",
+        "definition": "Brincalhão e original de forma encantadora."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m18",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "wistful",
+    "partOfSpeech": "adjective",
+    "definition": "Slightly sad while thinking about something you miss or cannot have.",
+    "example": "He gave a wistful smile as he looked at old holiday photos.",
+    "translations": {
+      "fr": {
+        "word": "nostalgique",
+        "definition": "Un peu triste en pensant à ce qu'on regrette."
+      },
+      "de": {
+        "word": "wehmütig",
+        "definition": "Leicht traurig beim Gedanken an etwas Vergangenes."
+      },
+      "es": {
+        "word": "nostálgico",
+        "definition": "Algo triste al pensar en lo que se echa de menos."
+      },
+      "pt": {
+        "word": "saudoso",
+        "definition": "Um pouco triste ao pensar no que se tem saudades."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m19",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "zealous",
+    "partOfSpeech": "adjective",
+    "definition": "Showing great energy and enthusiasm for a belief or task.",
+    "example": "A zealous volunteer checked every ticket twice.",
+    "translations": {
+      "fr": {
+        "word": "zélé",
+        "definition": "Plein d'ardeur pour une cause ou une tâche."
+      },
+      "de": {
+        "word": "eifrig",
+        "definition": "Mit großem Einsatz und Begeisterung für eine Sache."
+      },
+      "es": {
+        "word": "celoso",
+        "definition": "Que muestra gran entusiasmo por una causa o tarea."
+      },
+      "pt": {
+        "word": "zeloso",
+        "definition": "Que mostra grande empenho numa causa ou tarefa."
+      }
+    }
+  },
+  {
+    "id": "en-c2-everyday-m20",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "magnanimous",
+    "partOfSpeech": "adjective",
+    "definition": "Generous and forgiving, especially towards a rival or someone who has lost.",
+    "example": "The winner was magnanimous and praised her opponent's performance.",
+    "translations": {
+      "fr": {
+        "word": "magnanime",
+        "definition": "Généreux et indulgent, surtout envers un adversaire."
+      },
+      "de": {
+        "word": "großmütig",
+        "definition": "Großzügig und nachsichtig, besonders gegenüber einem Gegner."
+      },
+      "es": {
+        "word": "magnánimo",
+        "definition": "Generoso e indulgente, sobre todo con un rival."
+      },
+      "pt": {
+        "word": "magnânimo",
+        "definition": "Generoso e indulgente, sobretudo com um rival."
+      }
+    }
+  }
+]

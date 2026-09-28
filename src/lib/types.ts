@@ -4,7 +4,7 @@ export type Lang = (typeof LANGS)[number];
 export const LEVELS = ['B1', 'B2', 'C1', 'C2'] as const;
 export type Level = (typeof LEVELS)[number];
 
-export const CATEGORIES = ['academic', 'debate', 'idioms'] as const;
+export const CATEGORIES = ['academic', 'everyday', 'work', 'idioms'] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export const LANG_NAMES: Record<Lang, string> = {
@@ -26,7 +26,8 @@ export const SPEECH_VOICES: Record<Lang, string> = {
 
 export const CATEGORY_NAMES: Record<Category, string> = {
   academic: 'Academic',
-  debate: 'Debate',
+  everyday: 'Everyday',
+  work: 'Work',
   idioms: 'Idioms',
 };
 

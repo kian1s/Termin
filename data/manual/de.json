@@ -1,0 +1,702 @@
+[
+  {
+    "id": "de-c2-academic-m01",
+    "lang": "de",
+    "level": "C2",
+    "category": "academic",
+    "word": "konstatieren",
+    "partOfSpeech": "verb",
+    "definition": "Etwas sachlich feststellen, ohne es sofort zu bewerten.",
+    "example": "Die Autorin konstatiert einen deutlichen Rückgang der Wahlbeteiligung.",
+    "translations": {
+      "en": {
+        "word": "note",
+        "definition": "To state a fact objectively without judging it."
+      },
+      "fr": {
+        "word": "constater",
+        "definition": "Établir un fait de manière objective."
+      },
+      "es": {
+        "word": "constatar",
+        "definition": "Señalar un hecho de forma objetiva."
+      },
+      "pt": {
+        "word": "constatar",
+        "definition": "Registar um facto de forma objetiva."
+      }
+    }
+  },
+  {
+    "id": "de-c2-academic-m02",
+    "lang": "de",
+    "level": "C2",
+    "category": "academic",
+    "word": "die Diskrepanz",
+    "partOfSpeech": "noun",
+    "definition": "Ein deutlicher Unterschied zwischen zwei Dingen, die eigentlich übereinstimmen sollten.",
+    "example": "Die Studie zeigt eine Diskrepanz zwischen offiziellen Zahlen und eigenen Messungen.",
+    "translations": {
+      "en": {
+        "word": "discrepancy",
+        "definition": "A clear difference between things that should match."
+      },
+      "fr": {
+        "word": "l'écart",
+        "definition": "Différence nette entre deux choses qui devraient concorder."
+      },
+      "es": {
+        "word": "la discrepancia",
+        "definition": "Diferencia clara entre dos cosas que deberían coincidir."
+      },
+      "pt": {
+        "word": "a discrepância",
+        "definition": "Diferença clara entre duas coisas que deveriam coincidir."
+      }
+    }
+  },
+  {
+    "id": "de-c2-academic-m03",
+    "lang": "de",
+    "level": "C2",
+    "category": "academic",
+    "word": "subsumieren",
+    "partOfSpeech": "verb",
+    "definition": "Einen Einzelfall einer allgemeineren Kategorie zuordnen.",
+    "example": "Der Autor subsumiert sehr unterschiedliche Bewegungen unter den Begriff Populismus.",
+    "translations": {
+      "en": {
+        "word": "subsume",
+        "definition": "To place a single case under a more general category."
+      },
+      "fr": {
+        "word": "subsumer",
+        "definition": "Classer un cas particulier dans une catégorie plus générale."
+      },
+      "es": {
+        "word": "subsumir",
+        "definition": "Incluir un caso concreto en una categoría más general."
+      },
+      "pt": {
+        "word": "subsumir",
+        "definition": "Incluir um caso concreto numa categoria mais geral."
+      }
+    }
+  },
+  {
+    "id": "de-c2-academic-m04",
+    "lang": "de",
+    "level": "C2",
+    "category": "academic",
+    "word": "mitnichten",
+    "partOfSpeech": "adverb",
+    "definition": "Keineswegs, überhaupt nicht (gehoben).",
+    "example": "Die Ergebnisse sind mitnichten so eindeutig, wie die Pressemitteilung behauptet.",
+    "translations": {
+      "en": {
+        "word": "by no means",
+        "definition": "Not at all (formal)."
+      },
+      "fr": {
+        "word": "nullement",
+        "definition": "Pas du tout (soutenu)."
+      },
+      "es": {
+        "word": "en absoluto",
+        "definition": "De ningún modo (registro culto)."
+      },
+      "pt": {
+        "word": "de modo algum",
+        "definition": "De forma nenhuma (registo formal)."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m01",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "sich um Kopf und Kragen reden",
+    "partOfSpeech": "expression",
+    "definition": "Durch unüberlegtes Reden sich selbst großen Schaden zufügen.",
+    "example": "Im Interview redete sich der Kandidat um Kopf und Kragen.",
+    "translations": {
+      "en": {
+        "word": "talk yourself into trouble",
+        "definition": "To harm yourself badly by speaking carelessly."
+      },
+      "fr": {
+        "word": "se griller en parlant",
+        "definition": "Se nuire gravement en parlant sans réfléchir."
+      },
+      "es": {
+        "word": "meterse en un lío por hablar",
+        "definition": "Perjudicarse mucho por hablar sin pensar."
+      },
+      "pt": {
+        "word": "enterrar-se com as próprias palavras",
+        "definition": "Prejudicar-se muito por falar sem pensar."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m02",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "fünf gerade sein lassen",
+    "partOfSpeech": "expression",
+    "definition": "Etwas nicht so genau nehmen und großzügig sein.",
+    "example": "Heute ist Freitag, da lassen wir beim Aufräumen mal fünf gerade sein.",
+    "translations": {
+      "en": {
+        "word": "turn a blind eye",
+        "definition": "To not be too strict and let something go."
+      },
+      "fr": {
+        "word": "ne pas être trop regardant",
+        "definition": "Ne pas être trop strict et laisser passer."
+      },
+      "es": {
+        "word": "hacer la vista gorda",
+        "definition": "No ser demasiado estricto y dejar pasar algo."
+      },
+      "pt": {
+        "word": "fazer vista grossa",
+        "definition": "Não ser demasiado rigoroso e deixar passar algo."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m03",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "etwas auf dem Kasten haben",
+    "partOfSpeech": "expression",
+    "definition": "Klug oder sehr fähig sein.",
+    "example": "Die neue Kollegin hat wirklich etwas auf dem Kasten.",
+    "translations": {
+      "en": {
+        "word": "be on the ball",
+        "definition": "To be clever or very capable."
+      },
+      "fr": {
+        "word": "en avoir dans la tête",
+        "definition": "Être intelligent ou très compétent."
+      },
+      "es": {
+        "word": "ser una lumbrera",
+        "definition": "Ser muy listo o muy capaz."
+      },
+      "pt": {
+        "word": "ter cabeça",
+        "definition": "Ser inteligente ou muito capaz."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m04",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "sich nicht die Butter vom Brot nehmen lassen",
+    "partOfSpeech": "expression",
+    "definition": "Sich nicht benachteiligen lassen und seine Interessen verteidigen.",
+    "example": "Bei den Verhandlungen lässt sie sich nicht die Butter vom Brot nehmen.",
+    "translations": {
+      "en": {
+        "word": "stand up for yourself",
+        "definition": "To not let yourself be taken advantage of."
+      },
+      "fr": {
+        "word": "ne pas se laisser marcher sur les pieds",
+        "definition": "Défendre ses intérêts sans se laisser faire."
+      },
+      "es": {
+        "word": "no dejarse pisar",
+        "definition": "No permitir que se aprovechen de uno."
+      },
+      "pt": {
+        "word": "não se deixar ficar",
+        "definition": "Defender os seus interesses sem se deixar levar."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m05",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "jemandem den Rücken stärken",
+    "partOfSpeech": "expression",
+    "definition": "Jemanden in einer schwierigen Lage offen unterstützen.",
+    "example": "Das ganze Team stärkte der Chefin bei der Kritik den Rücken.",
+    "translations": {
+      "en": {
+        "word": "back someone up",
+        "definition": "To openly support someone in a difficult situation."
+      },
+      "fr": {
+        "word": "soutenir quelqu'un",
+        "definition": "Apporter un appui ouvert à quelqu'un en difficulté."
+      },
+      "es": {
+        "word": "respaldar a alguien",
+        "definition": "Apoyar abiertamente a alguien en una situación difícil."
+      },
+      "pt": {
+        "word": "dar força a alguém",
+        "definition": "Apoiar abertamente alguém numa situação difícil."
+      }
+    }
+  },
+  {
+    "id": "de-c2-everyday-m06",
+    "lang": "de",
+    "level": "C2",
+    "category": "everyday",
+    "word": "Das ist Jacke wie Hose",
+    "partOfSpeech": "expression",
+    "definition": "Das macht keinen Unterschied (umgangssprachlich).",
+    "example": "Ob wir heute oder morgen fahren, ist Jacke wie Hose.",
+    "translations": {
+      "en": {
+        "word": "it's six of one and half a dozen of the other",
+        "definition": "It makes no difference (informal)."
+      },
+      "fr": {
+        "word": "c'est bonnet blanc et blanc bonnet",
+        "definition": "Cela revient exactement au même."
+      },
+      "es": {
+        "word": "da igual",
+        "definition": "No hay ninguna diferencia."
+      },
+      "pt": {
+        "word": "vai dar ao mesmo",
+        "definition": "Não faz diferença nenhuma."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m01",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "ins Fettnäpfchen treten",
+    "partOfSpeech": "idiom",
+    "definition": "Ungewollt etwas Peinliches sagen oder tun.",
+    "example": "Ich bin ins Fettnäpfchen getreten, als ich nach ihrem Ex-Mann fragte.",
+    "translations": {
+      "en": {
+        "word": "put your foot in it",
+        "definition": "To say or do something embarrassing by accident."
+      },
+      "fr": {
+        "word": "faire une gaffe",
+        "definition": "Dire ou faire quelque chose de gênant sans le vouloir."
+      },
+      "es": {
+        "word": "meter la pata",
+        "definition": "Decir o hacer algo inoportuno sin querer."
+      },
+      "pt": {
+        "word": "meter o pé na argola",
+        "definition": "Dizer ou fazer algo embaraçoso sem querer."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m02",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "jemandem unter die Arme greifen",
+    "partOfSpeech": "idiom",
+    "definition": "Jemandem in einer schwierigen Lage helfen.",
+    "example": "Als sie ihre Arbeit verlor, griffen ihr die Eltern finanziell unter die Arme.",
+    "translations": {
+      "en": {
+        "word": "help someone out",
+        "definition": "To help someone in a difficult situation."
+      },
+      "fr": {
+        "word": "donner un coup de pouce",
+        "definition": "Aider quelqu'un dans une situation difficile."
+      },
+      "es": {
+        "word": "echar una mano",
+        "definition": "Ayudar a alguien en una situación difícil."
+      },
+      "pt": {
+        "word": "dar uma mão",
+        "definition": "Ajudar alguém numa situação difícil."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m03",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "Lampenfieber haben",
+    "partOfSpeech": "idiom",
+    "definition": "Vor einem Auftritt sehr nervös sein.",
+    "example": "Vor jeder Präsentation habe ich schreckliches Lampenfieber.",
+    "translations": {
+      "en": {
+        "word": "have stage fright",
+        "definition": "To be very nervous before performing."
+      },
+      "fr": {
+        "word": "avoir le trac",
+        "definition": "Être très nerveux avant de se produire en public."
+      },
+      "es": {
+        "word": "tener miedo escénico",
+        "definition": "Estar muy nervioso antes de actuar."
+      },
+      "pt": {
+        "word": "ter nervos antes de entrar em palco",
+        "definition": "Estar muito nervoso antes de atuar."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m04",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "zwei Fliegen mit einer Klappe schlagen",
+    "partOfSpeech": "idiom",
+    "definition": "Zwei Dinge mit einer einzigen Handlung erledigen.",
+    "example": "Auf dem Weg zur Arbeit bringe ich die Pakete weg und schlage zwei Fliegen mit einer Klappe.",
+    "translations": {
+      "en": {
+        "word": "kill two birds with one stone",
+        "definition": "To achieve two things with one action."
+      },
+      "fr": {
+        "word": "faire d'une pierre deux coups",
+        "definition": "Obtenir deux résultats avec une seule action."
+      },
+      "es": {
+        "word": "matar dos pájaros de un tiro",
+        "definition": "Conseguir dos cosas con una sola acción."
+      },
+      "pt": {
+        "word": "matar dois coelhos de uma cajadada",
+        "definition": "Conseguir duas coisas com uma só ação."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m05",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "wie ein Wasserfall reden",
+    "partOfSpeech": "idiom",
+    "definition": "Sehr viel und ohne Pause reden.",
+    "example": "Nach dem Urlaub redete Tim wie ein Wasserfall über seine Reise.",
+    "translations": {
+      "en": {
+        "word": "talk nineteen to the dozen",
+        "definition": "To talk a lot without stopping."
+      },
+      "fr": {
+        "word": "être un moulin à paroles",
+        "definition": "Parler énormément sans s'arrêter."
+      },
+      "es": {
+        "word": "hablar por los codos",
+        "definition": "Hablar muchísimo sin parar."
+      },
+      "pt": {
+        "word": "falar pelos cotovelos",
+        "definition": "Falar muitíssimo sem parar."
+      }
+    }
+  },
+  {
+    "id": "de-b2-idioms-m06",
+    "lang": "de",
+    "level": "B2",
+    "category": "idioms",
+    "word": "in der Klemme stecken",
+    "partOfSpeech": "idiom",
+    "definition": "In einer schwierigen Lage sein.",
+    "example": "Ohne Auto stecke ich morgen früh ziemlich in der Klemme.",
+    "translations": {
+      "en": {
+        "word": "be in a tight spot",
+        "definition": "To be in a difficult situation."
+      },
+      "fr": {
+        "word": "être dans le pétrin",
+        "definition": "Être dans une situation difficile."
+      },
+      "es": {
+        "word": "estar en apuros",
+        "definition": "Estar en una situación difícil."
+      },
+      "pt": {
+        "word": "estar à rasca",
+        "definition": "Estar numa situação difícil."
+      }
+    }
+  },
+  {
+    "id": "de-c1-idioms-m01",
+    "lang": "de",
+    "level": "C1",
+    "category": "idioms",
+    "word": "jemanden auf die Palme bringen",
+    "partOfSpeech": "idiom",
+    "definition": "Jemanden sehr wütend machen.",
+    "example": "Sein ständiges Zuspätkommen bringt mich auf die Palme.",
+    "translations": {
+      "en": {
+        "word": "drive someone up the wall",
+        "definition": "To make someone very angry."
+      },
+      "fr": {
+        "word": "mettre quelqu'un hors de lui",
+        "definition": "Rendre quelqu'un furieux."
+      },
+      "es": {
+        "word": "sacar de quicio a alguien",
+        "definition": "Poner a alguien muy furioso."
+      },
+      "pt": {
+        "word": "tirar alguém do sério",
+        "definition": "Deixar alguém muito irritado."
+      }
+    }
+  },
+  {
+    "id": "de-c1-idioms-m02",
+    "lang": "de",
+    "level": "C1",
+    "category": "idioms",
+    "word": "den Braten riechen",
+    "partOfSpeech": "idiom",
+    "definition": "Ahnen, dass etwas nicht stimmt oder geplant ist.",
+    "example": "Als alle plötzlich still wurden, roch sie den Braten.",
+    "translations": {
+      "en": {
+        "word": "smell a rat",
+        "definition": "To sense that something is wrong or being planned."
+      },
+      "fr": {
+        "word": "flairer quelque chose",
+        "definition": "Sentir que quelque chose se prépare."
+      },
+      "es": {
+        "word": "olerse algo",
+        "definition": "Sospechar que algo no va bien."
+      },
+      "pt": {
+        "word": "cheirar-lhe a esturro",
+        "definition": "Desconfiar de que algo não está bem."
+      }
+    }
+  },
+  {
+    "id": "de-c1-idioms-m03",
+    "lang": "de",
+    "level": "C1",
+    "category": "idioms",
+    "word": "das Handtuch werfen",
+    "partOfSpeech": "idiom",
+    "definition": "Aufgeben, weil man keine Chance mehr sieht.",
+    "example": "Nach drei Jahren ohne Gewinn warf der Gründer das Handtuch.",
+    "translations": {
+      "en": {
+        "word": "throw in the towel",
+        "definition": "To give up because there seems no chance."
+      },
+      "fr": {
+        "word": "jeter l'éponge",
+        "definition": "Abandonner faute de chance de réussir."
+      },
+      "es": {
+        "word": "tirar la toalla",
+        "definition": "Rendirse porque ya no se ve salida."
+      },
+      "pt": {
+        "word": "atirar a toalha ao chão",
+        "definition": "Desistir por não ver hipótese de sucesso."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m01",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "auf dem Schlauch stehen",
+    "partOfSpeech": "idiom",
+    "definition": "Etwas gerade nicht verstehen, obwohl es einfach ist.",
+    "example": "Kannst du das noch einmal erklären? Ich stehe gerade auf dem Schlauch.",
+    "translations": {
+      "en": {
+        "word": "be slow on the uptake",
+        "definition": "To fail to understand something simple at that moment."
+      },
+      "fr": {
+        "word": "ne pas piger",
+        "definition": "Ne pas comprendre quelque chose de simple sur le moment."
+      },
+      "es": {
+        "word": "no caer en la cuenta",
+        "definition": "No entender algo sencillo en ese momento."
+      },
+      "pt": {
+        "word": "não estar a ver a coisa",
+        "definition": "Não perceber algo simples naquele momento."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m02",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "jemandem reinen Wein einschenken",
+    "partOfSpeech": "idiom",
+    "definition": "Jemandem ehrlich die ganze Wahrheit sagen.",
+    "example": "Irgendwann musste ich ihm reinen Wein einschenken: Das Projekt war gescheitert.",
+    "translations": {
+      "en": {
+        "word": "come clean with someone",
+        "definition": "To tell someone the whole truth honestly."
+      },
+      "fr": {
+        "word": "dire la vérité toute nue",
+        "definition": "Dire franchement toute la vérité."
+      },
+      "es": {
+        "word": "hablar sin rodeos",
+        "definition": "Decir a alguien toda la verdad con sinceridad."
+      },
+      "pt": {
+        "word": "abrir o jogo",
+        "definition": "Dizer a alguém toda a verdade com franqueza."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m03",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "sich die Zähne ausbeißen",
+    "partOfSpeech": "idiom",
+    "definition": "Sich an einer schwierigen Aufgabe lange vergeblich abmühen.",
+    "example": "An dieser Matheaufgabe haben sich schon viele Schüler die Zähne ausgebissen.",
+    "translations": {
+      "en": {
+        "word": "come to grief over something",
+        "definition": "To struggle in vain with a difficult task."
+      },
+      "fr": {
+        "word": "s'y casser les dents",
+        "definition": "S'acharner en vain sur une tâche difficile."
+      },
+      "es": {
+        "word": "pinchar en hueso",
+        "definition": "Esforzarse en vano con una tarea difícil."
+      },
+      "pt": {
+        "word": "ver-se grego",
+        "definition": "Esforçar-se em vão com uma tarefa difícil."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m04",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "die Kuh vom Eis holen",
+    "partOfSpeech": "idiom",
+    "definition": "Ein schwieriges Problem lösen und eine gefährliche Lage entschärfen.",
+    "example": "Erst die neue Vermittlerin konnte die Kuh vom Eis holen.",
+    "translations": {
+      "en": {
+        "word": "save the situation",
+        "definition": "To solve a tricky problem and defuse a dangerous situation."
+      },
+      "fr": {
+        "word": "sauver la mise",
+        "definition": "Résoudre un problème délicat et désamorcer la situation."
+      },
+      "es": {
+        "word": "sacar las castañas del fuego",
+        "definition": "Resolver un problema delicado y calmar la situación."
+      },
+      "pt": {
+        "word": "salvar a situação",
+        "definition": "Resolver um problema delicado e acalmar a situação."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m05",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "nicht mein Bier sein",
+    "partOfSpeech": "idiom",
+    "definition": "Nicht meine Angelegenheit sein (umgangssprachlich).",
+    "example": "Wie die beiden ihren Streit lösen, ist nicht mein Bier.",
+    "translations": {
+      "en": {
+        "word": "not be my problem",
+        "definition": "To not be my business (informal)."
+      },
+      "fr": {
+        "word": "ce n'est pas mes oignons",
+        "definition": "Cela ne me regarde pas (familier)."
+      },
+      "es": {
+        "word": "no ser asunto mío",
+        "definition": "No ser de mi incumbencia."
+      },
+      "pt": {
+        "word": "não ser da minha conta",
+        "definition": "Não ser assunto meu."
+      }
+    }
+  },
+  {
+    "id": "de-c2-idioms-m06",
+    "lang": "de",
+    "level": "C2",
+    "category": "idioms",
+    "word": "Eulen nach Athen tragen",
+    "partOfSpeech": "idiom",
+    "definition": "Etwas Überflüssiges tun, weil es schon genug davon gibt.",
+    "example": "Ihm Kochtipps zu geben hieße, Eulen nach Athen zu tragen: Er ist Koch.",
+    "translations": {
+      "en": {
+        "word": "carry coals to Newcastle",
+        "definition": "To do something pointless because there is already plenty."
+      },
+      "fr": {
+        "word": "porter de l'eau à la rivière",
+        "definition": "Faire une chose inutile car il y en a déjà assez."
+      },
+      "es": {
+        "word": "llevar leña al monte",
+        "definition": "Hacer algo inútil porque ya hay suficiente."
+      },
+      "pt": {
+        "word": "ensinar o padre-nosso ao vigário",
+        "definition": "Fazer algo inútil porque já há que chegue."
+      }
+    }
+  }
+]
