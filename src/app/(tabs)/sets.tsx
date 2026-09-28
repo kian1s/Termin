@@ -1,0 +1,65 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { router } from 'expo-router';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { Row, Section } from '@/components/grouped-list';
+import { Fonts, Spacing } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+import { useAppState } from '@/lib/app-state';
+import { FAVORITES_ID, WordSet } from '@/lib/types';
+
+function wordCount(set: WordSet) {
+  return `${set.wordIds.length} ${set.wordIds.length === 1 ? 'word' : 'words'}`;
+}
+
+export default function SetsScreen() {
+  const theme = useTheme();
+  const insets = useSafeAreaInsets();
+  const { sets } = useAppState();
+  const favorites = sets.find((s) => s.id === FAVORITES_ID)!;
+  const custom = sets.filter((s) => s.id !== FAVORITES_ID);
+  const open = (id: string) => router.push({ pathname: '/set/[id]', params: { id } });
+
+  return (
+    <ScrollView
+      style={{ backgroundColor: theme.background }}
+      contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.lg }]}>
+      <Text style={[styles.title, { color: theme.text }]}>Sets</Text>
+
+      <Section>
+        <Row
+          label="Favorites"
+          icon={<Ionicons name="heart" size={20} color={theme.accent} />}
+          value={wordCount(favorites)}
+          onPress={() => open(FAVORITES_ID)}
+          last
+        />
+      </Section>
+
+      <Section title="Your sets" footer="Group words by purpose, like “Debate” or “Essay on climate”.">
+        {custom.map((set) => (
+          <Row
+            key={set.id}
+            label={set.name}
+            icon={<Ionicons name="albums-outline" size={20} color={theme.textSecondary} />}
+            value={wordCount(set)}
+            onPress={() => open(set.id)}
+          />
+        ))}
+        <Row
+          label="New set"
+          icon={<Ionicons name="add" size={22} color={theme.accent} />}
+          onPress={() => router.push('/set-name')}
+          chevron={false}
+          last
+        />
+      </Section>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.xl },
+  title: { fontFamily: Fonts.title, fontSize: 28, paddingHorizontal: Spacing.xs },
+});

@@ -51,3 +51,21 @@ export type Settings = {
   categories: Category[];
   reminder: Reminder;
 };
+
+export const FAVORITES_ID = 'favorites';
+
+export type WordSet = { id: string; name: string; wordIds: string[] };
+
+// Leitner box for a saved word. Box 1 is due after a number of feed cards,
+// boxes 2–4 after a number of days.
+export type ReviewState = { box: 1 | 2 | 3 | 4; dueAtCard: number; dueAt: number };
+
+export type Stats = {
+  cardsViewed: number; // all-time feed cards viewed, used for box 1 scheduling
+  day: string; // local date (YYYY-MM-DD) that viewsToday/reviewsToday belong to
+  viewsToday: number;
+  reviewsToday: number;
+  streak: number;
+  best: number;
+  lastActive: string | null; // last local date that counted toward the streak
+};

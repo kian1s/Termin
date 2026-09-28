@@ -29,3 +29,9 @@ export function shuffled<T>(items: T[], avoidFirst?: T): T[] {
   }
   return out;
 }
+
+const BY_ID = new Map(Object.values(WORDS).flat().map((w) => [w.id, w]));
+
+export function wordById(id: string): WordEntry | undefined {
+  return BY_ID.get(id);
+}

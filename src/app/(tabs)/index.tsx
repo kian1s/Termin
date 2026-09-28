@@ -1,17 +1,22 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, StyleSheet, Text, View, ViewToken } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ReviewCard } from '@/components/review-card';
 import { WordCard } from '@/components/word-card';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { currentStreak } from '@/lib/progress';
 import { WordEntry } from '@/lib/types';
-import { shuffled, wordsFor } from '@/lib/words';
+import { shuffled, wordById, wordsFor } from '@/lib/words';
 
-type Item = { key: string; word: WordEntry };
+type Item = { key: string; kind: 'word' | 'review'; word: WordEntry };
 
 const MIN_BATCH = 20;
+// SPEC 4.4: every 5th card is a review card when a saved word is due.
+const CARDS_BETWEEN_REVIEWS = 4;
 let nextKey = 0;
 
 // The feed repeats the filtered words in shuffled rounds so it never ends.
@@ -20,7 +25,7 @@ function nextBatch(pool: WordEntry[], prev: Item[]): Item[] {
   let last = prev[prev.length - 1]?.word;
   while (pool.length && out.length < MIN_BATCH) {
     for (const word of shuffled(pool, last)) {
-      out.push({ key: `${nextKey++}`, word });
+      out.push({ key: `${nextKey++}`, kind: 'word', word });
       last = word;
     }
   }
@@ -30,8 +35,9 @@ function nextBatch(pool: WordEntry[], prev: Item[]): Item[] {
 export default function Feed() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { settings, seenIds, markSeen } = useAppState();
+  const { settings, seenIds, markSeen, recordCardView, findDueWord, stats } = useAppState();
   const [height, setHeight] = useState(0);
+
   // Only the learning filters matter here; changing the reminder must not reset the feed.
   const filterKey = settings
     ? `${settings.learningLang}|${settings.level}|${settings.categories.join()}`
@@ -48,24 +54,51 @@ export default function Feed() {
     setHidden({});
   }
 
-  const seenRef = useRef(seenIds);
+  const latest = useRef({ seenIds, learningLang: settings?.learningLang });
   useEffect(() => {
-    seenRef.current = seenIds;
-  }, [seenIds]);
+    latest.current = { seenIds, learningLang: settings?.learningLang };
+  });
+  const viewedKeys = useRef(new Set<string>());
+  const sinceReview = useRef(0);
 
   const [onViewableItemsChanged] = useState(
     () =>
       ({ viewableItems }: { viewableItems: ViewToken<Item>[] }) => {
-        for (const { item } of viewableItems) {
-          if (!item) continue;
-          const wasSeen = seenRef.current.has(item.word.id);
-          setHidden((h) => (item.key in h ? h : { ...h, [item.key]: wasSeen }));
-          markSeen(item.word.id);
+        for (const { item, index } of viewableItems) {
+          if (!item || index == null || viewedKeys.current.has(item.key)) continue;
+          viewedKeys.current.add(item.key);
+          recordCardView();
+
+          if (item.kind === 'word') {
+            const wasSeen = latest.current.seenIds.has(item.word.id);
+            setHidden((h) => ({ ...h, [item.key]: wasSeen }));
+            markSeen(item.word.id);
+            sinceReview.current++;
+          } else {
+            sinceReview.current = 0;
+          }
+
+          // After enough word cards, slot the most overdue saved word in as the next card.
+          if (sinceReview.current >= CARDS_BETWEEN_REVIEWS) {
+            const dueId = findDueWord(
+              (id) => id !== item.word.id && wordById(id)?.lang === latest.current.learningLang
+            );
+            const word = dueId ? wordById(dueId) : undefined;
+            if (word) {
+              sinceReview.current = 0;
+              setFeed((f) => {
+                const items = [...f.items];
+                items.splice(index + 1, 0, { key: `${nextKey++}`, kind: 'review', word });
+                return { ...f, items };
+              });
+            }
+          }
         }
       }
   );
 
   if (!settings) return null;
+  const streak = currentStreak(stats);
 
   return (
     <View
@@ -84,18 +117,24 @@ export default function Feed() {
           <FlatList
             data={feed.items}
             keyExtractor={(i) => i.key}
-            renderItem={({ item }) => (
-              <WordCard
-                word={item.word}
-                nativeLang={settings.nativeLang}
-                translationHidden={hidden[item.key] ?? seenIds.has(item.word.id)}
-                height={height}
-              />
-            )}
+            renderItem={({ item }) =>
+              item.kind === 'review' ? (
+                <ReviewCard word={item.word} nativeLang={settings.nativeLang} height={height} />
+              ) : (
+                <WordCard
+                  word={item.word}
+                  nativeLang={settings.nativeLang}
+                  translationHidden={hidden[item.key] ?? seenIds.has(item.word.id)}
+                  height={height}
+                />
+              )
+            }
             getItemLayout={(_, index) => ({ length: height, offset: height * index, index })}
             pagingEnabled
             decelerationRate="fast"
             showsVerticalScrollIndicator={false}
+            keyboardDismissMode="on-drag"
+            keyboardShouldPersistTaps="handled"
             onEndReached={() =>
               setFeed((f) => ({ ...f, items: [...f.items, ...nextBatch(f.pool, f.items)] }))
             }
@@ -106,6 +145,11 @@ export default function Feed() {
           />
         )
       )}
+
+      <View style={[styles.streak, { top: insets.top + Spacing.sm }]} pointerEvents="none">
+        <Ionicons name="flame" size={18} color={theme.accent} />
+        <Text style={[styles.streakText, { color: theme.accent }]}>{streak}</Text>
+      </View>
     </View>
   );
 }
@@ -115,4 +159,12 @@ const styles = StyleSheet.create({
   empty: { flex: 1, justifyContent: 'center', paddingHorizontal: Spacing.xl, gap: Spacing.md },
   emptyTitle: { fontFamily: Fonts.title, fontSize: 28 },
   emptyText: { fontSize: 17, lineHeight: 24 },
+  streak: {
+    position: 'absolute',
+    right: Spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  streakText: { fontSize: 16, fontWeight: '600' },
 });

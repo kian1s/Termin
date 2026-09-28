@@ -28,6 +28,22 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="sets"
+        options={{
+          title: 'Sets',
+          tabBarIcon: ({ color, size }) => <Ionicons name="albums-outline" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="progress"
+        options={{
+          title: 'Progress',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="stats-chart-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
