@@ -301,9 +301,14 @@ export default function Feed() {
         )
       )}
 
-      <View style={[styles.streak, { top: insets.top + Spacing.sm }]} pointerEvents="none">
-        <Ionicons name="flame" size={18} color={theme.spark} />
-        <Text style={[styles.streakText, { color: theme.spark }]}>{streak}</Text>
+      <View style={[styles.header, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
+        <Pressable onPress={() => router.push('/history')} hitSlop={10} accessibilityLabel="History">
+          <Ionicons name="time-outline" size={20} color={theme.textSecondary} />
+        </Pressable>
+        <View style={styles.streak} pointerEvents="none">
+          <Ionicons name="flame" size={18} color={theme.spark} />
+          <Text style={[styles.streakText, { color: theme.spark }]}>{streak}</Text>
+        </View>
       </View>
     </View>
   );
@@ -316,12 +321,13 @@ const styles = StyleSheet.create({
   emptyText: { fontSize: 17, lineHeight: 24 },
   button: { borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center', marginTop: Spacing.md },
   buttonText: { fontSize: 17, fontWeight: '600' },
-  streak: {
+  header: {
     position: 'absolute',
     right: Spacing.xl,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.xs,
+    gap: Spacing.lg,
   },
+  streak: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
   streakText: { fontSize: 16, fontWeight: '600' },
 });

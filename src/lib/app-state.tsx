@@ -21,6 +21,7 @@ const FAVORITES: WordSet = { id: FAVORITES_ID, name: 'Favorites', wordIds: [] };
 type Data = {
   settings: Settings | null; // null until onboarding is finished
   seenWordIds: string[];
+  seenAt: Record<string, number>; // word ID -> last time its card was on screen (History, SPEC 4.13)
   sets: WordSet[];
   reviews: Record<string, ReviewState>;
   stats: Stats;
@@ -31,6 +32,7 @@ type Data = {
 const EMPTY: Data = {
   settings: null,
   seenWordIds: [],
+  seenAt: {},
   sets: [FAVORITES],
   reviews: {},
   stats: EMPTY_STATS,
@@ -46,6 +48,7 @@ type AppState = {
   saveSettings: (s: Settings) => void;
   seenIds: Set<string>;
   markSeen: (id: string) => void;
+  seenAt: Record<string, number>;
   sets: WordSet[];
   savedIds: Set<string>;
   toggleFavorite: (wordId: string) => boolean;
@@ -141,10 +144,13 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     () => ({
       saveSettings: (settings: Settings) => update((d) => ({ ...d, settings })),
 
+      // Called when a word card is on screen: marks it seen and stamps the time for History.
       markSeen: (id: string) =>
-        update((d) =>
-          d.seenWordIds.includes(id) ? d : { ...d, seenWordIds: [...d.seenWordIds, id] }
-        ),
+        update((d) => ({
+          ...d,
+          seenWordIds: d.seenWordIds.includes(id) ? d.seenWordIds : [...d.seenWordIds, id],
+          seenAt: { ...d.seenAt, [id]: Date.now() },
+        })),
 
       // Returns true if the word is now in Favorites.
       toggleFavorite: (wordId: string) => {
@@ -263,6 +269,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         loaded,
         settings: data.settings,
         seenIds,
+        seenAt: data.seenAt,
         sets: data.sets,
         savedIds,
         reviews: data.reviews,

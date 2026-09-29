@@ -66,6 +66,7 @@ function RootStack() {
         <Stack.Screen name="add-to-set/[wordId]" options={{ ...sheet, sheetAllowedDetents: [0.5, 1] }} />
         <Stack.Screen name="set-name" options={{ ...sheet, sheetAllowedDetents: [0.4] }} />
         <Stack.Screen name="paywall" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="history" options={{ headerShown: true, title: 'History', headerBackTitle: 'Feed' }} />
       </Stack>
     </>
   );
