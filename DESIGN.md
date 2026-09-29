@@ -52,6 +52,7 @@ Principles:
 | `correct` | `#345830` | `#B3D1A4` | AI Coach "correct" (always with a checkmark icon) |
 | `partly` | `#8A5A0F` | `#EDBE6A` | AI Coach "partly" |
 | `wrong` | `#A93D2C` | `#F5A08F` | AI Coach "incorrect", destructive actions |
+| `shadow` | `#403233` | `#1A1213` | Shadows of raised tiles only (Practice). Never for text or fills |
 
 - All text colors pass WCAG AA (4.5:1) on both `background` and `surface`; `spark` passes 3:1 for icons.
 - Dark mode has no green except the "correct" verdict, like the dark icon. Its buttons are cream with mocha text.
@@ -112,7 +113,7 @@ Actions:
 ## 7. Other screens
 
 - **Tab bar:** Feed, Sets, Practice, Progress, Settings. Icons from `@expo/vector-icons` (Ionicons): `book-outline`, `albums-outline`, `school-outline`, `stats-chart-outline`, `settings-outline`. Active tint `accent`.
-- **Practice:** a grid of tiles in different sizes (surface, hairline border, radius 16, an `accent` icon in an `accentSoft` circle). Explore: History (words today and the last word) and Find my level, both tall. Your learning: learning and native language (medium), Level (compact, big Fraunces level) and Categories (wide, pills), and a slim AI Coach language strip. Tiles open the same edit screens.
+- **Practice:** raised tiles (surface, hairline border, radius 16, an `accent` icon in an `accentSoft` circle, a soft `shadow` toward the bottom right; pressing a tile pushes it down). Layout rule: tall tiles always span the full width and stay moderate (about 112 pt); only thin tiles sit two per row. Explore: History and Find my level (tall). Your learning: learning and native language, level and categories (thin, in pairs), and the AI Coach language (thin, full width).
 - **Feed header:** small and quiet. Current streak at the top right as a flame icon plus number in `spark` (e.g. `🔥 4`, using Ionicons `flame`).
 - **Progress:** large Fraunces numbers with small uppercase labels (Words learned, Saved, Seen, Reviews today, Streak / Best). One horizontal bar split into Leitner boxes 1 to 4, shaded from `accentSoft` to `accent`. No busy charts.
 - **Onboarding:** one question per screen, large Fraunces question, options as large rounded chips (selected: `accentSoft` background, `accent` border). A single `accent` "Continue" button at the bottom.

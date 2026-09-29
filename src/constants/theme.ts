@@ -19,6 +19,7 @@ export const Colors = {
     correct: '#345830',
     partly: '#8A5A0F',
     wrong: '#A93D2C',
+    shadow: '#403233', // tile shadows only (mocha ink)
   },
   dark: {
     background: '#403233', // mocha (dark icon background)
@@ -35,6 +36,7 @@ export const Colors = {
     correct: '#B3D1A4',
     partly: '#EDBE6A',
     wrong: '#F5A08F',
+    shadow: '#1A1213', // tile shadows only (deeper than the mocha ground)
   },
 } as const;
 
