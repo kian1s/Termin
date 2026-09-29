@@ -162,3 +162,17 @@ async function schedule(
 
   await AsyncStorage.setItem(PLAN_KEY, JSON.stringify({ base: plan.base, minutes }));
 }
+
+// Development only: a readable list of what is scheduled, for testing on the phone.
+export async function describeScheduled(): Promise<string> {
+  const all = await Notifications.getAllScheduledNotificationsAsync();
+  const lines = all
+    .map((n) => {
+      const t = n.trigger as { date?: number | string; value?: number } | null;
+      const at = new Date(t?.value ?? t?.date ?? 0);
+      return { at, text: n.content.body ?? '' };
+    })
+    .sort((a, b) => a.at.getTime() - b.at.getTime())
+    .map(({ at, text }) => `${at.toDateString().slice(0, 10)} ${formatTime({ hour: at.getHours(), minute: at.getMinutes() })}: ${text}`);
+  return lines.length ? lines.join('\n\n') : 'Nothing scheduled.';
+}

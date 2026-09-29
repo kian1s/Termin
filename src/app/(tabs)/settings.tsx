@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Row, Section, Toggle } from '@/components/grouped-list';
@@ -12,7 +12,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { Field } from '@/lib/questions';
 import { usePremium } from '@/lib/premium';
-import { formatTime } from '@/lib/reminder';
+import { describeScheduled, formatTime } from '@/lib/reminder';
 import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
@@ -129,6 +129,11 @@ export default function SettingsScreen() {
             }
           />
           <Row label="RevenueCat status" onPress={debugInfo} chevron={false} />
+          <Row
+            label="Scheduled reminders"
+            onPress={async () => Alert.alert('Scheduled reminders', await describeScheduled())}
+            chevron={false}
+          />
           <Row
             label={`Premium override: ${devOverride === null ? 'off' : devOverride ? 'Premium' : 'Free'}`}
             onPress={() => setDevOverride(devOverride === null ? true : devOverride ? false : null)}
