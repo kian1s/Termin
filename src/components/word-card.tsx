@@ -105,8 +105,16 @@ export function Example({ text }: { text: string }) {
   );
 }
 
-// The native-language block, always blurred until tapped.
-export function Translation({ word, nativeLang }: { word: WordEntry; nativeLang: Lang }) {
+// The native-language block. Blurred until tapped (DESIGN.md 5), except on flashcards.
+export function Translation({
+  word,
+  nativeLang,
+  blurred = true,
+}: {
+  word: WordEntry;
+  nativeLang: Lang;
+  blurred?: boolean;
+}) {
   const theme = useTheme();
   const [revealed, setRevealed] = useState(false);
   const [blurOpacity] = useState(() => new Animated.Value(1));
@@ -129,7 +137,7 @@ export function Translation({ word, nativeLang }: { word: WordEntry; nativeLang:
         </Text>
       </View>
 
-      {!revealed && (
+      {blurred && !revealed && (
         <Animated.View style={[StyleSheet.absoluteFill, { opacity: blurOpacity }]}>
           <Pressable style={StyleSheet.absoluteFill} onPress={reveal}>
             <BlurView intensity={30} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.blur]}>

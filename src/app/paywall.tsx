@@ -16,6 +16,7 @@ const BENEFITS = [
   { icon: 'chatbubbles-outline', text: 'Idioms and Work vocabulary' },
   { icon: 'trending-up-outline', text: 'Every C1 and C2 word' },
   { icon: 'albums-outline', text: 'Unlimited sets' },
+  { icon: 'layers-outline', text: 'Flashcards for your sets' },
   { icon: 'sparkles-outline', text: '50 AI Coach checks a day' },
 ] as const;
 

@@ -1,11 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { Alert, Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Row, Section } from '@/components/grouped-list';
-import { Fonts, Spacing } from '@/constants/theme';
+import { PremiumBadge } from '@/components/pro-cards';
+import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { usePremium } from '@/lib/premium';
 import { FAVORITES_ID, WordEntry } from '@/lib/types';
 import { wordById } from '@/lib/words';
 
@@ -14,6 +16,7 @@ export default function SetScreen() {
   const theme = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { sets, removeFromSet, deleteSet } = useAppState();
+  const { isPremium, showPaywall } = usePremium();
   const set = sets.find((s) => s.id === id);
   if (!set) return null;
 
@@ -38,6 +41,31 @@ export default function SetScreen() {
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: theme.text }]}>{set.name}</Text>
+
+      {/* SPEC 4.15: Premium flashcards. Free users see it in Premium colors and get the paywall. */}
+      <View style={styles.study}>
+        <Pressable
+          onPress={() =>
+            isPremium ? router.push({ pathname: '/flashcards/[setId]', params: { setId: set.id } }) : showPaywall()
+          }
+          disabled={words.length === 0}
+          style={({ pressed }) => [
+            styles.studyButton,
+            isPremium
+              ? { backgroundColor: theme.accent }
+              : { backgroundColor: theme.premiumSoft, borderColor: theme.premium, borderWidth: 1 },
+            { opacity: words.length === 0 ? 0.4 : pressed ? 0.8 : 1 },
+          ]}>
+          <Ionicons name="layers-outline" size={20} color={isPremium ? theme.background : theme.premium} />
+          <Text style={[styles.studyText, { color: isPremium ? theme.background : theme.premium }]}>
+            Study flashcards
+          </Text>
+          {!isPremium && <PremiumBadge lock />}
+        </Pressable>
+        {words.length === 0 && (
+          <Text style={[styles.studyHint, { color: theme.textSecondary }]}>Add words to this set to study them.</Text>
+        )}
+      </View>
 
       <Section>
         {words.length === 0 ? (
@@ -78,4 +106,15 @@ export default function SetScreen() {
 const styles = StyleSheet.create({
   content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.xl },
   title: { fontFamily: Fonts.title, fontSize: 28, paddingHorizontal: Spacing.xs },
+  study: { gap: Spacing.sm },
+  studyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Spacing.sm,
+    borderRadius: Radius.chip,
+    paddingVertical: Spacing.lg,
+  },
+  studyText: { fontSize: 17, fontWeight: '600' },
+  studyHint: { fontSize: 14, paddingHorizontal: Spacing.xs },
 });
