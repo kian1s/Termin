@@ -50,9 +50,15 @@ export function useVoiceAnswer(word: WordEntry, onText: (text: string) => void) 
       await recorder.stop();
       // Give playback back to the speaker button (expo-speech).
       await setAudioModeAsync({ allowsRecording: false });
-      const text = recorder.uri ? await transcribe(recorder.uri, word) : null;
-      if (text) onText(text);
-      else Alert.alert('Could not transcribe', 'Please try again, or type your answer.');
+      const uri = recorder.uri;
+      const result = uri ? await transcribe(uri, word) : { error: 'No recording file' };
+      if ('text' in result) onText(result.text);
+      else {
+        Alert.alert(
+          'Could not transcribe',
+          __DEV__ ? `${result.error}\nFile: ${uri ?? 'none'}` : 'Please try again, or type your answer.'
+        );
+      }
     } finally {
       stopping.current = false;
       setState('idle');

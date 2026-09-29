@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { File } from 'expo-file-system';
 
 import { Lang, WordEntry } from '@/lib/types';
 
@@ -69,25 +70,25 @@ export async function checkAnswer(
 }
 
 // Sends a recorded answer to the Worker's Whisper endpoint (SPEC 4.6).
-// Returns the transcript, or null on any error.
-export async function transcribe(uri: string, word: WordEntry): Promise<string | null> {
-  if (!COACH_URL) return null;
+// Returns the transcript, or an error description.
+export async function transcribe(uri: string, word: WordEntry): Promise<{ text: string } | { error: string }> {
+  if (!COACH_URL) return { error: 'No coach URL configured' };
   const form = new FormData();
   form.append('deviceId', await getDeviceId());
   form.append('learningLang', word.lang);
   form.append('word', word.word);
-  const ext = uri.split('.').pop()?.toLowerCase() ?? 'wav';
-  // React Native uploads a local file from an object with uri, name and type.
-  form.append('audio', { uri, name: `answer.${ext}`, type: ext === 'wav' ? 'audio/wav' : 'audio/m4a' } as unknown as Blob);
+  // SDK 57's fetch uploads local files as expo-file-system File objects (a Blob).
+  form.append('audio', new File(uri));
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 30_000);
   try {
     const res = await fetch(`${COACH_URL}/transcribe`, { method: 'POST', body: form, signal: controller.signal });
-    if (!res.ok) return null;
-    const { text } = (await res.json()) as { text?: string };
-    return text?.trim() || null;
-  } catch {
-    return null;
+    const body = await res.text();
+    if (!res.ok) return { error: `HTTP ${res.status}: ${body.slice(0, 200)}` };
+    const text = (JSON.parse(body) as { text?: string }).text?.trim();
+    return text ? { text } : { error: 'Empty transcript (no speech heard)' };
+  } catch (e) {
+    return { error: `Upload failed: ${e instanceof Error ? e.message : String(e)}` };
   } finally {
     clearTimeout(timer);
   }
