@@ -1,9 +1,12 @@
 import { isPremiumCategory } from '@/lib/gating';
 import { CATEGORIES, CATEGORY_NAMES, LANG_NAMES, LANGS, LEVELS, Settings } from '@/lib/types';
 
-export type Field = 'learningLang' | 'nativeLang' | 'level' | 'categories';
+export type Field = 'learningLang' | 'nativeLang' | 'level' | 'categories' | 'coachLanguage';
 
+// Asked during onboarding.
 export const FIELDS: Field[] = ['learningLang', 'nativeLang', 'level', 'categories'];
+// Editable in Settings.
+export const EDIT_FIELDS: Field[] = [...FIELDS, 'coachLanguage'];
 
 const LEVEL_HINTS = {
   B1: 'B1 · Intermediate',
@@ -49,11 +52,26 @@ export function questionFor(field: Field, draft: Partial<Settings>, isPremium: b
           locked: !isPremium && isPremiumCategory(c),
         })),
       };
+    case 'coachLanguage': {
+      const native = draft.nativeLang;
+      const learning = draft.learningLang;
+      return {
+        question: 'Which language should the AI Coach answer in?',
+        hint: 'Its feedback is written in this language. Example sentences stay in the language you are learning.',
+        multi: false,
+        options: [
+          { value: 'native', label: `Your native language${native ? ` (${LANG_NAMES[native]})` : ''}` },
+          { value: 'learning', label: `The language you're learning${learning ? ` (${LANG_NAMES[learning]})` : ''}` },
+          ...LANGS.filter((l) => l !== native && l !== learning).map((l) => ({ value: l, label: LANG_NAMES[l] })),
+        ],
+      };
+    }
   }
 }
 
 export function selectedFor(field: Field, draft: Partial<Settings>): string[] {
   if (field === 'categories') return draft.categories ?? [];
+  if (field === 'coachLanguage') return [draft.coachLanguage ?? 'native'];
   const v = draft[field];
   return v ? [v] : [];
 }

@@ -20,7 +20,7 @@ import { useAppState } from '@/lib/app-state';
 import { Field } from '@/lib/questions';
 import { usePremium } from '@/lib/premium';
 import { ensureNotificationPermission } from '@/lib/reminder';
-import { CATEGORY_NAMES, LANG_NAMES, Reminder } from '@/lib/types';
+import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -92,6 +92,11 @@ export default function SettingsScreen() {
           label="Categories"
           value={settings.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}
           onPress={() => edit('categories')}
+        />
+        <Row
+          label="AI Coach language"
+          value={LANG_NAMES[coachFeedbackLang(settings)]}
+          onPress={() => edit('coachLanguage')}
           last
         />
       </Section>

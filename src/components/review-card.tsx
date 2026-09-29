@@ -17,7 +17,7 @@ import { useAppState } from '@/lib/app-state';
 import { checkAnswer, coachAvailable, CoachResult } from '@/lib/coach';
 import { usePremium } from '@/lib/premium';
 import { describeNext } from '@/lib/progress';
-import { Lang, ReviewState, WordEntry } from '@/lib/types';
+import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
 type Props = { word: WordEntry; nativeLang: Lang; height: number };
 
@@ -30,7 +30,7 @@ const VERDICT_TITLE = { correct: 'Correct', partly: 'Partly right', incorrect: '
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
 export function ReviewCard({ word, nativeLang, height }: Props) {
   const theme = useTheme();
-  const { answer } = useAppState();
+  const { answer, settings } = useAppState();
   const { isPremium, showPaywall } = usePremium();
   const [text, setText] = useState('');
   const [checking, setChecking] = useState(false);
@@ -43,7 +43,8 @@ export function ReviewCard({ word, nativeLang, height }: Props) {
 
   const check = async () => {
     setChecking(true);
-    const result = await checkAnswer(word, text.trim(), nativeLang, isPremium);
+    const feedbackLang = settings ? coachFeedbackLang(settings) : nativeLang;
+    const result = await checkAnswer(word, text.trim(), nativeLang, feedbackLang, isPremium);
     setChecking(false);
     if (typeof result === 'string') {
       setFallback(result);

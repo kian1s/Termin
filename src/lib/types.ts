@@ -45,13 +45,22 @@ export type WordEntry = {
 
 export type Reminder = { enabled: boolean; hour: number; minute: number };
 
+// Which language the AI Coach writes its feedback in.
+export type CoachLanguage = 'native' | 'learning' | Lang;
+
 export type Settings = {
   learningLang: Lang;
   nativeLang: Lang;
   level: Level;
   categories: Category[];
   reminder: Reminder;
+  coachLanguage?: CoachLanguage; // missing means 'native'
 };
+
+export function coachFeedbackLang(s: Settings): Lang {
+  const c = s.coachLanguage ?? 'native';
+  return c === 'native' ? s.nativeLang : c === 'learning' ? s.learningLang : c;
+}
 
 export const FAVORITES_ID = 'favorites';
 

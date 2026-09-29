@@ -36,6 +36,7 @@ export async function checkAnswer(
   word: WordEntry,
   answer: string,
   nativeLang: Lang,
+  feedbackLang: Lang,
   isPremium: boolean
 ): Promise<CoachResult | CoachError> {
   if (!COACH_URL) return 'network';
@@ -50,6 +51,7 @@ export async function checkAnswer(
         isPro: isPremium,
         learningLang: word.lang,
         nativeLang,
+        feedbackLang,
         word: word.word,
         definition: word.definition,
         answer,
