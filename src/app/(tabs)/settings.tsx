@@ -1,8 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
-import { useRef, useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, AppState, ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Row, Section, Toggle } from '@/components/grouped-list';
@@ -12,6 +12,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { Field } from '@/lib/questions';
 import { usePremium } from '@/lib/premium';
+import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
 import { describeScheduled, formatTime } from '@/lib/reminder';
 import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/types';
 
@@ -27,6 +28,27 @@ export default function SettingsScreen() {
     setDevStrongLearner,
   } = useAppState();
   const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
+  // SPEC 4.11: show the voice used for the learning language. Re-check when the
+  // app returns, since better voices can be downloaded in the iPhone Settings.
+  const learningLang = settings?.learningLang;
+  const [voice, setVoice] = useState<VoiceChoice | null | undefined>(undefined);
+  useEffect(() => {
+    if (!learningLang) return;
+    let live = true;
+    const load = () => bestVoice(learningLang).then((v) => live && setVoice(v));
+    load();
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        forgetVoices();
+        load();
+      }
+    });
+    return () => {
+      live = false;
+      sub.remove();
+    };
+  }, [learningLang]);
+
   // Developer tools stay hidden (e.g. while filming) until the version row is
   // tapped 5 times in a row. Only possible in development builds.
   const [showDev, setShowDev] = useState(false);
@@ -85,6 +107,21 @@ export default function SettingsScreen() {
           label="AI Coach language"
           value={LANG_NAMES[coachFeedbackLang(settings)]}
           onPress={() => edit('coachLanguage')}
+          last
+        />
+      </Section>
+
+      <Section
+        title="Pronunciation"
+        footer={
+          voice?.quality === 'Premium'
+            ? undefined
+            : 'For a more natural voice, download a Premium or Enhanced voice for free in the iPhone Settings: Accessibility, Spoken Content, Voices.'
+        }>
+        <Row
+          label="Voice"
+          value={voice === undefined ? '…' : voice ? `${voice.name} (${voice.quality})` : 'System default'}
+          chevron={false}
           last
         />
       </Section>

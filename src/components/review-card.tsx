@@ -151,7 +151,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
               )}
             </View>
             <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
-              Answer or reveal to keep scrolling.
+              {checking ? 'The AI Coach is reading your answer…' : 'Answer or reveal to keep scrolling.'}
             </Text>
           </>
         ) : (

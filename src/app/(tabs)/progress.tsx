@@ -70,6 +70,11 @@ export default function ProgressScreen() {
             </View>
           ))}
         </View>
+        {total === 0 && (
+          <Text style={[styles.hint, { color: theme.text }]}>
+            No saved words yet. Tap the heart on a card in the feed, and it will start here in box 1.
+          </Text>
+        )}
         <Text style={[styles.hint, { color: theme.textSecondary }]}>
           A word moves up a box each time you know it and back to box 1 when you don’t. Box 4 means
           learned.

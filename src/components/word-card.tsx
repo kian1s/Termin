@@ -9,6 +9,7 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { bestVoice } from '@/lib/voices';
 import { CATEGORY_NAMES, FAVORITES_ID, Lang, SPEECH_VOICES, WordEntry } from '@/lib/types';
 
 type Props = {
@@ -64,10 +65,12 @@ export function WordHeading({ word }: { word: WordEntry }) {
   const theme = useTheme();
   const [speaking, setSpeaking] = useState(false);
 
-  const speak = () => {
+  const speak = async () => {
     Speech.stop();
+    const voice = await bestVoice(word.lang);
     Speech.speak(word.word, {
       language: SPEECH_VOICES[word.lang],
+      voice: voice?.id,
       onStart: () => setSpeaking(true),
       onDone: () => setSpeaking(false),
       onStopped: () => setSpeaking(false),

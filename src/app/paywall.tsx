@@ -27,6 +27,7 @@ export default function Paywall() {
   const [packages, setPackages] = useState<PurchasesPackage[] | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     Purchases.getOfferings()
@@ -37,7 +38,7 @@ export default function Paywall() {
         setSelected((list.find((p) => p.packageType === 'ANNUAL') ?? list[0])?.identifier ?? null);
       })
       .catch(() => setPackages([]));
-  }, []);
+  }, [attempt]);
 
   const monthly = packages?.find((p) => p.packageType === 'MONTHLY');
 
@@ -86,9 +87,19 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
         {packages === null ? (
           <ActivityIndicator color={theme.premium} style={{ marginTop: Spacing.xl }} />
         ) : packages.length === 0 ? (
-          <Text style={[styles.note, { color: theme.textSecondary }]}>
-            Plans could not be loaded. Check your connection and try again.
-          </Text>
+          <View style={styles.retry}>
+            <Text style={[styles.note, { color: theme.textSecondary }]}>
+              Plans could not be loaded. Check your connection and try again.
+            </Text>
+            <Pressable
+              onPress={() => {
+                setPackages(null);
+                setAttempt((a) => a + 1);
+              }}
+              hitSlop={8}>
+              <Text style={[styles.restore, { color: theme.premium }]}>Try again</Text>
+            </Pressable>
+          </View>
         ) : (
           <View style={styles.plans}>
             {packages.map((p) => {
@@ -180,4 +191,5 @@ const styles = StyleSheet.create({
   buttonText: { fontSize: 17, fontWeight: '600' },
   restore: { fontSize: 15, textDecorationLine: 'underline' },
   note: { fontSize: 13, textAlign: 'center' },
+  retry: { alignItems: 'center', gap: Spacing.md, marginTop: Spacing.lg },
 });
