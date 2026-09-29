@@ -7,7 +7,7 @@ import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Fonts, mixColors, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
-import { isDue } from '@/lib/progress';
+import { isDue, STAGES } from '@/lib/progress';
 import { ReviewState, WordEntry } from '@/lib/types';
 import { shuffled, wordById } from '@/lib/words';
 
@@ -78,7 +78,7 @@ export default function Flashcards() {
             <View key={b} style={styles.boxRow}>
               <View style={[styles.swatch, { backgroundColor: mixColors(theme.accentSoft, theme.accent, i / 3) }]} />
               <Text style={[styles.boxText, { color: theme.textSecondary }]}>
-                Box {b}: {perBox[i]} {perBox[i] === 1 ? 'word' : 'words'}
+                {STAGES[i]}: {perBox[i]} {perBox[i] === 1 ? 'word' : 'words'}
               </Text>
             </View>
           ))}

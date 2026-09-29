@@ -111,7 +111,8 @@ Actions:
 
 ## 7. Other screens
 
-- **Tab bar:** Feed, Sets, Progress, Settings. Icons from `@expo/vector-icons` (Ionicons): `book-outline`, `albums-outline`, `stats-chart-outline`, `settings-outline`. Active tint `accent`.
+- **Tab bar:** Feed, Sets, Practice, Progress, Settings. Icons from `@expo/vector-icons` (Ionicons): `book-outline`, `albums-outline`, `school-outline`, `stats-chart-outline`, `settings-outline`. Active tint `accent`.
+- **Practice:** a grid of tiles in different sizes (surface, hairline border, radius 16, an `accent` icon in an `accentSoft` circle). Explore: History (words today and the last word) and Find my level, both tall. Your learning: learning and native language (medium), Level (compact, big Fraunces level) and Categories (wide, pills), and a slim AI Coach language strip. Tiles open the same edit screens.
 - **Feed header:** small and quiet. Current streak at the top right as a flame icon plus number in `spark` (e.g. `🔥 4`, using Ionicons `flame`).
 - **Progress:** large Fraunces numbers with small uppercase labels (Words learned, Saved, Seen, Reviews today, Streak / Best). One horizontal bar split into Leitner boxes 1 to 4, shaded from `accentSoft` to `accent`. No busy charts.
 - **Onboarding:** one question per screen, large Fraunces question, options as large rounded chips (selected: `accentSoft` background, `accent` border). A single `accent` "Continue" button at the bottom.

@@ -10,11 +10,10 @@ import { PremiumBadge } from '@/components/pro-cards';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
-import { Field } from '@/lib/questions';
 import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
 import { describeScheduled, formatTime } from '@/lib/reminder';
-import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/types';
+import { Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -66,7 +65,6 @@ export default function SettingsScreen() {
   };
   if (!settings) return null;
 
-  const edit = (field: Field) => router.push({ pathname: '/edit/[field]', params: { field } });
 
   return (
     <ScrollView
@@ -91,37 +89,6 @@ export default function SettingsScreen() {
           />
         )}
         <Row label="Restore purchases" onPress={restore} chevron={false} last />
-      </Section>
-
-      <Section title="Learning">
-        <Row label="Learning language" value={LANG_NAMES[settings.learningLang]} onPress={() => edit('learningLang')} />
-        <Row label="Native language" value={LANG_NAMES[settings.nativeLang]} onPress={() => edit('nativeLang')} />
-        <Row label="Level" value={settings.level} onPress={() => edit('level')} />
-        <Row
-          label="Categories"
-          value={settings.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}
-          onPress={() => edit('categories')}
-        />
-        <Row
-          label="AI Coach language"
-          value={LANG_NAMES[coachFeedbackLang(settings)]}
-          onPress={() => edit('coachLanguage')}
-          last
-        />
-      </Section>
-
-      <Section title="Progress">
-        <Row
-          label="History"
-          icon={<Ionicons name="time-outline" size={20} color={theme.textSecondary} />}
-          onPress={() => router.push('/history')}
-        />
-        <Row
-          label="Find my level"
-          icon={<Ionicons name="speedometer-outline" size={20} color={theme.textSecondary} />}
-          onPress={() => router.push('/level-test')}
-          last
-        />
       </Section>
 
       <Section

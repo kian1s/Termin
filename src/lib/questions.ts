@@ -5,10 +5,10 @@ export type Field = 'learningLang' | 'nativeLang' | 'level' | 'categories' | 'co
 
 // Asked during onboarding.
 export const FIELDS: Field[] = ['learningLang', 'nativeLang', 'level', 'categories'];
-// Editable in Settings.
+// Editable from the Practice tab.
 export const EDIT_FIELDS: Field[] = [...FIELDS, 'coachLanguage'];
 
-const LEVEL_HINTS = {
+export const LEVEL_HINTS = {
   B1: 'B1 · Intermediate',
   B2: 'B2 · Upper intermediate',
   C1: 'C1 · Advanced',

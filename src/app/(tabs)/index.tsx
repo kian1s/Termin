@@ -241,17 +241,17 @@ export default function Feed() {
           <Text style={[styles.emptyTitle, { color: theme.text }]}>No words here yet</Text>
           <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
             {isPremium
-              ? 'Try another level or category in Settings.'
-              : 'These categories need Premium. Upgrade, or add Academic or Everyday in Settings.'}
+              ? 'Try another level or category in Practice.'
+              : 'These categories need Premium. Upgrade, or add Academic or Everyday in Practice.'}
           </Text>
           <Pressable
-            onPress={() => (isPremium ? router.push('/settings') : showPaywall())}
+            onPress={() => (isPremium ? router.push('/practice') : showPaywall())}
             style={({ pressed }) => [
               styles.button,
               { backgroundColor: isPremium ? theme.accent : theme.premium, opacity: pressed ? 0.8 : 1 },
             ]}>
             <Text style={[styles.buttonText, { color: theme.background }]}>
-              {isPremium ? 'Open Settings' : 'See Premium'}
+              {isPremium ? 'Open Practice' : 'See Premium'}
             </Text>
           </Pressable>
         </View>

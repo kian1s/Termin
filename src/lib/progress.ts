@@ -25,10 +25,13 @@ export function dueOrder(state: ReviewState) {
   return state.box === 1 ? state.dueAtCard - 1e15 : state.dueAt;
 }
 
+// What each Leitner box is called for the learner (box 1 to 4).
+export const STAGES = ['New', 'Learning', 'Familiar', 'Learned'] as const;
+
 export function describeNext(state: ReviewState) {
   if (state.box === 1) return 'It will come back in a few cards.';
   const days = BOX_DAYS[state.box];
-  return `Box ${state.box} · next review in ${days} ${days === 1 ? 'day' : 'days'}.`;
+  return `${STAGES[state.box - 1]} · next review in ${days} ${days === 1 ? 'day' : 'days'}.`;
 }
 
 // Local calendar date, e.g. "2026-09-28".

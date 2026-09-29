@@ -36,7 +36,7 @@ Next Gen judging criteria: a clear, useful, original idea, meaningful progress t
 | Area | Choice |
 |---|---|
 | Framework | Expo (latest SDK), React Native, TypeScript |
-| Navigation | Expo Router, with tabs: Feed, Sets, Settings |
+| Navigation | Expo Router, with tabs: Feed, Sets, Practice, Progress, Settings |
 | Local storage | `@react-native-async-storage/async-storage` |
 | Purchases | `react-native-purchases`, `react-native-purchases-ui` (RevenueCat paywall) |
 | Voice | `expo-audio` to record (works in Expo Go) + Whisper transcription on the Worker |
