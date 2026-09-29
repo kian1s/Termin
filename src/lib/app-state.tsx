@@ -66,6 +66,7 @@ type AppState = {
   setDevStrongLearner: (on: boolean) => void;
   devSetLastActive: (daysAgo: number) => void;
   devMakeAllDue: () => void;
+  devRestartOnboarding: () => void;
 };
 
 const Ctx = createContext<AppState | null>(null);
@@ -237,6 +238,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
           const stats = { ...d.stats, lastActive: dayKey(day), streak: Math.max(d.stats.streak, 1) };
           return { ...d, stats: { ...stats, day: dayKey(day), viewsToday: 0, reviewsToday: 0 } };
         }),
+
+      // Asks the onboarding questions again; words, sets and progress are kept.
+      devRestartOnboarding: () => update((d) => ({ ...d, settings: null })),
 
       devMakeAllDue: () =>
         update((d) => ({

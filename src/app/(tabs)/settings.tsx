@@ -26,8 +26,15 @@ import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/t
 export default function SettingsScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { settings, saveSettings, devSetLastActive, devMakeAllDue, devStrongLearner, setDevStrongLearner } =
-    useAppState();
+  const {
+    settings,
+    saveSettings,
+    devSetLastActive,
+    devMakeAllDue,
+    devRestartOnboarding,
+    devStrongLearner,
+    setDevStrongLearner,
+  } = useAppState();
   const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
   const [showAndroidPicker, setShowAndroidPicker] = useState(false);
   // Developer tools stay hidden (e.g. while filming) until the version row is
@@ -163,6 +170,14 @@ export default function SettingsScreen() {
           <Row label="Last active: yesterday" onPress={() => devSetLastActive(1)} chevron={false} />
           <Row label="Last active: 3 days ago" onPress={() => devSetLastActive(3)} chevron={false} />
           <Row label="Make all saved words due" onPress={devMakeAllDue} chevron={false} />
+          <Row
+            label="Restart onboarding"
+            onPress={() => {
+              devRestartOnboarding();
+              router.replace('/onboarding');
+            }}
+            chevron={false}
+          />
           <Row
             label="Simulate strong learner"
             right={
