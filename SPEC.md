@@ -185,7 +185,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.11 Natural pronunciation
 - The speaker button should sound as human as possible instead of the default robotic voice.
 - **Step 1 (on-device, Phase 8):** with `expo-speech`, list the available voices for the learning language and pick the best quality one (Premium, then Enhanced, then default). In Settings, show a short hint explaining that better voices can be downloaded for free in iOS Settings → Accessibility → Spoken Content → Voices.
-- **Step 2 (optional, after Phase 6 if time allows):** a `POST /speak` endpoint on the Worker that returns natural AI-generated speech for a word, played with `expo-audio`, with caching and a daily limit per `deviceId`. Fall back to on-device speech on any error.
+- **Step 2 (done, Phase 8):** natural voices recorded once with Azure neural TTS (regional voices: en-US Ava, fr-FR Denise, de-DE Katja, es-ES Elvira, pt-PT Raquel) by `scripts/voices/generate.ts`, for every headword and every example sentence (about 4,700 clips, about 221,000 characters, within Azure's free 500,000 a month). The Worker serves them as static assets at `/audio/<lang>/<id>-w.mp3` (word) and `-e.mp3` (example). The app downloads a clip on first play, keeps it in the cache, and plays it with `expo-audio`; without a clip it falls back to step 1. Word cards, review cards and flashcards get a speaker button on the example sentence.
 - **Done when:** with an Enhanced or Premium voice installed, the word is read with that voice.
 
 ### 4.12 Blending stretch words (Phase 4)

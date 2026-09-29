@@ -192,7 +192,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
 
               <WordHeading word={word} />
               <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
-              {!coach && <Example text={word.example} />}
+              {!coach && <Example text={word.example} word={word} />}
               <Translation word={word} nativeLang={nativeLang} />
 
               {!next ? (

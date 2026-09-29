@@ -1,7 +1,6 @@
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
-import * as Speech from 'expo-speech';
 import { useState } from 'react';
 import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -10,8 +9,8 @@ import { useTheme } from '@/hooks/use-theme';
 import { Doodle } from '@/components/doodle-icons';
 import { Sticker } from '@/components/sticker';
 import { useAppState } from '@/lib/app-state';
-import { bestVoice } from '@/lib/voices';
-import { CATEGORY_NAMES, FAVORITES_ID, Lang, SPEECH_VOICES, WordEntry } from '@/lib/types';
+import { pronounce } from '@/lib/pronounce';
+import { CATEGORY_NAMES, FAVORITES_ID, Lang, WordEntry } from '@/lib/types';
 
 type Props = {
   word: WordEntry;
@@ -38,7 +37,7 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
         </Text>
         <WordHeading word={word} />
         <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>
-        <Example text={word.example} />
+        <Example text={word.example} word={word} />
         <Translation word={word} nativeLang={nativeLang} />
       </View>
 
@@ -70,17 +69,9 @@ export function WordHeading({ word }: { word: WordEntry }) {
   const theme = useTheme();
   const [speaking, setSpeaking] = useState(false);
 
-  const speak = async () => {
-    Speech.stop();
-    const voice = await bestVoice(word.lang);
-    Speech.speak(word.word, {
-      language: SPEECH_VOICES[word.lang],
-      voice: voice?.id,
-      onStart: () => setSpeaking(true),
-      onDone: () => setSpeaking(false),
-      onStopped: () => setSpeaking(false),
-      onError: () => setSpeaking(false),
-    });
+  const speak = () => {
+    setSpeaking(true);
+    pronounce(word, 'w', () => setSpeaking(false));
   };
 
   return (
@@ -100,11 +91,23 @@ export function WordHeading({ word }: { word: WordEntry }) {
   );
 }
 
-export function Example({ text }: { text: string }) {
+// The example sentence. With `word`, a speaker button reads it aloud.
+export function Example({ text, word }: { text: string; word?: WordEntry }) {
   const theme = useTheme();
+  const [speaking, setSpeaking] = useState(false);
+  const speak = () => {
+    if (!word) return;
+    setSpeaking(true);
+    pronounce(word, 'e', () => setSpeaking(false));
+  };
   return (
     <View style={[styles.example, { borderLeftColor: theme.accent }]}>
       <Text style={[styles.exampleText, { color: theme.text }]}>“{text}”</Text>
+      {word && (
+        <Pressable onPress={speak} hitSlop={10} accessibilityLabel="Read the example aloud" style={styles.exampleSpeaker}>
+          <Doodle name="speaker" size={22} color={speaking ? theme.spark : theme.textSecondary} />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -175,8 +178,9 @@ const styles = StyleSheet.create({
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
   pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },
   definition: { ...Type.body },
-  example: { borderLeftWidth: 2, paddingLeft: Spacing.lg },
-  exampleText: { fontFamily: Fonts.italic, fontSize: 18, lineHeight: 26 },
+  example: { borderLeftWidth: 2, paddingLeft: Spacing.lg, flexDirection: 'row', alignItems: 'flex-start', gap: Spacing.sm },
+  exampleSpeaker: { paddingTop: 2 },
+  exampleText: { flex: 1, fontFamily: Fonts.italic, fontSize: 18, lineHeight: 26 },
   translation: {
     flexDirection: 'row',
     gap: Spacing.md,

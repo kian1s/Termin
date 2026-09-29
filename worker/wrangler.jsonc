@@ -11,5 +11,7 @@
     // A cheap, fast model for grading. OPENROUTER_API_KEY is a secret (wrangler secret put).
     "MODEL": "openai/gpt-6-luna-pro"
   },
+  // Natural pronunciations (scripts/voices/generate.ts), served at /audio/<lang>/<id>-w.mp3 and -e.mp3.
+  "assets": { "directory": "./public" },
   "observability": { "enabled": false }
 }

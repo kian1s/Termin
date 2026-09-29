@@ -1,3 +1,5 @@
 node_modules/
 .wrangler/
 .dev.vars
+# Generated audio (scripts/voices/generate.ts); about 150 MB, deployed with the Worker
+public/audio/

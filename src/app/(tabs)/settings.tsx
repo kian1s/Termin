@@ -98,13 +98,14 @@ export default function SettingsScreen() {
 
       <Section
         title="Pronunciation"
-        footer={
+        footer={`Words and example sentences are read by natural voices recorded for Termin, and kept on your phone after the first play. Without internet, the phone's own voice is used.${
           voice?.quality === 'Premium'
-            ? undefined
-            : 'For a more natural voice, download a Premium or Enhanced voice for free in the iPhone Settings: Accessibility, Spoken Content, Voices.'
-        }>
+            ? ''
+            : ' For a better phone voice, download a Premium or Enhanced voice for free in the iPhone Settings: Accessibility, Spoken Content, Voices.'
+        }`}>
+        <Row label="Natural voices" value="On" chevron={false} />
         <Row
-          label="Voice"
+          label="Offline voice"
           value={voice === undefined ? '…' : voice ? `${voice.name} (${voice.quality})` : 'System default'}
           chevron={false}
           last

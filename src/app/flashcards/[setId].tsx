@@ -110,7 +110,7 @@ export default function Flashcards() {
           {flipped ? (
             <Animated.View style={[styles.back, { opacity: back }]}>
               <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
-              <Example text={word.example} />
+              <Example text={word.example} word={word} />
               <Translation word={word} nativeLang={settings.nativeLang} blurred={false} />
             </Animated.View>
           ) : (
