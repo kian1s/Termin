@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Doodle, DoodleName } from '@/components/doodle-icons';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -12,10 +13,9 @@ import { Field, LEVEL_HINTS } from '@/lib/questions';
 import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES } from '@/lib/types';
 import { wordById } from '@/lib/words';
 
-type IconName = keyof typeof Ionicons.glyphMap;
-
-// Practice: learning tools and the learning setup as raised tiles. Layout
-// rule: tall tiles always span the full width; only thin tiles sit side by side.
+// Practice: learning tools and the learning setup as raised "sticker" tiles
+// with hand-drawn icons. Layout rule: tall tiles always span the full width;
+// only thin tiles sit side by side.
 export default function Practice() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -41,7 +41,7 @@ export default function Practice() {
 
       <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Explore</Text>
 
-      <Tile icon="time-outline" label="History" onPress={() => router.push('/history')} tall>
+      <Tile icon="history" label="History" onPress={() => router.push('/history')} tall>
         <View style={styles.tallBody}>
           <View>
             <Text style={[styles.bigNumber, { color: theme.text }]}>{seenToday}</Text>
@@ -61,7 +61,7 @@ export default function Practice() {
         </View>
       </Tile>
 
-      <Tile icon="speedometer-outline" label="Level test" onPress={() => router.push('/level-test')} tall>
+      <Tile icon="levelTest" label="Level test" onPress={() => router.push('/level-test')} tall>
         <View style={styles.tallBody}>
           <View>
             <Text style={[styles.tileTitle, { color: theme.text }]}>Find my level</Text>
@@ -74,12 +74,12 @@ export default function Practice() {
       <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Your learning</Text>
 
       <View style={styles.row}>
-        <Tile icon="language-outline" label="Learning" onPress={() => edit('learningLang')}>
+        <Tile icon="learning" label="Learning" onPress={() => edit('learningLang')}>
           <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
             {LANG_NAMES[settings.learningLang]}
           </Text>
         </Tile>
-        <Tile icon="home-outline" label="Native" onPress={() => edit('nativeLang')}>
+        <Tile icon="native" label="Native" onPress={() => edit('nativeLang')}>
           <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
             {LANG_NAMES[settings.nativeLang]}
           </Text>
@@ -87,7 +87,7 @@ export default function Practice() {
       </View>
 
       <View style={styles.row}>
-        <Tile icon="trending-up-outline" label="Level" onPress={() => edit('level')}>
+        <Tile icon="level" label="Level" onPress={() => edit('level')}>
           <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
             <Text style={{ color: theme.word }}>{settings.level}</Text>
             <Text style={[styles.valueSmall, { color: theme.textSecondary }]}>
@@ -96,7 +96,7 @@ export default function Practice() {
             </Text>
           </Text>
         </Tile>
-        <Tile icon="pricetags-outline" label="Categories" onPress={() => edit('categories')}>
+        <Tile icon="categories" label="Categories" onPress={() => edit('categories')}>
           <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
             {settings.categories.length === 1
               ? CATEGORY_NAMES[settings.categories[0]]
@@ -105,7 +105,7 @@ export default function Practice() {
         </Tile>
       </View>
 
-      <Tile icon="sparkles-outline" label="AI Coach" onPress={() => edit('coachLanguage')}>
+      <Tile icon="coach" label="AI Coach" onPress={() => edit('coachLanguage')}>
         <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
           Answers in {LANG_NAMES[coachFeedbackLang(settings)]}
         </Text>
@@ -114,6 +114,9 @@ export default function Practice() {
   );
 }
 
+// How far the hard shadow sits to the bottom right.
+const LIFT = 4;
+
 function Tile({
   icon,
   label,
@@ -121,64 +124,63 @@ function Tile({
   tall,
   children,
 }: {
-  icon: IconName;
+  icon: DoodleName;
   label: string;
   onPress: () => void;
   tall?: boolean;
   children?: ReactNode;
 }) {
   const theme = useTheme();
-  const dark = theme.scheme === 'dark';
+  // A solid shadow block, like a sticker or a printed card: ink in light mode,
+  // the deep shadow token in dark mode so it reads as depth.
+  const shadow = theme.scheme === 'dark' ? theme.shadow : theme.text;
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      style={({ pressed }) => [
-        styles.tile,
-        tall && styles.tall,
-        {
-          backgroundColor: theme.surface,
-          borderColor: theme.border,
-          // Raised look: a soft shadow toward the bottom right. Pressing the
-          // tile pushes it down, like a physical button.
-          shadowColor: theme.shadow,
-          shadowOpacity: pressed ? 0.08 : dark ? 0.5 : 0.16,
-          shadowOffset: pressed ? { width: 1, height: 1 } : { width: 3, height: 4 },
-          transform: [{ translateY: pressed ? 2 : 0 }],
-        },
-      ]}>
-      <View style={styles.tileHead}>
-        <View style={[styles.iconCircle, { backgroundColor: theme.accentSoft }]}>
-          <Ionicons name={icon} size={16} color={theme.accent} />
+    <View style={styles.tileWrap}>
+      <View style={[styles.shadowBlock, { backgroundColor: shadow }]} />
+      <Pressable
+        onPress={onPress}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        style={({ pressed }) => [
+          styles.tile,
+          tall && styles.tall,
+          {
+            backgroundColor: theme.surface,
+            borderColor: theme.text,
+            // Pressing slides the tile into its shadow, like a real button.
+            transform: pressed ? [{ translateX: LIFT - 1 }, { translateY: LIFT - 1 }] : [],
+          },
+        ]}>
+        <View style={styles.tileHead}>
+          <Doodle name={icon} size={26} />
+          <Text style={[Type.label, { color: theme.textSecondary }]}>{label}</Text>
         </View>
-        <Text style={[Type.label, { color: theme.textSecondary }]}>{label}</Text>
-      </View>
-      {children}
-    </Pressable>
+        {children}
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.md },
+  content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.sm },
   titleBlock: { paddingHorizontal: Spacing.xs, gap: Spacing.xs, marginBottom: Spacing.sm },
   title: { fontFamily: Fonts.title, fontSize: 28 },
   subtitle: { fontSize: 15 },
   section: { paddingHorizontal: Spacing.xs, marginTop: Spacing.md },
-  row: { flexDirection: 'row', gap: Spacing.md },
+  row: { flexDirection: 'row', gap: Spacing.sm },
+  // The wrapper leaves room for the shadow block at the bottom right.
+  tileWrap: { flex: 1, paddingRight: LIFT, paddingBottom: LIFT },
+  shadowBlock: { position: 'absolute', top: LIFT, left: LIFT, right: 0, bottom: 0, borderRadius: Radius.card },
   tile: {
     flex: 1,
     borderRadius: Radius.card,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 1.5,
     padding: Spacing.lg,
     gap: Spacing.sm,
-    shadowRadius: 6,
-    elevation: 3,
   },
   // Tall tiles are full width and only moderately tall.
   tall: { minHeight: 112 },
   tileHead: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
-  iconCircle: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   tallBody: { flex: 1, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: Spacing.lg },
   bigNumber: { fontFamily: Fonts.title, fontSize: 32, lineHeight: 38 },
   tileTitle: { fontFamily: Fonts.title, fontSize: 22, lineHeight: 28 },
