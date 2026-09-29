@@ -14,6 +14,8 @@ type Props = {
   eyebrow?: string;
   question: string;
   hint?: string;
+  // Shown under the options, e.g. the level test link.
+  extra?: ReactNode;
   options: Option[];
   selected: string[];
   onToggle: (value: string) => void;
@@ -30,6 +32,7 @@ export function ChoiceStep({
   eyebrow,
   question,
   hint,
+  extra,
   options,
   selected,
   onToggle,
@@ -73,6 +76,7 @@ export function ChoiceStep({
             );
           })}
         </View>
+        {extra}
       </ScrollView>
       <View style={[styles.footer, { paddingBottom: insets.bottom + Spacing.lg }]}>
         <Pressable

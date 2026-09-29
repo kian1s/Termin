@@ -112,6 +112,7 @@ export default function SettingsScreen() {
         <Row label="Learning language" value={LANG_NAMES[settings.learningLang]} onPress={() => edit('learningLang')} />
         <Row label="Native language" value={LANG_NAMES[settings.nativeLang]} onPress={() => edit('nativeLang')} />
         <Row label="Level" value={settings.level} onPress={() => edit('level')} />
+        <Row label="Find my level" onPress={() => router.push('/level-test')} />
         <Row
           label="Categories"
           value={settings.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}

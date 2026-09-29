@@ -70,6 +70,7 @@ function RootStack() {
           name="flashcards/[setId]"
           options={{ headerShown: true, title: 'Flashcards', headerBackTitle: 'Set' }}
         />
+        <Stack.Screen name="level-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
         <Stack.Screen name="history" options={{ headerShown: true, title: 'History', headerBackTitle: 'Feed' }} />
       </Stack>
     </>
