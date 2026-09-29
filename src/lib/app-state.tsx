@@ -11,9 +11,9 @@ import {
   newReviewState,
   withActivity,
 } from '@/lib/progress';
-import { CATEGORIES, FAVORITES_ID, ReviewState, Settings, Stats, WordSet } from '@/lib/types';
+import { CATEGORIES, FAVORITES_ID, migrateReminder, ReviewState, Settings, Stats, WordSet } from '@/lib/types';
 
-export const DEFAULT_REMINDER = { enabled: false, hour: 19, minute: 0 };
+export { DEFAULT_REMINDER } from '@/lib/types';
 
 const FAVORITES: WordSet = { id: FAVORITES_ID, name: 'Favorites', wordIds: [] };
 
@@ -108,8 +108,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       } catch {
         // Corrupt or missing storage: start fresh rather than crash.
       }
-      if (loadedData.settings && !loadedData.settings.reminder) {
-        loadedData.settings = { ...loadedData.settings, reminder: DEFAULT_REMINDER };
+      if (loadedData.settings) {
+        // Also upgrades the old single-time reminder (SPEC 4.16).
+        loadedData.settings = { ...loadedData.settings, reminder: migrateReminder(loadedData.settings.reminder) };
       }
       if (loadedData.settings) {
         // Debate was folded into Academic in Phase 3; drop any other unknown IDs.

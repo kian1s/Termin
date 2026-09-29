@@ -1,16 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
-import {
-  Alert,
-  Linking,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Row, Section, Toggle } from '@/components/grouped-list';
@@ -20,7 +12,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { Field } from '@/lib/questions';
 import { usePremium } from '@/lib/premium';
-import { ensureNotificationPermission } from '@/lib/reminder';
+import { formatTime } from '@/lib/reminder';
 import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES, Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
@@ -28,7 +20,6 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const {
     settings,
-    saveSettings,
     devSetLastActive,
     devMakeAllDue,
     devRestartOnboarding,
@@ -36,7 +27,6 @@ export default function SettingsScreen() {
     setDevStrongLearner,
   } = useAppState();
   const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
-  const [showAndroidPicker, setShowAndroidPicker] = useState(false);
   // Developer tools stay hidden (e.g. while filming) until the version row is
   // tapped 5 times in a row. Only possible in development builds.
   const [showDev, setShowDev] = useState(false);
@@ -53,33 +43,6 @@ export default function SettingsScreen() {
     }
   };
   if (!settings) return null;
-
-  const { reminder } = settings;
-  const reminderTime = new Date();
-  reminderTime.setHours(reminder.hour, reminder.minute, 0, 0);
-
-  // The root layout reschedules the week of reminders whenever these change.
-  const updateReminder = (next: Reminder) => saveSettings({ ...settings, reminder: next });
-
-  const toggleReminder = async (on: boolean) => {
-    if (on && !(await ensureNotificationPermission())) {
-      Alert.alert(
-        'Notifications are off',
-        'Allow notifications for this app in the iPhone Settings to get a daily reminder.',
-        [
-          { text: 'Not now', style: 'cancel' },
-          { text: 'Open Settings', onPress: () => Linking.openSettings() },
-        ]
-      );
-      return;
-    }
-    updateReminder({ ...reminder, enabled: on });
-  };
-
-  const onTimeChange = (date?: Date) => {
-    setShowAndroidPicker(false);
-    if (date) updateReminder({ ...reminder, hour: date.getHours(), minute: date.getMinutes() });
-  };
 
   const edit = (field: Field) => router.push({ pathname: '/edit/[field]', params: { field } });
 
@@ -126,34 +89,14 @@ export default function SettingsScreen() {
         />
       </Section>
 
-      <Section title="Daily reminder" footer="Once a day, around this time, a word you saved (or a new one) to test yourself on.">
+      <Section>
         <Row
-          label="Daily reminder"
-          last={!reminder.enabled}
-          right={
-            <Toggle value={reminder.enabled} onValueChange={toggleReminder} />
-          }
+          label="Reminders"
+          icon={<Ionicons name="notifications-outline" size={20} color={theme.textSecondary} />}
+          value={reminderSummary(settings.reminder)}
+          onPress={() => router.push('/reminders')}
+          last
         />
-        {reminder.enabled && (
-          <Row
-            label="Time"
-            last
-            onPress={Platform.OS === 'android' ? () => setShowAndroidPicker(true) : undefined}
-            value={Platform.OS === 'android' ? formatTime(reminder) : undefined}
-            right={
-              Platform.OS === 'ios' ? (
-                <DateTimePicker
-                  mode="time"
-                  display="compact"
-                  value={reminderTime}
-                  accentColor={theme.accent}
-                  themeVariant={theme.scheme}
-                  onValueChange={(_, date) => onTimeChange(date)}
-                />
-              ) : undefined
-            }
-          />
-        )}
       </Section>
 
       <Section title="About">
@@ -195,20 +138,16 @@ export default function SettingsScreen() {
         </Section>
       )}
 
-      {showAndroidPicker && (
-        <DateTimePicker
-          mode="time"
-          value={reminderTime}
-          onValueChange={(_, date) => onTimeChange(date)}
-          onDismiss={() => setShowAndroidPicker(false)}
-        />
-      )}
     </ScrollView>
   );
 }
 
-function formatTime({ hour, minute }: Reminder) {
-  return `${hour}:${String(minute).padStart(2, '0')}`;
+// e.g. "Off", "19:00 · Every day" or "2 times · 5 days".
+function reminderSummary(r: Reminder) {
+  if (!r.enabled) return 'Off';
+  const when = r.times.length === 1 ? formatTime(r.times[0]) : `${r.times.length} times`;
+  const days = r.days.length === 7 ? 'Every day' : `${r.days.length} ${r.days.length === 1 ? 'day' : 'days'}`;
+  return `${when} · ${days}`;
 }
 
 const styles = StyleSheet.create({

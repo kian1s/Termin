@@ -71,29 +71,32 @@ function RootStack() {
           options={{ headerShown: true, title: 'Flashcards', headerBackTitle: 'Set' }}
         />
         <Stack.Screen name="level-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
+        <Stack.Screen name="reminders" options={{ headerShown: true, title: 'Reminders', headerBackTitle: 'Settings' }} />
         <Stack.Screen name="history" options={{ headerShown: true, title: 'History', headerBackTitle: 'Feed' }} />
       </Stack>
     </>
   );
 }
 
-// Keeps the week of smart reminders (SPEC 4.9) up to date: on launch, when the
-// reminder settings change, and when the app goes to the background.
+// Keeps the week of smart reminders (SPEC 4.9, 4.16) up to date: on launch, when
+// the reminder settings change, and when the app goes to the background.
 function ReminderSync() {
   const { loaded, settings, savedIds, reviews, seenIds, stats } = useAppState();
-  const latest = useRef({ settings, savedIds, reviews, seenIds, cardsViewed: stats.cardsViewed });
+  const latest = useRef({ settings, savedIds, reviews, seenIds, stats });
   useEffect(() => {
-    latest.current = { settings, savedIds, reviews, seenIds, cardsViewed: stats.cardsViewed };
+    latest.current = { settings, savedIds, reviews, seenIds, stats };
   });
 
+  // Reschedule when the reminder options or learning language change, and when
+  // today starts counting toward the streak (which removes the streak saver).
   const reminderKey = settings
-    ? `${settings.reminder.enabled}|${settings.reminder.hour}|${settings.reminder.minute}|${settings.learningLang}`
+    ? `${JSON.stringify(settings.reminder)}|${settings.learningLang}|${stats.lastActive}|${stats.streak}`
     : '';
 
   useEffect(() => {
     const sync = () => {
       const l = latest.current;
-      if (l.settings) scheduleReminders(l.settings, l.savedIds, l.reviews, l.seenIds, l.cardsViewed);
+      if (l.settings) scheduleReminders(l.settings, l.savedIds, l.reviews, l.seenIds, l.stats);
     };
     if (loaded) sync();
     const sub = AppState.addEventListener('change', (state) => {

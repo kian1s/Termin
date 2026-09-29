@@ -43,7 +43,45 @@ export type WordEntry = {
   translations: Partial<Record<Lang, { word: string; definition: string }>>;
 };
 
-export type Reminder = { enabled: boolean; hour: number; minute: number };
+export type ReminderTime = { hour: number; minute: number };
+
+// SPEC 4.16. `days` uses JavaScript weekday numbers (0 = Sunday).
+export type Reminder = {
+  enabled: boolean;
+  times: ReminderTime[]; // 1 to 3 per day
+  days: number[];
+  includeWord: boolean; // quiz a word, or a plain nudge
+  vary: boolean; // +/- 30 minutes, or exact times
+  streakSaver: boolean; // an extra 21:00 nudge while a streak of 2+ is at risk
+};
+
+export const DEFAULT_REMINDER: Reminder = {
+  enabled: false,
+  times: [{ hour: 19, minute: 0 }],
+  days: [0, 1, 2, 3, 4, 5, 6],
+  includeWord: true,
+  vary: true,
+  streakSaver: true,
+};
+
+// Reads any stored reminder, including the old { enabled, hour, minute } shape.
+export function migrateReminder(stored: unknown): Reminder {
+  const r = (stored ?? {}) as Partial<Reminder> & { hour?: number; minute?: number };
+  const times =
+    Array.isArray(r.times) && r.times.length
+      ? r.times.slice(0, 3)
+      : typeof r.hour === 'number'
+        ? [{ hour: r.hour, minute: r.minute ?? 0 }]
+        : DEFAULT_REMINDER.times;
+  return {
+    enabled: !!r.enabled,
+    times,
+    days: Array.isArray(r.days) ? r.days : DEFAULT_REMINDER.days,
+    includeWord: r.includeWord ?? true,
+    vary: r.vary ?? true,
+    streakSaver: r.streakSaver ?? true,
+  };
+}
 
 // Which language the AI Coach writes its feedback in.
 export type CoachLanguage = 'native' | 'learning' | Lang;
