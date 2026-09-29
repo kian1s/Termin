@@ -265,7 +265,10 @@ Rules:
 
 ## 7. Stretch
 
-None for now. Daily reminder and streak moved into the MVP (4.8 and 4.9).
+Only if time is left after Phase 9. Daily reminder and streak moved into the MVP (4.8 and 4.9).
+
+- **Real-time voice transcription.** Option A: stream live microphone PCM (`expo-audio` `useAudioStream`, works in Expo Go) over a WebSocket to the Worker, which relays it to Workers AI Deepgram Nova-3 for word-by-word text (about 2 to 3 hours, uses more of the free Cloudflare allowance). Option B: keep Whisper but re-send the audio so far every 2 to 3 seconds while recording (about 1 hour). On-device iOS speech recognition needs a native build, so it is out for Expo Go.
+- **Production app version.** Per-platform RevenueCat keys (Test Store key only in Expo Go), the dashboard paywall in native builds, the Worker verifying Premium through RevenueCat's REST API plus a global daily cap, `eas.json` build profiles, and an iOS bundle ID and Android package name.
 
 ## 8. Out of scope
 
