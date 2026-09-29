@@ -34,7 +34,7 @@ export default function ProgressScreen() {
         <Stat
           label="Streak"
           value={currentStreak(stats)}
-          icon={<Ionicons name="flame" size={26} color={theme.accent} />}
+          icon={<Ionicons name="flame" size={26} color={theme.spark} />}
         />
         <Stat label="Best streak" value={stats.best} />
       </View>

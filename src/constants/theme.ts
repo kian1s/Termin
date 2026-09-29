@@ -1,29 +1,40 @@
 // Design tokens from DESIGN.md. Never hard-code colors in components; use useTheme().
 
+// Built from the app icon: cream and mocha are the grounds, forest green is the
+// letter, terracotta is the dot. The two grounds swap roles as ink: mocha is the
+// body text in light mode, cream is the body text in dark mode.
 export const Colors = {
   light: {
-    background: '#FAF7F2',
-    surface: '#FFFFFF',
-    text: '#1C1A17',
-    textSecondary: '#6B645A',
-    border: '#E7E0D5',
-    accent: '#B7791F',
-    accentSoft: '#F6E7C8',
-    correct: '#3F8F5B',
-    partly: '#B7791F',
-    wrong: '#B4493C',
+    background: '#FBF6EC', // whitish cream
+    surface: '#F2E8D6', // light beige: translation block, sheets, rows
+    text: '#403233', // mocha ink
+    textSecondary: '#766058',
+    border: '#E2D4BA',
+    word: '#345830', // the headword, same green as the icon's "t"
+    spark: '#B5663F', // terracotta (icon dot): headword dot, saved heart, streak flame
+    accent: '#345830', // buttons, active tab, example bar
+    accentSoft: '#E3E3D5',
+    premium: '#9B4F34', // deeper terracotta, readable as text
+    premiumSoft: '#F1E5DA',
+    correct: '#345830',
+    partly: '#8A5A0F',
+    wrong: '#A93D2C',
   },
   dark: {
-    background: '#121110',
-    surface: '#1C1A18',
-    text: '#F2EDE4',
-    textSecondary: '#A39B8F',
-    border: '#2E2B27',
-    accent: '#E0A43A',
-    accentSoft: '#3A2E1A',
-    correct: '#6CC08A',
-    partly: '#E0A43A',
-    wrong: '#E07A6C',
+    background: '#403233', // mocha (dark icon background)
+    surface: '#352829', // deeper mocha inset
+    text: '#FFF2D5', // cream ink
+    textSecondary: '#CDB9A6',
+    border: '#56464A',
+    word: '#FFF2D5', // cream, like the dark icon's "t"
+    spark: '#C57B57', // exact icon terracotta
+    accent: '#FFF2D5', // cream buttons with mocha text, like the dark icon
+    accentSoft: '#5B4D4A',
+    premium: '#EFA27C',
+    premiumSoft: '#553F3C',
+    correct: '#B3D1A4',
+    partly: '#EDBE6A',
+    wrong: '#F5A08F',
   },
 } as const;
 
@@ -35,7 +46,7 @@ export const Radius = { card: 16, chip: 12 } as const;
 
 // Fraunces is loaded in the root layout. Everything else uses the system font.
 export const Fonts = {
-  word: 'Fraunces_600SemiBold',
+  word: 'Fraunces_700Bold', // headword only; one step lighter than the icon's ExtraBold
   title: 'Fraunces_600SemiBold',
   italic: 'Fraunces_400Regular_Italic',
 } as const;

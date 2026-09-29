@@ -246,7 +246,10 @@ export default function Feed() {
           </Text>
           <Pressable
             onPress={() => (isPremium ? router.push('/settings') : showPaywall())}
-            style={({ pressed }) => [styles.button, { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 }]}>
+            style={({ pressed }) => [
+              styles.button,
+              { backgroundColor: isPremium ? theme.accent : theme.premium, opacity: pressed ? 0.8 : 1 },
+            ]}>
             <Text style={[styles.buttonText, { color: theme.background }]}>
               {isPremium ? 'Open Settings' : 'See Premium'}
             </Text>
@@ -299,8 +302,8 @@ export default function Feed() {
       )}
 
       <View style={[styles.streak, { top: insets.top + Spacing.sm }]} pointerEvents="none">
-        <Ionicons name="flame" size={18} color={theme.accent} />
-        <Text style={[styles.streakText, { color: theme.accent }]}>{streak}</Text>
+        <Ionicons name="flame" size={18} color={theme.spark} />
+        <Text style={[styles.streakText, { color: theme.spark }]}>{streak}</Text>
       </View>
     </View>
   );

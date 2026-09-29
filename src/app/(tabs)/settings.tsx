@@ -9,12 +9,12 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Row, Section } from '@/components/grouped-list';
+import { Row, Section, Toggle } from '@/components/grouped-list';
+import { PremiumBadge } from '@/components/pro-cards';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -87,13 +87,14 @@ export default function SettingsScreen() {
         footer={isPremium ? undefined : 'Premium unlocks Idioms, Work, every C1 and C2 word, and unlimited sets.'}>
         <Row
           label={isPremium ? 'Premium is active' : 'Free plan'}
-          icon={<Ionicons name={isPremium ? 'star' : 'star-outline'} size={20} color={theme.accent} />}
+          icon={<Ionicons name={isPremium ? 'star' : 'star-outline'} size={20} color={theme.premium} />}
+          right={isPremium ? <PremiumBadge /> : undefined}
           chevron={false}
         />
         {!isPremium && (
           <Row
             label="Upgrade to Premium"
-            icon={<Ionicons name="lock-open-outline" size={20} color={theme.accent} />}
+            icon={<Ionicons name="lock-open-outline" size={20} color={theme.premium} />}
             onPress={showPaywall}
           />
         )}
@@ -122,11 +123,7 @@ export default function SettingsScreen() {
           label="Daily reminder"
           last={!reminder.enabled}
           right={
-            <Switch
-              value={reminder.enabled}
-              onValueChange={toggleReminder}
-              trackColor={{ true: theme.accent }}
-            />
+            <Toggle value={reminder.enabled} onValueChange={toggleReminder} />
           }
         />
         {reminder.enabled && (
@@ -169,7 +166,7 @@ export default function SettingsScreen() {
           <Row
             label="Simulate strong learner"
             right={
-              <Switch value={devStrongLearner} onValueChange={setDevStrongLearner} trackColor={{ true: theme.accent }} />
+              <Toggle value={devStrongLearner} onValueChange={setDevStrongLearner} />
             }
           />
           <Row label="RevenueCat status" onPress={debugInfo} chevron={false} />

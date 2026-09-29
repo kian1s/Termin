@@ -204,6 +204,47 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 - A development-only Settings row, "Simulate strong learner", makes it testable.
 - **Done when:** with "Simulate strong learner" on, stretch cards appear at the expected rate, and a free B2 learner sees locked C1 teasers.
 
+### 4.13 History (Phase 8)
+- A **clock button** (Ionicons `time-outline`, `textSecondary`) in the feed header, left of the streak, opens `src/app/history.tsx` as a pushed screen titled "History".
+- The list shows every word card that has appeared in the feed, **newest first**: the word (Fraunces, about 20 pt) and its definition (system font, 15 pt, `textSecondary`, max 2 lines). Nothing else on the row, per the owner's request.
+- Rows are grouped under small uppercase headers: **Today**, **Yesterday**, then the date (e.g. "Mon 28 Sep"). Words seen before this feature existed have no time and go under **Earlier** at the bottom.
+- Data: add `seenAt: Record<string, number>` (word ID → last time its card was on screen) to the stored app state, written at the same moment a word is marked seen. Only word cards count, not review or locked teaser cards. Old installs keep working (missing map = empty).
+- Tapping a row opens the existing add-to-set sheet for that word (`/add-to-set/[wordId]`), so a word you scrolled past can still be saved.
+- Empty state: "Words you see in the feed will appear here."
+- **Done when:** after scrolling 5 cards, History lists those 5 words newest first under Today, and the list survives a restart.
+
+### 4.14 Level test (Phase 8)
+- A short offline quiz that suggests a CEFR level. No AI and no network.
+- **Entry points:** a "Not sure? Take a 2-minute test" link under the options on the onboarding level step, and a **Find my level** row in Settings (in the section with the level).
+- **Format:** 12 questions, 3 per level from B1 to C2, in the learning language, presented in that order. Each question shows one word (Fraunces, large) and **4 definitions** to pick from (the right one plus 3 from other words of the same level and language), plus an **"I don't know"** option to discourage guessing. Words are picked at random from the whole dataset, **ignoring Premium gating** (the test only shows the word and definitions). Test words are **not** marked as seen.
+- A thin progress bar at the top (`accent`). Tapping an option shows right/wrong for about 600 ms, then moves on. No going back.
+- **Scoring** (pure function in `src/lib/level-test.ts`): a level is passed with at least 2 of 3 correct. The suggested level is the highest level reached by passing every level below it too, starting from B1. If B1 is not passed, suggest B1.
+- **Result screen:** "Your level: **C1**" in Fraunces, a one-line explanation, and 4 small rows showing the score per level (e.g. B2 3/3). Buttons: **Use C1** (`accent`, saves the level) and **Keep B2** (text button). From onboarding, "Use" continues to the next onboarding step.
+- **Done when:** answering everything right suggests C2, everything wrong suggests B1, and "Use" changes the feed level.
+
+### 4.15 Premium flashcards (Phase 8)
+- A **Study flashcards** button at the top of a set's word list (`src/app/set/[id].tsx`), disabled with a hint when the set is empty.
+- **Premium only.** For free users the button uses `premium` colors with a small lock icon and a PREMIUM badge; tapping it opens the paywall. For Premium users it opens `src/app/flashcards/[setId].tsx`.
+- **Card front:** the word (Fraunces, large), part of speech, and the speaker button. **Tap to flip** (a 250 ms flip or crossfade, per DESIGN.md motion rules). **Back:** definition, example sentence, and the translation (not blurred here).
+- Two buttons under the flipped card: **Didn't know** and **Knew it**. They update the word's Leitner box exactly like self-rating on a review card (reuse the same function), and count as a review for `reviewsToday` and the streak.
+- **Order:** due words first, then lower boxes first, shuffled within each group. A small counter at the top ("4 / 12").
+- **End screen:** "12 cards · 9 known", how many words are now in each box, and buttons **Study again** and **Done**.
+- Add a Flashcards row (Premium only) to the Free vs Premium table (section 5) and a flashcards line to the paywall benefits list.
+- **Done when:** a free user hits the paywall from the button; after a Test Store purchase the same button opens flashcards, and "Knew it" moves a word up one box.
+
+### 4.16 Notification options (Phase 8)
+- The "Daily reminder" section in Settings becomes one row, **Reminders**, that opens `src/app/reminders.tsx` (native grouped list). Everything stays local notifications (4.9).
+- Options:
+  - **Reminders** on/off (existing permission flow).
+  - **Times:** 1 to 3 times per day, each with its own time picker. "Add a time" / swipe or tap to remove. Default: one time, 19:00.
+  - **Days:** seven weekday chips (M T W T F S S), default all on. No reminders on days that are off.
+  - **Include a word:** on (default) = the current quiz text with a word; off = a plain nudge such as "A few new words are waiting for you."
+  - **Vary the time slightly:** on (default) = the existing ±30 minute randomization; off = exact times.
+  - **Streak saver:** when on and the streak is 2 or more, schedule one extra notification today at 21:00, "Keep your 5-day streak. One card is enough." Cancel it as soon as today counts toward the streak (4.8) and never schedule it for a day that already counts.
+- Data: extend `Reminder` to `{ enabled, times: {hour, minute}[], days: number[], includeWord, vary, streakSaver }`. Migrate the old `{ enabled, hour, minute }` shape on load. The 7-day scheduler in `src/lib/reminder.ts` loops over days and times; words must not repeat across all scheduled notifications while enough words exist.
+- All options are free.
+- **Done when:** with two times and only today's weekday on, exactly two reminders are scheduled for today and none for the other days; the streak saver disappears after answering a card.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Premium
@@ -215,6 +256,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 | Categories | Academic, Everyday, plus 3 fixed sample words of Idioms and Work per level | plus Idioms and Work |
 | Sets | Favorites + 2 custom | Unlimited |
 | AI Coach checks | 3 per day | 50 per day |
+| Flashcards for sets (4.15) | No | Yes |
 
 The free share is fixed (the first words of each language, category and level group), so free users always see the same words. Locked words appear in the feed as a blurred teaser card with a lock icon, at most one in every 15 cards. Tapping it opens the paywall. This is the main conversion moment, so it should be clear in the demo video.
 
@@ -286,10 +328,10 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
-| Tue 29 | 8. Polish | Visual polish (including onboarding), empty states, error states, natural pronunciation step 1 (4.11). | A full run with no crashes. |
+| Tue 29 | 8. Polish and additions | Final colors and app icon (DESIGN.md 3 and 9), then History (4.13), Premium flashcards (4.15), level test (4.14) and notification options (4.16), then visual polish (including onboarding), empty states, error states, natural pronunciation step 1 (4.11). | A full run with no crashes, checked in light and dark mode. |
 | Wed 30 | 9. Submit | README, screenshots, demo video, Devpost submission. | Everything on the checklist below. |
 
-If behind schedule, cut in this order: voice, then blending, then ship a smaller dataset (only entries that passed review). **Never cut the RevenueCat purchase flow.**
+If behind schedule in Phase 8, cut in this order: notification options (4.16), then the level test (4.14). Earlier cut order: voice, then blending, then ship a smaller dataset (only entries that passed review). **Never cut the RevenueCat purchase flow.**
 
 ## 10. Submission checklist
 

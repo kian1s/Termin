@@ -33,7 +33,7 @@ export default function SetsScreen() {
       <Section>
         <Row
           label="Favorites"
-          icon={<Ionicons name="heart" size={20} color={theme.accent} />}
+          icon={<Ionicons name="heart" size={20} color={theme.spark} />}
           value={wordCount(favorites)}
           onPress={() => open(FAVORITES_ID)}
           last

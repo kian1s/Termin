@@ -29,6 +29,8 @@ type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: ()
 type Fallback = 'limit' | 'network' | null;
 
 const VERDICT_TITLE = { correct: 'Correct', partly: 'Partly right', incorrect: 'Not quite' };
+// DESIGN.md 3: verdicts always come with an icon, not color alone.
+const VERDICT_ICON = { correct: 'checkmark-circle', partly: 'remove-circle', incorrect: 'close-circle' } as const;
 
 // A saved word coming back as a question (SPEC 4.4). With the AI Coach the
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
@@ -156,7 +158,10 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
           <>
             {coach && (
               <View style={[styles.result, { backgroundColor: theme.surface, borderColor: verdictColor }]}>
-                <Text style={[styles.resultTitle, { color: verdictColor }]}>{VERDICT_TITLE[coach.verdict]}</Text>
+                <View style={styles.verdictRow}>
+                  <Ionicons name={VERDICT_ICON[coach.verdict]} size={20} color={verdictColor} />
+                  <Text style={[styles.resultTitle, { color: verdictColor }]}>{VERDICT_TITLE[coach.verdict]}</Text>
+                </View>
                 <Text style={[styles.resultText, { color: theme.text }]}>{coach.feedback}</Text>
                 <Example text={coach.improvedSentence} />
                 <Text style={[styles.small, { color: theme.textSecondary }]}>
@@ -173,7 +178,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
                 </Text>
                 {fallback === 'limit' && !isPremium && (
                   <Pressable onPress={showPaywall} hitSlop={8}>
-                    <Text style={[styles.link, { color: theme.accent }]}>Get 50 checks a day with Premium</Text>
+                    <Text style={[styles.link, { color: theme.premium }]}>Get 50 checks a day with Premium</Text>
                   </Pressable>
                 )}
               </View>
@@ -276,6 +281,7 @@ const styles = StyleSheet.create({
   buttonText: { fontSize: 17, fontWeight: '600' },
   result: { borderRadius: Radius.card, borderWidth: 1, padding: Spacing.lg, gap: Spacing.sm },
   resultTitle: { fontSize: 17, fontWeight: '600' },
+  verdictRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
   resultText: { fontSize: 15, lineHeight: 21 },
   small: { fontSize: 13, lineHeight: 18 },
   center: { textAlign: 'center' },

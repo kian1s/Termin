@@ -1,11 +1,25 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
 import { Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 // Native-style grouped list (like iOS Settings), used by Settings and Sets.
+
+// A switch in the theme colors. In dark mode the "on" track is cream, so the
+// knob turns mocha to stay visible.
+export function Toggle({ value, onValueChange }: { value: boolean; onValueChange: (v: boolean) => void }) {
+  const theme = useTheme();
+  return (
+    <Switch
+      value={value}
+      onValueChange={onValueChange}
+      trackColor={{ true: theme.accent }}
+      thumbColor={value && theme.scheme === 'dark' ? theme.background : undefined}
+    />
+  );
+}
 
 export function Section({
   title,

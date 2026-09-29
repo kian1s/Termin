@@ -1,6 +1,7 @@
 import {
   Fraunces_400Regular_Italic,
   Fraunces_600SemiBold,
+  Fraunces_700Bold,
   useFonts,
 } from '@expo-google-fonts/fraunces';
 import * as Notifications from 'expo-notifications';
@@ -31,7 +32,7 @@ export default function RootLayout() {
 function RootStack() {
   const theme = useTheme();
   const { loaded } = useAppState();
-  const [fontsLoaded] = useFonts({ Fraunces_600SemiBold, Fraunces_400Regular_Italic });
+  const [fontsLoaded] = useFonts({ Fraunces_600SemiBold, Fraunces_700Bold, Fraunces_400Regular_Italic });
   const ready = loaded && fontsLoaded;
 
   useEffect(() => {

@@ -49,7 +49,7 @@ export default function AddToSet() {
               label={set.name}
               icon={
                 set.id === FAVORITES_ID ? (
-                  <Ionicons name="heart" size={20} color={theme.accent} />
+                  <Ionicons name="heart" size={20} color={theme.spark} />
                 ) : (
                   <Ionicons name="albums-outline" size={20} color={theme.textSecondary} />
                 )

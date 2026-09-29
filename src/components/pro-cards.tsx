@@ -7,7 +7,18 @@ import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { Level, WordEntry } from '@/lib/types';
 
-// DESIGN.md: a Premium word blurred behind a gold lock. Tapping opens the paywall.
+// The small PREMIUM pill (DESIGN.md 3), optionally with a lock.
+export function PremiumBadge({ lock, label = 'PREMIUM' }: { lock?: boolean; label?: string }) {
+  const theme = useTheme();
+  return (
+    <View style={[styles.pill, { backgroundColor: theme.premiumSoft }]}>
+      {lock && <Ionicons name="lock-closed" size={12} color={theme.premium} />}
+      <Text style={[styles.pillText, { color: theme.premium }]}>{label}</Text>
+    </View>
+  );
+}
+
+// DESIGN.md 6: a Premium word blurred behind a terracotta lock. Tapping opens the paywall.
 export function LockedCard({
   word,
   message,
@@ -29,10 +40,8 @@ export function LockedCard({
         <Example text={word.example} />
       </View>
       <BlurView intensity={40} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.center]}>
-        <Ionicons name="lock-closed" size={40} color={theme.accent} />
-        <View style={[styles.badge, { borderColor: theme.accent }]}>
-          <Text style={[styles.badgeText, { color: theme.accent }]}>PREMIUM</Text>
-        </View>
+        <Ionicons name="lock-closed" size={40} color={theme.premium} />
+        <PremiumBadge />
         <Text style={[styles.message, { color: theme.text }]}>{message}</Text>
         <Text style={[styles.hint, { color: theme.textSecondary }]}>Tap to see Premium</Text>
       </BlurView>
@@ -75,8 +84,15 @@ const styles = StyleSheet.create({
   content: { gap: Spacing.lg },
   center: { alignItems: 'center', justifyContent: 'center', gap: Spacing.md, paddingHorizontal: Spacing.xl },
   definition: { ...Type.body },
-  badge: { borderWidth: 1.5, borderRadius: Radius.chip, paddingHorizontal: Spacing.md, paddingVertical: 2 },
-  badgeText: { fontSize: 13, fontWeight: '700', letterSpacing: 1 },
+  pill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+    borderRadius: Radius.chip,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 3,
+  },
+  pillText: { fontSize: 12, fontWeight: '700', letterSpacing: 1 },
   message: { fontFamily: Fonts.title, fontSize: 26, textAlign: 'center' },
   title: { fontFamily: Fonts.title, fontSize: 30, textAlign: 'center' },
   hint: { fontSize: 15, textAlign: 'center' },

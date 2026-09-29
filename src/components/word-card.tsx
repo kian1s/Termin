@@ -31,7 +31,7 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
   return (
     <View style={[styles.card, { height }]}>
       <View style={styles.content}>
-        <Text style={[Type.label, { color: badge ? theme.accent : theme.textSecondary }]}>
+        <Text style={[Type.label, styles.label, { color: badge ? theme.accent : theme.textSecondary }]}>
           {badge ?? `${word.level} · ${CATEGORY_NAMES[word.category]}`}
         </Text>
         <WordHeading word={word} />
@@ -45,7 +45,7 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
           <Ionicons
             name={favorite ? 'heart' : 'heart-outline'}
             size={30}
-            color={favorite ? theme.accent : theme.textSecondary}
+            color={favorite ? theme.spark : theme.textSecondary}
           />
         </Pressable>
         <Pressable
@@ -76,10 +76,12 @@ export function WordHeading({ word }: { word: WordEntry }) {
   };
 
   return (
-    <View>
+    <View style={styles.heading}>
       <View style={styles.wordRow}>
-        <Text style={[styles.word, { color: theme.text }]} adjustsFontSizeToFit numberOfLines={2}>
+        <Text style={[styles.word, { color: theme.word }]} adjustsFontSizeToFit numberOfLines={2}>
           {word.word}
+          {/* Terracotta dot, echoing the "t." app icon. */}
+          <Text style={{ color: theme.spark }}>.</Text>
         </Text>
         <Pressable onPress={speak} hitSlop={12} accessibilityLabel="Pronounce">
           <Ionicons
@@ -151,9 +153,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.xl,
   },
+  label: { marginBottom: -6 }, // label sits closer to the word it describes
+  heading: { marginBottom: Spacing.xs },
   wordRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
-  pos: { fontSize: 16, fontStyle: 'italic' },
+  pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },
   definition: { ...Type.body },
   example: { borderLeftWidth: 2, paddingLeft: Spacing.lg },
   exampleText: { fontFamily: Fonts.italic, fontSize: 18, lineHeight: 26 },

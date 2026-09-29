@@ -1,7 +1,7 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PremiumBadge } from '@/components/pro-cards';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -20,7 +20,7 @@ type Props = {
   onContinue: () => void;
 };
 
-// One question per screen: large Fraunces question, big rounded chips, one amber button.
+// One question per screen: large Fraunces question, big rounded chips, one accent button.
 // Used by onboarding and by the Settings edit screens.
 export function ChoiceStep({
   eyebrow,
@@ -63,12 +63,7 @@ export function ChoiceStep({
                 <Text style={[styles.chipText, { color: o.locked ? theme.textSecondary : theme.text }]}>
                   {o.label}
                 </Text>
-                {o.locked && (
-                  <View style={styles.pro}>
-                    <Ionicons name="lock-closed" size={14} color={theme.accent} />
-                    <Text style={[styles.proText, { color: theme.accent }]}>PREMIUM</Text>
-                  </View>
-                )}
+                {o.locked && <PremiumBadge lock />}
               </Pressable>
             );
           })}
@@ -104,8 +99,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chipText: { fontSize: 17, flex: 1 },
-  pro: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
-  proText: { fontSize: 12, fontWeight: '700', letterSpacing: 0.8 },
   footer: { paddingHorizontal: Spacing.xl, paddingTop: Spacing.md },
   button: { borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center' },
   buttonText: { fontSize: 17, fontWeight: '600' },

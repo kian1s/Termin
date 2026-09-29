@@ -70,20 +70,20 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
           <Ionicons name="close" size={26} color={theme.textSecondary} />
         </Pressable>
 
-        <Text style={[Type.label, { color: theme.accent }]}>TERMIN PREMIUM</Text>
+        <Text style={[Type.label, { color: theme.premium }]}>TERMIN PREMIUM</Text>
         <Text style={[styles.title, { color: theme.text }]}>Learn the words that matter</Text>
 
         <View style={styles.benefits}>
           {BENEFITS.map((b) => (
             <View key={b.text} style={styles.benefit}>
-              <Ionicons name={b.icon} size={22} color={theme.accent} />
+              <Ionicons name={b.icon} size={22} color={theme.premium} />
               <Text style={[styles.benefitText, { color: theme.text }]}>{b.text}</Text>
             </View>
           ))}
         </View>
 
         {packages === null ? (
-          <ActivityIndicator color={theme.accent} style={{ marginTop: Spacing.xl }} />
+          <ActivityIndicator color={theme.premium} style={{ marginTop: Spacing.xl }} />
         ) : packages.length === 0 ? (
           <Text style={[styles.note, { color: theme.textSecondary }]}>
             Plans could not be loaded. Check your connection and try again.
@@ -106,8 +106,8 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
                   style={[
                     styles.plan,
                     {
-                      backgroundColor: on ? theme.accentSoft : theme.surface,
-                      borderColor: on ? theme.accent : theme.border,
+                      backgroundColor: on ? theme.premiumSoft : theme.surface,
+                      borderColor: on ? theme.premium : theme.border,
                     },
                   ]}>
                   <View style={styles.planText}>
@@ -117,7 +117,7 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
                     </Text>
                   </View>
                   {saving > 0 && (
-                    <View style={[styles.badge, { backgroundColor: theme.accent }]}>
+                    <View style={[styles.badge, { backgroundColor: theme.premium }]}>
                       <Text style={[styles.badgeText, { color: theme.background }]}>Save {saving}%</Text>
                     </View>
                   )}
@@ -134,7 +134,7 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
           disabled={!selected || busy}
           style={({ pressed }) => [
             styles.button,
-            { backgroundColor: theme.accent, opacity: !selected || busy ? 0.5 : pressed ? 0.8 : 1 },
+            { backgroundColor: theme.premium, opacity: !selected || busy ? 0.5 : pressed ? 0.8 : 1 },
           ]}>
           {busy ? (
             <ActivityIndicator color={theme.background} />
