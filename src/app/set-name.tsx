@@ -1,7 +1,8 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -42,17 +43,7 @@ export default function SetName() {
           { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
         ]}
       />
-      <Pressable
-        onPress={save}
-        disabled={!trimmed}
-        style={({ pressed }) => [
-          styles.button,
-          { backgroundColor: theme.accent, opacity: !trimmed ? 0.4 : pressed ? 0.8 : 1 },
-        ]}>
-        <Text style={[styles.buttonText, { color: theme.background }]}>
-          {existing ? 'Save' : 'Create set'}
-        </Text>
-      </Pressable>
+      <StickerButton label={existing ? 'Save' : 'Create set'} onPress={save} disabled={!trimmed} />
     </View>
   );
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { buildTest, QUESTIONS_PER_LEVEL, scoreTest } from '@/lib/level-test';
@@ -68,11 +69,7 @@ export function LevelTest({ lang, currentLevel, onUse, onKeep }: Props) {
             </View>
           ))}
         </View>
-        <Pressable
-          onPress={() => onUse(suggested)}
-          style={({ pressed }) => [styles.button, { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 }]}>
-          <Text style={[styles.buttonText, { color: theme.background }]}>Use {suggested}</Text>
-        </Pressable>
+        <StickerButton label={`Use ${suggested}`} onPress={() => onUse(suggested)} style={styles.button} />
         {!same && (
           <Pressable onPress={onKeep} hitSlop={8} style={styles.textButton}>
             <Text style={[styles.textButtonText, { color: theme.accent }]}>
@@ -113,15 +110,17 @@ export function LevelTest({ lang, currentLevel, onUse, onKeep }: Props) {
             const isAnswer = o === q.answer;
             // After a pick: the right answer turns "correct", a wrong pick turns "wrong".
             const border =
-              picked === null ? theme.border : isAnswer ? theme.correct : chosen ? theme.wrong : theme.border;
+              picked === null ? theme.text : isAnswer ? theme.correct : chosen ? theme.wrong : theme.text;
             const icon = picked !== null && (isAnswer ? 'checkmark-circle' : chosen ? 'close-circle' : null);
             return (
-              <Pressable
+              <Sticker
                 key={o}
                 onPress={() => setPicked(o)}
                 disabled={picked !== null}
-                style={[styles.option, { backgroundColor: theme.surface, borderColor: border }]}
-                accessibilityRole="button">
+                radius={Radius.chip}
+                lift={3}
+                outline={border}
+                contentStyle={styles.option}>
                 <Text
                   style={[
                     styles.optionText,
@@ -131,7 +130,7 @@ export function LevelTest({ lang, currentLevel, onUse, onKeep }: Props) {
                   {o}
                 </Text>
                 {icon && <Ionicons name={icon} size={20} color={isAnswer ? theme.correct : theme.wrong} />}
-              </Pressable>
+              </Sticker>
             );
           })}
         </View>
@@ -148,14 +147,7 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: Spacing.xl, paddingTop: Spacing.xxl, gap: Spacing.lg },
   word: { fontFamily: Fonts.word, fontSize: 40, lineHeight: 50 },
   options: { gap: Spacing.md },
-  option: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.md,
-    borderWidth: 1.5,
-    borderRadius: Radius.chip,
-    padding: Spacing.lg,
-  },
+  option: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md, padding: Spacing.lg },
   optionText: { flex: 1, fontSize: 16, lineHeight: 22 },
   dontKnow: { fontStyle: 'italic' },
   result: { paddingHorizontal: Spacing.xl, gap: Spacing.lg },
@@ -165,7 +157,7 @@ const styles = StyleSheet.create({
   scoreRow: { flexDirection: 'row', justifyContent: 'space-between' },
   scoreLevel: { fontSize: 16, fontWeight: '600' },
   scoreValue: { fontSize: 16 },
-  button: { borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center', marginTop: Spacing.md },
+  button: { marginTop: Spacing.md },
   buttonText: { fontSize: 17, fontWeight: '600' },
   textButton: { alignSelf: 'center', padding: Spacing.sm },
   textButtonText: { fontSize: 17, fontWeight: '600' },

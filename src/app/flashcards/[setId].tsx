@@ -4,7 +4,8 @@ import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-n
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Example, Translation, WordHeading } from '@/components/word-card';
-import { Fonts, mixColors, Radius, Spacing, Type } from '@/constants/theme';
+import { Sticker, StickerButton } from '@/components/sticker';
+import { Fonts, mixColors, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { isDue, STAGES } from '@/lib/progress';
@@ -83,11 +84,7 @@ export default function Flashcards() {
             </View>
           ))}
         </View>
-        <Pressable
-          onPress={restart}
-          style={({ pressed }) => [styles.button, { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 }]}>
-          <Text style={[styles.buttonText, { color: theme.background }]}>Study again</Text>
-        </Pressable>
+        <StickerButton label="Study again" onPress={restart} style={styles.button} />
         <Pressable onPress={() => router.back()} hitSlop={8}>
           <Text style={[styles.textButton, { color: theme.accent }]}>Done</Text>
         </Pressable>
@@ -102,12 +99,12 @@ export default function Flashcards() {
         {index + 1} / {deck.length}
       </Text>
 
-      <Pressable
+      <Sticker
         onPress={flip}
         disabled={flipped}
-        style={[styles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}
-        accessibilityRole="button"
-        accessibilityHint={flipped ? undefined : 'Shows the meaning'}>
+        style={styles.card}
+        contentStyle={styles.cardFace}
+        accessibilityLabel={flipped ? word.word : `${word.word}. Tap to see the meaning`}>
         <ScrollView contentContainerStyle={styles.cardContent} showsVerticalScrollIndicator={false}>
           <WordHeading word={word} />
           {flipped ? (
@@ -120,23 +117,12 @@ export default function Flashcards() {
             <Text style={[styles.hint, { color: theme.textSecondary }]}>Tap to see the meaning</Text>
           )}
         </ScrollView>
-      </Pressable>
+      </Sticker>
 
       {flipped && (
         <View style={styles.row}>
-          <Pressable
-            onPress={() => rate(false)}
-            style={({ pressed }) => [
-              styles.rateButton,
-              { backgroundColor: theme.surface, borderColor: theme.border, borderWidth: 1, opacity: pressed ? 0.8 : 1 },
-            ]}>
-            <Text style={[styles.buttonText, { color: theme.text }]}>Didn&apos;t know</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => rate(true)}
-            style={({ pressed }) => [styles.rateButton, { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 }]}>
-            <Text style={[styles.buttonText, { color: theme.background }]}>Knew it</Text>
-          </Pressable>
+          <StickerButton label="Didn't know" variant="secondary" onPress={() => rate(false)} style={styles.rateButton} />
+          <StickerButton label="Knew it" onPress={() => rate(true)} style={styles.rateButton} />
         </View>
       )}
     </View>
@@ -147,13 +133,14 @@ const styles = StyleSheet.create({
   screen: { flex: 1, paddingHorizontal: Spacing.lg, gap: Spacing.lg },
   center: { alignItems: 'center', justifyContent: 'center', gap: Spacing.lg },
   counter: { textAlign: 'center', marginTop: Spacing.md },
-  card: { flex: 1, borderRadius: Radius.card, borderWidth: StyleSheet.hairlineWidth },
+  card: { flex: 1 },
+  cardFace: { flex: 1 },
   cardContent: { flexGrow: 1, justifyContent: 'center', padding: Spacing.xl, gap: Spacing.lg },
   back: { gap: Spacing.lg },
   hint: { fontSize: 15, textAlign: 'center', marginTop: Spacing.lg },
   row: { flexDirection: 'row', gap: Spacing.md },
-  rateButton: { flex: 1, borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center' },
-  button: { alignSelf: 'stretch', borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center', marginTop: Spacing.lg },
+  rateButton: { flex: 1 },
+  button: { marginTop: Spacing.lg },
   buttonText: { fontSize: 17, fontWeight: '600' },
   textButton: { fontSize: 17, fontWeight: '600', padding: Spacing.sm },
   endTitle: { fontFamily: Fonts.title, fontSize: 28, textAlign: 'center' },

@@ -7,7 +7,8 @@ import { Doodle } from '@/components/doodle-icons';
 import { LevelUpCard, LockedCard } from '@/components/pro-cards';
 import { ReviewCard } from '@/components/review-card';
 import { WordCard } from '@/components/word-card';
-import { Fonts, Radius, Spacing } from '@/constants/theme';
+import { StickerButton } from '@/components/sticker';
+import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { isFreeWord, isLockedWord, isPremiumCategory, levelAbove, stretchEvery, TEASER_EVERY } from '@/lib/gating';
@@ -244,16 +245,12 @@ export default function Feed() {
               ? 'Try another level or category in Practice.'
               : 'These categories need Premium. Upgrade, or add Academic or Everyday in Practice.'}
           </Text>
-          <Pressable
+          <StickerButton
+            label={isPremium ? 'Open Practice' : 'See Premium'}
+            variant={isPremium ? 'primary' : 'premium'}
             onPress={() => (isPremium ? router.push('/practice') : showPaywall())}
-            style={({ pressed }) => [
-              styles.button,
-              { backgroundColor: isPremium ? theme.accent : theme.premium, opacity: pressed ? 0.8 : 1 },
-            ]}>
-            <Text style={[styles.buttonText, { color: theme.background }]}>
-              {isPremium ? 'Open Practice' : 'See Premium'}
-            </Text>
-          </Pressable>
+            style={styles.button}
+          />
         </View>
       ) : (
         height > 0 && (
@@ -319,7 +316,7 @@ const styles = StyleSheet.create({
   empty: { flex: 1, justifyContent: 'center', paddingHorizontal: Spacing.xl, gap: Spacing.md },
   emptyTitle: { fontFamily: Fonts.title, fontSize: 28 },
   emptyText: { fontSize: 17, lineHeight: 24 },
-  button: { borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center', marginTop: Spacing.md },
+  button: { marginTop: Spacing.md },
   buttonText: { fontSize: 17, fontWeight: '600' },
   header: {
     position: 'absolute',

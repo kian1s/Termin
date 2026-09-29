@@ -1,7 +1,17 @@
 import { ReactNode } from 'react';
-import { AccessibilityRole, AccessibilityState, Pressable, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import {
+  AccessibilityRole,
+  AccessibilityState,
+  ActivityIndicator,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 
-import { Radius } from '@/constants/theme';
+import { Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 // DESIGN.md: Termin's indie "sticker" surface. An ink outline and a hard
@@ -76,4 +86,61 @@ export function Sticker({
 const styles = StyleSheet.create({
   shadow: { position: 'absolute', right: 0, bottom: 0 },
   face: { borderWidth: 1.5, overflow: 'hidden' },
+  buttonWrap: { alignSelf: 'stretch' },
+  dim: { opacity: 0.4 },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Spacing.sm,
+    paddingVertical: Spacing.lg - 2,
+    paddingHorizontal: Spacing.lg,
+  },
+  buttonText: { fontSize: 17, fontWeight: '600' },
 });
+
+// The app's main button in the sticker style. primary: accent fill (green in
+// light mode, cream in dark); secondary: plain surface; premium: terracotta.
+export function StickerButton({
+  label,
+  onPress,
+  variant = 'primary',
+  disabled,
+  loading,
+  icon,
+  style,
+}: {
+  label: string;
+  onPress: () => void;
+  variant?: 'primary' | 'secondary' | 'premium';
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: ReactNode;
+  style?: StyleProp<ViewStyle>;
+}) {
+  const theme = useTheme();
+  const fill = variant === 'primary' ? theme.accent : variant === 'premium' ? theme.premium : theme.surface;
+  // Filled buttons use the background color for their label (DESIGN.md 3).
+  const ink = variant === 'secondary' ? theme.text : theme.background;
+  return (
+    <Sticker
+      onPress={onPress}
+      disabled={disabled || loading}
+      radius={Radius.chip}
+      lift={3}
+      fill={fill}
+      style={[styles.buttonWrap, disabled && !loading && styles.dim, style]}
+      contentStyle={styles.button}
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !!disabled, busy: !!loading }}>
+      {loading ? (
+        <ActivityIndicator color={ink} />
+      ) : (
+        <>
+          {icon}
+          <Text style={[styles.buttonText, { color: ink }]}>{label}</Text>
+        </>
+      )}
+    </Sticker>
+  );
+}

@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Example, WordHeading } from '@/components/word-card';
+import { StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { Level, WordEntry } from '@/lib/types';
@@ -69,12 +70,12 @@ export function LevelUpCard({
       <Text style={[styles.hint, { color: theme.textSecondary }]}>
         You have seen most of the words at your level.
       </Text>
-      <Pressable
+      <StickerButton
+        label={`Switch to ${level}`}
         onPress={onPress}
-        style={({ pressed }) => [styles.button, { backgroundColor: theme.accent, opacity: pressed ? 0.8 : 1 }]}>
-        {locked && <Ionicons name="lock-closed" size={16} color={theme.background} />}
-        <Text style={[styles.buttonText, { color: theme.background }]}>Switch to {level}</Text>
-      </Pressable>
+        icon={locked ? <Ionicons name="lock-closed" size={16} color={theme.background} /> : undefined}
+        style={styles.button}
+      />
     </View>
   );
 }
@@ -96,14 +97,6 @@ const styles = StyleSheet.create({
   message: { fontFamily: Fonts.title, fontSize: 26, textAlign: 'center' },
   title: { fontFamily: Fonts.title, fontSize: 30, textAlign: 'center' },
   hint: { fontSize: 15, textAlign: 'center' },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    borderRadius: Radius.chip,
-    paddingVertical: Spacing.lg,
-    paddingHorizontal: Spacing.xxl,
-    marginTop: Spacing.lg,
-  },
+  button: { alignSelf: 'center', marginTop: Spacing.lg },
   buttonText: { fontSize: 17, fontWeight: '600' },
 });

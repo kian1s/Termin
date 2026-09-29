@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PremiumBadge } from '@/components/pro-cards';
-import { Sticker } from '@/components/sticker';
+import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -76,15 +76,7 @@ export function ChoiceStep({
         {extra}
       </ScrollView>
       <View style={[styles.footer, { paddingBottom: insets.bottom + Spacing.lg }]}>
-        <Pressable
-          onPress={onContinue}
-          disabled={!canContinue}
-          style={({ pressed }) => [
-            styles.button,
-            { backgroundColor: theme.accent, opacity: !canContinue ? 0.4 : pressed ? 0.8 : 1 },
-          ]}>
-          <Text style={[styles.buttonText, { color: theme.background }]}>{buttonLabel}</Text>
-        </Pressable>
+        <StickerButton label={buttonLabel} onPress={onContinue} disabled={!canContinue} />
       </View>
     </View>
   );

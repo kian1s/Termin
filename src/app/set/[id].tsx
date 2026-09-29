@@ -4,6 +4,7 @@ import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 
 import { Row, Section } from '@/components/grouped-list';
 import { PremiumBadge } from '@/components/pro-cards';
+import { Sticker } from '@/components/sticker';
 import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -44,24 +45,22 @@ export default function SetScreen() {
 
       {/* SPEC 4.15: Premium flashcards. Free users see it in Premium colors and get the paywall. */}
       <View style={styles.study}>
-        <Pressable
+        <Sticker
           onPress={() =>
             isPremium ? router.push({ pathname: '/flashcards/[setId]', params: { setId: set.id } }) : showPaywall()
           }
           disabled={words.length === 0}
-          style={({ pressed }) => [
-            styles.studyButton,
-            isPremium
-              ? { backgroundColor: theme.accent }
-              : { backgroundColor: theme.premiumSoft, borderColor: theme.premium, borderWidth: 1 },
-            { opacity: words.length === 0 ? 0.4 : pressed ? 0.8 : 1 },
-          ]}>
+          radius={Radius.chip}
+          fill={isPremium ? theme.accent : theme.premiumSoft}
+          outline={isPremium ? theme.text : theme.premium}
+          style={words.length === 0 && styles.dim}
+          contentStyle={styles.studyButton}>
           <Ionicons name="layers-outline" size={20} color={isPremium ? theme.background : theme.premium} />
           <Text style={[styles.studyText, { color: isPremium ? theme.background : theme.premium }]}>
             Study flashcards
           </Text>
           {!isPremium && <PremiumBadge lock />}
-        </Pressable>
+        </Sticker>
         {words.length === 0 && (
           <Text style={[styles.studyHint, { color: theme.textSecondary }]}>Add words to this set to study them.</Text>
         )}
@@ -112,9 +111,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: Spacing.sm,
-    borderRadius: Radius.chip,
     paddingVertical: Spacing.lg,
   },
+  dim: { opacity: 0.4 },
   studyText: { fontSize: 17, fontWeight: '600' },
   studyHint: { fontSize: 14, paddingHorizontal: Spacing.xs },
 });
