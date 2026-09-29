@@ -1,3 +1,4 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -17,13 +18,16 @@ import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { Field } from '@/lib/questions';
+import { usePremium } from '@/lib/premium';
 import { ensureNotificationPermission } from '@/lib/reminder';
 import { CATEGORY_NAMES, LANG_NAMES, Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { settings, saveSettings, devSetLastActive, devMakeAllDue } = useAppState();
+  const { settings, saveSettings, devSetLastActive, devMakeAllDue, devStrongLearner, setDevStrongLearner } =
+    useAppState();
+  const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
   const [showAndroidPicker, setShowAndroidPicker] = useState(false);
   if (!settings) return null;
 
@@ -61,6 +65,24 @@ export default function SettingsScreen() {
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.lg }]}>
       <Text style={[styles.title, { color: theme.text }]}>Settings</Text>
+
+      <Section
+        title="Termin Premium"
+        footer={isPremium ? undefined : 'Premium unlocks Idioms, Work, every C1 and C2 word, and unlimited sets.'}>
+        <Row
+          label={isPremium ? 'Premium is active' : 'Free plan'}
+          icon={<Ionicons name={isPremium ? 'star' : 'star-outline'} size={20} color={theme.accent} />}
+          chevron={false}
+        />
+        {!isPremium && (
+          <Row
+            label="Upgrade to Premium"
+            icon={<Ionicons name="lock-open-outline" size={20} color={theme.accent} />}
+            onPress={showPaywall}
+          />
+        )}
+        <Row label="Restore purchases" onPress={restore} chevron={false} last />
+      </Section>
 
       <Section title="Learning">
         <Row label="Learning language" value={LANG_NAMES[settings.learningLang]} onPress={() => edit('learningLang')} />
@@ -112,7 +134,20 @@ export default function SettingsScreen() {
         <Section title="Developer" footer="Only visible while developing, for testing on the phone.">
           <Row label="Last active: yesterday" onPress={() => devSetLastActive(1)} chevron={false} />
           <Row label="Last active: 3 days ago" onPress={() => devSetLastActive(3)} chevron={false} />
-          <Row label="Make all saved words due" onPress={devMakeAllDue} chevron={false} last />
+          <Row label="Make all saved words due" onPress={devMakeAllDue} chevron={false} />
+          <Row
+            label="Simulate strong learner"
+            right={
+              <Switch value={devStrongLearner} onValueChange={setDevStrongLearner} trackColor={{ true: theme.accent }} />
+            }
+          />
+          <Row label="RevenueCat status" onPress={debugInfo} chevron={false} />
+          <Row
+            label={`Premium override: ${devOverride === null ? 'off' : devOverride ? 'Premium' : 'Free'}`}
+            onPress={() => setDevOverride(devOverride === null ? true : devOverride ? false : null)}
+            chevron={false}
+            last
+          />
         </Section>
       )}
 

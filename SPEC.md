@@ -1,6 +1,6 @@
-# Wordloop: Spec and Build Plan
+# Termin: Spec and Build Plan
 
-Working name "Wordloop". Rename freely.
+App name: **Termin** (renamed from the working name "Wordloop" in Phase 4). The paid tier is **Termin Premium**.
 
 An interactive vocabulary app for advanced learners. Users scroll through a feed of words, save them into sets for a purpose ("Debate", "Analytical essays"), and saved words come back in the feed as recall questions that the user answers by voice or text, graded by an AI coach.
 
@@ -148,7 +148,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.5 AI Coach (grading)
 - The app sends the answer to the Worker (section 6) and shows the verdict, a short piece of feedback in the native language, and an improved example sentence.
 - The verdict counts as correct or wrong for the Leitner schedule. A "partly" verdict counts as correct.
-- **Free:** 3 AI checks per day. **Pro:** up to 50 per day.
+- **Free:** 3 AI checks per day. **Premium:** up to 50 per day.
 - On a network error, fall back to Reveal plus self-rating.
 
 ### 4.6 Voice answers
@@ -179,7 +179,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 
 ### 4.10 Settings
 - Edit languages, level, and categories.
-- Show Pro status. **Restore purchases** button. Link to the paywall.
+- Show Premium status. **Restore purchases** button. Link to the paywall.
 
 ### 4.11 Natural pronunciation
 - The speaker button should sound as human as possible instead of the default robotic voice.
@@ -199,33 +199,34 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 | Struggling | Under 60% correct | No stretch cards until accuracy recovers |
 
 - Stretch cards show a small **Stretch · C1** badge. Saving and reviewing work as normal.
-- If the level above is Pro and the user is free, stretch cards are locked teasers ("You're ready for C1") that open the paywall, at most one per 15 cards.
+- If the learner is ready but the level above has locked words, those words become locked teasers ("You're ready for C1") that open the paywall, at most one per 15 cards.
 - A development-only Settings row, "Simulate strong learner", makes it testable.
 - **Done when:** with "Simulate strong learner" on, stretch cards appear at the expected rate, and a free B2 learner sees locked C1 teasers.
 
 ## 5. Monetization (RevenueCat)
 
-### Free vs Pro
+### Free vs Premium
 
-| | Free | Pro |
+| | Free | Premium |
 |---|---|---|
-| Levels | B1, B2 | B1 to C2 (Idioms at every level) |
-| Categories | Academic, Everyday, Work | plus Idioms |
+| Levels | All levels (B1 to C2) | All levels |
+| Words | All B1 and B2; 2/3 of C1 Everyday, 1/4 of C1 Academic; half of C2 Academic and Everyday | Every word |
+| Categories | Academic, Everyday, plus 3 fixed sample words of Idioms and Work per level | plus Idioms and Work |
 | Sets | Favorites + 2 custom | Unlimited |
 | AI Coach checks | 3 per day | 50 per day |
 
-Locked content appears in the feed as a blurred teaser card with a lock icon. Tapping it opens the paywall. This is the main conversion moment, so it should be clear in the demo video.
+The free share is fixed (the first words of each language, category and level group), so free users always see the same words. Locked words appear in the feed as a blurred teaser card with a lock icon, at most one in every 15 cards. Tapping it opens the paywall. This is the main conversion moment, so it should be clear in the demo video.
 
 ### RevenueCat configuration
 
 Use the RevenueCat AI Toolkit MCP where possible.
 
 - Create a project and a **Test Store** app.
-- Entitlement: `pro`.
-- Products: `pro_monthly` (CHF/USD 3.99) and `pro_annual` (CHF/USD 24.99), both attached to `pro`.
+- Entitlement: `premium`.
+- Products: `premium_monthly` (USD 4.99) and `premium_annual` (USD 49.99), both attached to `premium`.
 - Offering: `default`, with both packages.
-- Paywall: build it in the RevenueCat dashboard and show it with `react-native-purchases-ui`.
-- The app configures the SDK once at startup with the **Test Store public API key** from `EXPO_PUBLIC_REVENUECAT_API_KEY`. Pro status is `customerInfo.entitlements.active.pro`, and the app listens for customer info updates.
+- Paywall: build it in the RevenueCat dashboard and show it with `react-native-purchases-ui`. **Expo Go cannot render dashboard paywalls** (Preview API mode shows only a placeholder), so in Expo Go the app opens its own paywall screen (`src/app/paywall.tsx`). It loads the current offering from RevenueCat and buys with `Purchases.purchasePackage`, which in Expo Go shows RevenueCat's simulated Test Store alert. Native builds use the dashboard paywall.
+- The app configures the SDK once at startup with the **Test Store public API key** from `EXPO_PUBLIC_REVENUECAT_API_KEY`. Premium status is `customerInfo.entitlements.active.premium`, and the app listens for customer info updates.
 - Include restore purchases.
 
 A comment in the code and a line in the README must say that the Test Store key is replaced with platform keys before any store release.
@@ -277,7 +278,7 @@ Dynamic Island and Live Activities (they need native Swift on a Mac), developmen
 | Fri 25 | 1. Feed | Onboarding, the feed with about 15 hand-written sample words, the translation seen/blurred rule, the pronunciation button, and Settings including the daily reminder (4.9). Follow DESIGN.md. | Scroll, tap the speaker, change settings, restart and see blurred translations on repeat words. |
 | Sat 26 | 2. Sets and review | Sets, saving, review cards, Leitner scheduling, the Progress tab, the streak, and smart reminders (4.9). | Save 3 words, see them come back as reviews, and see Progress and the streak update. A reminder quizzes a saved word. |
 | Sat 26 | 3. Content | Run the dataset pipeline in `DATASET.md` (test batch first), review the flags, load the real data. | The feed shows real words for each language. |
-| Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, locked teaser cards, and blending (4.12). | In Expo Go on the iPhone, a **Test Store purchase unlocks Pro**. If it does not, stop and report before continuing. |
+| Sun 27 | 4. RevenueCat | Configure Test Store, the paywall, gating, restore, locked teaser cards, and blending (4.12). | In Expo Go on the iPhone, a **Test Store purchase unlocks Premium**. If it does not, stop and report before continuing. |
 | Mon 28 | 5. AI Coach | Deploy the Worker and connect typed answers to grading. | Answers get graded, and the limit returns 429. |
 | Tue 29 | 6. Voice | Record with `expo-audio`, transcribe on the Worker. | A spoken answer is transcribed and graded. |
 | Tue 29 | 7. Buffer | Fix whatever broke in Phases 4 to 6. | |
@@ -291,7 +292,7 @@ If behind schedule, cut in this order: voice, then blending, then ship a smaller
 - [ ] The GitHub repo is public, with an MIT `LICENSE`, and contains no secrets. Search the repo for `sk_` and `OPENROUTER`.
 - [ ] The README covers what the app is, features, the tech stack, setup steps, environment variables (with example values only), how RevenueCat is used, and known limitations.
 - [ ] `.env.example` files exist for the app, the scripts, and the worker.
-- [ ] The demo video is under 2 minutes and public or unlisted. It shows onboarding, the feed, saving to a set, a review card answered by voice with AI feedback, hitting a locked card, the paywall, a Test Store purchase, and Pro unlocking.
+- [ ] The demo video is under 2 minutes and public or unlisted. It shows onboarding, the feed, saving to a set, a review card answered by voice with AI feedback, hitting a locked card, the paywall, a Test Store purchase, and Premium unlocking.
 - [ ] The Devpost description is written by the owner, not by AI.
 - [ ] The Next Gen category is selected, and the student email is verified.
 - [ ] Submitted before Wednesday evening.

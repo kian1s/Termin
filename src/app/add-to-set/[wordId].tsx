@@ -7,6 +7,8 @@ import { Row, Section } from '@/components/grouped-list';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { FREE_CUSTOM_SETS } from '@/lib/gating';
+import { usePremium } from '@/lib/premium';
 import { FAVORITES_ID } from '@/lib/types';
 import { wordById } from '@/lib/words';
 
@@ -15,6 +17,8 @@ export default function AddToSet() {
   const theme = useTheme();
   const { wordId } = useLocalSearchParams<{ wordId: string }>();
   const { sets, addToSet, removeFromSet } = useAppState();
+  const { isPremium, showPaywall } = usePremium();
+  const atLimit = !isPremium && sets.length - 1 >= FREE_CUSTOM_SETS;
   const word = wordById(wordId);
   if (!word) return null;
 
@@ -31,7 +35,9 @@ export default function AddToSet() {
         <Row
           label="New set"
           icon={<Ionicons name="add" size={22} color={theme.accent} />}
-          onPress={() => router.replace({ pathname: '/set-name', params: { wordId } })}
+          onPress={() =>
+            atLimit ? showPaywall() : router.replace({ pathname: '/set-name', params: { wordId } })
+          }
           chevron={false}
           last={sets.length === 0}
         />

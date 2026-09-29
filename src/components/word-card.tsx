@@ -16,9 +16,11 @@ type Props = {
   nativeLang: Lang;
   translationHidden: boolean;
   height: number;
+  // Replaces the level label, e.g. "Stretch · C1" (SPEC 4.12).
+  badge?: string;
 };
 
-export function WordCard({ word, nativeLang, translationHidden, height }: Props) {
+export function WordCard({ word, nativeLang, translationHidden, height, badge }: Props) {
   const theme = useTheme();
   const { sets, toggleFavorite } = useAppState();
   const favorite = sets.find((s) => s.id === FAVORITES_ID)?.wordIds.includes(word.id);
@@ -30,8 +32,8 @@ export function WordCard({ word, nativeLang, translationHidden, height }: Props)
   return (
     <View style={[styles.card, { height }]}>
       <View style={styles.content}>
-        <Text style={[Type.label, { color: theme.textSecondary }]}>
-          {word.level} · {CATEGORY_NAMES[word.category]}
+        <Text style={[Type.label, { color: badge ? theme.accent : theme.textSecondary }]}>
+          {badge ?? `${word.level} · ${CATEGORY_NAMES[word.category]}`}
         </Text>
         <WordHeading word={word} />
         <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>

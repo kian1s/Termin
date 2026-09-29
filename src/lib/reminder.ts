@@ -116,7 +116,7 @@ async function schedule(
     const pick = words.length ? words[wordIndex++ % words.length] : null;
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: 'Wordloop',
+        title: 'Termin',
         body: !pick
           ? 'New words are waiting for you. A few minutes keeps them in your head.'
           : pick.saved

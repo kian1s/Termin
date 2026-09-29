@@ -1,3 +1,4 @@
+import { isPremiumCategory } from '@/lib/gating';
 import { CATEGORIES, CATEGORY_NAMES, LANG_NAMES, LANGS, LEVELS, Settings } from '@/lib/types';
 
 export type Field = 'learningLang' | 'nativeLang' | 'level' | 'categories';
@@ -12,7 +13,8 @@ const LEVEL_HINTS = {
 };
 
 // Question text and options for each setting, shared by onboarding and Settings.
-export function questionFor(field: Field, draft: Partial<Settings>) {
+// Categories that need Premium are marked `locked` for free users.
+export function questionFor(field: Field, draft: Partial<Settings>, isPremium: boolean) {
   switch (field) {
     case 'learningLang':
       return {
@@ -41,7 +43,11 @@ export function questionFor(field: Field, draft: Partial<Settings>) {
         question: 'What do you need words for?',
         hint: 'Pick one or more.',
         multi: true,
-        options: CATEGORIES.map((c) => ({ value: c, label: CATEGORY_NAMES[c] })),
+        options: CATEGORIES.map((c) => ({
+          value: c,
+          label: CATEGORY_NAMES[c],
+          locked: !isPremium && isPremiumCategory(c),
+        })),
       };
   }
 }

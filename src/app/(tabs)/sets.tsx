@@ -7,6 +7,8 @@ import { Row, Section } from '@/components/grouped-list';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { FREE_CUSTOM_SETS } from '@/lib/gating';
+import { usePremium } from '@/lib/premium';
 import { FAVORITES_ID, WordSet } from '@/lib/types';
 
 function wordCount(set: WordSet) {
@@ -17,6 +19,7 @@ export default function SetsScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const { sets } = useAppState();
+  const { isPremium, showPaywall } = usePremium();
   const favorites = sets.find((s) => s.id === FAVORITES_ID)!;
   const custom = sets.filter((s) => s.id !== FAVORITES_ID);
   const open = (id: string) => router.push({ pathname: '/set/[id]', params: { id } });
@@ -37,7 +40,13 @@ export default function SetsScreen() {
         />
       </Section>
 
-      <Section title="Your sets" footer="Group words by purpose, like “Debate” or “Essay on climate”.">
+      <Section
+        title="Your sets"
+        footer={
+          isPremium
+            ? 'Group words by purpose, like “Debate” or “Essay on climate”.'
+            : `Free includes ${FREE_CUSTOM_SETS} sets of your own. Premium makes them unlimited.`
+        }>
         {custom.map((set) => (
           <Row
             key={set.id}
@@ -50,7 +59,9 @@ export default function SetsScreen() {
         <Row
           label="New set"
           icon={<Ionicons name="add" size={22} color={theme.accent} />}
-          onPress={() => router.push('/set-name')}
+          onPress={() =>
+            !isPremium && custom.length >= FREE_CUSTOM_SETS ? showPaywall() : router.push('/set-name')
+          }
           chevron={false}
           last
         />

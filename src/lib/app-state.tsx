@@ -24,6 +24,8 @@ type Data = {
   sets: WordSet[];
   reviews: Record<string, ReviewState>;
   stats: Stats;
+  recentAnswers: boolean[]; // last 20 review results, for stretch cards (SPEC 4.12)
+  levelUpShown: string[]; // "lang|level" pairs that already showed the one-time level-up card
 };
 
 const EMPTY: Data = {
@@ -32,6 +34,8 @@ const EMPTY: Data = {
   sets: [FAVORITES],
   reviews: {},
   stats: EMPTY_STATS,
+  recentAnswers: [],
+  levelUpShown: [],
 };
 
 const KEYS = Object.keys(EMPTY) as (keyof Data)[];
@@ -55,6 +59,11 @@ type AppState = {
   recordCardView: () => void;
   answer: (wordId: string, correct: boolean) => ReviewState;
   findDueWord: (allowed: (wordId: string) => boolean) => string | null;
+  recentAnswers: boolean[];
+  levelUpShown: string[];
+  markLevelUpShown: (key: string) => void;
+  devStrongLearner: boolean;
+  setDevStrongLearner: (on: boolean) => void;
   devSetLastActive: (daysAgo: number) => void;
   devMakeAllDue: () => void;
 };
@@ -81,6 +90,7 @@ function updateSet(d: Data, setId: string, fn: (s: WordSet) => WordSet): Data {
 export function AppStateProvider({ children }: { children: ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   const [data, setData] = useState<Data>(EMPTY);
+  const [devStrongLearner, setDevStrongLearner] = useState(false);
   const dataRef = useRef(data);
 
   useEffect(() => {
@@ -200,6 +210,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         update((d2) => ({
           ...d2,
           reviews: { ...d2.reviews, [wordId]: next },
+          recentAnswers: [...d2.recentAnswers, correct].slice(-20),
           stats: withActivity({ ...forToday(d2.stats), reviewsToday: forToday(d2.stats).reviewsToday + 1 }),
         }));
         return next;
@@ -214,6 +225,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
           .sort((a, b) => dueOrder(d.reviews[a]) - dueOrder(d.reviews[b]));
         return due[0] ?? null;
       },
+
+      markLevelUpShown: (key: string) =>
+        update((d) => (d.levelUpShown.includes(key) ? d : { ...d, levelUpShown: [...d.levelUpShown, key] })),
 
       // Development-only helpers for testing the streak and reviews on a phone.
       devSetLastActive: (daysAgo: number) =>
@@ -249,6 +263,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         savedIds,
         reviews: data.reviews,
         stats,
+        recentAnswers: data.recentAnswers,
+        levelUpShown: data.levelUpShown,
+        devStrongLearner,
+        setDevStrongLearner,
         ...actions,
       }}>
       {children}

@@ -1,4 +1,4 @@
-import { Lang, Settings, WordEntry } from '@/lib/types';
+import { Category, Lang, Level, Settings, WordEntry } from '@/lib/types';
 
 // Words are bundled with the app, generated and checked by scripts/dataset.
 const WORDS: Record<Lang, WordEntry[]> = {
@@ -10,9 +10,15 @@ const WORDS: Record<Lang, WordEntry[]> = {
 };
 
 export function wordsFor(settings: Settings): WordEntry[] {
-  return WORDS[settings.learningLang].filter(
-    (w) => w.level === settings.level && settings.categories.includes(w.category)
-  );
+  return wordsAt(settings.learningLang, settings.level, settings.categories);
+}
+
+export function wordsAt(lang: Lang, level: Level, categories: Category[]): WordEntry[] {
+  return WORDS[lang].filter((w) => w.level === level && categories.includes(w.category));
+}
+
+export function allWords(lang: Lang): WordEntry[] {
+  return WORDS[lang];
 }
 
 // Fisher–Yates shuffle that avoids starting with `avoidFirst`, so a new round

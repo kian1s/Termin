@@ -12,6 +12,7 @@ import { AppState } from 'react-native';
 
 import { useTheme } from '@/hooks/use-theme';
 import { AppStateProvider, useAppState } from '@/lib/app-state';
+import { PremiumProvider } from '@/lib/premium';
 import { scheduleReminders } from '@/lib/reminder';
 
 SplashScreen.preventAutoHideAsync();
@@ -19,8 +20,10 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   return (
     <AppStateProvider>
-      <RootStack />
-      <ReminderSync />
+      <PremiumProvider>
+        <RootStack />
+        <ReminderSync />
+      </PremiumProvider>
     </AppStateProvider>
   );
 }
@@ -61,6 +64,7 @@ function RootStack() {
         <Stack.Screen name="set/[id]" options={{ headerShown: true, title: '', headerBackTitle: 'Sets' }} />
         <Stack.Screen name="add-to-set/[wordId]" options={{ ...sheet, sheetAllowedDetents: [0.5, 1] }} />
         <Stack.Screen name="set-name" options={{ ...sheet, sheetAllowedDetents: [0.4] }} />
+        <Stack.Screen name="paywall" options={{ presentation: 'modal' }} />
       </Stack>
     </>
   );

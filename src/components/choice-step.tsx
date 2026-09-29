@@ -1,10 +1,11 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
-type Option = { value: string; label: string };
+type Option = { value: string; label: string; locked?: boolean };
 
 type Props = {
   eyebrow?: string;
@@ -13,6 +14,8 @@ type Props = {
   options: Option[];
   selected: string[];
   onToggle: (value: string) => void;
+  // Called instead of onToggle when a Premium option is tapped by a free user.
+  onLocked?: () => void;
   buttonLabel: string;
   onContinue: () => void;
 };
@@ -26,6 +29,7 @@ export function ChoiceStep({
   options,
   selected,
   onToggle,
+  onLocked,
   buttonLabel,
   onContinue,
 }: Props) {
@@ -46,7 +50,7 @@ export function ChoiceStep({
             return (
               <Pressable
                 key={o.value}
-                onPress={() => onToggle(o.value)}
+                onPress={() => (o.locked ? onLocked?.() : onToggle(o.value))}
                 accessibilityRole="button"
                 accessibilityState={{ selected: on }}
                 style={[
@@ -56,7 +60,15 @@ export function ChoiceStep({
                     borderColor: on ? theme.accent : theme.border,
                   },
                 ]}>
-                <Text style={[styles.chipText, { color: theme.text }]}>{o.label}</Text>
+                <Text style={[styles.chipText, { color: o.locked ? theme.textSecondary : theme.text }]}>
+                  {o.label}
+                </Text>
+                {o.locked && (
+                  <View style={styles.pro}>
+                    <Ionicons name="lock-closed" size={14} color={theme.accent} />
+                    <Text style={[styles.proText, { color: theme.accent }]}>PREMIUM</Text>
+                  </View>
+                )}
               </Pressable>
             );
           })}
@@ -88,8 +100,12 @@ const styles = StyleSheet.create({
     borderRadius: Radius.chip,
     paddingVertical: Spacing.lg,
     paddingHorizontal: Spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  chipText: { fontSize: 17 },
+  chipText: { fontSize: 17, flex: 1 },
+  pro: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
+  proText: { fontSize: 12, fontWeight: '700', letterSpacing: 0.8 },
   footer: { paddingHorizontal: Spacing.xl, paddingTop: Spacing.md },
   button: { borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center' },
   buttonText: { fontSize: 17, fontWeight: '600' },
