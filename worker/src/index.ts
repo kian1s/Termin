@@ -154,6 +154,8 @@ async function transcribe(req: Request, env: Env) {
   }
   const deviceId = form.get('deviceId');
   const audio = form.get('audio');
+  const learningLang = form.get('learningLang');
+  const word = form.get('word');
   if (typeof deviceId !== 'string' || !UUID.test(deviceId)) return json({ error: 'Invalid deviceId' }, 400);
   if (!audio || typeof audio === 'string') return json({ error: 'Missing audio' }, 400);
   if (audio.size > MAX_AUDIO_BYTES) return json({ error: 'Audio too long' }, 400);
@@ -162,8 +164,18 @@ async function transcribe(req: Request, env: Env) {
     return json({ error: 'Daily limit reached' }, 429);
   }
   try {
+    // Whisper Large v3 Turbo takes base64 audio, a language hint, and a prompt.
+    // Naming the reviewed word in the prompt helps it spell that word right.
     const bytes = new Uint8Array(await audio.arrayBuffer());
-    const out = (await env.AI.run('@cf/openai/whisper', { audio: [...bytes] })) as { text?: string };
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    }
+    const out = (await env.AI.run('@cf/openai/whisper-large-v3-turbo', {
+      audio: btoa(binary),
+      ...(typeof learningLang === 'string' && LANGS[learningLang] ? { language: learningLang } : {}),
+      ...(typeof word === 'string' && word.length <= 120 ? { initial_prompt: `The answer is about the word "${word}".` } : {}),
+    })) as { text?: string };
     return json({ text: (out.text ?? '').trim() });
   } catch {
     return json({ error: 'Transcription failed' }, 502);

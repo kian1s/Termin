@@ -1,3 +1,4 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import {
   ActivityIndicator,
@@ -17,6 +18,7 @@ import { useAppState } from '@/lib/app-state';
 import { checkAnswer, coachAvailable, CoachResult } from '@/lib/coach';
 import { usePremium } from '@/lib/premium';
 import { describeNext } from '@/lib/progress';
+import { useVoiceAnswer } from '@/lib/voice';
 import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
 // `onFinished` fires once the card is checked or revealed, unlocking the feed.
@@ -40,6 +42,10 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
   const [revealed, setRevealed] = useState(false);
   const [next, setNext] = useState<{ correct: boolean; state: ReviewState } | null>(null);
 
+  // Voice answers fill the text box, so the user can edit before checking.
+  const voice = useVoiceAnswer(word, (spoken) => setText((t) => (t.trim() ? `${t.trim()} ${spoken}` : spoken)));
+  const busy = checking || voice.state !== 'idle';
+
   const rate = (correct: boolean) => setNext({ correct, state: answer(word.id, correct) });
 
   const check = async () => {
@@ -60,7 +66,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
     rate(result.verdict !== 'incorrect');
   };
 
-  const canCheck = coachAvailable && text.trim().length > 0 && !checking;
+  const canCheck = coachAvailable && text.trim().length > 0 && !busy;
   const verdictColor = coach
     ? { correct: theme.correct, partly: theme.partly, incorrect: theme.wrong }[coach.verdict]
     : theme.border;
@@ -78,19 +84,49 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
               What does <Text style={styles.promptWord}>{word.word}</Text> mean? Use it in a
               sentence.
             </Text>
-            <TextInput
-              value={text}
-              onChangeText={setText}
-              placeholder="Type your answer…"
-              placeholderTextColor={theme.textSecondary}
-              multiline
-              maxLength={500}
-              editable={!checking}
-              style={[
-                styles.input,
-                { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
-              ]}
-            />
+            <View>
+              <TextInput
+                value={text}
+                onChangeText={setText}
+                placeholder={coachAvailable ? 'Type or speak your answer…' : 'Type your answer…'}
+                placeholderTextColor={theme.textSecondary}
+                multiline
+                maxLength={500}
+                editable={!busy}
+                style={[
+                  styles.input,
+                  coachAvailable && styles.inputWithMic,
+                  { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
+                ]}
+              />
+              {coachAvailable && (
+                <Pressable
+                  onPress={voice.toggle}
+                  disabled={voice.state === 'transcribing' || checking}
+                  accessibilityLabel={voice.state === 'recording' ? 'Stop recording' : 'Answer by voice'}
+                  style={[
+                    styles.mic,
+                    { backgroundColor: voice.state === 'recording' ? theme.wrong : theme.accent },
+                  ]}>
+                  {voice.state === 'transcribing' ? (
+                    <ActivityIndicator color={theme.background} />
+                  ) : (
+                    <Ionicons
+                      name={voice.state === 'recording' ? 'stop' : 'mic'}
+                      size={22}
+                      color={theme.background}
+                    />
+                  )}
+                </Pressable>
+              )}
+            </View>
+            {voice.state !== 'idle' && (
+              <Text style={[styles.small, { color: voice.state === 'recording' ? theme.wrong : theme.textSecondary }]}>
+                {voice.state === 'recording'
+                  ? `Recording… ${voice.seconds}s of 30. Tap to stop.`
+                  : 'Transcribing…'}
+              </Text>
+            )}
             <View style={styles.row}>
               <Button
                 label="Reveal"
@@ -210,6 +246,17 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     fontSize: 17,
     textAlignVertical: 'top',
+  },
+  inputWithMic: { paddingRight: 64 },
+  mic: {
+    position: 'absolute',
+    right: Spacing.sm,
+    bottom: Spacing.sm,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   row: { flexDirection: 'row', gap: Spacing.md },
   button: {

@@ -67,3 +67,28 @@ export async function checkAnswer(
     clearTimeout(timer);
   }
 }
+
+// Sends a recorded answer to the Worker's Whisper endpoint (SPEC 4.6).
+// Returns the transcript, or null on any error.
+export async function transcribe(uri: string, word: WordEntry): Promise<string | null> {
+  if (!COACH_URL) return null;
+  const form = new FormData();
+  form.append('deviceId', await getDeviceId());
+  form.append('learningLang', word.lang);
+  form.append('word', word.word);
+  const ext = uri.split('.').pop()?.toLowerCase() ?? 'wav';
+  // React Native uploads a local file from an object with uri, name and type.
+  form.append('audio', { uri, name: `answer.${ext}`, type: ext === 'wav' ? 'audio/wav' : 'audio/m4a' } as unknown as Blob);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 30_000);
+  try {
+    const res = await fetch(`${COACH_URL}/transcribe`, { method: 'POST', body: form, signal: controller.signal });
+    if (!res.ok) return null;
+    const { text } = (await res.json()) as { text?: string };
+    return text?.trim() || null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}

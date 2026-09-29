@@ -33,7 +33,13 @@
           "imageWidth": 76
         }
       ],
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Termin uses the microphone so you can answer review cards by voice."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

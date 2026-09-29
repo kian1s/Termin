@@ -259,7 +259,7 @@ Rules:
 - Ask the model for strict JSON and validate it before returning.
 - Do not log answers.
 - `deviceId` is a random UUID stored locally in the app. The app's Worker URL comes from `EXPO_PUBLIC_COACH_URL`.
-**`POST /transcribe`**: accepts the recorded audio (max 30 seconds, max about 2 MB) plus `deviceId` and `learningLang`. It transcribes with Cloudflare Workers AI Whisper (`@cf/openai/whisper`), which runs inside the same Worker and needs no extra key. It returns `{ "text": "..." }`. Apply a daily limit per `deviceId` (for example 60 per day). Do not store audio.
+**`POST /transcribe`**: accepts the recorded audio (max 30 seconds, max about 2 MB) plus `deviceId` and `learningLang`. It transcribes with Cloudflare Workers AI Whisper (`@cf/openai/whisper-large-v3-turbo`, with the learning language and the reviewed word as hints, so the key word is spelled correctly), which runs inside the same Worker and needs no extra key. It returns `{ "text": "..." }`. Apply a daily limit per `deviceId` (for example 60 per day). Do not store audio.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 
