@@ -1,7 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Constants from 'expo-constants';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   Alert,
   Linking,
@@ -29,6 +30,21 @@ export default function SettingsScreen() {
     useAppState();
   const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
   const [showAndroidPicker, setShowAndroidPicker] = useState(false);
+  // Developer tools stay hidden (e.g. while filming) until the version row is
+  // tapped 5 times in a row. Only possible in development builds.
+  const [showDev, setShowDev] = useState(false);
+  const versionTaps = useRef({ count: 0, last: 0 });
+  const onVersionTap = () => {
+    if (!__DEV__) return;
+    const now = Date.now();
+    const t = versionTaps.current;
+    t.count = now - t.last < 1500 ? t.count + 1 : 1;
+    t.last = now;
+    if (t.count >= 5) {
+      t.count = 0;
+      setShowDev((on) => !on);
+    }
+  };
   if (!settings) return null;
 
   const { reminder } = settings;
@@ -135,8 +151,18 @@ export default function SettingsScreen() {
         )}
       </Section>
 
-      {__DEV__ && (
-        <Section title="Developer" footer="Only visible while developing, for testing on the phone.">
+      <Section title="About">
+        <Row
+          label="Version"
+          value={Constants.expoConfig?.version ?? '1.0.0'}
+          onPress={onVersionTap}
+          chevron={false}
+          last
+        />
+      </Section>
+
+      {__DEV__ && showDev && (
+        <Section title="Developer" footer="For testing only. Tap Version 5 times to hide.">
           <Row label="Last active: yesterday" onPress={() => devSetLastActive(1)} chevron={false} />
           <Row label="Last active: 3 days ago" onPress={() => devSetLastActive(3)} chevron={false} />
           <Row label="Make all saved words due" onPress={devMakeAllDue} chevron={false} />

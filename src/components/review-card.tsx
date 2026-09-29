@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
+  ScrollView,
   Platform,
   Pressable,
   StyleSheet,
@@ -75,7 +76,14 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={[styles.page, { height }]}>
-      <View style={[styles.card, { borderColor: theme.accent }]}>
+      {/* Scrolls inside itself when the Coach's answer makes it taller than the screen. */}
+      <ScrollView
+        style={[styles.card, { borderColor: theme.accent, maxHeight: height - Spacing.lg * 2 }]}
+        contentContainerStyle={styles.cardContent}
+        alwaysBounceVertical={false}
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}>
         <Text style={[Type.label, styles.reviewLabel, { color: theme.accent }]}>Review</Text>
 
         {!revealed ? (
@@ -189,7 +197,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
             )}
           </>
         )}
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
@@ -231,11 +239,11 @@ function Button({
 const styles = StyleSheet.create({
   page: { justifyContent: 'center', padding: Spacing.lg },
   card: {
+    flexGrow: 0,
     borderWidth: 1,
     borderRadius: Radius.card,
-    padding: Spacing.xl,
-    gap: Spacing.lg,
   },
+  cardContent: { padding: Spacing.xl, gap: Spacing.lg },
   reviewLabel: { fontWeight: '600' },
   prompt: { fontFamily: Fonts.title, fontSize: 26, lineHeight: 34 },
   promptWord: { fontFamily: Fonts.italic },
