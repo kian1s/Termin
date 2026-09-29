@@ -134,6 +134,7 @@ export default function Feed() {
     latest.current = { seenIds, learningLang: settings?.learningLang, level: settings?.level };
   });
   const viewedKeys = useRef(new Set<string>());
+  const listRef = useRef<FlatList<Item>>(null);
   const sinceReview = useRef(0);
 
   const levelUpDue = (m: Mix) =>
@@ -254,6 +255,7 @@ export default function Feed() {
       ) : (
         height > 0 && (
           <FlatList
+            ref={listRef}
             data={feed.items}
             keyExtractor={(i) => i.key}
             renderItem={renderItem}
@@ -273,6 +275,18 @@ export default function Feed() {
             onEndReachedThreshold={3}
             onViewableItemsChanged={onViewableItemsChanged}
             scrollEnabled={!blockingKey}
+            // One card per swipe, so a fast flick cannot skip ahead.
+            disableIntervalMomentum
+            scrollEventThrottle={16}
+            onScroll={(e) => {
+              // Hard stop: never scroll past an unfinished review card, however
+              // fast the swipe. Reviews are only added ahead of the current card.
+              const stop = feed.items.findIndex((i) => i.kind === 'review' && !doneReviews.has(i.key));
+              if (stop >= 0 && e.nativeEvent.contentOffset.y > stop * height + 1) {
+                listRef.current?.scrollToOffset({ offset: stop * height, animated: false });
+                setBlockingKey(feed.items[stop].key);
+              }
+            }}
             onMomentumScrollEnd={(e) => {
               // Once the feed settles on an unfinished review card, lock it there.
               const item = feed.items[Math.round(e.nativeEvent.contentOffset.y / height)];
