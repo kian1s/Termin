@@ -26,7 +26,7 @@ export default function SettingsScreen() {
     devStrongLearner,
     setDevStrongLearner,
   } = useAppState();
-  const { isPremium, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
+  const { isPremium, plan, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
   // SPEC 4.11: show the voice used for the learning language. Re-check when the
   // app returns, since better voices can be downloaded in the iPhone Settings.
   const learningLang = settings?.learningLang;
@@ -77,6 +77,11 @@ export default function SettingsScreen() {
         footer={isPremium ? undefined : 'Premium unlocks Idioms, Work, every C1 and C2 word, and unlimited sets.'}>
         <Row
           label={isPremium ? 'Premium is active' : 'Free plan'}
+          subtitle={
+            plan
+              ? `${plan.period} plan${plan.renews ? ` · renews ${plan.renews.toDateString().slice(4)}` : ''}`
+              : undefined
+          }
           icon={<Ionicons name={isPremium ? 'star' : 'star-outline'} size={20} color={theme.premium} />}
           right={isPremium ? <PremiumBadge /> : undefined}
           chevron={false}

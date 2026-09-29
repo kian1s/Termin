@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
@@ -13,6 +14,9 @@ import { usePremium } from '@/lib/premium';
 // Termin's own paywall. Expo Go cannot show RevenueCat's dashboard paywalls,
 // so this screen loads the current offering from RevenueCat and buys through
 // the RevenueCat SDK (the Test Store while developing).
+const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
+const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
+
 const BENEFITS = [
   { icon: 'chatbubbles-outline', text: 'Idioms and Work vocabulary' },
   { icon: 'trending-up-outline', text: 'Every C1 and C2 word' },
@@ -158,6 +162,15 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
         <Text style={[styles.note, { color: theme.textSecondary }]}>
           Renews automatically. Cancel anytime in your account settings.
         </Text>
+        <View style={styles.legal}>
+          <Pressable onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)} hitSlop={8}>
+            <Text style={[styles.legalLink, { color: theme.textSecondary }]}>Terms</Text>
+          </Pressable>
+          <Text style={[styles.note, { color: theme.textSecondary }]}>·</Text>
+          <Pressable onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)} hitSlop={8}>
+            <Text style={[styles.legalLink, { color: theme.textSecondary }]}>Privacy</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -185,5 +198,7 @@ const styles = StyleSheet.create({
   buttonText: { fontSize: 17, fontWeight: '600' },
   restore: { fontSize: 15, textDecorationLine: 'underline' },
   note: { fontSize: 13, textAlign: 'center' },
+  legal: { flexDirection: 'row', gap: Spacing.sm, alignItems: 'center' },
+  legalLink: { fontSize: 13, textDecorationLine: 'underline' },
   retry: { alignItems: 'center', gap: Spacing.md, marginTop: Spacing.lg },
 });

@@ -1,11 +1,11 @@
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ChoiceStep } from '@/components/choice-step';
 import { LevelTest } from '@/components/level-test';
-import { Spacing } from '@/constants/theme';
+import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { DEFAULT_REMINDER, useAppState } from '@/lib/app-state';
 import { usePremium } from '@/lib/premium';
@@ -50,7 +50,13 @@ export default function Onboarding() {
       key={field}
       header={
         step === 0 ? (
-          <Image source={LOGO[theme.scheme]} style={{ width: 88, height: 88 }} accessibilityLabel="Termin" />
+          <View style={styles.intro}>
+            <Image source={LOGO[theme.scheme]} style={styles.logo} accessibilityLabel="Termin" />
+            <Text style={[styles.welcome, { color: theme.text }]}>Welcome to Termin.</Text>
+            <Text style={[styles.tagline, { color: theme.textSecondary }]}>
+              Words worth knowing, one card at a time.
+            </Text>
+          </View>
         ) : undefined
       }
       eyebrow={`${step + 1} of ${FIELDS.length}`}
@@ -78,6 +84,10 @@ export default function Onboarding() {
 }
 
 const styles = StyleSheet.create({
+  intro: { gap: Spacing.xs, marginBottom: Spacing.lg },
+  logo: { width: 88, height: 88, marginBottom: Spacing.sm },
+  welcome: { fontFamily: Fonts.title, fontSize: 22 },
+  tagline: { fontSize: 16, lineHeight: 22 },
   testLink: { alignSelf: 'center', padding: Spacing.sm, marginTop: Spacing.sm },
   testLinkText: { fontSize: 16, fontWeight: '600', textDecorationLine: 'underline' },
 });
