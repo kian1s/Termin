@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -8,6 +9,8 @@ import { useTheme } from '@/hooks/use-theme';
 type Option = { value: string; label: string; locked?: boolean };
 
 type Props = {
+  // Shown above everything else, e.g. the logo on the first onboarding screen.
+  header?: ReactNode;
   eyebrow?: string;
   question: string;
   hint?: string;
@@ -23,6 +26,7 @@ type Props = {
 // One question per screen: large Fraunces question, big rounded chips, one accent button.
 // Used by onboarding and by the Settings edit screens.
 export function ChoiceStep({
+  header,
   eyebrow,
   question,
   hint,
@@ -41,6 +45,7 @@ export function ChoiceStep({
     <View style={[styles.screen, { backgroundColor: theme.background }]}>
       <ScrollView
         contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.xxl }]}>
+        {header}
         {eyebrow && <Text style={[Type.label, { color: theme.textSecondary }]}>{eyebrow}</Text>}
         <Text style={[styles.question, { color: theme.text }]}>{question}</Text>
         {hint && <Text style={[styles.hint, { color: theme.textSecondary }]}>{hint}</Text>}
