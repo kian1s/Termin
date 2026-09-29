@@ -56,7 +56,7 @@ Next Gen judging criteria: a clear, useful, original idea, meaningful progress t
 ### Languages, levels, categories
 
 - **Learning language:** English, French, German, Spanish, Portuguese (`en fr de es pt`).
-- **Native language:** the same five. It must differ from the learning language. It is used for translations and AI feedback.
+- **Native language:** the same five. It may be the same as the learning language (for example a native English speaker building advanced English vocabulary); cards then show no translation. It is used for translations and, by default, AI feedback.
 - **Levels:** B1, B2, C1, C2.
 - **Categories:** `academic` (essays, analysis, argument, linking words; includes the former Debate words), `everyday` (natural conversation, collocations, phrasal verbs, register), `work` (meetings, emails, negotiation), `idioms` (fixed expressions with a non-literal meaning). Debate was dropped as a category in Phase 3; learners can build a Debate set instead. Details in `DATASET.md`.
 

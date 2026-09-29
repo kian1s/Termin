@@ -28,12 +28,9 @@ export function questionFor(field: Field, draft: Partial<Settings>, isPremium: b
     case 'nativeLang':
       return {
         question: 'What is your native language?',
-        hint: 'Used for translations and feedback.',
+        hint: 'Used for translations and feedback. It can be the same as the language you are learning; cards then show no translation.',
         multi: false,
-        options: LANGS.filter((l) => l !== draft.learningLang).map((l) => ({
-          value: l,
-          label: LANG_NAMES[l],
-        })),
+        options: LANGS.map((l) => ({ value: l, label: LANG_NAMES[l] })),
       };
     case 'level':
       return {
@@ -61,7 +58,9 @@ export function questionFor(field: Field, draft: Partial<Settings>, isPremium: b
         multi: false,
         options: [
           { value: 'native', label: `Your native language${native ? ` (${LANG_NAMES[native]})` : ''}` },
-          { value: 'learning', label: `The language you're learning${learning ? ` (${LANG_NAMES[learning]})` : ''}` },
+          ...(learning !== native
+            ? [{ value: 'learning', label: `The language you're learning${learning ? ` (${LANG_NAMES[learning]})` : ''}` }]
+            : []),
           ...LANGS.filter((l) => l !== native && l !== learning).map((l) => ({ value: l, label: LANG_NAMES[l] })),
         ],
       };
@@ -76,8 +75,8 @@ export function selectedFor(field: Field, draft: Partial<Settings>): string[] {
   return v ? [v] : [];
 }
 
-// Applies a chip tap to the draft. Picking the native language as the learning
-// language swaps the two, so they always differ.
+// Applies a chip tap to the draft. The native and learning language may be the
+// same, e.g. a native English speaker building advanced English vocabulary.
 export function toggle(field: Field, draft: Partial<Settings>, value: string): Partial<Settings> {
   if (field === 'categories') {
     const cur = draft.categories ?? [];
@@ -85,9 +84,6 @@ export function toggle(field: Field, draft: Partial<Settings>, value: string): P
       ? cur.filter((c) => c !== value)
       : [...cur, value as (typeof cur)[number]];
     return { ...draft, categories: next };
-  }
-  if (field === 'learningLang' && value === draft.nativeLang) {
-    return { ...draft, learningLang: draft.nativeLang, nativeLang: draft.learningLang };
   }
   return { ...draft, [field]: value };
 }
