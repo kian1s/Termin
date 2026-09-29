@@ -141,7 +141,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.4 Review cards in the feed
 - Every **5th card** in the feed is a review card for a saved word that is due, if one exists.
 - The review card asks: "What does **X** mean? Use it in a sentence."
-- While an unanswered review card is on screen, the feed cannot be swiped. Checking the answer or tapping Reveal unlocks it.
+- While a review card is on screen, the feed cannot be swiped until the answer is rated: by the AI Coach after Check, or by the user with Didn't / Knew it after Reveal. Revealing alone does not unlock it.
 - The user answers by voice (4.6) or text. With AI Coach available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
 - **Scheduling (Leitner boxes):** Box 1 is due after 5 more cards. Box 2 is due after 1 day, box 3 after 3 days, and box 4 after 7 days. A correct answer moves the word up one box. A wrong answer moves it back to box 1.
 - **Done when:** a saved word reliably reappears as a review card and its box changes with the answer.

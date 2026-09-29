@@ -9,6 +9,13 @@ import { useAppState } from '@/lib/app-state';
 import { currentStreak } from '@/lib/progress';
 
 const BOXES = [1, 2, 3, 4] as const;
+// What each Leitner box means for the learner (SPEC 4.4 timings).
+const BOX_INFO = [
+  { name: 'New', meaning: 'Comes back within a few cards' },
+  { name: 'Learning', meaning: 'Comes back after 1 day' },
+  { name: 'Familiar', meaning: 'Comes back after 3 days' },
+  { name: 'Learned', meaning: 'Comes back after 7 days' },
+];
 
 // SPEC 4.7: all numbers are computed from local data.
 export default function ProgressScreen() {
@@ -41,44 +48,38 @@ export default function ProgressScreen() {
 
       <View style={styles.boxes}>
         <Text style={[Type.label, { color: theme.textSecondary }]}>Saved words by box</Text>
-        <View style={[styles.bar, { backgroundColor: theme.surface, borderColor: theme.border }]}>
-          {total > 0 &&
-            perBox.map((count, i) =>
-              count > 0 ? (
-                <View
-                  key={i}
-                  style={{
-                    flex: count,
-                    backgroundColor: mixColors(theme.accentSoft, theme.accent, i / 3),
-                  }}
-                />
-              ) : null
-            )}
-        </View>
-        <View style={styles.legend}>
-          {BOXES.map((box, i) => (
-            <View key={box} style={styles.legendItem}>
+        <Text style={[styles.hint, { color: theme.textSecondary }]}>
+          Every saved word sits in one of four boxes. Know it in a review and it moves up a box, so it comes
+          back less often. Miss it and it starts again in box 1.
+        </Text>
+        <View style={[styles.boxList, { backgroundColor: theme.surface, borderColor: theme.border }]}>
+          {BOXES.map((box, i) => {
+            const count = perBox[i];
+            const color = mixColors(theme.accentSoft, theme.accent, (i + 1) / 4);
+            return (
               <View
-                style={[
-                  styles.swatch,
-                  { backgroundColor: mixColors(theme.accentSoft, theme.accent, i / 3) },
-                ]}
-              />
-              <Text style={[styles.legendText, { color: theme.textSecondary }]}>
-                Box {box}: {perBox[i]}
-              </Text>
-            </View>
-          ))}
+                key={box}
+                style={[styles.boxRow, i < BOXES.length - 1 && { borderBottomColor: theme.border, borderBottomWidth: StyleSheet.hairlineWidth }]}>
+                <View style={styles.boxHead}>
+                  <View style={[styles.swatch, { backgroundColor: color }]} />
+                  <Text style={[styles.boxName, { color: theme.text }]}>
+                    Box {box} · {BOX_INFO[i].name}
+                  </Text>
+                  <Text style={[styles.boxCount, { color: theme.text }]}>{count}</Text>
+                </View>
+                <Text style={[styles.boxMeaning, { color: theme.textSecondary }]}>{BOX_INFO[i].meaning}</Text>
+                <View style={[styles.track, { backgroundColor: theme.background }]}>
+                  <View style={[styles.fill, { backgroundColor: color, width: `${total ? (count / total) * 100 : 0}%` }]} />
+                </View>
+              </View>
+            );
+          })}
         </View>
         {total === 0 && (
           <Text style={[styles.hint, { color: theme.text }]}>
             No saved words yet. Tap the heart on a card in the feed, and it will start here in box 1.
           </Text>
         )}
-        <Text style={[styles.hint, { color: theme.textSecondary }]}>
-          A word moves up a box each time you know it and back to box 1 when you don’t. Box 4 means
-          learned.
-        </Text>
       </View>
     </ScrollView>
   );
@@ -105,16 +106,14 @@ const styles = StyleSheet.create({
   statValueRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
   statValue: { fontFamily: Fonts.title, fontSize: 40, lineHeight: 48 },
   boxes: { gap: Spacing.md },
-  bar: {
-    height: 16,
-    borderRadius: Radius.chip,
-    borderWidth: StyleSheet.hairlineWidth,
-    flexDirection: 'row',
-    overflow: 'hidden',
-  },
-  legend: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.lg },
-  legendItem: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
-  swatch: { width: 10, height: 10, borderRadius: 5 },
-  legendText: { fontSize: 14 },
+  boxList: { borderRadius: Radius.card, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: Spacing.lg },
+  boxRow: { paddingVertical: Spacing.md, gap: Spacing.xs },
+  boxHead: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
+  boxName: { flex: 1, fontSize: 16, fontWeight: '600' },
+  boxCount: { fontFamily: Fonts.title, fontSize: 20 },
+  boxMeaning: { fontSize: 14, marginLeft: 12 + Spacing.sm },
+  track: { height: 6, borderRadius: 3, overflow: 'hidden', marginTop: Spacing.xs },
+  fill: { height: 6, borderRadius: 3 },
+  swatch: { width: 12, height: 12, borderRadius: 6 },
   hint: { fontSize: 14, lineHeight: 20 },
 });

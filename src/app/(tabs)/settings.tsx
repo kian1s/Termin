@@ -97,7 +97,6 @@ export default function SettingsScreen() {
         <Row label="Learning language" value={LANG_NAMES[settings.learningLang]} onPress={() => edit('learningLang')} />
         <Row label="Native language" value={LANG_NAMES[settings.nativeLang]} onPress={() => edit('nativeLang')} />
         <Row label="Level" value={settings.level} onPress={() => edit('level')} />
-        <Row label="Find my level" onPress={() => router.push('/level-test')} />
         <Row
           label="Categories"
           value={settings.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}
@@ -107,6 +106,20 @@ export default function SettingsScreen() {
           label="AI Coach language"
           value={LANG_NAMES[coachFeedbackLang(settings)]}
           onPress={() => edit('coachLanguage')}
+          last
+        />
+      </Section>
+
+      <Section title="Progress">
+        <Row
+          label="History"
+          icon={<Ionicons name="time-outline" size={20} color={theme.textSecondary} />}
+          onPress={() => router.push('/history')}
+        />
+        <Row
+          label="Find my level"
+          icon={<Ionicons name="speedometer-outline" size={20} color={theme.textSecondary} />}
+          onPress={() => router.push('/level-test')}
           last
         />
       </Section>

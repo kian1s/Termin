@@ -22,7 +22,7 @@ import { describeNext } from '@/lib/progress';
 import { useVoiceAnswer } from '@/lib/voice';
 import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
-// `onFinished` fires once the card is checked or revealed, unlocking the feed.
+// `onFinished` fires once the answer is rated (by the AI Coach or by the user), unlocking the feed.
 type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: () => void };
 
 // Why the card fell back to Reveal and self-rating instead of the AI Coach.
@@ -49,7 +49,11 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
   const voice = useVoiceAnswer(word, (spoken) => setText((t) => (t.trim() ? `${t.trim()} ${spoken}` : spoken)));
   const busy = checking || voice.state !== 'idle';
 
-  const rate = (correct: boolean) => setNext({ correct, state: answer(word.id, correct) });
+  // Rating is what unlocks the feed: Reveal alone is not enough.
+  const rate = (correct: boolean) => {
+    setNext({ correct, state: answer(word.id, correct) });
+    onFinished();
+  };
 
   const check = async () => {
     setChecking(true);
@@ -59,12 +63,10 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
     if (typeof result === 'string') {
       setFallback(result);
       setRevealed(true);
-      onFinished();
       return;
     }
     setCoach(result);
     setRevealed(true);
-    onFinished();
     // A "partly" verdict counts as correct for the Leitner schedule.
     rate(result.verdict !== 'incorrect');
   };
@@ -91,7 +93,12 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
         {!revealed ? (
           <>
             <Text style={[styles.prompt, { color: theme.text }]}>
-              What does <Text style={styles.promptWord}>{word.word}</Text> mean? Use it in a
+              What does{' '}
+              <Text style={[styles.promptWord, { color: theme.word, backgroundColor: theme.accentSoft }]}>
+                {' '}
+                {word.word}{' '}
+              </Text>{' '}
+              mean? Use it in a
               sentence.
             </Text>
             <View>
@@ -140,10 +147,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
             <View style={styles.row}>
               <Button
                 label="Reveal"
-                onPress={() => {
-                  setRevealed(true);
-                  onFinished();
-                }}
+                onPress={() => setRevealed(true)}
                 primary={!coachAvailable}
               />
               {coachAvailable && (
@@ -151,7 +155,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
               )}
             </View>
             <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
-              {checking ? 'The AI Coach is reading your answer…' : 'Answer or reveal to keep scrolling.'}
+              {checking ? 'The AI Coach is reading your answer…' : 'Answer or reveal, then rate yourself to keep scrolling.'}
             </Text>
           </>
         ) : (
@@ -190,10 +194,15 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
             <Translation word={word} nativeLang={nativeLang} />
 
             {!next ? (
-              <View style={styles.row}>
-                <Button label="Didn't" onPress={() => rate(false)} />
-                <Button label="Knew it" onPress={() => rate(true)} primary />
-              </View>
+              <>
+                <View style={styles.row}>
+                  <Button label="Didn't" onPress={() => rate(false)} />
+                  <Button label="Knew it" onPress={() => rate(true)} primary />
+                </View>
+                <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
+                  Rate yourself to keep scrolling.
+                </Text>
+              </>
             ) : (
               <Text style={[styles.small, { color: theme.textSecondary }]}>
                 {!coach && (next.correct ? 'Nice. ' : 'No problem. ')}
@@ -251,7 +260,7 @@ const styles = StyleSheet.create({
   cardContent: { padding: Spacing.xl, gap: Spacing.lg },
   reviewLabel: { fontWeight: '600' },
   prompt: { fontFamily: Fonts.title, fontSize: 26, lineHeight: 34 },
-  promptWord: { fontFamily: Fonts.italic },
+  promptWord: { fontFamily: Fonts.word },
   input: {
     minHeight: 96,
     borderWidth: StyleSheet.hairlineWidth,
