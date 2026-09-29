@@ -1,9 +1,9 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View, ViewToken } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Doodle } from '@/components/doodle-icons';
 import { LevelUpCard, LockedCard } from '@/components/pro-cards';
 import { ReviewCard } from '@/components/review-card';
 import { WordCard } from '@/components/word-card';
@@ -12,7 +12,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { isFreeWord, isLockedWord, isPremiumCategory, levelAbove, stretchEvery, TEASER_EVERY } from '@/lib/gating';
 import { usePremium } from '@/lib/premium';
-import { currentStreak } from '@/lib/progress';
+import { currentStreak, dayKey } from '@/lib/progress';
 import { CATEGORY_NAMES, Level, WordEntry } from '@/lib/types';
 import { allWords, shuffled, wordById, wordsAt, wordsFor } from '@/lib/words';
 
@@ -303,10 +303,10 @@ export default function Feed() {
 
       <View style={[styles.header, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
         <Pressable onPress={() => router.push('/history')} hitSlop={10} accessibilityLabel="History">
-          <Ionicons name="time-outline" size={20} color={theme.textSecondary} />
+          <Doodle name="history" size={24} color={theme.textSecondary} />
         </Pressable>
         <View style={styles.streak} pointerEvents="none">
-          <Ionicons name="flame" size={18} color={theme.spark} />
+          <Doodle name="flame" size={22} filled={stats.lastActive === dayKey()} />
           <Text style={[styles.streakText, { color: theme.spark }]}>{streak}</Text>
         </View>
       </View>

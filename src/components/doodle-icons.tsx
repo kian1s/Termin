@@ -2,14 +2,33 @@ import Svg, { Circle, Path } from 'react-native-svg';
 
 import { useTheme } from '@/hooks/use-theme';
 
-// Termin's own hand-drawn icons: loose ink lines with round ends, each with the
+// Termin's own hand-drawn icons: loose ink lines with round ends, most with the
 // terracotta dot from the "t." app icon. Drawn on a 24 x 24 grid, deliberately
 // a little uneven so they feel made by hand.
 
-export type DoodleName = 'history' | 'levelTest' | 'learning' | 'native' | 'level' | 'categories' | 'coach';
+export type DoodleName =
+  | 'history'
+  | 'levelTest'
+  | 'learning'
+  | 'native'
+  | 'level'
+  | 'categories'
+  | 'coach'
+  | 'heart'
+  | 'plus'
+  | 'speaker'
+  | 'flame'
+  | 'check'
+  | 'seed'
+  | 'sprout'
+  | 'plant'
+  | 'flower';
 
-// Ink strokes and where the terracotta dot sits, per icon.
-const DOODLES: Record<DoodleName, { paths: string[]; dot: [number, number] }> = {
+const SOIL = 'M4.4 19c5-.5 10.1-.4 15.1.1';
+
+// Ink strokes, where the terracotta dot sits (if any), and whether the shape
+// can be filled (heart when saved, flame for an active streak).
+const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fillable?: boolean }> = {
   // An hourglass, the dot is the last grain of sand.
   history: {
     paths: [
@@ -35,7 +54,11 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot: [number, number] }> = 
   },
   // A small house, the dot is a lit window.
   native: {
-    paths: ['M4.3 11.4c2.4-2.4 4.9-4.6 7.7-6.8 2.7 2.1 5.3 4.4 7.8 6.7', 'M6.4 9.9c-.2 3.2-.1 6.4.1 9.6 3.8.2 7.6.2 11.3-.1.2-3.1.1-6.3-.1-9.5', 'M10.1 19.4c-.1-1.6-.1-3.2 0-4.8 1.2-.1 2.5-.1 3.8 0 .1 1.6.1 3.2 0 4.8'],
+    paths: [
+      'M4.3 11.4c2.4-2.4 4.9-4.6 7.7-6.8 2.7 2.1 5.3 4.4 7.8 6.7',
+      'M6.4 9.9c-.2 3.2-.1 6.4.1 9.6 3.8.2 7.6.2 11.3-.1.2-3.1.1-6.3-.1-9.5',
+      'M10.1 19.4c-.1-1.6-.1-3.2 0-4.8 1.2-.1 2.5-.1 3.8 0 .1 1.6.1 3.2 0 4.8',
+    ],
     dot: [12, 11.2],
   },
   // Steps going up, the dot at the top.
@@ -45,7 +68,9 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot: [number, number] }> = 
   },
   // A luggage tag, the dot is its hole.
   categories: {
-    paths: ['M4.3 12.4c-.2-2.4-.2-4.8 0-7.2.1-.6.5-1 1.1-1 2.4-.1 4.8-.1 7.2.1 2.4 2.4 4.7 4.8 7.1 7.3.4.4.4 1 0 1.4-2.1 2.2-4.3 4.4-6.5 6.5-.4.4-1 .4-1.4 0-2.6-2.3-5-4.6-7.5-7.1z'],
+    paths: [
+      'M4.3 12.4c-.2-2.4-.2-4.8 0-7.2.1-.6.5-1 1.1-1 2.4-.1 4.8-.1 7.2.1 2.4 2.4 4.7 4.8 7.1 7.3.4.4.4 1 0 1.4-2.1 2.2-4.3 4.4-6.5 6.5-.4.4-1 .4-1.4 0-2.6-2.3-5-4.6-7.5-7.1z',
+    ],
     dot: [8.3, 8.2],
   },
   // A sparkle with a small companion.
@@ -56,17 +81,89 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot: [number, number] }> = 
     ],
     dot: [7.4, 19.2],
   },
+  // A slightly lopsided heart; filled terracotta once saved.
+  heart: {
+    paths: [
+      'M12 19.8c-3.3-2.3-7.7-5.7-7.9-9.5-.2-2.6 1.6-4.8 4.1-4.9 1.7-.1 3 .9 3.9 2.4.9-1.5 2.3-2.5 4-2.4 2.5.1 4.2 2.4 4 4.9-.3 3.8-4.8 7.2-8.1 9.5z',
+    ],
+    fillable: true,
+  },
+  plus: {
+    paths: ['M12.1 5.1c.1 4.6.1 9.2-.1 13.8', 'M5.2 12.1c4.6-.2 9.2-.2 13.7.1'],
+    dot: [18.6, 5.4],
+  },
+  // A speaker with two sound waves.
+  speaker: {
+    paths: [
+      'M4.6 9.5c1.2-.1 2.4-.1 3.6 0l4.4-3.8c.2 4.2.2 8.4-.1 12.6l-4.3-3.8c-1.2.1-2.4.1-3.6 0-.2-1.7-.2-3.4 0-5z',
+      'M15.5 9.2c1 1.6 1 3.9-.1 5.6',
+      'M18.1 6.8c2.3 3 2.3 7.6-.1 10.6',
+    ],
+  },
+  // A flame; filled terracotta on active days.
+  flame: {
+    paths: [
+      'M12 20.5c-3.6 0-6.4-2.5-6.3-6 0-3.2 2.4-4.9 3.7-7.7.6 1.6 1.3 2.5 2.3 3 .1-2.7 1.2-4.9 3.1-6.5-.2 2.9 1 4.5 2.3 6.3.9 1.3 1.4 2.7 1.4 4.4 0 3.9-2.8 6.5-6.5 6.5z',
+    ],
+    fillable: true,
+  },
+  check: { paths: ['M6.9 12.6c1 .9 2 1.9 2.9 3 2.2-2.8 4.6-5.3 7.3-7.6'] },
+  // The four stages of a saved word, as a plant growing in soil.
+  seed: {
+    paths: [SOIL, 'M12 17.1c-1.9 0-3.1-1.1-3.1-2.6 0-1.6 1.4-2.7 3.1-2.7s3.1 1.1 3.1 2.7c0 1.5-1.3 2.6-3.1 2.6z'],
+    dot: [12, 9.4],
+  },
+  sprout: {
+    paths: [SOIL, 'M12 18.7c0-2.7 0-5.2.1-7.9', 'M12 12.6c-2.8.3-4.8-1.4-5.2-4.1 2.9-.3 4.9 1.2 5.2 4.1z'],
+    dot: [15.8, 9.3],
+  },
+  plant: {
+    paths: [
+      SOIL,
+      'M12 18.7c0-4.1 0-7.9.1-11.8',
+      'M12 13.8c-2.9.2-4.7-1.5-5.1-4.2 2.9-.2 4.8 1.4 5.1 4.2z',
+      'M12.1 10.5c2.9.3 4.8-1.2 5.3-4-2.9-.3-4.9 1.1-5.3 4z',
+    ],
+    dot: [12.1, 5.1],
+  },
+  flower: {
+    paths: [
+      SOIL,
+      'M12 18.7c0-3.1 0-5.9.1-8.8',
+      'M12 15.2c2.5.1 4.1-1.2 4.4-3.5-2.5-.1-4.1 1.1-4.4 3.5z',
+      'M12 9.8c-1.9 0-3.3-1.3-3.3-3s1.4-3 3.3-3 3.3 1.3 3.3 3-1.4 3-3.3 3z',
+    ],
+    dot: [12, 6.8],
+  },
 };
 
-export function Doodle({ name, size = 26 }: { name: DoodleName; size?: number }) {
+type Props = {
+  name: DoodleName;
+  size?: number;
+  // Ink color; defaults to the text color.
+  color?: string;
+  // Fill fillable shapes (heart, flame) with terracotta.
+  filled?: boolean;
+};
+
+export function Doodle({ name, size = 26, color, filled }: Props) {
   const theme = useTheme();
-  const { paths, dot } = DOODLES[name];
+  const { paths, dot, fillable } = DOODLES[name];
+  const ink = color ?? theme.text;
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       {paths.map((d, i) => (
-        <Path key={i} d={d} stroke={theme.text} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+        <Path
+          key={i}
+          d={d}
+          stroke={ink}
+          fill={fillable && filled ? theme.spark : 'none'}
+          strokeWidth={1.8}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       ))}
-      <Circle cx={dot[0]} cy={dot[1]} r={1.7} fill={theme.spark} />
+      {dot && <Circle cx={dot[0]} cy={dot[1]} r={1.7} fill={theme.spark} />}
     </Svg>
   );
 }

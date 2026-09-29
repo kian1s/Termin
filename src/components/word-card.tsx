@@ -1,4 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
@@ -8,6 +7,8 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
+import { Doodle } from '@/components/doodle-icons';
+import { Sticker } from '@/components/sticker';
 import { useAppState } from '@/lib/app-state';
 import { bestVoice } from '@/lib/voices';
 import { CATEGORY_NAMES, FAVORITES_ID, Lang, SPEECH_VOICES, WordEntry } from '@/lib/types';
@@ -42,19 +43,23 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
       </View>
 
       <View style={styles.actions}>
-        <Pressable onPress={onHeart} hitSlop={10} accessibilityLabel="Save to Favorites">
-          <Ionicons
-            name={favorite ? 'heart' : 'heart-outline'}
-            size={30}
-            color={favorite ? theme.spark : theme.textSecondary}
-          />
-        </Pressable>
-        <Pressable
+        <Sticker
+          onPress={onHeart}
+          radius={ACTION / 2}
+          lift={3}
+          contentStyle={styles.action}
+          accessibilityLabel={favorite ? 'Remove from Favorites' : 'Save to Favorites'}
+          accessibilityState={{ selected: !!favorite }}>
+          <Doodle name="heart" size={28} filled={!!favorite} />
+        </Sticker>
+        <Sticker
           onPress={() => router.push({ pathname: '/add-to-set/[wordId]', params: { wordId: word.id } })}
-          hitSlop={10}
+          radius={ACTION / 2}
+          lift={3}
+          contentStyle={styles.action}
           accessibilityLabel="Add to set">
-          <Ionicons name="add" size={32} color={theme.textSecondary} />
-        </Pressable>
+          <Doodle name="plus" size={28} />
+        </Sticker>
       </View>
     </View>
   );
@@ -87,11 +92,7 @@ export function WordHeading({ word }: { word: WordEntry }) {
           <Text style={{ color: theme.spark }}>.</Text>
         </Text>
         <Pressable onPress={speak} hitSlop={12} accessibilityLabel="Pronounce">
-          <Ionicons
-            name="volume-medium-outline"
-            size={26}
-            color={speaking ? theme.accent : theme.textSecondary}
-          />
+          <Doodle name="speaker" size={28} color={speaking ? theme.spark : theme.textSecondary} />
         </Pressable>
       </View>
       <Text style={[styles.pos, { color: theme.textSecondary }]}>{word.partOfSpeech}</Text>
@@ -153,6 +154,9 @@ export function Translation({
   );
 }
 
+// Size of the round sticker buttons (heart, add to set).
+const ACTION = 52;
+
 const styles = StyleSheet.create({
   card: { justifyContent: 'center', paddingHorizontal: Spacing.xl },
   content: { gap: Spacing.lg },
@@ -166,6 +170,7 @@ const styles = StyleSheet.create({
   },
   label: { marginBottom: -6 }, // label sits closer to the word it describes
   heading: { marginBottom: Spacing.xs },
+  action: { width: ACTION, height: ACTION, alignItems: 'center', justifyContent: 'center' },
   wordRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
   pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },

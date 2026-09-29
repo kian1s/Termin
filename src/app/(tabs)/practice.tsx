@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Doodle, DoodleName } from '@/components/doodle-icons';
-import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
+import { Sticker } from '@/components/sticker';
+import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { dayKey } from '@/lib/progress';
@@ -114,9 +115,6 @@ export default function Practice() {
   );
 }
 
-// How far the hard shadow sits to the bottom right.
-const LIFT = 4;
-
 function Tile({
   icon,
   label,
@@ -131,33 +129,18 @@ function Tile({
   children?: ReactNode;
 }) {
   const theme = useTheme();
-  // A solid shadow block, like a sticker or a printed card: ink in light mode,
-  // the deep shadow token in dark mode so it reads as depth.
-  const shadow = theme.scheme === 'dark' ? theme.shadow : theme.text;
   return (
-    <View style={styles.tileWrap}>
-      <View style={[styles.shadowBlock, { backgroundColor: shadow }]} />
-      <Pressable
-        onPress={onPress}
-        accessibilityRole="button"
-        accessibilityLabel={label}
-        style={({ pressed }) => [
-          styles.tile,
-          tall && styles.tall,
-          {
-            backgroundColor: theme.surface,
-            borderColor: theme.text,
-            // Pressing slides the tile into its shadow, like a real button.
-            transform: pressed ? [{ translateX: LIFT - 1 }, { translateY: LIFT - 1 }] : [],
-          },
-        ]}>
-        <View style={styles.tileHead}>
-          <Doodle name={icon} size={26} />
-          <Text style={[Type.label, { color: theme.textSecondary }]}>{label}</Text>
-        </View>
-        {children}
-      </Pressable>
-    </View>
+    <Sticker
+      onPress={onPress}
+      accessibilityLabel={label}
+      style={styles.flex}
+      contentStyle={[styles.tile, tall && styles.tall]}>
+      <View style={styles.tileHead}>
+        <Doodle name={icon} size={26} />
+        <Text style={[Type.label, { color: theme.textSecondary }]}>{label}</Text>
+      </View>
+      {children}
+    </Sticker>
   );
 }
 
@@ -168,16 +151,8 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 15 },
   section: { paddingHorizontal: Spacing.xs, marginTop: Spacing.md },
   row: { flexDirection: 'row', gap: Spacing.sm },
-  // The wrapper leaves room for the shadow block at the bottom right.
-  tileWrap: { flex: 1, paddingRight: LIFT, paddingBottom: LIFT },
-  shadowBlock: { position: 'absolute', top: LIFT, left: LIFT, right: 0, bottom: 0, borderRadius: Radius.card },
-  tile: {
-    flex: 1,
-    borderRadius: Radius.card,
-    borderWidth: 1.5,
-    padding: Spacing.lg,
-    gap: Spacing.sm,
-  },
+  flex: { flex: 1 },
+  tile: { flex: 1, padding: Spacing.lg, gap: Spacing.sm },
   // Tall tiles are full width and only moderately tall.
   tall: { minHeight: 112 },
   tileHead: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },

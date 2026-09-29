@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PremiumBadge } from '@/components/pro-cards';
+import { Sticker } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -56,23 +57,19 @@ export function ChoiceStep({
           {options.map((o) => {
             const on = selected.includes(o.value);
             return (
-              <Pressable
+              <Sticker
                 key={o.value}
                 onPress={() => (o.locked ? onLocked?.() : onToggle(o.value))}
-                accessibilityRole="button"
                 accessibilityState={{ selected: on }}
-                style={[
-                  styles.chip,
-                  {
-                    backgroundColor: on ? theme.accentSoft : theme.surface,
-                    borderColor: on ? theme.accent : theme.border,
-                  },
-                ]}>
+                radius={Radius.chip}
+                fill={on ? theme.accentSoft : theme.surface}
+                outline={on ? theme.accent : theme.text}
+                contentStyle={styles.chip}>
                 <Text style={[styles.chipText, { color: o.locked ? theme.textSecondary : theme.text }]}>
                   {o.label}
                 </Text>
                 {o.locked && <PremiumBadge lock />}
-              </Pressable>
+              </Sticker>
             );
           })}
         </View>
@@ -98,10 +95,8 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: Spacing.xl, gap: Spacing.md },
   question: { fontFamily: Fonts.title, fontSize: 32, lineHeight: 40 },
   hint: { fontSize: 15, lineHeight: 21 },
-  chips: { gap: Spacing.md, marginTop: Spacing.lg },
+  chips: { gap: Spacing.sm, marginTop: Spacing.lg },
   chip: {
-    borderWidth: 1.5,
-    borderRadius: Radius.chip,
     paddingVertical: Spacing.lg,
     paddingHorizontal: Spacing.xl,
     flexDirection: 'row',

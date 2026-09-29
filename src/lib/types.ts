@@ -116,4 +116,5 @@ export type Stats = {
   streak: number;
   best: number;
   lastActive: string | null; // last local date that counted toward the streak
+  activeDays?: string[]; // recent local dates that counted (last 14), for the week view
 };

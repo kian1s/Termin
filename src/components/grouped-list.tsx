@@ -2,7 +2,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
-import { Radius, Spacing, Type } from '@/constants/theme';
+import { Spacing, Type } from '@/constants/theme';
+import { Sticker } from '@/components/sticker';
 import { useTheme } from '@/hooks/use-theme';
 
 // Native-style grouped list (like iOS Settings), used by Settings and Sets.
@@ -36,9 +37,7 @@ export function Section({
       {title && (
         <Text style={[Type.label, styles.sectionTitle, { color: theme.textSecondary }]}>{title}</Text>
       )}
-      <View style={[styles.group, { backgroundColor: theme.surface, borderColor: theme.border }]}>
-        {children}
-      </View>
+      <Sticker>{children}</Sticker>
       {footer && <Text style={[styles.footer, { color: theme.textSecondary }]}>{footer}</Text>}
     </View>
   );
@@ -106,7 +105,6 @@ export function Row({
 const styles = StyleSheet.create({
   section: { gap: Spacing.sm },
   sectionTitle: { paddingHorizontal: Spacing.lg },
-  group: { borderRadius: Radius.card, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden' },
   footer: { fontSize: 13, lineHeight: 18, paddingHorizontal: Spacing.lg },
   row: {
     flexDirection: 'row',

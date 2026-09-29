@@ -69,7 +69,20 @@ export function withActivity(stats: Stats): Stats {
   const active = stats.reviewsToday >= 1 || stats.viewsToday >= 10;
   if (!active || stats.lastActive === today) return stats;
   const streak = stats.lastActive === yesterdayKey() ? stats.streak + 1 : 1;
-  return { ...stats, streak, best: Math.max(stats.best, streak), lastActive: today };
+  const activeDays = [...(stats.activeDays ?? []), today].slice(-14);
+  return { ...stats, streak, best: Math.max(stats.best, streak), lastActive: today, activeDays };
+}
+
+// Whether a local date counted toward the streak. Older installs have no
+// activeDays yet, so the current streak's run of days is used as a fallback.
+export function wasActive(stats: Stats, date: Date) {
+  const key = dayKey(date);
+  if (stats.activeDays?.includes(key)) return true;
+  if (!stats.lastActive || stats.streak <= 0) return false;
+  const [y, m, d] = stats.lastActive.split('-').map(Number);
+  const last = new Date(y, m - 1, d);
+  const daysBack = Math.round((last.getTime() - new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()) / 86_400_000);
+  return daysBack >= 0 && daysBack < stats.streak;
 }
 
 // The streak shown to the user: it drops to 0 once a full day was missed.

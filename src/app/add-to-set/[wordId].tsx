@@ -3,6 +3,7 @@ import * as Haptics from 'expo-haptics';
 import { router, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 
+import { Doodle } from '@/components/doodle-icons';
 import { Row, Section } from '@/components/grouped-list';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -34,7 +35,7 @@ export default function AddToSet() {
       <Section>
         <Row
           label="New set"
-          icon={<Ionicons name="add" size={22} color={theme.accent} />}
+          icon={<Doodle name="plus" size={22} />}
           onPress={() =>
             atLimit ? showPaywall() : router.replace({ pathname: '/set-name', params: { wordId } })
           }
@@ -49,7 +50,7 @@ export default function AddToSet() {
               label={set.name}
               icon={
                 set.id === FAVORITES_ID ? (
-                  <Ionicons name="heart" size={20} color={theme.spark} />
+                  <Doodle name="heart" size={22} filled />
                 ) : (
                   <Ionicons name="albums-outline" size={20} color={theme.textSecondary} />
                 )

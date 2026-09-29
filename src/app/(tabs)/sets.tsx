@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Doodle } from '@/components/doodle-icons';
 import { Row, Section } from '@/components/grouped-list';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -33,7 +34,7 @@ export default function SetsScreen() {
       <Section>
         <Row
           label="Favorites"
-          icon={<Ionicons name="heart" size={20} color={theme.spark} />}
+          icon={<Doodle name="heart" size={22} filled />}
           value={wordCount(favorites)}
           onPress={() => open(FAVORITES_ID)}
           last
@@ -58,7 +59,7 @@ export default function SetsScreen() {
         ))}
         <Row
           label="New set"
-          icon={<Ionicons name="add" size={22} color={theme.accent} />}
+          icon={<Doodle name="plus" size={22} />}
           onPress={() =>
             !isPremium && custom.length >= FREE_CUSTOM_SETS ? showPaywall() : router.push('/set-name')
           }

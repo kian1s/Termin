@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
+import { Sticker } from '@/components/sticker';
 import { usePremium } from '@/lib/premium';
 
 // Termin's own paywall. Expo Go cannot show RevenueCat's dashboard paywalls,
@@ -110,18 +111,15 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
                   ? Math.round((1 - p.product.price / (monthly.product.price * 12)) * 100)
                   : 0;
               return (
-                <Pressable
+                <Sticker
                   key={p.identifier}
                   onPress={() => setSelected(p.identifier)}
                   accessibilityRole="radio"
                   accessibilityState={{ selected: on }}
-                  style={[
-                    styles.plan,
-                    {
-                      backgroundColor: on ? theme.premiumSoft : theme.surface,
-                      borderColor: on ? theme.premium : theme.border,
-                    },
-                  ]}>
+                  radius={Radius.chip}
+                  fill={on ? theme.premiumSoft : theme.surface}
+                  outline={on ? theme.premium : theme.text}
+                  contentStyle={styles.plan}>
                   <View style={styles.planText}>
                     <Text style={[styles.planName, { color: theme.text }]}>{annual ? 'Yearly' : 'Monthly'}</Text>
                     <Text style={[styles.planPrice, { color: theme.textSecondary }]}>
@@ -133,7 +131,7 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
                       <Text style={[styles.badgeText, { color: theme.background }]}>Save {saving}%</Text>
                     </View>
                   )}
-                </Pressable>
+                </Sticker>
               );
             })}
           </View>
@@ -141,19 +139,19 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + Spacing.lg }]}>
-        <Pressable
+        <Sticker
           onPress={buy}
           disabled={!selected || busy}
-          style={({ pressed }) => [
-            styles.button,
-            { backgroundColor: theme.premium, opacity: !selected || busy ? 0.5 : pressed ? 0.8 : 1 },
-          ]}>
+          radius={Radius.chip}
+          fill={theme.premium}
+          style={[styles.buttonWrap, (!selected || busy) && styles.dim]}
+          contentStyle={styles.button}>
           {busy ? (
             <ActivityIndicator color={theme.background} />
           ) : (
             <Text style={[styles.buttonText, { color: theme.background }]}>Continue</Text>
           )}
-        </Pressable>
+        </Sticker>
         <Pressable onPress={restore} hitSlop={8}>
           <Text style={[styles.restore, { color: theme.textSecondary }]}>Restore purchases</Text>
         </Pressable>
@@ -174,20 +172,16 @@ const styles = StyleSheet.create({
   benefit: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   benefitText: { fontSize: 17 },
   plans: { gap: Spacing.md },
-  plan: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderRadius: Radius.chip,
-    padding: Spacing.lg,
-  },
+  plan: { flexDirection: 'row', alignItems: 'center', padding: Spacing.lg },
   planText: { flex: 1, gap: 2 },
   planName: { fontSize: 17, fontWeight: '600' },
   planPrice: { fontSize: 15 },
   badge: { borderRadius: Radius.chip, paddingHorizontal: Spacing.sm, paddingVertical: 4 },
   badgeText: { fontSize: 12, fontWeight: '700' },
   footer: { paddingHorizontal: Spacing.xl, paddingTop: Spacing.md, gap: Spacing.md, alignItems: 'center' },
-  button: { alignSelf: 'stretch', borderRadius: Radius.chip, paddingVertical: Spacing.lg, alignItems: 'center' },
+  buttonWrap: { alignSelf: 'stretch' },
+  dim: { opacity: 0.5 },
+  button: { paddingVertical: Spacing.lg, alignItems: 'center' },
   buttonText: { fontSize: 17, fontWeight: '600' },
   restore: { fontSize: 15, textDecorationLine: 'underline' },
   note: { fontSize: 13, textAlign: 'center' },
