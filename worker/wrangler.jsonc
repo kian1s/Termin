@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "termin-coach",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  // Daily check counts per device (SPEC 6).
+  "kv_namespaces": [{ "binding": "COACH_KV", "id": "9b0c573023c446ce9cbb223a20b77bd2" }],
+  // Workers AI, for Whisper transcription.
+  "ai": { "binding": "AI" },
+  "vars": {
+    // A cheap, fast model for grading. OPENROUTER_API_KEY is a secret (wrangler secret put).
+    "MODEL": "openai/gpt-6-luna-pro"
+  },
+  "observability": { "enabled": false }
+}
