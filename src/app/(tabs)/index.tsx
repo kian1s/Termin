@@ -121,12 +121,12 @@ export default function Feed() {
     return { mix: m, count, items: nextBatch(m, [], count, false) };
   };
   const [feed, setFeed] = useState(() => newFeed(mix));
-  // Per card: was the translation hidden when it first came on screen? Decided
-  // once, so a first-time word stays visible even after it is marked seen.
-  const [hidden, setHidden] = useState<Record<string, boolean>>({});
+  // A review card on screen blocks swiping until it is answered or revealed.
+  const [blockingKey, setBlockingKey] = useState<string | null>(null);
+  const [doneReviews, setDoneReviews] = useState<Set<string>>(() => new Set());
   if (feed.mix !== mix) {
     setFeed(newFeed(mix));
-    setHidden({});
+    setBlockingKey(null);
   }
 
   const latest = useRef({ seenIds, learningLang: settings?.learningLang, level: settings?.level });
@@ -150,8 +150,6 @@ export default function Feed() {
           recordCardView();
 
           if (item.kind === 'word' || item.kind === 'stretch') {
-            const wasSeen = latest.current.seenIds.has(item.word.id);
-            setHidden((h) => ({ ...h, [item.key]: wasSeen }));
             markSeen(item.word.id);
             sinceReview.current++;
           } else if (item.kind === 'review') {
@@ -197,7 +195,17 @@ export default function Feed() {
   const renderItem = ({ item }: { item: Item }) => {
     switch (item.kind) {
       case 'review':
-        return <ReviewCard word={item.word} nativeLang={settings.nativeLang} height={height} />;
+        return (
+          <ReviewCard
+            word={item.word}
+            nativeLang={settings.nativeLang}
+            height={height}
+            onFinished={() => {
+              setDoneReviews((d) => new Set(d).add(item.key));
+              setBlockingKey(null);
+            }}
+          />
+        );
       case 'locked':
         return (
           <LockedCard word={item.word} message={teaserMessage(item.word)} height={height} onPress={showPaywall} />
@@ -216,7 +224,6 @@ export default function Feed() {
           <WordCard
             word={item.word}
             nativeLang={settings.nativeLang}
-            translationHidden={hidden[item.key] ?? seenIds.has(item.word.id)}
             height={height}
             badge={item.kind === 'stretch' ? `Stretch · ${item.word.level}` : undefined}
           />
@@ -265,6 +272,12 @@ export default function Feed() {
             }
             onEndReachedThreshold={3}
             onViewableItemsChanged={onViewableItemsChanged}
+            scrollEnabled={!blockingKey}
+            onMomentumScrollEnd={(e) => {
+              // Once the feed settles on an unfinished review card, lock it there.
+              const item = feed.items[Math.round(e.nativeEvent.contentOffset.y / height)];
+              if (item?.kind === 'review' && !doneReviews.has(item.key)) setBlockingKey(item.key);
+            }}
             viewabilityConfig={{ itemVisiblePercentThreshold: 60 }}
             windowSize={5}
           />

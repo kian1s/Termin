@@ -19,7 +19,8 @@ import { usePremium } from '@/lib/premium';
 import { describeNext } from '@/lib/progress';
 import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
-type Props = { word: WordEntry; nativeLang: Lang; height: number };
+// `onFinished` fires once the card is checked or revealed, unlocking the feed.
+type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: () => void };
 
 // Why the card fell back to Reveal and self-rating instead of the AI Coach.
 type Fallback = 'limit' | 'network' | null;
@@ -28,7 +29,7 @@ const VERDICT_TITLE = { correct: 'Correct', partly: 'Partly right', incorrect: '
 
 // A saved word coming back as a question (SPEC 4.4). With the AI Coach the
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
-export function ReviewCard({ word, nativeLang, height }: Props) {
+export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
   const theme = useTheme();
   const { answer, settings } = useAppState();
   const { isPremium, showPaywall } = usePremium();
@@ -49,10 +50,12 @@ export function ReviewCard({ word, nativeLang, height }: Props) {
     if (typeof result === 'string') {
       setFallback(result);
       setRevealed(true);
+      onFinished();
       return;
     }
     setCoach(result);
     setRevealed(true);
+    onFinished();
     // A "partly" verdict counts as correct for the Leitner schedule.
     rate(result.verdict !== 'incorrect');
   };
@@ -89,11 +92,21 @@ export function ReviewCard({ word, nativeLang, height }: Props) {
               ]}
             />
             <View style={styles.row}>
-              <Button label="Reveal" onPress={() => setRevealed(true)} primary={!coachAvailable} />
+              <Button
+                label="Reveal"
+                onPress={() => {
+                  setRevealed(true);
+                  onFinished();
+                }}
+                primary={!coachAvailable}
+              />
               {coachAvailable && (
                 <Button label="Check" onPress={check} primary disabled={!canCheck} loading={checking} />
               )}
             </View>
+            <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
+              Answer or reveal to keep scrolling.
+            </Text>
           </>
         ) : (
           <>
@@ -125,7 +138,7 @@ export function ReviewCard({ word, nativeLang, height }: Props) {
             <WordHeading word={word} />
             <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
             {!coach && <Example text={word.example} />}
-            <Translation word={word} nativeLang={nativeLang} hidden={false} />
+            <Translation word={word} nativeLang={nativeLang} />
 
             {!next ? (
               <View style={styles.row}>
@@ -210,5 +223,6 @@ const styles = StyleSheet.create({
   resultTitle: { fontSize: 17, fontWeight: '600' },
   resultText: { fontSize: 15, lineHeight: 21 },
   small: { fontSize: 13, lineHeight: 18 },
+  center: { textAlign: 'center' },
   link: { fontSize: 15, fontWeight: '600' },
 });

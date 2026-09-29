@@ -126,7 +126,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.2 Word feed
 - Vertical, full-screen, swipe-to-scroll feed, one card per word.
 - Each card shows the word, part of speech, level badge, definition, example sentence, and the translation into the native language.
-- **Translation visibility:** the first time a word is shown, its translation is visible. When an already-seen word comes up again, the translation is blurred with "Tap to reveal". Seen word IDs are stored locally (see DESIGN.md section 5).
+- **Translation visibility:** the translation is always blurred with "Tap to reveal", on word and review cards, so learners try to recall the meaning first. Seen word IDs are still stored locally (for the level-up card).
 - **Pronunciation:** a speaker button next to the word reads it aloud with `expo-speech` (works in Expo Go), using the learning language's voice (`en-US`, `fr-FR`, `de-DE`, `es-ES`, `pt-PT`).
 - Buttons: **Speaker** (pronunciation), **Heart** (save to the default "Favorites" set) and **Add to set** (a sheet listing sets, with a "+ New set" option).
 - The feed is filtered by the current settings, and the order is shuffled.
@@ -141,6 +141,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.4 Review cards in the feed
 - Every **5th card** in the feed is a review card for a saved word that is due, if one exists.
 - The review card asks: "What does **X** mean? Use it in a sentence."
+- While an unanswered review card is on screen, the feed cannot be swiped. Checking the answer or tapping Reveal unlocks it.
 - The user answers by voice (4.6) or text. With AI Coach available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
 - **Scheduling (Leitner boxes):** Box 1 is due after 5 more cards. Box 2 is due after 1 day, box 3 after 3 days, and box 4 after 7 days. A correct answer moves the word up one box. A wrong answer moves it back to box 1.
 - **Done when:** a saved word reliably reappears as a review card and its box changes with the answer.

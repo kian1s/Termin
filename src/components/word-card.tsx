@@ -14,13 +14,12 @@ import { CATEGORY_NAMES, FAVORITES_ID, Lang, SPEECH_VOICES, WordEntry } from '@/
 type Props = {
   word: WordEntry;
   nativeLang: Lang;
-  translationHidden: boolean;
   height: number;
   // Replaces the level label, e.g. "Stretch · C1" (SPEC 4.12).
   badge?: string;
 };
 
-export function WordCard({ word, nativeLang, translationHidden, height, badge }: Props) {
+export function WordCard({ word, nativeLang, height, badge }: Props) {
   const theme = useTheme();
   const { sets, toggleFavorite } = useAppState();
   const favorite = sets.find((s) => s.id === FAVORITES_ID)?.wordIds.includes(word.id);
@@ -38,7 +37,7 @@ export function WordCard({ word, nativeLang, translationHidden, height, badge }:
         <WordHeading word={word} />
         <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>
         <Example text={word.example} />
-        <Translation word={word} nativeLang={nativeLang} hidden={translationHidden} />
+        <Translation word={word} nativeLang={nativeLang} />
       </View>
 
       <View style={styles.actions}>
@@ -104,16 +103,8 @@ export function Example({ text }: { text: string }) {
   );
 }
 
-// The native-language block. When `hidden`, it is blurred until tapped.
-export function Translation({
-  word,
-  nativeLang,
-  hidden,
-}: {
-  word: WordEntry;
-  nativeLang: Lang;
-  hidden: boolean;
-}) {
+// The native-language block, always blurred until tapped.
+export function Translation({ word, nativeLang }: { word: WordEntry; nativeLang: Lang }) {
   const theme = useTheme();
   const [revealed, setRevealed] = useState(false);
   const [blurOpacity] = useState(() => new Animated.Value(1));
@@ -136,7 +127,7 @@ export function Translation({
         </Text>
       </View>
 
-      {hidden && !revealed && (
+      {!revealed && (
         <Animated.View style={[StyleSheet.absoluteFill, { opacity: blurOpacity }]}>
           <Pressable style={StyleSheet.absoluteFill} onPress={reveal}>
             <BlurView intensity={30} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.blur]}>
