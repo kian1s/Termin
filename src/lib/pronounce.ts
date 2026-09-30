@@ -33,20 +33,43 @@ async function localClip(word: WordEntry, clip: Clip): Promise<string | null> {
   }
 }
 
+// Only the latest tap may play: each call takes a number, and an older call
+// that is still downloading or preparing gives up instead of playing over it.
+let latest = 0;
+// The playing button's onDone, so stopping resets its highlight.
+let finishCurrent: (() => void) | null = null;
+
 export function stopPronouncing() {
+  latest++;
   Speech.stop();
   current?.remove();
   current = null;
+  const finish = finishCurrent;
+  finishCurrent = null;
+  finish?.();
 }
 
-// Reads the word or its example aloud; `onDone` fires when it finishes.
+// Reads the word or its example aloud; `onDone` fires once when it finishes
+// or is stopped (by another tap, or by tapping the same button again).
 export async function pronounce(word: WordEntry, clip: Clip, onDone: () => void) {
   stopPronouncing();
+  const mine = ++latest;
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (finishCurrent === finish) finishCurrent = null;
+    onDone();
+  };
+  finishCurrent = finish;
+
   const uri = await localClip(word, clip);
+  if (mine !== latest) return;
   if (uri) {
     try {
       // Play even with the ring/silent switch on, like the speech it replaces.
       await setAudioModeAsync({ playsInSilentMode: true, allowsRecording: false });
+      if (mine !== latest) return;
       const player = createAudioPlayer(uri);
       current = player;
       const sub = player.addListener('playbackStatusUpdate', (status) => {
@@ -54,7 +77,7 @@ export async function pronounce(word: WordEntry, clip: Clip, onDone: () => void)
         sub.remove();
         player.remove();
         if (current === player) current = null;
-        onDone();
+        finish();
       });
       player.play();
       return;
@@ -63,11 +86,12 @@ export async function pronounce(word: WordEntry, clip: Clip, onDone: () => void)
     }
   }
   const voice = await bestVoice(word.lang);
+  if (mine !== latest) return;
   Speech.speak(clip === 'w' ? word.word : word.example, {
     language: SPEECH_VOICES[word.lang],
     voice: voice?.id,
-    onDone,
-    onStopped: onDone,
-    onError: onDone,
+    onDone: finish,
+    onStopped: finish,
+    onError: finish,
   });
 }

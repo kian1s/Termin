@@ -10,7 +10,7 @@ import { Doodle } from '@/components/doodle-icons';
 import { openExplain } from '@/components/explain-link';
 import { Sticker } from '@/components/sticker';
 import { useAppState } from '@/lib/app-state';
-import { pronounce } from '@/lib/pronounce';
+import { pronounce, stopPronouncing } from '@/lib/pronounce';
 import { CATEGORY_NAMES, FAVORITES_ID, Lang, WordEntry } from '@/lib/types';
 
 type Props = {
@@ -99,7 +99,9 @@ export function WordHeading({ word }: { word: WordEntry }) {
   const [rowWidth, setRowWidth] = useState(screen - Spacing.xl * 2);
   const size = headwordSize(word.word, rowWidth - SPEAKER_SPACE);
 
+  // A second tap while it plays stops it.
   const speak = () => {
+    if (speaking) return stopPronouncing();
     setSpeaking(true);
     pronounce(word, 'w', () => setSpeaking(false));
   };
@@ -140,6 +142,7 @@ export function Example({ text, word }: { text: string; word?: WordEntry }) {
   if (!text.trim()) return null;
   const speak = () => {
     if (!word) return;
+    if (speaking) return stopPronouncing();
     setSpeaking(true);
     pronounce(word, 'e', () => setSpeaking(false));
   };
