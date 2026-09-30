@@ -26,4 +26,4 @@ The device ID is a random number created on your phone. It is not linked to your
 
 ## Contact
 
-Questions: open an issue at https://github.com/kian1s/wordloop.
+Questions: open an issue at https://github.com/kian1s/Termin.

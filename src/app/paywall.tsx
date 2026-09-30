@@ -14,8 +14,8 @@ import { usePremium } from '@/lib/premium';
 // Termin's own paywall. Expo Go cannot show RevenueCat's dashboard paywalls,
 // so this screen loads the current offering from RevenueCat and buys through
 // the RevenueCat SDK (the Test Store while developing).
-const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
-const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
+const TERMS_URL = 'https://github.com/kian1s/Termin/blob/main/TERMS.md';
+const PRIVACY_URL = 'https://github.com/kian1s/Termin/blob/main/PRIVACY.md';
 
 const BENEFITS = [
   { icon: 'trending-up-outline', text: 'Access to all words and categories' },

@@ -101,7 +101,7 @@ export function saveWiktionaryCache() {
 
 // Wikimedia rate-limits bursts, so every lookup goes through one queue with a
 // short gap between requests, and 429 answers wait as long as Retry-After asks.
-const USER_AGENT = 'WordloopDataset/1.0 (https://github.com/kian1s/wordloop; vocabulary originality check)';
+const USER_AGENT = 'TerminDataset/1.0 (https://github.com/kian1s/Termin; vocabulary originality check)';
 const GAP_MS = 250;
 let queue: Promise<unknown> = Promise.resolve();
 let lastRequest = 0;

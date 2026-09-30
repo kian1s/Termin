@@ -23,9 +23,9 @@ const APPEARANCES: { id: AppearanceMode; label: string }[] = [
   { id: 'dark', label: 'Dark' },
 ];
 
-const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
-const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
-const SOURCE_URL = 'https://github.com/kian1s/wordloop';
+const PRIVACY_URL = 'https://github.com/kian1s/Termin/blob/main/PRIVACY.md';
+const TERMS_URL = 'https://github.com/kian1s/Termin/blob/main/TERMS.md';
+const SOURCE_URL = 'https://github.com/kian1s/Termin';
 
 export default function SettingsScreen() {
   const theme = useTheme();
