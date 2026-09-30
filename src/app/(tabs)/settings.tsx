@@ -118,7 +118,7 @@ export default function SettingsScreen() {
         <Row
           label="Reminders"
           icon={<Ionicons name="notifications-outline" size={20} color={theme.textSecondary} />}
-          value={reminderSummary(settings.reminder)}
+          value={reminderSummary(settings.reminder, isPremium)}
           onPress={() => router.push('/reminders')}
           last
         />
@@ -177,10 +177,15 @@ export default function SettingsScreen() {
   );
 }
 
-// e.g. "Off", "19:00 · Every day" or "2 times · 5 days".
-function reminderSummary(r: Reminder) {
+// e.g. "Off", "19:00 · Every day", "2 times · 5 days" or "AI timing · Every day".
+function reminderSummary(r: Reminder, isPremium: boolean) {
   if (!r.enabled) return 'Off';
-  const when = r.times.length === 1 ? formatTime(r.times[0]) : `${r.times.length} times`;
+  const when =
+    isPremium && r.aiGuided && r.smartSpacing
+      ? 'AI timing'
+      : r.times.length === 1
+        ? formatTime(r.times[0])
+        : `${r.times.length} times`;
   const days = r.days.length === 7 ? 'Every day' : `${r.days.length} ${r.days.length === 1 ? 'day' : 'days'}`;
   return `${when} · ${days}`;
 }

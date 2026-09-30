@@ -120,6 +120,7 @@ function userSlots(reminder: Reminder, plan: Plan, now = Date.now()) {
 
 // When the user's own reminders fire in the next 48 hours, for the AI planner.
 export async function upcomingReminderTimes(settings: Settings): Promise<number[]> {
+  if (settings.reminder.aiGuided && settings.reminder.smartSpacing) return [];
   const { slots } = userSlots(settings.reminder, await loadPlan(settings.reminder));
   return slots.map((s) => s.at.getTime()).filter((t) => t <= Date.now() + HORIZON_MS);
 }
@@ -139,7 +140,12 @@ async function schedule(
 
   const now = Date.now();
   const plan = await loadPlan(reminder);
-  const { slots, minutes } = userSlots(reminder, plan, now);
+  // Intelligent spacing (SPEC 4.17, Premium) replaces the user's own times.
+  const ai = isPremium && reminder.aiGuided;
+  const smart = ai && reminder.smartSpacing;
+  const own = userSlots(reminder, plan, now);
+  const slots = smart ? [] : own.slots;
+  const minutes = own.minutes;
 
   // Streak saver: tonight at 21:00, only while a streak of 2 or more is at
   // risk. Once today counts (SPEC 4.8) the app reschedules without it.
@@ -153,13 +159,12 @@ async function schedule(
     reminder.days.includes(new Date().getDay()) &&
     saverAt.getTime() > now;
 
-  // AI reminders (SPEC 4.17, Premium): the AI's word order and lines for the
-  // user's reminders and, with intelligent spacing, extra AI-timed ones.
-  const ai = isPremium && reminder.aiGuided;
+  // AI reminders (SPEC 4.17): the AI's word order and lines for the user's
+  // reminders or, with intelligent spacing, AI-timed reminders instead.
   const aiPlan = ai ? await loadAiPlan(settings) : null;
   const local = ai ? candidates(settings, savedIds, reviews, now) : [];
   const aiSlots =
-    ai && reminder.smartSpacing
+    smart
       ? placeAiSlots(
           aiPlan,
           local,

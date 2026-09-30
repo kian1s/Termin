@@ -40,6 +40,8 @@ export default function Reminders() {
   if (!settings) return null;
   const { reminder } = settings;
   const aiOn = isPremium && reminder.aiGuided;
+  // Intelligent spacing replaces the user's own times (SPEC 4.17).
+  const smart = aiOn && reminder.smartSpacing;
 
   const update = (next: Partial<Reminder>) => saveSettings({ ...settings, reminder: { ...reminder, ...next } });
 
@@ -94,6 +96,7 @@ export default function Reminders() {
 
       {reminder.enabled && (
         <>
+          {!smart && (
           <Section title="Times" footer={`Up to ${MAX_TIMES} reminders a day.`}>
             {reminder.times.map((t, i) => (
               <Row
@@ -134,6 +137,7 @@ export default function Reminders() {
               />
             )}
           </Section>
+          )}
 
           <Section title="Days" footer="No reminders on days that are off.">
             <View style={styles.days}>
@@ -163,10 +167,10 @@ export default function Reminders() {
             title="AI reminders"
             footer={
               aiOn
-                ? `The AI picks the saved words that most need practice, writes each reminder, and a tap opens a 1-minute test. Your own times never move.${
-                    reminder.smartSpacing
-                      ? ' Intelligent spacing adds up to 3 more a day, when words fall due: 9:00 to 21:00, at least 2 hours apart.'
-                      : ''
+                ? `The AI picks the saved words that most need practice, writes each reminder, and a tap opens a 1-minute test.${
+                    smart
+                      ? ' Intelligent spacing replaces your own times: up to 3 reminders a day, when words fall due, 9:00 to 21:00, at least 2 hours apart. No words due, no reminder.'
+                      : ' They arrive at your own times.'
                   } While this is on, your saved words and how well you know them are sent to the AI (see Privacy).`
                 : 'The AI picks the saved words that most need practice and writes each reminder. A tap opens a 1-minute test.'
             }>
@@ -186,7 +190,7 @@ export default function Reminders() {
             {aiOn && (
               <Row
                 label="Intelligent spacing"
-                subtitle={reminder.smartSpacing ? 'The AI also picks when to remind you' : 'Only at your own times'}
+                subtitle={reminder.smartSpacing ? 'The AI picks when to remind you' : 'At your own times'}
                 last
                 right={<Toggle value={reminder.smartSpacing} onValueChange={(v) => update({ smartSpacing: v })} />}
               />
@@ -203,11 +207,13 @@ export default function Reminders() {
                 right={<Toggle value={reminder.includeWord} onValueChange={(v) => update({ includeWord: v })} />}
               />
             )}
+            {!smart && (
             <Row
               label="Vary the time slightly"
               subtitle={reminder.vary ? 'Within 30 minutes of each time' : 'Exactly on time'}
               right={<Toggle value={reminder.vary} onValueChange={(v) => update({ vary: v })} />}
             />
+            )}
             <Row
               label="Streak saver"
               last
