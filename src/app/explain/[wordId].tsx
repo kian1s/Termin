@@ -51,6 +51,9 @@ export default function Explain() {
         </Text>
         <CreditPill kind="explain" />
       </View>
+      <Text style={[styles.intro, { color: theme.textSecondary }]}>
+        Hear the meaning in easier words, or see the word in another sentence.
+      </Text>
 
       {outOfUses ? (
         <View style={styles.block}>
@@ -103,6 +106,7 @@ const styles = StyleSheet.create({
   content: { padding: Spacing.xl, gap: Spacing.lg },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 32, lineHeight: 40, flexShrink: 1 },
+  intro: { fontFamily: Fonts.italic, fontSize: 16, lineHeight: 22, marginTop: -Spacing.sm },
   row: { flexDirection: 'row', gap: Spacing.md },
   flex: { flex: 1 },
   block: { gap: Spacing.md },

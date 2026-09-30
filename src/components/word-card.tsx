@@ -42,25 +42,16 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
         <Translation word={word} nativeLang={nativeLang} />
       </View>
 
-      {/* Bottom left: Explain it differently, with a caption saying what it does (SPEC 4.21). */}
-      <Pressable
+      {/* Bottom left: Explain it differently (SPEC 4.21); the sheet says what it does. */}
+      <Sticker
         onPress={() => openExplain(word.id)}
+        radius={ACTION / 2}
+        lift={3}
         style={styles.explain}
-        accessibilityRole="button"
+        contentStyle={styles.action}
         accessibilityLabel="Explain it differently">
-        {/* The sticker has its own tap so it slides down like the other buttons; the caption opens it too. */}
-        <Sticker
-          onPress={() => openExplain(word.id)}
-          radius={ACTION / 2}
-          lift={3}
-          contentStyle={styles.action}
-          accessibilityLabel="Explain it differently">
-          <Doodle name="bulb" size={28} />
-        </Sticker>
-        <Text style={[styles.explainText, { color: theme.textSecondary }]}>
-          Explain it{'\n'}differently
-        </Text>
-      </Pressable>
+        <Doodle name="bulb" size={28} />
+      </Sticker>
 
       <View style={styles.actions}>
         <Sticker
@@ -226,15 +217,7 @@ const styles = StyleSheet.create({
   label: { marginBottom: -6 }, // label sits closer to the word it describes
   heading: { marginBottom: Spacing.xs },
   action: { width: ACTION, height: ACTION, alignItems: 'center', justifyContent: 'center' },
-  explain: {
-    position: 'absolute',
-    left: Spacing.xl,
-    bottom: Spacing.xl,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-  },
-  explainText: { fontFamily: Fonts.italic, fontSize: 15, lineHeight: 19 },
+  explain: { position: 'absolute', left: Spacing.xl, bottom: Spacing.xl },
   wordRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
   pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },
