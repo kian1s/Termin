@@ -15,9 +15,9 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { coachAvailable, findWordsInText, FoundWord, FromTextMode } from '@/lib/coach';
 import { CreditKind, setCreditLeft, useCredit } from '@/lib/credits';
-import { levelAbove } from '@/lib/gating';
+import { FREE_CUSTOM_SETS, levelAbove } from '@/lib/gating';
 import { usePremium } from '@/lib/premium';
-import { Settings, WordEntry } from '@/lib/types';
+import { FAVORITES_ID, Settings, WordEntry } from '@/lib/types';
 import { allWords, registerCustomWords, wordById } from '@/lib/words';
 
 const MODES: { id: FromTextMode; label: string; max: number; credit: CreditKind; noun: string }[] = [
@@ -80,7 +80,7 @@ function setName(mode: FromTextMode, title: string, text: string) {
 // pasted text. Free: 1 link, 2 photo runs, 2 texts ever; Premium: 3, 5 and 10 a day.
 export default function FromText() {
   const theme = useTheme();
-  const { settings, savedIds, toggleFavorite, addCustomWord, createSetWith } = useAppState();
+  const { settings, sets, savedIds, toggleFavorite, addCustomWord, createSetWith } = useAppState();
   const { isPremium, showPaywall } = usePremium();
   const [mode, setMode] = useState<FromTextMode>('link');
   const [url, setUrl] = useState('');
@@ -176,6 +176,11 @@ export default function FromText() {
 
   const saveAll = () => {
     if (!result) return;
+    // Free users keep their limit of own sets (SPEC 5); hearts still work.
+    if (!isPremium && sets.filter((s) => s.id !== FAVORITES_ID).length >= FREE_CUSTOM_SETS) {
+      showPaywall();
+      return;
+    }
     const name = setName(result.mode, result.title, text);
     result.found.forEach((f) => keep(f.word));
     createSetWith(

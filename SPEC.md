@@ -288,7 +288,7 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
 | Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
-| Words from a text (page) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | Mode chips and screen header |
+| Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | Mode chips and screen header |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -300,10 +300,10 @@ One tap on any card for help understanding it.
 
 ### 4.22 Words from a text (Sep 30)
 Turn what the learner reads into word cards.
-- **Where:** a full-width tile in Practice → Your learning (page doodle). The screen is `src/app/from-text.tsx`.
+- **Where:** the Sets tab, in an **Add words** section above Your sets (a row with a book doodle). The screen is `src/app/from-text.tsx`.
 - **Three ways in** (chips): **Link** (paste a web address; the Worker downloads the first 500 KB and keeps the text of headings, paragraphs and list items), **Photo** (up to 3 pages, camera or library, shrunk to 1400 px wide), **Text** (typed or pasted, max 20,000 characters). Link and Text have a **Paste** button (`expo-clipboard`).
 - **At most** 10 words for a link, 8 for photos, 5 for text; fewer when fewer are worth it. Termin's own words at the user's level and the level above come first (the model matches inflected forms and returns their IDs); then AI-made cards (marked AI, 4.19) for other useful words, in their dictionary form. Every card shows **From the text**: the sentence where the word appeared (for AI-made cards this is also their example).
-- **Saving:** a heart on each card (Favorites), and **Save all to a new set**, named after the page title, the first words of the text, or "Photo words, <date>". Each card also has Explain it differently (4.21).
+- **Saving:** a heart on each card (Favorites), and **Save all to a new set**, named after the page title, the first words of the text, or "Photo words, <date>". Free users past their own-set limit (5) get the paywall instead. Each card also has Explain it differently (4.21).
 - **Limits, per way in:**
 
 | | Free (ever) | Premium (per day) |

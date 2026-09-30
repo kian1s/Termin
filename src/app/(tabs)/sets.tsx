@@ -41,6 +41,16 @@ export default function SetsScreen() {
         />
       </Section>
 
+      <Section title="Add words">
+        <Row
+          label="Words from a text"
+          subtitle="A link, a photo of a page, or text"
+          icon={<Doodle name="book" size={22} />}
+          onPress={() => router.push('/from-text')}
+          last
+        />
+      </Section>
+
       <Section
         title="Your sets"
         footer={

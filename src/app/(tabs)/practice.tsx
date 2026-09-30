@@ -103,17 +103,6 @@ export default function Practice() {
         </View>
       </Tile>
 
-      {/* SPEC 4.22: free users get a few uses of each way in; counts show inside. */}
-      <Tile icon="page" label="Words from a text" onPress={() => router.push('/from-text')} tall>
-        <View style={styles.tallBody}>
-          <View style={styles.flexShrink}>
-            <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from what you read</Text>
-            <Text style={[styles.detail, { color: theme.textSecondary }]}>A link, a photo of a page, or text</Text>
-          </View>
-          <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
-        </View>
-      </Tile>
-
       {/* SPEC 4.19: free users get 2 photos ever, then the paywall. */}
       <Tile icon="camera" label="Snap a word" onPress={() => router.push('/snap')} tall>
         <View style={styles.tallBody}>

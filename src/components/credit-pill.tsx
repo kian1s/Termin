@@ -10,9 +10,9 @@ const ICON: Record<CreditKind, DoodleName> = {
   rewrite: 'pen',
   snap: 'camera',
   explain: 'bulb',
-  fromTextLink: 'page',
+  fromTextLink: 'book',
   fromTextPhoto: 'camera',
-  fromTextText: 'page',
+  fromTextText: 'book',
 };
 const NOUN: Record<CreditKind, [string, string]> = {
   check: ['AI check', 'AI checks'],
