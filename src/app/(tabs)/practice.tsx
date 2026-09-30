@@ -5,10 +5,12 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Doodle, DoodleName } from '@/components/doodle-icons';
+import { PremiumBadge } from '@/components/pro-cards';
 import { Sticker } from '@/components/sticker';
 import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { usePremium } from '@/lib/premium';
 import { dayKey } from '@/lib/progress';
 import { Field, LEVEL_HINTS } from '@/lib/questions';
 import { CATEGORY_NAMES, coachFeedbackLang, LANG_NAMES } from '@/lib/types';
@@ -21,6 +23,7 @@ export default function Practice() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const { settings, seenAt } = useAppState();
+  const { isPremium, showPaywall } = usePremium();
   if (!settings) return null;
 
   const edit = (field: Field) => router.push({ pathname: '/edit/[field]', params: { field } });
@@ -73,6 +76,25 @@ export default function Practice() {
       </Tile>
 
       <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Your learning</Text>
+
+      {/* SPEC 4.18: Premium. Free users see the lock and get the paywall. */}
+      <Tile
+        icon="pen"
+        label="Say it better"
+        onPress={isPremium ? () => router.push('/say-it-better') : showPaywall}
+        tall>
+        <View style={styles.tallBody}>
+          <View style={styles.flexShrink}>
+            <Text style={[styles.tileTitle, { color: theme.text }]}>Upgrade a sentence</Text>
+            <Text style={[styles.detail, { color: theme.textSecondary }]}>Stronger words you can save</Text>
+          </View>
+          {isPremium ? (
+            <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+          ) : (
+            <PremiumBadge lock />
+          )}
+        </View>
+      </Tile>
 
       <View style={styles.row}>
         <Tile icon="learning" label="Learning" onPress={() => edit('learningLang')}>
@@ -152,6 +174,7 @@ const styles = StyleSheet.create({
   section: { paddingHorizontal: Spacing.xs, marginTop: Spacing.md },
   row: { flexDirection: 'row', gap: Spacing.sm },
   flex: { flex: 1 },
+  flexShrink: { flexShrink: 1 },
   tile: { flex: 1, padding: Spacing.lg, gap: Spacing.sm },
   // Tall tiles are full width and only moderately tall.
   tall: { minHeight: 112 },

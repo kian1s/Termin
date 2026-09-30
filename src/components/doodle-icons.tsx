@@ -14,6 +14,7 @@ export type DoodleName =
   | 'level'
   | 'categories'
   | 'coach'
+  | 'pen'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -80,6 +81,15 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M17.4 14.6c.3 1.5.8 2 2.3 2.3-1.5.3-2 .8-2.3 2.3-.3-1.5-.8-2-2.3-2.3 1.5-.3 2-.8 2.3-2.3z',
     ],
     dot: [7.4, 19.2],
+  },
+  // A pencil writing a wavy line (Say it better), the dot ends the sentence.
+  pen: {
+    paths: [
+      'M15.1 4.5c1.1-.9 2.5-.8 3.5.2 1 1.1 1 2.5.1 3.5l-8.4 8.5-4.3 1.2 1.1-4.3z',
+      'M13.4 6.4l3.8 3.7',
+      'M4.4 20.5c1.9-.8 3.5.5 5.3-.2 1.7-.6 3-.3 4.3.1',
+    ],
+    dot: [17.8, 20.1],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {

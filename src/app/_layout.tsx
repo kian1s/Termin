@@ -74,6 +74,10 @@ function RootStack() {
         <Stack.Screen name="level-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
         <Stack.Screen name="reminders" options={{ headerShown: true, title: 'Reminders', headerBackTitle: 'Settings' }} />
         <Stack.Screen name="history" options={{ headerShown: true, title: 'History', headerBackTitle: 'Feed' }} />
+        <Stack.Screen
+          name="say-it-better"
+          options={{ headerShown: true, title: 'Say it better', headerBackTitle: 'Practice' }}
+        />
         <Stack.Screen name="quick-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
       </Stack>
       <NotificationTaps />

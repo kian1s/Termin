@@ -10,8 +10,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Linking } from 'react-native';
 
-import { transcribe } from '@/lib/coach';
-import { WordEntry } from '@/lib/types';
+import { transcribe, VoiceHint } from '@/lib/coach';
 
 // SPEC 4.6: tap to start, tap to stop, max 30 seconds.
 const MAX_MS = 30_000;
@@ -36,7 +35,7 @@ const OPTIONS: RecordingOptions = {
 export type VoiceState = 'idle' | 'recording' | 'transcribing';
 
 // Records a spoken answer and hands the transcript to `onText`.
-export function useVoiceAnswer(word: WordEntry, onText: (text: string) => void) {
+export function useVoiceAnswer(hint: VoiceHint, onText: (text: string) => void) {
   const recorder = useAudioRecorder(OPTIONS);
   const { durationMillis } = useAudioRecorderState(recorder, 250);
   const [state, setState] = useState<VoiceState>('idle');
@@ -51,7 +50,7 @@ export function useVoiceAnswer(word: WordEntry, onText: (text: string) => void) 
       // Give playback back to the speaker button (expo-speech).
       await setAudioModeAsync({ allowsRecording: false });
       const uri = recorder.uri;
-      const result = uri ? await transcribe(uri, word) : { error: 'No recording file' };
+      const result = uri ? await transcribe(uri, hint) : { error: 'No recording file' };
       if ('text' in result) onText(result.text);
       else {
         Alert.alert(

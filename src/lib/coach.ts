@@ -69,14 +69,18 @@ export async function checkAnswer(
   }
 }
 
+// What a recording is about: its language and, for a review answer, the word
+// Whisper should spell right. A WordEntry fits.
+export type VoiceHint = { lang: Lang; word?: string };
+
 // Sends a recorded answer to the Worker's Whisper endpoint (SPEC 4.6).
 // Returns the transcript, or an error description.
-export async function transcribe(uri: string, word: WordEntry): Promise<{ text: string } | { error: string }> {
+export async function transcribe(uri: string, hint: VoiceHint): Promise<{ text: string } | { error: string }> {
   if (!COACH_URL) return { error: 'No coach URL configured' };
   const form = new FormData();
   form.append('deviceId', await getDeviceId());
-  form.append('learningLang', word.lang);
-  form.append('word', word.word);
+  form.append('learningLang', hint.lang);
+  if (hint.word) form.append('word', hint.word);
   // SDK 57's fetch uploads local files as expo-file-system File objects (a Blob).
   form.append('audio', new File(uri));
   const controller = new AbortController();
@@ -89,6 +93,49 @@ export async function transcribe(uri: string, word: WordEntry): Promise<{ text: 
     return text ? { text } : { error: 'Empty transcript (no speech heard)' };
   } catch (e) {
     return { error: `Upload failed: ${e instanceof Error ? e.message : String(e)}` };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+export type Tone = 'natural' | 'formal' | 'academic';
+export type Swap = { id: string; from: string; to: string; why: string };
+export type RewriteResult = { rewrite: string; swaps: Swap[] };
+
+// SPEC 4.18, Say it better: the Worker rewrites the sentence with words from
+// `candidates` (saved words first). Premium only.
+export async function rewriteSentence(
+  sentence: string,
+  tone: Tone,
+  learningLang: Lang,
+  feedbackLang: Lang,
+  candidates: { word: WordEntry; saved: boolean }[],
+  isPremium: boolean
+): Promise<RewriteResult | CoachError> {
+  if (!COACH_URL) return 'network';
+  const controller = new AbortController();
+  // The model reasons before answering, which can take 10 to 30 seconds.
+  const timer = setTimeout(() => controller.abort(), 60_000);
+  try {
+    const res = await fetch(`${COACH_URL}/rewrite`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: await getDeviceId(),
+        isPro: isPremium,
+        learningLang,
+        feedbackLang,
+        tone,
+        sentence,
+        candidates: candidates.map((c) => ({ id: c.word.id, word: c.word.word, saved: c.saved })),
+      }),
+      signal: controller.signal,
+    });
+    if (res.status === 429) return 'limit';
+    if (!res.ok) return 'network';
+    return (await res.json()) as RewriteResult;
+  } catch {
+    return 'network';
   } finally {
     clearTimeout(timer);
   }

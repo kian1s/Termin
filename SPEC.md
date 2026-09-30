@@ -262,6 +262,15 @@ Background and the research behind it: RESEARCH.md. An AI picks which saved word
 - **Privacy:** while AI reminders are on, the top 8 saved words with their box, due time and miss count are sent to the Worker and the AI model (PRIVACY.md). Nothing is stored on the server except the daily call count.
 - **Done when:** with AI reminders and Intelligent spacing on and 3 due saved words, the developer list of scheduled reminders shows AI lines, AI-timed reminders at least 2 hours apart inside 09:00 to 21:00, and no word twice on one day; tapping one opens the start card; Skip changes no boxes; Start test updates boxes; with the Worker unreachable, reminders still schedule with the fallback text.
 
+### 4.18 Say it better (Premium, Sep 30)
+The learner writes (or says) a sentence in the learning language, and the AI rewrites it with stronger words from Termin's own dataset, so every new word can be saved and reviewed.
+- **Where:** a full-width tile in Practice → Your learning, with a pen doodle. Free users see a PREMIUM lock and the tile opens the paywall. The screen is `src/app/say-it-better.tsx`.
+- **Input:** a text box (max 300 characters) with the voice answer mic (4.6), and tone chips **Natural**, **Formal**, **Academic**. The default tone follows the user's categories: Academic if chosen, else Formal if Work is chosen, else Natural.
+- **Words the AI may use:** the user's saved words in the learning language first, then words at their level and categories, up to 200 in total. The AI may change a word's form (tense, plural, agreement, article).
+- **Result:** the rewritten sentence with the new words highlighted; below it, one row per swap ("didn't work → proved untenable") with a one-line reason in the Coach language and a Save button (adds the word to Favorites). If the sentence was not in the learning language, the AI translates it first.
+- **Limits:** Premium only, 30 rewrites a day per device (Worker). At the limit, or offline, a short message; nothing else changes.
+- **Done when:** with Premium, "The plan didn't work because we had no money" in Formal returns a rewrite that uses at least one dataset word, highlighted, with a swap row whose Save button adds the word to Favorites; a free user gets the paywall.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Premium
@@ -321,6 +330,8 @@ Rules:
 **`POST /transcribe`**: accepts the recorded audio (max 30 seconds, max about 2 MB) plus `deviceId` and `learningLang`. It transcribes with Cloudflare Workers AI Whisper (`@cf/openai/whisper-large-v3-turbo`, with the learning language and the reviewed word as hints, so the key word is spelled correctly), which runs inside the same Worker and needs no extra key. It returns `{ "text": "..." }`. Apply a daily limit per `deviceId` (for example 60 per day). Do not store audio.
 
 **`POST /plan-reminders`** (AI reminders, 4.17): takes `deviceId`, `isPro`, `learningLang`, the phone's local time, the user's reminder times for the next 48 hours (none with intelligent spacing), whether intelligent spacing is on, and up to 8 candidate words (`id`, `word`, `box`, due time, `misses`). Returns `{ "order": [ids], "lines": { id: text }, "slots": [{ "id", "at": "YYYY-MM-DD HH:MM" }] }`. Only for Premium (`isPro`); 12 calls a day per `deviceId`. Lines are English, at most 90 characters, and must contain the word. The Worker validates the JSON (known IDs only) and logs nothing.
+
+**`POST /rewrite`** (Say it better, 4.18): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `tone` (`natural`, `formal`, `academic`), `sentence` (max 300 characters) and up to 200 candidate words (`id`, `word`, `saved`). Returns `{ "rewrite": "...", "swaps": [{ "id", "from", "to", "why" }] }`. Premium only; 30 a day per `deviceId`. The Worker keeps only swaps whose `id` was a candidate and whose `to` appears in the rewrite. Nothing is logged.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 
