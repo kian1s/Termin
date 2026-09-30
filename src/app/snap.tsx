@@ -96,7 +96,7 @@ export default function Snap() {
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
-        Take a photo of anything. Termin finds a word worth learning in it.
+        Termin finds a word at your level in any photo.
       </Text>
 
       <View style={styles.row}>

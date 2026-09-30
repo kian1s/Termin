@@ -104,7 +104,7 @@ export default function Practice() {
             <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from a photo</Text>
             <Text style={[styles.detail, { color: theme.textSecondary }]}>
               {isPremium
-                ? 'A word worth learning in any photo'
+                ? 'A word at your level in any photo'
                 : `${Math.max(0, FREE_SNAPS - freeSnapsUsed)} free ${FREE_SNAPS - freeSnapsUsed === 1 ? 'photo' : 'photos'} left`}
             </Text>
           </View>
