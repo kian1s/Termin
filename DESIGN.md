@@ -53,6 +53,7 @@ Principles:
 | `partly` | `#8A5A0F` | `#EDBE6A` | Tutor "partly" |
 | `wrong` | `#A93D2C` | `#F5A08F` | Tutor "incorrect", destructive actions |
 | `shadow` | `#403233` | `#1A1213` | Shadows of raised tiles only (Practice). Never for text or fills |
+| `tutor` | `#8F8984` | `#A9A19B` | Tutor's lines (eyes and mouth) |
 
 - All text colors pass WCAG AA (4.5:1) on both `background` and `surface`; `spark` passes 3:1 for icons.
 - Dark mode has no green except the "correct" verdict, like the dark icon. Its buttons are cream with mocha text.
@@ -115,6 +116,7 @@ Actions:
 - **Tab bar:** Feed, Sets, Practice, Progress, Settings. Icons from `@expo/vector-icons` (Ionicons): `book-outline`, `albums-outline`, `school-outline`, `stats-chart-outline`, `settings-outline`. Active tint `accent`.
 - **Sticker style (app-wide):** Termin's indie, handmade surface, in `src/components/sticker.tsx`: `surface` fill, a 1.5 pt ink (`text`) outline, a hard shadow block offset 3 to 4 pt to the bottom right (`text` in light mode, `shadow` in dark mode), and pressing slides it into the shadow. Used for grouped lists (Settings, Sets), Practice and Progress tiles, onboarding and edit chips (selected: `accentSoft` fill, `accent` outline), paywall plans (selected: `premiumSoft`, `premium` outline) and the Continue button, and the round heart and add buttons on word cards.
 - **Doodle icons:** Termin's own hand-drawn icons in `src/components/doodle-icons.tsx`: loose ink lines with round ends, most with the terracotta `spark` dot from the app icon. The heart and flame fill with `spark` when saved or active. Saved-word stages grow as a plant: seed (New), sprout (Learning), plant (Familiar), flower (Learned).
+- **Tutor (the AI's face):** `src/components/tutor.tsx`. A few `tutor` gray lines and nothing else (no face shape, no outline, no fill): round reading glasses, two eyes and a mouth. At rest he is reading, eyes lowered behind the lenses with a small smile. When something happens his eyes open into round pupils with a glint: looking up while Tutor checks, a wide smile with his glasses lifted for a right answer, a frown with his glasses slipping down his nose for a miss. About two seconds later his eyes lower again and the mouth keeps its shape. Changes are slow, smooth morphs. He sits on top of AI cards (the review card for now) over the left or right corner, leaning toward it; each word always gets the same corner.
 - **Practice:** sticker tiles. Layout rule: tall tiles always span the full width and stay moderate (about 112 pt); only thin tiles sit two per row.
 - **Progress:** a streak sticker with the flame and a This week row (Monday to Sunday stamps: `spark` with a check when active, today dashed), stat tiles in pairs, and a Saved words sticker with the one-line bar and the four plant stages.
 - **Feed header:** small and quiet. Current streak at the top right as a flame icon plus number in `spark` (e.g. `🔥 4`, using Ionicons `flame`).

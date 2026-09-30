@@ -20,6 +20,7 @@ export const Colors = {
     partly: '#8A5A0F',
     wrong: '#A93D2C',
     shadow: '#403233', // tile shadows only (mocha ink)
+    tutor: '#8F8984', // Tutor's lines: a warm gray
   },
   dark: {
     background: '#403233', // mocha (dark icon background)
@@ -37,6 +38,7 @@ export const Colors = {
     partly: '#EDBE6A',
     wrong: '#F5A08F',
     shadow: '#1A1213', // tile shadows only (deeper than the mocha ground)
+    tutor: '#A9A19B',
   },
 } as const;
 

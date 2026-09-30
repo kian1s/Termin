@@ -16,6 +16,7 @@ import { CreditPill } from '@/components/credit-pill';
 import { ExplainLink } from '@/components/explain-link';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { Tutor, TutorMood } from '@/components/tutor';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -28,7 +29,18 @@ import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
 // `onFinished` fires once the answer is rated (by Tutor or by the user), unlocking the feed.
 // `correct` is true for "Knew it" and for a correct or partly right Coach verdict.
-type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: (correct: boolean) => void };
+// `active`: the feed sets it once it settles on this card, and Tutor pops in then.
+type Props = {
+  word: WordEntry;
+  nativeLang: Lang;
+  height: number;
+  active?: boolean;
+  onFinished: (correct: boolean) => void;
+};
+
+// Tutor sits on top of the card, over its left or right corner.
+const TUTOR_SIZE = 64;
+const TUTOR_OVERHANG = TUTOR_SIZE * 0.7 + Spacing.sm;
 
 // Why the card fell back to Reveal and self-rating instead of Tutor.
 type Fallback = 'limit' | 'network' | null;
@@ -39,7 +51,7 @@ const VERDICT_ICON = { correct: 'checkmark-circle', partly: 'remove-circle', inc
 
 // A saved word coming back as a question (SPEC 4.4). With Tutor the
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
-export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
+export function ReviewCard({ word, nativeLang, height, active = true, onFinished }: Props) {
   const theme = useTheme();
   const { answer, settings } = useAppState();
   const { isPremium, showPaywall } = usePremium();
@@ -83,147 +95,174 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
     ? { correct: theme.correct, partly: theme.partly, incorrect: theme.wrong }[coach.verdict]
     : theme.border;
 
+  // Each word always gets the same corner, so the feed alternates without jumping around.
+  const tutorSide = [...word.id].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 2 ? 'right' : 'left';
+  // Tutor reacts to the Coach's verdict or to the user's own rating. Otherwise he rests.
+  const mood: TutorMood = checking
+    ? 'thinking'
+    : coach
+      ? coach.verdict === 'incorrect'
+        ? 'sad'
+        : 'happy'
+      : next
+        ? next.correct
+          ? 'happy'
+          : 'sad'
+        : 'rest';
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={[styles.page, { height }]}>
       {/* Scrolls inside itself when the Coach's answer makes it taller than the screen. */}
-      <Sticker outline={theme.accent} fill={theme.background}>
-        <ScrollView
-          style={[styles.card, { maxHeight: height - Spacing.lg * 2 - 4 }]}
-          contentContainerStyle={styles.cardContent}
-          alwaysBounceVertical={false}
-          bounces={false}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}>
-          <View style={styles.labelRow}>
-            <Text style={[Type.label, styles.reviewLabel, { color: theme.accent }]}>Review</Text>
-            {coachAvailable && <CreditPill kind="check" />}
-          </View>
+      <View style={coachAvailable && styles.withTutor}>
+        <Sticker outline={theme.accent} fill={theme.background}>
+          <ScrollView
+            style={[styles.card, { maxHeight: height - Spacing.lg * 2 - 4 - (coachAvailable ? TUTOR_OVERHANG : 0) }]}
+            contentContainerStyle={styles.cardContent}
+            alwaysBounceVertical={false}
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}>
+            <View style={styles.labelRow}>
+              <Text style={[Type.label, styles.reviewLabel, { color: theme.accent }]}>Review</Text>
+              {coachAvailable && <CreditPill kind="check" />}
+            </View>
 
-          {!revealed ? (
-            <>
-              <Text style={[styles.prompt, { color: theme.text }]}>
-                What does{' '}
-                <Text style={[styles.promptWord, { color: theme.word, backgroundColor: theme.accentSoft }]}>
-                  {' '}
-                  {word.word}{' '}
-                </Text>{' '}
-                mean?
-              </Text>
-              <View>
-                <TextInput
-                  value={text}
-                  onChangeText={setText}
-                  placeholder={coachAvailable ? 'Say or type what it means. Add a sentence if you like.' : 'Type what it means…'}
-                  placeholderTextColor={theme.textSecondary}
-                  multiline
-                  maxLength={500}
-                  editable={!busy}
-                  style={[
-                    styles.input,
-                    coachAvailable && styles.inputWithMic,
-                    { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
-                  ]}
-                />
-                {coachAvailable && (
-                  <Pressable
-                    onPress={voice.toggle}
-                    disabled={voice.state === 'transcribing' || checking}
-                    accessibilityLabel={voice.state === 'recording' ? 'Stop recording' : 'Answer by voice'}
-                    style={[
-                      styles.mic,
-                      { backgroundColor: voice.state === 'recording' ? theme.wrong : theme.accent },
-                    ]}>
-                    {voice.state === 'transcribing' ? (
-                      <ActivityIndicator color={theme.background} />
-                    ) : (
-                      <Ionicons
-                        name={voice.state === 'recording' ? 'stop' : 'mic'}
-                        size={22}
-                        color={theme.background}
-                      />
-                    )}
-                  </Pressable>
-                )}
-              </View>
-              {voice.state !== 'idle' && (
-                <Text style={[styles.small, { color: voice.state === 'recording' ? theme.wrong : theme.textSecondary }]}>
-                  {voice.state === 'recording'
-                    ? `Recording… ${voice.seconds}s of 30. Tap to stop.`
-                    : 'Transcribing…'}
+            {!revealed ? (
+              <>
+                <Text style={[styles.prompt, { color: theme.text }]}>
+                  What does{' '}
+                  <Text style={[styles.promptWord, { color: theme.word, backgroundColor: theme.accentSoft }]}>
+                    {' '}
+                    {word.word}{' '}
+                  </Text>{' '}
+                  mean?
                 </Text>
-              )}
-              <View style={styles.row}>
-                <Button
-                  label="Reveal"
-                  onPress={() => setRevealed(true)}
-                  primary={!coachAvailable}
-                />
-                {coachAvailable && (
-                  <Button label="Check" onPress={check} primary disabled={!canCheck} loading={checking} />
-                )}
-              </View>
-              <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
-                {checking ? 'Tutor is reading your answer…' : 'Answer or reveal, then rate yourself to keep scrolling.'}
-              </Text>
-            </>
-          ) : (
-            <>
-              {coach && (
-                <View style={[styles.result, { backgroundColor: theme.surface, borderColor: verdictColor }]}>
-                  <View style={styles.verdictRow}>
-                    <Ionicons name={VERDICT_ICON[coach.verdict]} size={20} color={verdictColor} />
-                    <Text style={[styles.resultTitle, { color: verdictColor }]}>{VERDICT_TITLE[coach.verdict]}</Text>
-                  </View>
-                  <Text style={[styles.resultText, { color: theme.text }]}>{coach.feedback}</Text>
-                  <Example text={coach.improvedSentence} />
-                  <Text style={[styles.small, { color: theme.textSecondary }]}>
-                    {coach.remainingToday} Tutor {coach.remainingToday === 1 ? 'check' : 'checks'} left today
-                  </Text>
-                </View>
-              )}
-              {fallback && (
-                <View style={[styles.result, { backgroundColor: theme.surface, borderColor: theme.border }]}>
-                  <Text style={[styles.resultText, { color: theme.text }]}>
-                    {fallback === 'limit'
-                      ? `You've used today's ${isPremium ? 50 : 3} Tutor checks. Rate yourself instead.`
-                      : 'Tutor is offline. Rate yourself instead.'}
-                  </Text>
-                  {fallback === 'limit' && !isPremium && (
-                    <Pressable onPress={showPaywall} hitSlop={8}>
-                      <Text style={[styles.link, { color: theme.premium }]}>Get 50 checks a day with Premium</Text>
+                <View>
+                  <TextInput
+                    value={text}
+                    onChangeText={setText}
+                    placeholder={coachAvailable ? 'Say or type what it means. Add a sentence if you like.' : 'Type what it means…'}
+                    placeholderTextColor={theme.textSecondary}
+                    multiline
+                    maxLength={500}
+                    editable={!busy}
+                    style={[
+                      styles.input,
+                      coachAvailable && styles.inputWithMic,
+                      { color: theme.text, backgroundColor: theme.surface, borderColor: theme.border },
+                    ]}
+                  />
+                  {coachAvailable && (
+                    <Pressable
+                      onPress={voice.toggle}
+                      disabled={voice.state === 'transcribing' || checking}
+                      accessibilityLabel={voice.state === 'recording' ? 'Stop recording' : 'Answer by voice'}
+                      style={[
+                        styles.mic,
+                        { backgroundColor: voice.state === 'recording' ? theme.wrong : theme.accent },
+                      ]}>
+                      {voice.state === 'transcribing' ? (
+                        <ActivityIndicator color={theme.background} />
+                      ) : (
+                        <Ionicons
+                          name={voice.state === 'recording' ? 'stop' : 'mic'}
+                          size={22}
+                          color={theme.background}
+                        />
+                      )}
                     </Pressable>
                   )}
                 </View>
-              )}
-
-              <WordHeading word={word} />
-              <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
-              {!coach && <Example text={word.example} word={word} />}
-              <Translation word={word} nativeLang={nativeLang} />
-              <ExplainLink wordId={word.id} />
-
-              {!next ? (
-                <>
-                  <View style={styles.row}>
-                    <Button label="Didn't know" onPress={() => rate(false)} />
-                    <Button label="Knew it" onPress={() => rate(true)} primary />
-                  </View>
-                  <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
-                    Rate yourself to keep scrolling.
+                {voice.state !== 'idle' && (
+                  <Text style={[styles.small, { color: voice.state === 'recording' ? theme.wrong : theme.textSecondary }]}>
+                    {voice.state === 'recording'
+                      ? `Recording… ${voice.seconds}s of 30. Tap to stop.`
+                      : 'Transcribing…'}
                   </Text>
-                </>
-              ) : (
-                <Text style={[styles.small, { color: theme.textSecondary }]}>
-                  {!coach && (next.correct ? 'Nice. ' : 'No problem. ')}
-                  {describeNext(next.state)}
+                )}
+                <View style={styles.row}>
+                  <Button
+                    label="Reveal"
+                    onPress={() => setRevealed(true)}
+                    primary={!coachAvailable}
+                  />
+                  {coachAvailable && (
+                    <Button label="Check" onPress={check} primary disabled={!canCheck} loading={checking} />
+                  )}
+                </View>
+                <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
+                  {checking ? 'Tutor is reading your answer…' : 'Answer or reveal, then rate yourself to keep scrolling.'}
                 </Text>
-              )}
-            </>
-          )}
-        </ScrollView>
-      </Sticker>
+              </>
+            ) : (
+              <>
+                {coach && (
+                  <View style={[styles.result, { backgroundColor: theme.surface, borderColor: verdictColor }]}>
+                    <View style={styles.verdictRow}>
+                      <Ionicons name={VERDICT_ICON[coach.verdict]} size={20} color={verdictColor} />
+                      <Text style={[styles.resultTitle, { color: verdictColor }]}>{VERDICT_TITLE[coach.verdict]}</Text>
+                    </View>
+                    <Text style={[styles.resultText, { color: theme.text }]}>{coach.feedback}</Text>
+                    <Example text={coach.improvedSentence} />
+                    <Text style={[styles.small, { color: theme.textSecondary }]}>
+                      {coach.remainingToday} Tutor {coach.remainingToday === 1 ? 'check' : 'checks'} left today
+                    </Text>
+                  </View>
+                )}
+                {fallback && (
+                  <View style={[styles.result, { backgroundColor: theme.surface, borderColor: theme.border }]}>
+                    <Text style={[styles.resultText, { color: theme.text }]}>
+                      {fallback === 'limit'
+                        ? `You've used today's ${isPremium ? 50 : 3} Tutor checks. Rate yourself instead.`
+                        : 'Tutor is offline. Rate yourself instead.'}
+                    </Text>
+                    {fallback === 'limit' && !isPremium && (
+                      <Pressable onPress={showPaywall} hitSlop={8}>
+                        <Text style={[styles.link, { color: theme.premium }]}>Get 50 checks a day with Premium</Text>
+                      </Pressable>
+                    )}
+                  </View>
+                )}
+
+                <WordHeading word={word} />
+                <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
+                {!coach && <Example text={word.example} word={word} />}
+                <Translation word={word} nativeLang={nativeLang} />
+                <ExplainLink wordId={word.id} />
+
+                {!next ? (
+                  <>
+                    <View style={styles.row}>
+                      <Button label="Didn't know" onPress={() => rate(false)} />
+                      <Button label="Knew it" onPress={() => rate(true)} primary />
+                    </View>
+                    <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
+                      Rate yourself to keep scrolling.
+                    </Text>
+                  </>
+                ) : (
+                  <Text style={[styles.small, { color: theme.textSecondary }]}>
+                    {!coach && (next.correct ? 'Nice. ' : 'No problem. ')}
+                    {describeNext(next.state)}
+                  </Text>
+                )}
+              </>
+            )}
+          </ScrollView>
+        </Sticker>
+        {/* Tutor sits on top of the card, leaning toward his corner. */}
+        {coachAvailable && (
+          <Tutor
+            mood={mood}
+            size={TUTOR_SIZE}
+            lean={tutorSide}
+            visible={active}
+            style={[styles.tutor, tutorSide === 'left' ? { left: Spacing.xl } : { right: Spacing.xl }]}
+          />
+        )}
+      </View>
     </KeyboardAvoidingView>
   );
 }
@@ -256,6 +295,8 @@ function Button({
 const styles = StyleSheet.create({
   page: { justifyContent: 'center', padding: Spacing.lg },
   card: { flexGrow: 0 },
+  withTutor: { marginTop: TUTOR_OVERHANG },
+  tutor: { position: 'absolute', top: -TUTOR_OVERHANG },
   cardContent: { padding: Spacing.xl, gap: Spacing.lg },
   reviewLabel: { fontWeight: '600' },
   labelRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

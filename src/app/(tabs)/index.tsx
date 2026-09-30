@@ -205,6 +205,7 @@ export default function Feed() {
             word={item.word}
             nativeLang={settings.nativeLang}
             height={height}
+            active={blockingKey === item.key || doneReviews.has(item.key)}
             onFinished={() => {
               setDoneReviews((d) => new Set(d).add(item.key));
               setBlockingKey(null);
