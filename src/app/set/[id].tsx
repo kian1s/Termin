@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Doodle } from '@/components/doodle-icons';
@@ -13,17 +14,38 @@ import { usePremium } from '@/lib/premium';
 import { FAVORITES_ID, WordEntry } from '@/lib/types';
 import { wordById } from '@/lib/words';
 
-// One set's words, with remove, rename and delete.
+// One set's words. Tap a word for its full card; Edit (top right) selects
+// several words to remove at once. Rename and delete for own sets.
 export default function SetScreen() {
   const theme = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { sets, removeFromSet, deleteSet } = useAppState();
   const { isPremium, showPaywall } = usePremium();
+  const [editing, setEditing] = useState(false);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
   const set = sets.find((s) => s.id === id);
   if (!set) return null;
 
   const words = set.wordIds.map(wordById).filter((w): w is WordEntry => !!w);
   const isFavorites = set.id === FAVORITES_ID;
+
+  const toggleEditing = () => {
+    setEditing((e) => !e);
+    setSelected(new Set());
+  };
+
+  const toggle = (wordId: string) =>
+    setSelected((s) => {
+      const next = new Set(s);
+      if (!next.delete(wordId)) next.add(wordId);
+      return next;
+    });
+
+  const removeSelected = () => {
+    selected.forEach((wordId) => removeFromSet(set.id, wordId));
+    setSelected(new Set());
+    if (selected.size >= words.length) setEditing(false);
+  };
 
   const confirmDelete = () =>
     Alert.alert(`Delete “${set.name}”?`, 'The words stay saved in your other sets.', [
@@ -42,6 +64,18 @@ export default function SetScreen() {
     <ScrollView
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={styles.content}>
+      <Stack.Screen
+        options={{
+          headerRight: () =>
+            words.length > 0 || editing ? (
+              <Pressable onPress={toggleEditing} hitSlop={10} accessibilityRole="button">
+                <Text style={[styles.headerButton, { color: theme.accent }, editing && styles.bold]}>
+                  {editing ? 'Done' : 'Edit'}
+                </Text>
+              </Pressable>
+            ) : null,
+        }}
+      />
       <Text style={[styles.title, { color: theme.text }]}>{set.name}</Text>
 
       {/* SPEC 4.15: Premium flashcards. Free users see it in Premium colors and get the paywall. */}
@@ -67,44 +101,75 @@ export default function SetScreen() {
         )}
       </View>
 
-      <Section>
-        <Row
-          label="Add saved words"
-          icon={<Doodle name="heart" size={22} />}
-          onPress={() => router.push({ pathname: '/add-saved/[setId]', params: { setId: set.id } })}
-        />
-        <Row
-          label="Add a new word"
-          icon={<Doodle name="plus" size={22} />}
-          onPress={() => router.push({ pathname: '/add-word', params: { setId: set.id } })}
-          last
-        />
-      </Section>
+      {editing ? (
+        <Section>
+          <Row
+            label={
+              selected.size
+                ? `Remove ${selected.size} ${selected.size === 1 ? 'word' : 'words'}`
+                : 'Select words to remove'
+            }
+            icon={
+              <Ionicons
+                name="remove-circle"
+                size={22}
+                color={selected.size ? theme.wrong : theme.border}
+              />
+            }
+            destructive={selected.size > 0}
+            onPress={selected.size ? removeSelected : undefined}
+            chevron={false}
+            last
+          />
+        </Section>
+      ) : (
+        <Section>
+          <Row
+            label="Add saved words"
+            icon={<Doodle name="heart" size={22} />}
+            onPress={() => router.push({ pathname: '/add-saved/[setId]', params: { setId: set.id } })}
+          />
+          <Row
+            label="Add a new word"
+            icon={<Doodle name="plus" size={22} />}
+            onPress={() => router.push({ pathname: '/add-word', params: { setId: set.id } })}
+            last
+          />
+        </Section>
+      )}
 
       <Section>
         {words.length === 0 ? (
           <Row label="No words yet" subtitle="Add saved words or a new word above." last />
         ) : (
-          words.map((w, i) => (
-            <Row
-              key={w.id}
-              label={w.word}
-              subtitle={w.definition}
-              last={i === words.length - 1}
-              right={
-                <Pressable
-                  onPress={() => removeFromSet(set.id, w.id)}
-                  hitSlop={10}
-                  accessibilityLabel={`Remove ${w.word}`}>
-                  <Ionicons name="remove-circle-outline" size={22} color={theme.wrong} />
-                </Pressable>
-              }
-            />
-          ))
+          words.map((w, i) => {
+            const on = selected.has(w.id);
+            return (
+              <Row
+                key={w.id}
+                label={w.word}
+                subtitle={w.definition}
+                icon={
+                  editing ? (
+                    <Ionicons
+                      name={on ? 'checkmark-circle' : 'ellipse-outline'}
+                      size={24}
+                      color={on ? theme.accent : theme.border}
+                    />
+                  ) : undefined
+                }
+                onPress={() =>
+                  editing ? toggle(w.id) : router.push({ pathname: '/word/[id]', params: { id: w.id } })
+                }
+                chevron={!editing}
+                last={i === words.length - 1}
+              />
+            );
+          })
         )}
       </Section>
 
-      {!isFavorites && (
+      {!isFavorites && !editing && (
         <Section>
           <Row
             label="Rename set"
@@ -131,4 +196,6 @@ const styles = StyleSheet.create({
   dim: { opacity: 0.4 },
   studyText: { fontSize: 17, fontWeight: '600' },
   studyHint: { fontSize: 14, paddingHorizontal: Spacing.xs },
+  headerButton: { fontSize: 17 },
+  bold: { fontWeight: '600' },
 });

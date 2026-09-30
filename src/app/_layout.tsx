@@ -68,6 +68,7 @@ function RootStack() {
         <Stack.Screen name="edit/[field]" options={{ presentation: 'modal' }} />
         <Stack.Screen name="set/[id]" options={{ headerShown: true, title: '', headerBackTitle: 'Sets' }} />
         <Stack.Screen name="add-to-set/[wordId]" options={{ ...sheet, sheetAllowedDetents: [0.5, 1] }} />
+        <Stack.Screen name="word/[id]" options={{ ...sheet, sheetAllowedDetents: [0.75, 1] }} />
         <Stack.Screen name="add-saved/[setId]" options={{ ...sheet, sheetAllowedDetents: [0.6, 1] }} />
         <Stack.Screen name="explain/[wordId]" options={{ ...sheet, sheetAllowedDetents: [0.5, 1] }} />
         <Stack.Screen name="set-name" options={{ ...sheet, sheetAllowedDetents: [0.4] }} />
