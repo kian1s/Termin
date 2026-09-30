@@ -25,7 +25,7 @@ Read this whole file before writing code. Then work **one phase at a time** (sec
 
 - The app is a mobile app for iOS and Android. It is new, created in the submission window.
 - It uses the **RevenueCat SDK** for at least one purchase flow. For Next Gen, Test Store is fine.
-- The code lives in a **public GitHub repository** with an **MIT `LICENSE` file** and a `README.md` containing setup instructions.
+- The code lives in a **public GitHub repository** with an **AGPL-3.0-only `LICENSE` file** (switched from MIT on Sep 30) and a `README.md` containing setup instructions.
 - A **demo video under 2 minutes** (public or unlisted YouTube) shows the app running on a device, with narration covering core features and the purchase flow.
 - **Deadline:** Wednesday, September 30, 2026, 11:45 PM PT (Thursday, October 1, 08:45 Swiss time). Target submission is Wednesday evening.
 
@@ -444,7 +444,7 @@ If behind schedule in Phase 8, cut in this order: notification options (4.16), t
 
 ## 10. Submission checklist
 
-- [ ] The GitHub repo is public, with an MIT `LICENSE`, and contains no secrets. Search the repo for `sk_` and `OPENROUTER`.
+- [ ] The GitHub repo is public, with the AGPL-3.0 `LICENSE`, and contains no secrets. Search the repo for `sk_` and `OPENROUTER`.
 - [ ] The README covers what the app is, features, the tech stack, setup steps, environment variables (with example values only), how RevenueCat is used, and known limitations.
 - [ ] `.env.example` files exist for the app, the scripts, and the worker.
 - [ ] The demo video is under 2 minutes and public or unlisted. It shows onboarding, the feed, saving to a set, a review card answered by voice with AI feedback, hitting a locked card, the paywall, a Test Store purchase, and Premium unlocking.

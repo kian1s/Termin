@@ -25,6 +25,7 @@ const APPEARANCES: { id: AppearanceMode; label: string }[] = [
 
 const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
 const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
+const SOURCE_URL = 'https://github.com/kian1s/wordloop';
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -147,6 +148,8 @@ export default function SettingsScreen() {
       <Section title="About">
         <Row label="Privacy Policy" onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)} />
         <Row label="Terms of Use" onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)} />
+        {/* AGPL-3.0: users can always reach the source. */}
+        <Row label="Source code" value="AGPL-3.0" onPress={() => WebBrowser.openBrowserAsync(SOURCE_URL)} />
         <Row
           label="Version"
           value={Constants.expoConfig?.version ?? '1.0.0'}

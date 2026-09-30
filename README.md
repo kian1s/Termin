@@ -90,4 +90,6 @@ Checks: `npx tsc --noEmit` and `npx expo lint`.
 
 ## Privacy and license
 
-Termin has no accounts; learning data stays on the phone. What the AI features send to the server is listed in [PRIVACY.md](PRIVACY.md). Terms: [TERMS.md](TERMS.md). Code under the [MIT license](LICENSE).
+Termin has no accounts; learning data stays on the phone. What the AI features send to the server is listed in [PRIVACY.md](PRIVACY.md). Terms: [TERMS.md](TERMS.md).
+
+**License:** Copyright (C) 2026 kian1s. Termin (the app, the Worker, the scripts and the word data) is free software under the [GNU Affero General Public License v3.0 only](LICENSE) (AGPL-3.0-only). If you run a changed version, including the Worker as a network service, you must offer its source to its users. The name "Termin" and the app icon are not covered by this license. Third-party packages keep their own licenses (for example the Fraunces font, SIL Open Font License).
