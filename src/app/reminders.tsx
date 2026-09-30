@@ -97,7 +97,7 @@ export default function Reminders() {
       {reminder.enabled && (
         <>
           {!smart && (
-          <Section title="Times" footer={`Up to ${MAX_TIMES} a day.`}>
+          <Section title="Times">
             {reminder.times.map((t, i) => (
               <Row
                 key={i}
