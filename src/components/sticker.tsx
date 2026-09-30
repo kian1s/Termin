@@ -85,7 +85,9 @@ export function Sticker({
 
 const styles = StyleSheet.create({
   shadow: { position: 'absolute', right: 0, bottom: 0 },
-  face: { borderWidth: 1.5, overflow: 'hidden' },
+  // flexGrow: when a row stretches the sticker (a taller neighbour), the face
+  // grows with it, so the shadow block never shows more than `lift`.
+  face: { borderWidth: 1.5, overflow: 'hidden', flexGrow: 1 },
   buttonWrap: { alignSelf: 'stretch' },
   dim: { opacity: 0.4 },
   button: {
