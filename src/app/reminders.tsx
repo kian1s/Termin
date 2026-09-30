@@ -165,15 +165,7 @@ export default function Reminders() {
 
           <Section
             title="AI reminders"
-            footer={
-              aiOn
-                ? `The AI picks the saved words that most need practice, writes each reminder, and a tap opens a 1-minute test.${
-                    smart
-                      ? ' Intelligent spacing replaces your own times: up to 3 reminders a day, when words fall due, 9:00 to 21:00, at least 2 hours apart. No words due, no reminder.'
-                      : ' They arrive at your own times.'
-                  } While this is on, your saved words and how well you know them are sent to the AI (see Privacy).`
-                : 'The AI picks the saved words that most need practice and writes each reminder. A tap opens a 1-minute test.'
-            }>
+            footer="The AI picks the saved words you most need to practice, and tapping a reminder opens a 1-minute test.">
             <Row
               label="AI reminders"
               onPress={isPremium ? undefined : showPaywall}
@@ -190,7 +182,6 @@ export default function Reminders() {
             {aiOn && (
               <Row
                 label="Intelligent spacing"
-                subtitle={reminder.smartSpacing ? 'The AI picks when to remind you' : 'At your own times'}
                 last
                 right={<Toggle value={reminder.smartSpacing} onValueChange={(v) => update({ smartSpacing: v })} />}
               />
