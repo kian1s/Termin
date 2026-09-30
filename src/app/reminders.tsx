@@ -86,7 +86,7 @@ export default function Reminders() {
 
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
-      <Section footer="Local reminders from Termin, each with a word to test yourself on.">
+      <Section footer="Get a daily word to test yourself on.">
         <Row
           label="Reminders"
           last
@@ -97,7 +97,7 @@ export default function Reminders() {
       {reminder.enabled && (
         <>
           {!smart && (
-          <Section title="Times" footer={`Up to ${MAX_TIMES} reminders a day.`}>
+          <Section title="Times" footer={`Up to ${MAX_TIMES} a day.`}>
             {reminder.times.map((t, i) => (
               <Row
                 key={i}
@@ -139,7 +139,7 @@ export default function Reminders() {
           </Section>
           )}
 
-          <Section title="Days" footer="No reminders on days that are off.">
+          <Section title="Days" footer="Reminders only on selected days.">
             <View style={styles.days}>
               {WEEK.map(({ day, label }) => {
                 const on = reminder.days.includes(day);
@@ -165,7 +165,7 @@ export default function Reminders() {
 
           <Section
             title="AI reminders"
-            footer="The AI picks the saved words you most need to practice, and tapping a reminder opens a 1-minute test.">
+            footer="AI chooses words that need practice and sends a short test.">
             <Row
               label="AI reminders"
               onPress={isPremium ? undefined : showPaywall}
@@ -190,18 +190,18 @@ export default function Reminders() {
 
           <Section
             title="Options"
-            footer="The streak saver sends one more nudge at 21:00 when a streak of 2 days or more is at risk, and disappears once today counts.">
+            footer="Streak saver sends a nudge at 21:00 if your streak is at risk.">
             {!aiOn && (
               <Row
                 label="Include a word"
-                subtitle={reminder.includeWord ? 'A word to test yourself on' : 'A plain nudge'}
+                subtitle={reminder.includeWord ? 'Quiz a word' : 'Plain nudge'}
                 right={<Toggle value={reminder.includeWord} onValueChange={(v) => update({ includeWord: v })} />}
               />
             )}
             {!smart && (
             <Row
               label="Vary the time slightly"
-              subtitle={reminder.vary ? 'Within 30 minutes of each time' : 'Exactly on time'}
+              subtitle={reminder.vary ? 'Within 30 minutes' : 'Exact time'}
               right={<Toggle value={reminder.vary} onValueChange={(v) => update({ vary: v })} />}
             />
             )}
