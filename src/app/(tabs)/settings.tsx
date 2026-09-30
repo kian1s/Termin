@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, AppState, ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Doodle } from '@/components/doodle-icons';
 import { Row, Section, Toggle } from '@/components/grouped-list';
 import { PremiumBadge } from '@/components/pro-cards';
 import { Fonts, Spacing } from '@/constants/theme';
@@ -93,14 +94,14 @@ export default function SettingsScreen() {
               ? `${plan.period} plan${plan.renews ? ` · renews ${plan.renews.toDateString().slice(4)}` : ''}`
               : undefined
           }
-          icon={<Ionicons name={isPremium ? 'star' : 'star-outline'} size={20} color={theme.premium} />}
+          icon={<Doodle name="star" size={22} color={theme.premium} filled={isPremium} />}
           right={isPremium ? <PremiumBadge /> : undefined}
           chevron={false}
         />
         {!isPremium && (
           <Row
             label="Upgrade to Premium"
-            icon={<Ionicons name="lock-open-outline" size={20} color={theme.premium} />}
+            icon={<Doodle name="unlock" size={22} color={theme.premium} />}
             onPress={showPaywall}
           />
         )}

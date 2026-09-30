@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { Doodle } from '@/components/doodle-icons';
 import { Example, WordHeading } from '@/components/word-card';
 import { StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
@@ -13,7 +14,7 @@ export function PremiumBadge({ lock, label = 'PREMIUM' }: { lock?: boolean; labe
   const theme = useTheme();
   return (
     <View style={[styles.pill, { backgroundColor: theme.premiumSoft }]}>
-      {lock && <Ionicons name="lock-closed" size={12} color={theme.premium} />}
+      {lock && <Doodle name="lock" size={14} color={theme.premium} />}
       <Text style={[styles.pillText, { color: theme.premium }]}>{label}</Text>
     </View>
   );
@@ -41,7 +42,7 @@ export function LockedCard({
         <Example text={word.example} />
       </View>
       <BlurView intensity={40} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.center]}>
-        <Ionicons name="lock-closed" size={40} color={theme.premium} />
+        <Doodle name="lock" size={44} color={theme.premium} />
         <PremiumBadge />
         <Text style={[styles.message, { color: theme.text }]}>{message}</Text>
         <Text style={[styles.hint, { color: theme.textSecondary }]}>Tap to see Premium</Text>
@@ -73,7 +74,7 @@ export function LevelUpCard({
       <StickerButton
         label={`Switch to ${level}`}
         onPress={onPress}
-        icon={locked ? <Ionicons name="lock-closed" size={16} color={theme.background} /> : undefined}
+        icon={locked ? <Doodle name="lock" size={18} color={theme.background} /> : undefined}
         style={styles.button}
       />
     </View>

@@ -52,7 +52,7 @@ export default function Explain() {
         <CreditPill kind="explain" />
       </View>
       <Text style={[styles.intro, { color: theme.textSecondary }]}>
-        Hear the meaning in easier words, or see the word in another sentence.
+        Tutor rewrites the card definition or sample sentence for you.
       </Text>
 
       {outOfUses ? (

@@ -19,6 +19,9 @@ export type DoodleName =
   | 'bulb'
   | 'book'
   | 'guess'
+  | 'star'
+  | 'lock'
+  | 'unlock'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -129,6 +132,29 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M10.1 8.9c.4-1.2 1.4-1.8 2.5-1.6 1.2.2 1.9 1.2 1.6 2.3-.3 1-1.4 1.3-1.9 2-.2.3-.2.7-.2 1',
     ],
     dot: [12.1, 14.1],
+  },
+  // A hand-drawn star: outline for the Free plan, filled terracotta for Premium.
+  star: {
+    paths: [
+      'M12 3.4c.9 1.8 1.7 3.6 2.6 5.4 1.9.2 3.9.5 5.8.8-1.4 1.4-2.9 2.7-4.3 4.1.3 1.9.7 3.8 1 5.8-1.7-.9-3.4-1.9-5.1-2.8-1.7.9-3.4 1.8-5.2 2.7.4-1.9.8-3.8 1.1-5.8-1.4-1.3-2.9-2.7-4.3-4.1 2-.3 3.9-.5 5.8-.7.9-1.8 1.8-3.6 2.6-5.4z',
+    ],
+    fillable: true,
+  },
+  // A padlock (Premium content); the dot is the keyhole.
+  lock: {
+    paths: [
+      'M8.2 10.6c-.1-1.3-.1-2.5.1-3.6.4-2 1.9-3.3 3.8-3.3s3.4 1.3 3.7 3.3c.2 1.1.2 2.3.1 3.6',
+      'M5.6 10.7c4.3-.3 8.6-.3 12.9 0 .3 3.1.3 6.2 0 9.3-4.3.3-8.6.3-12.9 0-.3-3.1-.3-6.2 0-9.3z',
+    ],
+    dot: [12, 15.3],
+  },
+  // The same padlock with its shackle swung open (Upgrade to Premium).
+  unlock: {
+    paths: [
+      'M8.2 10.6c-.1-1.3-.1-2.6.1-3.7.4-2 1.9-3.3 3.8-3.3 1.6 0 2.9.9 3.5 2.3',
+      'M5.6 10.7c4.3-.3 8.6-.3 12.9 0 .3 3.1.3 6.2 0 9.3-4.3.3-8.6.3-12.9 0-.3-3.1-.3-6.2 0-9.3z',
+    ],
+    dot: [12, 15.3],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {
