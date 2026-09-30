@@ -40,3 +40,9 @@ const BY_ID = new Map(Object.values(WORDS).flat().map((w) => [w.id, w]));
 export function wordById(id: string): WordEntry | undefined {
   return BY_ID.get(id);
 }
+
+// AI-made cards (SPEC 4.19) live in the app state; they are registered here so
+// every screen finds them by ID like dataset words. They never enter the feed.
+export function registerCustomWords(words: WordEntry[]) {
+  for (const w of words) BY_ID.set(w.id, w);
+}

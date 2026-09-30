@@ -271,6 +271,15 @@ The learner writes (or says) a sentence in the learning language, and the AI rew
 - **Limits:** Premium only, 30 rewrites a day per device (Worker). At the limit, or offline, a short message; nothing else changes.
 - **Done when:** with Premium, "The plan didn't work because we had no money" in Formal returns a rewrite that uses at least one dataset word, highlighted, with a swap row whose Save button adds the word to Favorites; a free user gets the paywall.
 
+### 4.19 Snap a word (Sep 30)
+Take or choose a photo; the AI writes a card for a word worth learning in it.
+- **Where:** a full-width tile in Practice → Your learning (camera doodle) and a small camera doodle at the top left of the feed. The screen is `src/app/snap.tsx`.
+- **Photo:** **Take photo** (camera) or **Choose photo** (library), with `expo-image-picker`. The phone shrinks it to 1024 px wide (`expo-image-manipulator`) before sending.
+- **Cards:** usually **one** card, at the user's level, in the learning language; up to 3 only when more are clearly worth learning. Each has the word (nouns with their article), part of speech, a short definition (under 15 words), an example that fits the photo, and a translation into the native language. No basic A1/A2 words, never identifying real people, no card for unusable or inappropriate photos.
+- **AI-made cards** are stored on the phone only (`customWords` in the app state), marked with an outlined **AI** pill next to the part of speech wherever they show, and read aloud by the phone's voice (no recording). **Save** adds the card to Favorites; from then on it reviews like any saved word. They never enter the feed.
+- **Limits:** free users get **2 photos for the lifetime of the install**, then the tile shows the PREMIUM lock and the screen offers the paywall. Premium gets 10 a day. The Worker enforces both (the free count has no expiry); the phone mirrors the free count for display.
+- **Done when:** a photo of a coffee cup for a German B2 learner returns one card such as "das Porzellan" with the AI pill; Save puts it in Favorites and it later comes back as a review card; a free user's third photo is refused with the paywall.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Premium
@@ -332,6 +341,8 @@ Rules:
 **`POST /plan-reminders`** (AI reminders, 4.17): takes `deviceId`, `isPro`, `learningLang`, the phone's local time, the user's reminder times for the next 48 hours (none with intelligent spacing), whether intelligent spacing is on, and up to 8 candidate words (`id`, `word`, `box`, due time, `misses`). Returns `{ "order": [ids], "lines": { id: text }, "slots": [{ "id", "at": "YYYY-MM-DD HH:MM" }] }`. Only for Premium (`isPro`); 12 calls a day per `deviceId`. Lines are English, at most 90 characters, and must contain the word. The Worker validates the JSON (known IDs only) and logs nothing.
 
 **`POST /rewrite`** (Say it better, 4.18): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `tone` (`natural`, `formal`, `academic`), `sentence` (max 300 characters) and up to 200 candidate words (`id`, `word`, `saved`). Returns `{ "rewrite": "...", "swaps": [{ "id", "from", "to", "why" }] }`. Premium only; 30 a day per `deviceId`. The Worker keeps only swaps whose `id` was a candidate and whose `to` appears in the rewrite. Nothing is logged.
+
+**`POST /snap`** (Snap a word, 4.19): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `image` (base64 JPEG, max about 1.5 MB). Returns `{ "cards": [{ "word", "partOfSpeech", "definition", "example", "translation": { "word", "definition" } }], "freeUsed"? }`, 0 to 3 cards. Free: 2 per `deviceId`, ever (HTTP 402 after); Premium: 10 a day. A failed call gives the photo back. The photo is never logged or stored.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

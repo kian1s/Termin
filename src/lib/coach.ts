@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { File } from 'expo-file-system';
+import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 
-import { Lang, WordEntry } from '@/lib/types';
+import { Lang, Level, WordEntry } from '@/lib/types';
 
 // The AI Coach Worker (SPEC 6). Without a URL the review card falls back to
 // Reveal and self-rating.
@@ -134,6 +135,49 @@ export async function rewriteSentence(
     if (res.status === 429) return 'limit';
     if (!res.ok) return 'network';
     return (await res.json()) as RewriteResult;
+  } catch {
+    return 'network';
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+export type SnapCard = {
+  word: string;
+  partOfSpeech: string;
+  definition: string;
+  example: string;
+  translation: { word: string; definition: string };
+};
+export type SnapResult = { cards: SnapCard[]; freeUsed?: number };
+export const FREE_SNAPS = 2; // lifetime Snap a word photos without Premium
+
+// SPEC 4.19, Snap a word: shrinks the photo to 1024 px wide on the phone and
+// asks the Worker for a card. 'free-used' means the 2 lifetime free photos are gone.
+export async function snapWords(
+  uri: string,
+  learningLang: Lang,
+  nativeLang: Lang,
+  level: Level,
+  isPremium: boolean
+): Promise<SnapResult | CoachError | 'free-used'> {
+  if (!COACH_URL) return 'network';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 60_000);
+  try {
+    const rendered = await ImageManipulator.manipulate(uri).resize({ width: 1024 }).renderAsync();
+    const { base64 } = await rendered.saveAsync({ compress: 0.6, format: SaveFormat.JPEG, base64: true });
+    if (!base64) return 'network';
+    const res = await fetch(`${COACH_URL}/snap`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ deviceId: await getDeviceId(), isPro: isPremium, learningLang, nativeLang, level, image: base64 }),
+      signal: controller.signal,
+    });
+    if (res.status === 402) return 'free-used';
+    if (res.status === 429) return 'limit';
+    if (!res.ok) return 'network';
+    return (await res.json()) as SnapResult;
   } catch {
     return 'network';
   } finally {

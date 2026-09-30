@@ -46,6 +46,13 @@
         {
           "microphonePermission": "Termin uses the microphone so you can answer review cards by voice."
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Termin looks at the photo you choose to find a word worth learning.",
+          "cameraPermission": "Termin uses the camera to find a word worth learning in what you see."
+        }
       ]
     ],
     "experiments": {

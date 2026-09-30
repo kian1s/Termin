@@ -86,7 +86,16 @@ export function WordHeading({ word }: { word: WordEntry }) {
           <Doodle name="speaker" size={28} color={speaking ? theme.spark : theme.textSecondary} />
         </Pressable>
       </View>
-      <Text style={[styles.pos, { color: theme.textSecondary }]}>{word.partOfSpeech}</Text>
+      <View style={styles.posRow}>
+        <Text style={[styles.pos, { color: theme.textSecondary }]}>{word.partOfSpeech}</Text>
+        {word.source === 'ai' && (
+          <View
+            style={[styles.aiPill, { borderColor: theme.textSecondary }]}
+            accessibilityLabel="Card written by AI">
+            <Text style={[styles.aiText, { color: theme.textSecondary }]}>AI</Text>
+          </View>
+        )}
+      </View>
     </View>
   );
 }
@@ -177,6 +186,10 @@ const styles = StyleSheet.create({
   wordRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
   pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },
+  posRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
+  // DESIGN.md 3: marked with an outline, not a color of its own.
+  aiPill: { borderWidth: 1, borderRadius: Radius.chip, paddingHorizontal: 6, paddingVertical: 1 },
+  aiText: { fontSize: 11, fontWeight: '700', letterSpacing: 1 },
   definition: { ...Type.body },
   example: { borderLeftWidth: 2, paddingLeft: Spacing.lg, flexDirection: 'row', alignItems: 'flex-start', gap: Spacing.sm },
   exampleSpeaker: { paddingTop: 2 },

@@ -298,6 +298,15 @@ export default function Feed() {
         )
       )}
 
+      {/* SPEC 4.19: Snap a word, top left. */}
+      <Pressable
+        onPress={() => router.push('/snap')}
+        hitSlop={10}
+        accessibilityLabel="Snap a word"
+        style={[styles.snap, { top: insets.top + Spacing.sm }]}>
+        <Doodle name="camera" size={24} color={theme.textSecondary} />
+      </Pressable>
+
       <View style={[styles.header, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
         <Pressable onPress={() => router.push('/history')} hitSlop={10} accessibilityLabel="History">
           <Doodle name="history" size={24} color={theme.textSecondary} />
@@ -325,6 +334,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.lg,
   },
+  snap: { position: 'absolute', left: Spacing.xl },
   streak: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
   streakText: { fontSize: 16, fontWeight: '600' },
 });

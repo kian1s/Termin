@@ -11,7 +11,17 @@ import {
   newReviewState,
   withActivity,
 } from '@/lib/progress';
-import { CATEGORIES, FAVORITES_ID, migrateReminder, ReviewState, Settings, Stats, WordSet } from '@/lib/types';
+import {
+  CATEGORIES,
+  FAVORITES_ID,
+  migrateReminder,
+  ReviewState,
+  Settings,
+  Stats,
+  WordEntry,
+  WordSet,
+} from '@/lib/types';
+import { registerCustomWords } from '@/lib/words';
 
 export { DEFAULT_REMINDER } from '@/lib/types';
 
@@ -27,6 +37,8 @@ type Data = {
   stats: Stats;
   recentAnswers: boolean[]; // last 20 review results, for stretch cards (SPEC 4.12)
   levelUpShown: string[]; // "lang|level" pairs that already showed the one-time level-up card
+  customWords: WordEntry[]; // AI-made cards (Snap a word, SPEC 4.19)
+  freeSnapsUsed: number; // lifetime Snap a word photos used without Premium (max 2)
 };
 
 const EMPTY: Data = {
@@ -38,6 +50,8 @@ const EMPTY: Data = {
   stats: EMPTY_STATS,
   recentAnswers: [],
   levelUpShown: [],
+  customWords: [],
+  freeSnapsUsed: 0,
 };
 
 const KEYS = Object.keys(EMPTY) as (keyof Data)[];
@@ -65,6 +79,10 @@ type AppState = {
   recentAnswers: boolean[];
   levelUpShown: string[];
   markLevelUpShown: (key: string) => void;
+  customWords: WordEntry[];
+  addCustomWord: (word: WordEntry) => void;
+  freeSnapsUsed: number;
+  setFreeSnapsUsed: (n: number) => void;
   devStrongLearner: boolean;
   setDevStrongLearner: (on: boolean) => void;
   devSetLastActive: (daysAgo: number) => void;
@@ -123,6 +141,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       if (!loadedData.sets.some((s) => s.id === FAVORITES_ID)) {
         loadedData.sets = [FAVORITES, ...loadedData.sets];
       }
+      registerCustomWords(loadedData.customWords);
       dataRef.current = loadedData;
       setData(loadedData);
       setLoaded(true);
@@ -234,6 +253,15 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         return due[0] ?? null;
       },
 
+      addCustomWord: (word: WordEntry) => {
+        registerCustomWords([word]);
+        update((d) =>
+          d.customWords.some((w) => w.id === word.id) ? d : { ...d, customWords: [...d.customWords, word] }
+        );
+      },
+
+      setFreeSnapsUsed: (n: number) => update((d) => (d.freeSnapsUsed === n ? d : { ...d, freeSnapsUsed: n })),
+
       markLevelUpShown: (key: string) =>
         update((d) => (d.levelUpShown.includes(key) ? d : { ...d, levelUpShown: [...d.levelUpShown, key] })),
 
@@ -277,6 +305,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         stats,
         recentAnswers: data.recentAnswers,
         levelUpShown: data.levelUpShown,
+        customWords: data.customWords,
+        freeSnapsUsed: data.freeSnapsUsed,
         devStrongLearner,
         setDevStrongLearner,
         ...actions,

@@ -15,6 +15,7 @@ export type DoodleName =
   | 'categories'
   | 'coach'
   | 'pen'
+  | 'camera'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -90,6 +91,14 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M4.4 20.5c1.9-.8 3.5.5 5.3-.2 1.7-.6 3-.3 4.3.1',
     ],
     dot: [17.8, 20.1],
+  },
+  // A boxy camera (Snap a word), the dot is the flash.
+  camera: {
+    paths: [
+      'M4.6 8.3c1.2-.2 2.4-.2 3.6-.2l1.4-2.2c1.6-.1 3.2-.1 4.8 0l1.4 2.2c1.2 0 2.4 0 3.6.2.7.1 1.1.7 1.1 1.4l-.1 8.4c0 .7-.6 1.3-1.3 1.3-4.8.2-9.6.2-14.4 0-.7 0-1.3-.6-1.3-1.3l-.1-8.4c0-.7.5-1.3 1.3-1.4z',
+      'M12.1 16.9c-1.9.1-3.3-1.3-3.3-3.2 0-1.8 1.4-3.2 3.2-3.2 1.9 0 3.3 1.4 3.3 3.2-.1 1.8-1.4 3.1-3.2 3.2z',
+    ],
+    dot: [17.9, 10.6],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {

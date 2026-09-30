@@ -10,6 +10,7 @@ import { Sticker } from '@/components/sticker';
 import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { FREE_SNAPS } from '@/lib/coach';
 import { usePremium } from '@/lib/premium';
 import { dayKey } from '@/lib/progress';
 import { Field, LEVEL_HINTS } from '@/lib/questions';
@@ -22,7 +23,7 @@ import { wordById } from '@/lib/words';
 export default function Practice() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { settings, seenAt } = useAppState();
+  const { settings, seenAt, freeSnapsUsed } = useAppState();
   const { isPremium, showPaywall } = usePremium();
   if (!settings) return null;
 
@@ -89,6 +90,25 @@ export default function Practice() {
             <Text style={[styles.detail, { color: theme.textSecondary }]}>Stronger words you can save</Text>
           </View>
           {isPremium ? (
+            <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+          ) : (
+            <PremiumBadge lock />
+          )}
+        </View>
+      </Tile>
+
+      {/* SPEC 4.19: free users get 2 photos ever, then the paywall. */}
+      <Tile icon="camera" label="Snap a word" onPress={() => router.push('/snap')} tall>
+        <View style={styles.tallBody}>
+          <View style={styles.flexShrink}>
+            <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from a photo</Text>
+            <Text style={[styles.detail, { color: theme.textSecondary }]}>
+              {isPremium
+                ? 'A word worth learning in any photo'
+                : `${Math.max(0, FREE_SNAPS - freeSnapsUsed)} free ${FREE_SNAPS - freeSnapsUsed === 1 ? 'photo' : 'photos'} left`}
+            </Text>
+          </View>
+          {isPremium || freeSnapsUsed < FREE_SNAPS ? (
             <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
           ) : (
             <PremiumBadge lock />
