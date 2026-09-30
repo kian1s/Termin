@@ -2,7 +2,7 @@ import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -73,10 +73,28 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
   );
 }
 
+// Fraunces Bold is wide: about 0.6 of the font size per character.
+const CHAR_WIDTH = 0.6;
+const SPEAKER_SPACE = 28 + Spacing.md;
+
+// The headword's font size from its length, instead of iOS shrink-to-fit
+// (which could shrink short words too, before the width was known). Longer
+// words step down and wrap onto up to 3 lines; the longest single word (e.g. a
+// German compound) always fits on one line, never breaking mid-word.
+function headwordSize(text: string, width: number) {
+  const size = text.length <= 14 ? 44 : text.length <= 22 ? 38 : text.length <= 32 ? 32 : 28;
+  const longest = Math.max(...text.split(/\s+/).map((t) => t.length + 1)); // +1 for the dot
+  return Math.max(22, Math.min(size, Math.floor(width / (longest * CHAR_WIDTH))));
+}
+
 // The word in large Fraunces, the speaker button, and the part of speech.
 export function WordHeading({ word }: { word: WordEntry }) {
   const theme = useTheme();
   const [speaking, setSpeaking] = useState(false);
+  // Room for the word: measured once laid out; the screen width until then.
+  const { width: screen } = useWindowDimensions();
+  const [rowWidth, setRowWidth] = useState(screen - Spacing.xl * 2);
+  const size = headwordSize(word.word, rowWidth - SPEAKER_SPACE);
 
   const speak = () => {
     setSpeaking(true);
@@ -85,8 +103,8 @@ export function WordHeading({ word }: { word: WordEntry }) {
 
   return (
     <View style={styles.heading}>
-      <View style={styles.wordRow}>
-        <Text style={[styles.word, { color: theme.word }]} adjustsFontSizeToFit numberOfLines={2}>
+      <View style={styles.wordRow} onLayout={(e) => setRowWidth(e.nativeEvent.layout.width)}>
+        <Text style={[styles.word, { color: theme.word, fontSize: size, lineHeight: Math.round(size * 1.23) }]}>
           {word.word}
           {/* Terracotta dot, echoing the "t." app icon. */}
           <Text style={{ color: theme.spark }}>.</Text>
