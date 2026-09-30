@@ -12,12 +12,14 @@ import {
   View,
 } from 'react-native';
 
+import { CreditPill } from '@/components/credit-pill';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { checkAnswer, coachAvailable, CoachResult } from '@/lib/coach';
+import { setCreditLeft } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { describeNext } from '@/lib/progress';
 import { useVoiceAnswer } from '@/lib/voice';
@@ -63,11 +65,13 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
     const result = await checkAnswer(word, text.trim(), nativeLang, feedbackLang, isPremium);
     setChecking(false);
     if (typeof result === 'string') {
+      if (result === 'limit') setCreditLeft('check', 0);
       setFallback(result);
       setRevealed(true);
       return;
     }
     setCoach(result);
+    setCreditLeft('check', result.remainingToday);
     setRevealed(true);
     // A "partly" verdict counts as correct for the Leitner schedule.
     rate(result.verdict !== 'incorrect');
@@ -91,7 +95,10 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
           bounces={false}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}>
-          <Text style={[Type.label, styles.reviewLabel, { color: theme.accent }]}>Review</Text>
+          <View style={styles.labelRow}>
+            <Text style={[Type.label, styles.reviewLabel, { color: theme.accent }]}>Review</Text>
+            {coachAvailable && <CreditPill kind="check" />}
+          </View>
 
           {!revealed ? (
             <>
@@ -250,6 +257,7 @@ const styles = StyleSheet.create({
   card: { flexGrow: 0 },
   cardContent: { padding: Spacing.xl, gap: Spacing.lg },
   reviewLabel: { fontWeight: '600' },
+  labelRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   prompt: { fontFamily: Fonts.title, fontSize: 26, lineHeight: 34 },
   promptWord: { fontFamily: Fonts.word },
   input: {

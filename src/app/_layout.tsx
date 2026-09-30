@@ -14,6 +14,7 @@ import { AppState } from 'react-native';
 import { useTheme } from '@/hooks/use-theme';
 import { AppStateProvider, useAppState } from '@/lib/app-state';
 import { refreshAiPlan } from '@/lib/ai-reminders';
+import { refreshCredits } from '@/lib/credits';
 import { PremiumProvider, usePremium } from '@/lib/premium';
 import { scheduleReminders, upcomingReminderTimes } from '@/lib/reminder';
 
@@ -25,6 +26,7 @@ export default function RootLayout() {
       <PremiumProvider>
         <RootStack />
         <ReminderSync />
+        <CreditsSync />
       </PremiumProvider>
     </AppStateProvider>
   );
@@ -126,6 +128,22 @@ function ReminderSync() {
     return () => sub.remove();
   }, [loaded, reminderKey]);
 
+  return null;
+}
+
+// Keeps the credit pills (uses left of each AI feature) current: on launch,
+// when Premium changes, and whenever the app comes back to the foreground.
+function CreditsSync() {
+  const { loaded } = useAppState();
+  const { isPremium } = usePremium();
+  useEffect(() => {
+    if (!loaded) return;
+    refreshCredits(isPremium);
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') refreshCredits(isPremium);
+    });
+    return () => sub.remove();
+  }, [loaded, isPremium]);
   return null;
 }
 

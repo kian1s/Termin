@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Stack } from 'expo-router';
 import { useState } from 'react';
 import {
   ActivityIndicator,
@@ -11,12 +12,14 @@ import {
   View,
 } from 'react-native';
 
+import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { coachAvailable, RewriteResult, rewriteSentence, Tone } from '@/lib/coach';
+import { setCreditLeft } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { coachFeedbackLang, Settings, WordEntry } from '@/lib/types';
 import { useVoiceAnswer } from '@/lib/voice';
@@ -115,6 +118,8 @@ export default function SayItBetter() {
       isPremium
     );
     setLoading(false);
+    if (out === 'limit') setCreditLeft('rewrite', 0);
+    if (typeof out !== 'string' && out.remaining !== undefined) setCreditLeft('rewrite', out.remaining);
     if (out === 'limit') Alert.alert('Daily limit reached', "You've used today's 30 rewrites. Try again tomorrow.");
     else if (out === 'network') Alert.alert('Could not rewrite', 'Check your connection and try again.');
     else setResult(out);
@@ -126,6 +131,7 @@ export default function SayItBetter() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="interactive">
+      <Stack.Screen options={{ headerRight: () => <CreditPill kind="rewrite" /> }} />
       <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
         Write a sentence. Termin rewrites it with stronger words you can save.
       </Text>

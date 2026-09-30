@@ -280,6 +280,15 @@ Take or choose a photo; the AI writes a card for a word worth learning in it.
 - **Limits:** free users get **2 photos for the lifetime of the install**, then the tile shows the PREMIUM lock and the screen offers the paywall. Premium gets 10 a day. The Worker enforces both (the free count has no expiry); the phone mirrors the free count for display.
 - **Done when:** a photo of a coffee cup for a German B2 learner returns one card such as "das Porzellan" with the AI pill; Save puts it in Favorites and it later comes back as a review card; a free user's third photo is refused with the paywall.
 
+### 4.20 Credit pills (Sep 30)
+Every feature with limited uses shows how many are left, as a small outlined pill with the feature's doodle and the number (`src/components/credit-pill.tsx`); at 0 the pill turns `wrong` red.
+| Feature | Free | Premium | Where the pill shows |
+|---|---|---|---|
+| AI Coach checks (sparkle) | 3 a day | 50 a day | Review card, next to "Review" |
+| Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
+| Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
+- The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Premium
@@ -343,6 +352,8 @@ Rules:
 **`POST /rewrite`** (Say it better, 4.18): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `tone` (`natural`, `formal`, `academic`), `sentence` (max 300 characters) and up to 200 candidate words (`id`, `word`, `saved`). Returns `{ "rewrite": "...", "swaps": [{ "id", "from", "to", "why" }] }`. Premium only; 30 a day per `deviceId`. The Worker keeps only swaps whose `id` was a candidate and whose `to` appears in the rewrite. Nothing is logged.
 
 **`POST /snap`** (Snap a word, 4.19): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `image` (base64 JPEG, max about 1.5 MB). Returns `{ "cards": [{ "word", "partOfSpeech", "definition", "example", "translation": { "word", "definition" } }], "freeUsed"? }`, 0 to 3 cards. Free: 2 per `deviceId`, ever (HTTP 402 after); Premium: 10 a day. A failed call gives the photo back. The photo is never logged or stored.
+
+**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

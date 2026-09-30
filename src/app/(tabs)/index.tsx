@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View, ViewToken } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { LevelUpCard, LockedCard } from '@/components/pro-cards';
 import { ReviewCard } from '@/components/review-card';
@@ -11,6 +12,7 @@ import { StickerButton } from '@/components/sticker';
 import { Fonts, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { useCredit } from '@/lib/credits';
 import { isFreeWord, isLockedWord, isPremiumCategory, levelAbove, stretchEvery, TEASER_EVERY } from '@/lib/gating';
 import { usePremium } from '@/lib/premium';
 import { currentStreak, dayKey } from '@/lib/progress';
@@ -80,6 +82,7 @@ export default function Feed() {
     devStrongLearner,
   } = useAppState();
   const { isPremium, showPaywall } = usePremium();
+  const snapCredit = useCredit('snap');
   const [height, setHeight] = useState(0);
 
   // Only the learning filters and Premium status matter here; changing the reminder
@@ -304,7 +307,7 @@ export default function Feed() {
         hitSlop={10}
         accessibilityLabel="Snap a word"
         style={[styles.snap, { top: insets.top + Spacing.sm }]}>
-        <Doodle name="camera" size={24} color={theme.textSecondary} />
+        {snapCredit ? <CreditPill kind="snap" /> : <Doodle name="camera" size={24} color={theme.textSecondary} />}
       </Pressable>
 
       <View style={[styles.header, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">

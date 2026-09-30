@@ -101,7 +101,7 @@ export async function transcribe(uri: string, hint: VoiceHint): Promise<{ text: 
 
 export type Tone = 'natural' | 'formal' | 'academic';
 export type Swap = { id: string; from: string; to: string; why: string };
-export type RewriteResult = { rewrite: string; swaps: Swap[] };
+export type RewriteResult = { rewrite: string; swaps: Swap[]; remaining?: number };
 
 // SPEC 4.18, Say it better: the Worker rewrites the sentence with words from
 // `candidates` (saved words first). Premium only.
@@ -149,7 +149,7 @@ export type SnapCard = {
   example: string;
   translation: { word: string; definition: string };
 };
-export type SnapResult = { cards: SnapCard[]; freeUsed?: number };
+export type SnapResult = { cards: SnapCard[]; freeUsed?: number; remaining?: number };
 export const FREE_SNAPS = 2; // lifetime Snap a word photos without Premium
 
 // SPEC 4.19, Snap a word: shrinks the photo to 1024 px wide on the phone and

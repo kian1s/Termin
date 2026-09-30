@@ -5,12 +5,14 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Doodle, DoodleName } from '@/components/doodle-icons';
+import { CreditPill } from '@/components/credit-pill';
 import { PremiumBadge } from '@/components/pro-cards';
 import { Sticker } from '@/components/sticker';
 import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { FREE_SNAPS } from '@/lib/coach';
+import { useCredit } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { dayKey } from '@/lib/progress';
 import { Field, LEVEL_HINTS } from '@/lib/questions';
@@ -25,6 +27,7 @@ export default function Practice() {
   const insets = useSafeAreaInsets();
   const { settings, seenAt, freeSnapsUsed } = useAppState();
   const { isPremium, showPaywall } = usePremium();
+  const snapCredit = useCredit('snap');
   if (!settings) return null;
 
   const edit = (field: Field) => router.push({ pathname: '/edit/[field]', params: { field } });
@@ -90,7 +93,10 @@ export default function Practice() {
             <Text style={[styles.detail, { color: theme.textSecondary }]}>Stronger words you can save</Text>
           </View>
           {isPremium ? (
-            <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+            <View style={styles.tileEnd}>
+              <CreditPill kind="rewrite" />
+              <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+            </View>
           ) : (
             <PremiumBadge lock />
           )}
@@ -102,14 +108,13 @@ export default function Practice() {
         <View style={styles.tallBody}>
           <View style={styles.flexShrink}>
             <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from a photo</Text>
-            <Text style={[styles.detail, { color: theme.textSecondary }]}>
-              {isPremium
-                ? 'A word at your level in any photo'
-                : `${Math.max(0, FREE_SNAPS - freeSnapsUsed)} free ${FREE_SNAPS - freeSnapsUsed === 1 ? 'photo' : 'photos'} left`}
-            </Text>
+            <Text style={[styles.detail, { color: theme.textSecondary }]}>A word at your level in any photo</Text>
           </View>
-          {isPremium || freeSnapsUsed < FREE_SNAPS ? (
-            <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+          {isPremium || (snapCredit ? snapCredit.left > 0 : freeSnapsUsed < FREE_SNAPS) ? (
+            <View style={styles.tileEnd}>
+              <CreditPill kind="snap" />
+              <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+            </View>
           ) : (
             <PremiumBadge lock />
           )}
@@ -195,6 +200,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: Spacing.sm },
   flex: { flex: 1 },
   flexShrink: { flexShrink: 1 },
+  tileEnd: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm },
   tile: { flex: 1, padding: Spacing.lg, gap: Spacing.sm },
   // Tall tiles are full width and only moderately tall.
   tall: { minHeight: 112 },

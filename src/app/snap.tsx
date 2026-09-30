@@ -1,7 +1,9 @@
 import * as ImagePicker from 'expo-image-picker';
+import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Image, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Example, Translation, WordHeading } from '@/components/word-card';
@@ -9,6 +11,7 @@ import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { coachAvailable, FREE_SNAPS, SnapCard, snapWords } from '@/lib/coach';
+import { setCreditLeft, useCredit } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { Settings, WordEntry } from '@/lib/types';
 
@@ -37,9 +40,11 @@ export default function Snap() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState<WordEntry[] | null>(null);
+  const snapCredit = useCredit('snap');
 
   if (!settings) return null;
-  const freeLeft = Math.max(0, FREE_SNAPS - freeSnapsUsed);
+  // The Worker's count when known; the phone's own count offline.
+  const freeLeft = snapCredit && !isPremium ? snapCredit.left : Math.max(0, FREE_SNAPS - freeSnapsUsed);
 
   if (!isPremium && freeLeft === 0) {
     return (
@@ -75,6 +80,8 @@ export default function Snap() {
     setLoading(true);
     const out = await snapWords(uri, settings.learningLang, settings.nativeLang, settings.level, isPremium);
     setLoading(false);
+    if (out === 'free-used' || out === 'limit') setCreditLeft('snap', 0);
+    if (typeof out !== 'string' && out.remaining !== undefined) setCreditLeft('snap', out.remaining);
     if (out === 'free-used') {
       setFreeSnapsUsed(FREE_SNAPS);
       setPhoto(null);
@@ -95,6 +102,7 @@ export default function Snap() {
 
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+      <Stack.Screen options={{ headerRight: () => <CreditPill kind="snap" /> }} />
       <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
         Termin finds a word at your level in any photo.
       </Text>

@@ -335,9 +335,8 @@ async function rewrite(req: Request, env: Env) {
     .slice(0, 200);
   if (!candidates.length) return json({ error: 'No candidate words' }, 400);
 
-  if ((await takeOne(env, 'rewrite', deviceId, REWRITE_LIMIT)) === null) {
-    return json({ error: 'Daily limit reached' }, 429);
-  }
+  const rewritesUsed = await takeOne(env, 'rewrite', deviceId, REWRITE_LIMIT);
+  if (rewritesUsed === null) return json({ error: 'Daily limit reached' }, 429);
 
   const system = `You help a learner of ${LANGS[learningLang]} write at a higher level.
 Rewrite the learner's text in ${TONES[tone]}, keeping its meaning. If it is not in ${LANGS[learningLang]}, translate it first.
@@ -378,7 +377,7 @@ Learner's text: """${sentence}"""`;
         to: w.to.trim(),
         why: typeof w.why === 'string' ? w.why.trim().slice(0, 160) : '',
       }));
-    return json({ rewrite: text, swaps });
+    return json({ rewrite: text, swaps, remaining: REWRITE_LIMIT - rewritesUsed });
   }
   // Give the rewrite back, since the learner got nothing for it.
   const key = `rewrite:${deviceId}:${new Date().toISOString().slice(0, 10)}`;
@@ -428,8 +427,11 @@ async function snap(req: Request, env: Env) {
   // Free photos are counted for the device's lifetime, with no expiry.
   const freeKey = `snapfree:${deviceId}`;
   let freeUsed = 0;
+  let snapsUsed = 0;
   if (isPro) {
-    if ((await takeOne(env, 'snap', deviceId, SNAP_LIMIT)) === null) return json({ error: 'Daily limit reached' }, 429);
+    const n = await takeOne(env, 'snap', deviceId, SNAP_LIMIT);
+    if (n === null) return json({ error: 'Daily limit reached' }, 429);
+    snapsUsed = n;
   } else {
     freeUsed = Number((await env.COACH_KV.get(freeKey)) ?? 0);
     if (freeUsed >= SNAP_FREE_LIFETIME) return json({ error: 'Free photos used', freeUsed }, 402);
@@ -511,7 +513,37 @@ Return only JSON: {"cards": [{"word": "...", "partOfSpeech": "...", "definition"
     }
     return json({ error: 'Snap unavailable' }, 502);
   }
-  return json({ cards, freeUsed: isPro ? undefined : freeUsed + 1 });
+  return json({
+    cards,
+    freeUsed: isPro ? undefined : freeUsed + 1,
+    remaining: isPro ? SNAP_LIMIT - snapsUsed : SNAP_FREE_LIFETIME - freeUsed - 1,
+  });
+}
+
+// How many uses are left of each limited feature, for the credit pills in the
+// app. Free Say it better is locked (null). Daily counts reset at 00:00 UTC.
+async function usage(req: Request, env: Env) {
+  let body: { deviceId?: string; isPro?: boolean };
+  try {
+    body = await req.json();
+  } catch {
+    return json({ error: 'Invalid JSON' }, 400);
+  }
+  const { deviceId, isPro } = body;
+  if (!deviceId || !UUID.test(deviceId)) return json({ error: 'Invalid deviceId' }, 400);
+  const day = new Date().toISOString().slice(0, 10);
+  const used = async (key: string) => Number((await env.COACH_KV.get(key)) ?? 0);
+  const left = (limit: number, n: number) => Math.max(0, limit - n);
+  const checkLimit = isPro ? CHECK_LIMIT.premium : CHECK_LIMIT.free;
+  return json({
+    check: { left: left(checkLimit, await used(`check:${deviceId}:${day}`)), limit: checkLimit, period: 'day' },
+    rewrite: isPro
+      ? { left: left(REWRITE_LIMIT, await used(`rewrite:${deviceId}:${day}`)), limit: REWRITE_LIMIT, period: 'day' }
+      : null,
+    snap: isPro
+      ? { left: left(SNAP_LIMIT, await used(`snap:${deviceId}:${day}`)), limit: SNAP_LIMIT, period: 'day' }
+      : { left: left(SNAP_FREE_LIFETIME, await used(`snapfree:${deviceId}`)), limit: SNAP_FREE_LIFETIME, period: 'lifetime' },
+  });
 }
 
 async function transcribe(req: Request, env: Env) {
@@ -560,6 +592,7 @@ export default {
     if (req.method === 'POST' && pathname === '/plan-reminders') return planReminders(req, env);
     if (req.method === 'POST' && pathname === '/rewrite') return rewrite(req, env);
     if (req.method === 'POST' && pathname === '/snap') return snap(req, env);
+    if (req.method === 'POST' && pathname === '/usage') return usage(req, env);
     if (req.method === 'GET' && pathname === '/') return json({ ok: true, service: 'Termin AI Coach' });
     return json({ error: 'Not found' }, 404);
   },
