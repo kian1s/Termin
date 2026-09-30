@@ -131,7 +131,14 @@ export default function SayItBetter() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="interactive">
-      <Stack.Screen options={{ headerRight: () => <CreditPill kind="rewrite" /> }} />
+      {/* iOS 26 draws a glass bubble behind header items; the pill has its own outline. */}
+      <Stack.Screen
+        options={{
+          unstable_headerRightItems: () => [
+            { type: 'custom', element: <CreditPill kind="rewrite" />, hidesSharedBackground: true },
+          ],
+        }}
+      />
       <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
         Write a sentence. Termin rewrites it with stronger words you can save.
       </Text>

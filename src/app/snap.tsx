@@ -102,7 +102,14 @@ export default function Snap() {
 
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
-      <Stack.Screen options={{ headerRight: () => <CreditPill kind="snap" /> }} />
+      {/* iOS 26 draws a glass bubble behind header items; the pill has its own outline. */}
+      <Stack.Screen
+        options={{
+          unstable_headerRightItems: () => [
+            { type: 'custom', element: <CreditPill kind="snap" />, hidesSharedBackground: true },
+          ],
+        }}
+      />
       <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
         Termin finds a word at your level in any photo.
       </Text>
