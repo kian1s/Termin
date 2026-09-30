@@ -47,6 +47,12 @@ export default function SetsScreen() {
           subtitle="A link, a photo of a page, or text"
           icon={<Doodle name="book" size={22} />}
           onPress={() => router.push('/from-text')}
+        />
+        <Row
+          label="Add my own word"
+          subtitle="Write it yourself, or let the AI write it"
+          icon={<Doodle name="plus" size={22} />}
+          onPress={() => router.push('/add-word')}
           last
         />
       </Section>

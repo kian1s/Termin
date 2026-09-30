@@ -13,6 +13,7 @@ const ICON: Record<CreditKind, DoodleName> = {
   fromTextLink: 'book',
   fromTextPhoto: 'camera',
   fromTextText: 'book',
+  addWord: 'plus',
 };
 const NOUN: Record<CreditKind, [string, string]> = {
   check: ['AI check', 'AI checks'],
@@ -22,6 +23,7 @@ const NOUN: Record<CreditKind, [string, string]> = {
   fromTextLink: ['link', 'links'],
   fromTextPhoto: ['photo run', 'photo runs'],
   fromTextText: ['text', 'texts'],
+  addWord: ['AI card', 'AI cards'],
 };
 
 // A small outlined pill with the feature's doodle and how many uses are left,
@@ -32,7 +34,7 @@ export function CreditPill({ kind }: { kind: CreditKind }) {
   const credit = useCredit(kind);
   if (!credit) return null;
   const [one, many] = NOUN[kind];
-  const label = `${credit.left} ${credit.left === 1 ? one : many} left${credit.period === 'day' ? ' today' : ''}`;
+  const label = `${credit.left} ${credit.left === 1 ? one : many} left${credit.period === 'day' ? ' today' : credit.period === 'month' ? ' this month' : ''}`;
   const empty = credit.left === 0;
   return (
     <View

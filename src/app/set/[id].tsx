@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { Doodle } from '@/components/doodle-icons';
 import { Row, Section } from '@/components/grouped-list';
 import { PremiumBadge } from '@/components/pro-cards';
 import { Sticker } from '@/components/sticker';
@@ -67,9 +68,13 @@ export default function SetScreen() {
       </View>
 
       <Section>
-        {words.length === 0 ? (
-          <Row label="No words yet" subtitle="Tap ♡ or + on a card in the feed to add one." last />
-        ) : (
+        <Row
+          label="Add a word"
+          icon={<Doodle name="plus" size={22} />}
+          onPress={() => router.push({ pathname: '/add-word', params: { setId: set.id } })}
+          last={words.length === 0}
+        />
+        {words.length === 0 ? null : (
           words.map((w, i) => (
             <Row
               key={w.id}

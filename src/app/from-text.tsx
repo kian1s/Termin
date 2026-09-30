@@ -222,15 +222,23 @@ export default function FromText() {
                 styles.mode,
                 { backgroundColor: on ? theme.accentSoft : theme.background, borderColor: on ? theme.accent : theme.border },
               ]}>
-              <Text style={[styles.modeText, { color: on ? theme.text : theme.textSecondary }]}>
-                {m.label}
-                {credits[m.id] ? (
-                  <Text style={{ color: credits[m.id]!.left ? theme.textSecondary : theme.wrong }}>
-                    {' '}
+              <Text style={[styles.modeText, { color: on ? theme.text : theme.textSecondary }]}>{m.label}</Text>
+              {/* Uses left for this way in, as a small badge on the chip's corner. */}
+              {credits[m.id] ? (
+                <View
+                  style={[
+                    styles.badge,
+                    {
+                      backgroundColor: credits[m.id]!.left ? theme.surface : theme.wrong,
+                      borderColor: credits[m.id]!.left ? theme.text : theme.wrong,
+                    },
+                  ]}
+                  accessibilityLabel={`${credits[m.id]!.left} ${m.noun} left`}>
+                  <Text style={[styles.badgeText, { color: credits[m.id]!.left ? theme.text : theme.background }]}>
                     {credits[m.id]!.left}
                   </Text>
-                ) : null}
-              </Text>
+                </View>
+              ) : null}
             </Pressable>
           );
         })}
@@ -380,9 +388,22 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: Spacing.md, alignItems: 'center' },
   flex: { flex: 1 },
   wide: { alignSelf: 'stretch' },
-  modes: { flexDirection: 'row', gap: Spacing.sm },
+  modes: { flexDirection: 'row', gap: Spacing.sm, paddingTop: Spacing.xs },
   mode: { flex: 1, alignItems: 'center', paddingVertical: Spacing.sm, borderRadius: Radius.chip, borderWidth: 1.5 },
   modeText: { fontSize: 15, fontWeight: '600' },
+  badge: {
+    position: 'absolute',
+    top: -9,
+    right: -6,
+    minWidth: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    paddingHorizontal: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: { fontSize: 11, fontWeight: '700', fontVariant: ['tabular-nums'] },
   input: {
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: Radius.chip,

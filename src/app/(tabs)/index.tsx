@@ -301,14 +301,15 @@ export default function Feed() {
         )
       )}
 
-      {/* SPEC 4.19: Snap a word, top left. */}
-      <Pressable
-        onPress={() => router.push('/snap')}
-        hitSlop={10}
-        accessibilityLabel="Snap a word"
-        style={[styles.snap, { top: insets.top + Spacing.sm }]}>
-        {snapCredit ? <CreditPill kind="snap" /> : <Doodle name="camera" size={24} color={theme.textSecondary} />}
-      </Pressable>
+      {/* Top left: Snap a word (SPEC 4.19) and Add my own word (4.23). */}
+      <View style={[styles.headerLeft, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
+        <Pressable onPress={() => router.push('/snap')} hitSlop={10} accessibilityLabel="Snap a word">
+          {snapCredit ? <CreditPill kind="snap" /> : <Doodle name="camera" size={24} color={theme.textSecondary} />}
+        </Pressable>
+        <Pressable onPress={() => router.push('/add-word')} hitSlop={10} accessibilityLabel="Add my own word">
+          <Doodle name="plus" size={24} color={theme.textSecondary} />
+        </Pressable>
+      </View>
 
       <View style={[styles.header, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
         <Pressable onPress={() => router.push('/history')} hitSlop={10} accessibilityLabel="History">
@@ -337,7 +338,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.lg,
   },
-  snap: { position: 'absolute', left: Spacing.xl },
+  headerLeft: {
+    position: 'absolute',
+    left: Spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.lg,
+  },
   streak: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs },
   streakText: { fontSize: 16, fontWeight: '600' },
 });

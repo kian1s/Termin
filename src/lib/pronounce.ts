@@ -18,8 +18,8 @@ export type Clip = 'w' | 'e';
 let current: AudioPlayer | null = null;
 
 async function localClip(word: WordEntry, clip: Clip): Promise<string | null> {
-  // AI-made cards have no recording; the phone's voice reads them.
-  if (!BASE || word.source === 'ai') return null;
+  // Cards made on the phone have no recording; the phone's voice reads them.
+  if (!BASE || word.source) return null;
   const name = `${word.id}-${clip}.mp3`;
   const dir = new Directory(Paths.cache, 'audio', word.lang);
   const file = new File(dir, name);

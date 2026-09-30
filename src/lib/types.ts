@@ -41,9 +41,9 @@ export type WordEntry = {
   definition: string;
   example: string;
   translations: Partial<Record<Lang, { word: string; definition: string }>>;
-  // "ai" for cards the AI wrote on the phone (Snap a word, SPEC 4.19); kept only
-  // on this phone and marked AI wherever they show.
-  source?: 'ai';
+  // Cards made on this phone and kept only here: "ai" when the AI wrote them
+  // (marked AI wherever they show, SPEC 4.19), "own" when the learner did (4.23).
+  source?: 'ai' | 'own';
 };
 
 export type ReminderTime = { hour: number; minute: number };

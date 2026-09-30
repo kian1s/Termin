@@ -288,7 +288,8 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
 | Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
-| Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | Mode chips and screen header |
+| Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | A number badge on each mode chip, and the screen header |
+| Add my own word with AI (plus) | 2 a month | 30 a month | Screen header |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -314,6 +315,16 @@ Turn what the learner reads into word cards.
 
   Each mode chip shows its count, and the header pill shows the selected one. Out of uses, the Find button becomes a short message; free users also get See Premium. A page that can't be read (paywall, JavaScript-only site) shows "Couldn't read this page. Copy the text and paste it under Text instead."
 - **Done when:** the Wikipedia link for "Urban planning" at C1 returns up to 10 words, dataset words first, each with its sentence; Save all creates a set with all of them; a German paragraph at B2 returns at most 5.
+
+### 4.23 Add my own word (Sep 30)
+The learner adds any word to a set.
+- **Where:** Sets → Add words → **Add my own word** (plus doodle; adds to Favorites), an **Add a word** row at the top of every set (adds to that set), and a plus doodle next to the camera at the top left of the feed (Favorites). The screen is `src/app/add-word.tsx`.
+- **Termin has it:** while typing, the word is looked up in the learning language's dataset (ignoring case, "to", and articles). If found, Termin's own card shows with **Add to <set>**. Free and instant.
+- **Otherwise, two ways:**
+  - **Write it myself:** the meaning (required), a translation into the native language and an example (both optional). Free and unlimited, no AI. Stored as an own card (`source: 'own'`); missing parts simply don't show.
+  - **Write it with AI:** the Worker writes a full card (fixes small typos; a word typed in the native language becomes its learning-language equivalent; level and category estimated), marked AI (4.19). **Free 2 a month, Premium 30 a month**, with a credit pill (plus doodle). A typed word that isn't real returns no card and doesn't use one up. Out of cards: a short message; free users also get See Premium.
+- Own and AI cards stay on the phone, review like any saved word and are read by the phone's voice.
+- **Done when:** typing "untenable" shows Termin's card; "serendipitous" with AI returns a C1 card that lands in the set; a made-up word returns "doesn't look like a word" and the pill doesn't change; a self-written card with only a meaning shows no empty example or translation.
 
 ## 5. Monetization (RevenueCat)
 
@@ -383,7 +394,9 @@ Rules:
 
 **`POST /from-text`** (Words from a text, 4.22): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level`, `mode` (`text`, `link`, `photo`), then `text`, `url` or `images` (up to 3 base64 JPEGs), and `candidates` (dataset `id` and `word`, up to 800). Returns `{ "title", "words": [{ "id", "sentence" } | { "word", "partOfSpeech", "definition", "sentence", "translation" }], "remaining" }`. Limits per `mode` as in 4.22 (free counts never reset; HTTP 402 when used up); HTTP 422 when a page can't be read. Nothing is logged or stored.
 
-**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromTextLink", "fromTextPhoto", "fromTextText" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
+**`POST /add-word`** (Add my own word, 4.23): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `word` (max 80 characters); returns `{ "card": { "word", "partOfSpeech", "definition", "example", "translation", "level", "category" } | null, "remaining" }`. Free 2, Premium 30 per `deviceId` per UTC month; `null` (not a real word) gives the use back. Nothing is logged.
+
+**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromTextLink", "fromTextPhoto", "fromTextText", "addWord" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

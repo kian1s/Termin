@@ -114,7 +114,9 @@ export function WordHeading({ word }: { word: WordEntry }) {
         </Pressable>
       </View>
       <View style={styles.posRow}>
-        <Text style={[styles.pos, { color: theme.textSecondary }]}>{word.partOfSpeech}</Text>
+        {!!word.partOfSpeech && (
+          <Text style={[styles.pos, { color: theme.textSecondary }]}>{word.partOfSpeech}</Text>
+        )}
         {word.source === 'ai' && (
           <View
             style={[styles.aiPill, { borderColor: theme.textSecondary }]}
@@ -131,6 +133,8 @@ export function WordHeading({ word }: { word: WordEntry }) {
 export function Example({ text, word }: { text: string; word?: WordEntry }) {
   const theme = useTheme();
   const [speaking, setSpeaking] = useState(false);
+  // Own cards (SPEC 4.23) may have no example.
+  if (!text.trim()) return null;
   const speak = () => {
     if (!word) return;
     setSpeaking(true);
