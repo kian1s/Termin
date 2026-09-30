@@ -81,6 +81,10 @@ function RootStack() {
           name="say-it-better"
           options={{ headerShown: true, title: 'Say it better', headerBackTitle: 'Practice' }}
         />
+        <Stack.Screen
+          name="from-text"
+          options={{ headerShown: true, title: 'Words from a text', headerBackTitle: 'Practice' }}
+        />
         <Stack.Screen name="snap" options={{ headerShown: true, title: 'Snap a word', headerBackTitle: 'Back' }} />
         <Stack.Screen name="quick-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
       </Stack>

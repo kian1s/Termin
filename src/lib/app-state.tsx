@@ -69,6 +69,7 @@ type AppState = {
   addToSet: (setId: string, wordId: string) => void;
   removeFromSet: (setId: string, wordId: string) => void;
   createSet: (name: string, wordId?: string) => void;
+  createSetWith: (name: string, wordIds: string[]) => void;
   renameSet: (setId: string, name: string) => void;
   deleteSet: (setId: string) => void;
   reviews: Record<string, ReviewState>;
@@ -210,6 +211,13 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
           };
           const next = { ...d, sets: [...d.sets, set] };
           return wordId ? withReviewFor(next, wordId) : next;
+        }),
+
+      // A new set with several words at once (Words from a text, SPEC 4.22).
+      createSetWith: (name: string, wordIds: string[]) =>
+        update((d) => {
+          const set: WordSet = { id: `set-${Date.now()}`, name, wordIds: [...new Set(wordIds)] };
+          return set.wordIds.reduce((next, id) => withReviewFor(next, id), { ...d, sets: [...d.sets, set] });
         }),
 
       renameSet: (setId: string, name: string) => update((d) => updateSet(d, setId, (s) => ({ ...s, name }))),

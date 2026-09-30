@@ -17,6 +17,7 @@ export type DoodleName =
   | 'pen'
   | 'camera'
   | 'bulb'
+  | 'page'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -109,6 +110,15 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M10.6 21.2c.9.1 1.8.1 2.7 0',
     ],
     dot: [12.1, 10.4],
+  },
+  // A page with a folded corner and lines of text (Words from a text); the dot marks a found word.
+  page: {
+    paths: [
+      'M6.2 3.6c2.8-.2 5.7-.2 8.5 0l3.3 3.4c.1 4.3.1 8.7-.1 13-3.9.2-7.8.2-11.7 0-.2-5.5-.2-10.9 0-16.4z',
+      'M14.6 3.7c-.1 1.2-.1 2.3 0 3.4 1.1.1 2.3.1 3.4-.1',
+      'M8.6 11.1c2.2-.1 4.5-.1 6.7 0M8.6 14.3c1.4-.1 2.8-.1 4.2 0M8.6 17.3c2.1-.1 4.3-.1 6.5 0',
+    ],
+    dot: [15.4, 14.3],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {

@@ -288,6 +288,7 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
 | Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
+| Words from a text (page) | locked, no pill | 10 a day | Screen header, Practice tile |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -296,6 +297,15 @@ One tap on any card for help understanding it.
 - **Options:** **Easier** (the meaning in the easiest possible learning language, A2 to B1 words, at most 2 sentences, never using the word itself) and **Another example** (a new 8 to 20 word sentence in a different situation). Each tap asks again.
 - **Limits:** free 1 a day, Premium 30 a day, shown as a credit pill (4.20) with the bulb doodle. Out of uses: a short message, and for free users a See Premium button.
 - **Done when:** on a feed card, the bulb opens the sheet, Easier and Another example each return a line, the pill counts down, and a free user's second tap of the day shows the Premium message.
+
+### 4.22 Words from a text (Premium, Sep 30)
+Turn what the learner reads into word cards.
+- **Where:** a full-width tile in Practice → Your learning (page doodle). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/from-text.tsx`.
+- **Three ways in** (chips): **Link** (paste a web address; the Worker downloads the first 500 KB and keeps the text of headings, paragraphs and list items), **Photo** (up to 3 pages, camera or library, shrunk to 1400 px wide), **Text** (typed or pasted, max 20,000 characters). Link and Text have a **Paste** button (`expo-clipboard`).
+- **At most** 10 words for a link, 8 for photos, 5 for text; fewer when fewer are worth it. Termin's own words at the user's level and the level above come first (the model matches inflected forms and returns their IDs); then AI-made cards (marked AI, 4.19) for other useful words, in their dictionary form. Every card shows **From the text**: the sentence where the word appeared (for AI-made cards this is also their example).
+- **Saving:** a heart on each card (Favorites), and **Save all to a new set**, named after the page title, the first words of the text, or "Photo words, <date>". Each card also has Explain it differently (4.21).
+- **Limits:** Premium only, 10 a day, with a credit pill (page doodle) on the tile and in the header. A page that can't be read (paywall, JavaScript-only site) shows "Couldn't read this page. Copy the text and paste it under Text instead."
+- **Done when:** the Wikipedia link for "Urban planning" at C1 returns up to 10 words, dataset words first, each with its sentence; Save all creates a set with all of them; a German paragraph at B2 returns at most 5.
 
 ## 5. Monetization (RevenueCat)
 
@@ -363,7 +373,9 @@ Rules:
 
 **`POST /explain`** (Explain it differently, 4.21): takes `deviceId`, `isPro`, `learningLang`, `mode` (`simpler` or `example`), `word`, `definition` and `example`; returns `{ "text", "remaining" }`. Free 1 a day, Premium 30 a day per `deviceId`. Nothing is logged.
 
-**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
+**`POST /from-text`** (Words from a text, 4.22): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level`, `mode` (`text`, `link`, `photo`), then `text`, `url` or `images` (up to 3 base64 JPEGs), and `candidates` (dataset `id` and `word`, up to 800). Returns `{ "title", "words": [{ "id", "sentence" } | { "word", "partOfSpeech", "definition", "sentence", "translation" }], "remaining" }`. Premium only, 10 a day per `deviceId`; HTTP 422 when a page can't be read. Nothing is logged or stored.
+
+**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromText" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

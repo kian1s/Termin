@@ -221,3 +221,67 @@ export async function explainWord(
     clearTimeout(timer);
   }
 }
+
+// SPEC 4.22, Words from a text. Dataset words come back as IDs; the rest as
+// AI-made cards. Each has the sentence from the text where it appeared.
+export type FromTextMode = 'link' | 'photo' | 'text';
+export type FoundWord =
+  | { id: string; sentence: string }
+  | {
+      word: string;
+      partOfSpeech: string;
+      definition: string;
+      sentence: string;
+      translation: { word: string; definition: string };
+    };
+export type FromTextResult = { title: string; words: FoundWord[]; remaining?: number };
+
+export async function findWordsInText(
+  mode: FromTextMode,
+  input: { text?: string; url?: string; photos?: string[] },
+  learningLang: Lang,
+  nativeLang: Lang,
+  level: Level,
+  candidates: WordEntry[],
+  isPremium: boolean
+): Promise<FromTextResult | CoachError | 'unreadable'> {
+  if (!COACH_URL) return 'network';
+  const controller = new AbortController();
+  // Long articles and photos of pages take the model a while.
+  const timer = setTimeout(() => controller.abort(), 90_000);
+  try {
+    // Pages need more detail than Snap a word to stay readable.
+    const images = await Promise.all(
+      (input.photos ?? []).map(async (uri) => {
+        const rendered = await ImageManipulator.manipulate(uri).resize({ width: 1400 }).renderAsync();
+        const { base64 } = await rendered.saveAsync({ compress: 0.6, format: SaveFormat.JPEG, base64: true });
+        return base64 ?? '';
+      })
+    );
+    const res = await fetch(`${COACH_URL}/from-text`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: await getDeviceId(),
+        isPro: isPremium,
+        learningLang,
+        nativeLang,
+        level,
+        mode,
+        text: input.text,
+        url: input.url,
+        images: mode === 'photo' ? images : undefined,
+        candidates: candidates.map((w) => ({ id: w.id, word: w.word })),
+      }),
+      signal: controller.signal,
+    });
+    if (res.status === 422) return 'unreadable';
+    if (res.status === 429) return 'limit';
+    if (!res.ok) return 'network';
+    return (await res.json()) as FromTextResult;
+  } catch {
+    return 'network';
+  } finally {
+    clearTimeout(timer);
+  }
+}
