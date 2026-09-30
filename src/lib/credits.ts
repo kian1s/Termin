@@ -16,7 +16,8 @@ export type CreditKind =
   | 'fromTextLink'
   | 'fromTextPhoto'
   | 'fromTextText'
-  | 'addWord';
+  | 'addWord'
+  | 'taboo';
 export type Credit = { left: number; limit: number; period: 'day' | 'month' | 'lifetime' };
 type Credits = Partial<Record<CreditKind, Credit | null>>;
 

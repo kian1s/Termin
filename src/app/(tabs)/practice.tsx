@@ -103,6 +103,24 @@ export default function Practice() {
         </View>
       </Tile>
 
+      {/* SPEC 4.24: Premium. Free users see the lock and get the paywall. */}
+      <Tile icon="learning" label="Explain it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
+        <View style={styles.tallBody}>
+          <View style={styles.flexShrink}>
+            <Text style={[styles.tileTitle, { color: theme.text }]}>Describe, don&apos;t say</Text>
+            <Text style={[styles.detail, { color: theme.textSecondary }]}>The AI guesses your word</Text>
+          </View>
+          {isPremium ? (
+            <View style={styles.tileEnd}>
+              <CreditPill kind="taboo" />
+              <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
+            </View>
+          ) : (
+            <PremiumBadge lock />
+          )}
+        </View>
+      </Tile>
+
       {/* SPEC 4.19: free users get 2 photos ever, then the paywall. */}
       <Tile icon="camera" label="Snap a word" onPress={() => router.push('/snap')} tall>
         <View style={styles.tallBody}>

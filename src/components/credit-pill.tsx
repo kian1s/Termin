@@ -14,6 +14,7 @@ const ICON: Record<CreditKind, DoodleName> = {
   fromTextPhoto: 'camera',
   fromTextText: 'book',
   addWord: 'plus',
+  taboo: 'learning',
 };
 const NOUN: Record<CreditKind, [string, string]> = {
   check: ['AI check', 'AI checks'],
@@ -24,6 +25,7 @@ const NOUN: Record<CreditKind, [string, string]> = {
   fromTextPhoto: ['photo run', 'photo runs'],
   fromTextText: ['text', 'texts'],
   addWord: ['AI card', 'AI cards'],
+  taboo: ['round', 'rounds'],
 };
 
 // A small outlined pill with the feature's doodle and how many uses are left,

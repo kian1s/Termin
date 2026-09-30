@@ -326,3 +326,46 @@ export async function writeWordCard(
     clearTimeout(timer);
   }
 }
+
+// SPEC 4.24, Explain it: the AI guesses which of `options` the description
+// meant. The round's first call (roundStart) uses one of the day's rounds.
+export type TabooResult = { guessId: string; usedWord: boolean; correct: boolean; feedback: string; remaining?: number };
+
+export async function tabooGuess(
+  roundId: string,
+  roundStart: boolean,
+  target: WordEntry,
+  options: WordEntry[],
+  description: string,
+  feedbackLang: Lang,
+  isPremium: boolean
+): Promise<TabooResult | CoachError> {
+  if (!COACH_URL) return 'network';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 45_000);
+  try {
+    const res = await fetch(`${COACH_URL}/taboo`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: await getDeviceId(),
+        isPro: isPremium,
+        learningLang: target.lang,
+        feedbackLang,
+        roundId,
+        roundStart,
+        target: { id: target.id, word: target.word },
+        options: options.map((o) => ({ id: o.id, word: o.word })),
+        description,
+      }),
+      signal: controller.signal,
+    });
+    if (res.status === 429) return 'limit';
+    if (!res.ok) return 'network';
+    return (await res.json()) as TabooResult;
+  } catch {
+    return 'network';
+  } finally {
+    clearTimeout(timer);
+  }
+}

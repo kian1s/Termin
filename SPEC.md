@@ -290,6 +290,7 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
 | Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | A number badge on each mode chip, and the screen header |
 | Add my own word with AI (plus) | 2 a month | 30 a month | Screen header |
+| Explain it (speech bubble) | locked, no pill | 10 rounds a day | Screen header, Practice tile |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -325,6 +326,14 @@ The learner adds any word to a set.
   - **Write it with AI:** the Worker writes a full card (fixes small typos; a word typed in the native language becomes its learning-language equivalent; level and category estimated), marked AI (4.19). **Free 2 a month, Premium 30 a month**, with a credit pill (plus doodle). A typed word that isn't real returns no card and doesn't use one up. Out of cards: a short message; free users also get See Premium.
 - Own and AI cards stay on the phone, review like any saved word and are read by the phone's voice.
 - **Done when:** typing "untenable" shows Termin's card; "serendipitous" with AI returns a C1 card that lands in the set; a made-up word returns "doesn't look like a word" and the pill doesn't change; a self-written card with only a meaning shows no empty example or translation.
+
+### 4.24 Explain it (Premium, Sep 30)
+A speaking game from RESEARCH.md: describe a saved word without saying it; the AI guesses which one you meant.
+- **Where:** a full-width tile in Practice → Your learning (speech bubble doodle, "Describe, don't say"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
+- **A round:** up to 5 saved words in the learning language (due first, then the lowest boxes). Each shows the word (with the speaker) and an optional "Show the meaning" hint. The learner types or speaks (mic, 4.6) a description, then taps **Let the AI guess**. The AI picks one of 4 words (the word plus 3 others: saved words first, then words at the user's level) and adds one sentence in the Coach language on what was clear. Saying the word itself (any form) never counts. **Skip this word** moves on.
+- **Scoring:** a correct guess counts as a correct review (the word moves up a stage); a miss records nothing. The end screen shows the score and **Play again**.
+- **Limits:** Premium only, 10 rounds a day with a credit pill; a round's first guess uses it (skipping every word uses none).
+- **Done when:** a clear description of a saved word is guessed and moves it up a stage; a description containing the word shows "You said the word itself"; the pill drops by one per round, not per word.
 
 ## 5. Monetization (RevenueCat)
 
@@ -396,7 +405,9 @@ Rules:
 
 **`POST /add-word`** (Add my own word, 4.23): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `word` (max 80 characters); returns `{ "card": { "word", "partOfSpeech", "definition", "example", "translation", "level", "category" } | null, "remaining" }`. Free 2, Premium 30 per `deviceId` per UTC month; `null` (not a real word) gives the use back. Nothing is logged.
 
-**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromTextLink", "fromTextPhoto", "fromTextText", "addWord" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
+**`POST /taboo`** (Explain it, 4.24): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `roundId`, `roundStart`, `target` and 2 to 4 `options` (`id`, `word`) and `description` (max 500 characters); returns `{ "guessId", "usedWord", "correct", "feedback", "remaining"? }`. Premium only, 10 rounds a day per `deviceId`; `roundStart` takes the use, and a round allows 5 guesses. Nothing is logged.
+
+**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromTextLink", "fromTextPhoto", "fromTextText", "addWord", "taboo" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

@@ -85,6 +85,7 @@ function RootStack() {
           name="from-text"
           options={{ headerShown: true, title: 'Words from a text', headerBackTitle: 'Sets' }}
         />
+        <Stack.Screen name="taboo" options={{ headerShown: true, title: 'Explain it', headerBackTitle: 'Practice' }} />
         <Stack.Screen name="add-word" options={{ headerShown: true, title: 'Add my own word', headerBackTitle: 'Back' }} />
         <Stack.Screen name="snap" options={{ headerShown: true, title: 'Snap a word', headerBackTitle: 'Back' }} />
         <Stack.Screen name="quick-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
