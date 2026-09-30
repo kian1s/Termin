@@ -126,7 +126,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.2 Word feed
 - Vertical, full-screen, swipe-to-scroll feed, one card per word.
 - Each card shows the word, part of speech, level badge, definition, example sentence, and the translation into the native language.
-- **Translation visibility:** the translation is always blurred with "Tap to reveal", on word and review cards, so learners try to recall the meaning first. Seen word IDs are still stored locally (for the level-up card).
+- **Translation visibility:** the translation is always blurred with no hint text (just the blur), on word and review cards, so learners try to recall the meaning first. Seen word IDs are still stored locally (for the level-up card).
 - **Pronunciation:** a speaker button next to the word reads it aloud with `expo-speech` (works in Expo Go), using the learning language's voice (`en-US`, `fr-FR`, `de-DE`, `es-ES`, `pt-PT`).
 - Buttons: **Speaker** (pronunciation), **Heart** (save to the default "Favorites" set) and **Add to set** (a sheet listing sets, with a "+ New set" option).
 - The feed is filtered by the current settings, and the order is shuffled.

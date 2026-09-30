@@ -191,10 +191,13 @@ export function Translation({
 
       {blurred && !revealed && (
         <Animated.View style={[StyleSheet.absoluteFill, { opacity: blurOpacity }]}>
-          <Pressable style={StyleSheet.absoluteFill} onPress={reveal}>
-            <BlurView intensity={30} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.blur]}>
-              <Text style={[styles.revealHint, { color: theme.textSecondary }]}>Tap to reveal</Text>
-            </BlurView>
+          {/* Just the blur, no hint text; VoiceOver still says what a tap does. */}
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={reveal}
+            accessibilityRole="button"
+            accessibilityLabel="Show the translation">
+            <BlurView intensity={30} tint={theme.scheme} style={[StyleSheet.absoluteFill, styles.blur]} />
           </Pressable>
         </Animated.View>
       )}
@@ -245,5 +248,4 @@ const styles = StyleSheet.create({
   translationWord: { fontSize: 17, fontWeight: '600' },
   translationDef: { fontSize: 15, lineHeight: 21 },
   blur: { alignItems: 'center', justifyContent: 'center' },
-  revealHint: { fontSize: 14, fontWeight: '500' },
 });

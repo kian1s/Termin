@@ -96,7 +96,7 @@ Full screen, one card per swipe, content vertically centered with generous side 
 
 **Translation rule (decided by Kian):**
 
-- The translation is **always blurred** (`expo-blur`, which works in Expo Go) with a small "Tap to reveal" hint, on word cards and review cards, so the learner tries to recall the meaning first. Tapping un-blurs it.
+- The translation is **always blurred** (`expo-blur`, which works in Expo Go), with no hint text (Sep 30), on word cards and review cards, so the learner tries to recall the meaning first. Tapping un-blurs it.
 - Seen word IDs are still stored locally (AsyncStorage) for History (SPEC 4.13) and the level-up card. A word counts as seen once its card has been on screen.
 
 Actions:
