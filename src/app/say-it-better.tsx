@@ -15,6 +15,7 @@ import {
 import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
@@ -89,6 +90,8 @@ export default function SayItBetter() {
     setText((t) => (t.trim() ? `${t.trim()} ${spoken}` : spoken).slice(0, MAX_LENGTH))
   );
 
+  const [tutorMood, setTutorReaction] = useTutorMood(loading);
+
   if (!settings) return null;
 
   if (!isPremium) {
@@ -120,6 +123,7 @@ export default function SayItBetter() {
     setLoading(false);
     if (out === 'limit') setCreditLeft('rewrite', 0);
     if (typeof out !== 'string' && out.remaining !== undefined) setCreditLeft('rewrite', out.remaining);
+    setTutorReaction(typeof out === 'string' ? 'sad' : 'happy');
     if (out === 'limit') Alert.alert('Daily limit reached', "You've used today's 30 rewrites. Try again tomorrow.");
     else if (out === 'network') Alert.alert("Couldn't rewrite", 'Check your connection and try again.');
     else setResult(out);
@@ -139,9 +143,11 @@ export default function SayItBetter() {
           ],
         }}
       />
-      <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
-        Write a sentence. Termin rewrites it with stronger words you can save.
-      </Text>
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
+          Write a sentence. Tutor rewrites it with stronger words you can save.
+        </Text>
+      </TutorNote>
 
       <View style={styles.tones}>
         {TONES.map((t) => {

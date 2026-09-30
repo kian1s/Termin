@@ -29,7 +29,7 @@ function thisWeek() {
 export default function ProgressScreen() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { seenIds, savedIds, reviews, stats } = useAppState();
+  const { seenIds, savedIds, reviews, stats, devNumbers } = useAppState();
 
   const perBox = BOXES.map((box) => [...savedIds].filter((id) => reviews[id]?.box === box).length);
   const total = perBox.reduce((a, b) => a + b, 0);
@@ -92,12 +92,13 @@ export default function ProgressScreen() {
 
       {/* Numbers, in pairs */}
       <View style={styles.row}>
-        <Stat label="Learned" value={perBox[3]} />
+        {/* Developer mode can set these for filming. */}
+        <Stat label="Learned" value={devNumbers.learned ?? perBox[3]} />
         <Stat label="Saved" value={savedIds.size} />
       </View>
       <View style={styles.row}>
-        <Stat label="Seen" value={seenIds.size} />
-        <Stat label="Reviews today" value={stats.reviewsToday} />
+        <Stat label="Seen" value={devNumbers.seen ?? seenIds.size} />
+        <Stat label="Reviews today" value={devNumbers.reviewsToday ?? stats.reviewsToday} />
       </View>
 
       {/* Saved words: one bar, then the four stages as a growing plant */}

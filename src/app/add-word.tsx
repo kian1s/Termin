@@ -4,6 +4,7 @@ import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 
 
 import { CreditPill } from '@/components/credit-pill';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -54,6 +55,8 @@ export default function AddWord() {
   // The AI's card, made into an entry once when it arrives (null: not a real word).
   const [aiCard, setAiCard] = useState<{ typed: string; entry: WordEntry | null } | null>(null);
 
+  const [tutorMood, setTutorReaction] = useTutorMood(loading);
+
   if (!settings) return null;
   const target = sets.find((s) => s.id === setId) ?? sets.find((s) => s.id === FAVORITES_ID)!;
   const termin = findInTermin(typed, settings);
@@ -85,6 +88,7 @@ export default function AddWord() {
     setLoading(true);
     const out = await writeWordCard(word, settings.learningLang, settings.nativeLang, settings.level, isPremium);
     setLoading(false);
+    setTutorReaction(typeof out === 'string' || !out.card ? 'sad' : 'happy');
     if (out === 'limit') setCreditLeft('addWord', 0);
     else if (out === 'network') Alert.alert("Couldn't write the card", 'Check your connection and try again.');
     else {
@@ -123,7 +127,9 @@ export default function AddWord() {
           ],
         }}
       />
-      <Text style={[styles.hint, { color: theme.textSecondary }]}>Adds to {target.name}.</Text>
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.hint, { color: theme.textSecondary }]}>Adds to {target.name}.</Text>
+      </TutorNote>
 
       <TextInput
         value={typed}

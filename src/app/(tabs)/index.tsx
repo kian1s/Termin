@@ -37,7 +37,11 @@ const MIN_BATCH = 20;
 const CARDS_BETWEEN_REVIEWS = 4;
 // SPEC 4.12: the one-time level-up card after 80% of the level's words were seen.
 const LEVEL_UP_SEEN = 0.8;
-let nextKey = 0;
+// Card keys. The prefix changes whenever this file reloads (Fast Refresh resets
+// the counter but keeps the feed on screen), so a new key never repeats an old one.
+const keyPrefix = Math.random().toString(36).slice(2, 8);
+let keyCount = 0;
+const newKey = () => `${keyPrefix}-${keyCount++}`;
 
 const pick = (words: WordEntry[]) => words[Math.floor(Math.random() * words.length)];
 
@@ -45,7 +49,7 @@ const pick = (words: WordEntry[]) => words[Math.floor(Math.random() * words.leng
 // slotting in stretch and locked teaser cards at their rates.
 function nextBatch(mix: Mix, prev: Item[], count: { words: number }, levelUpNow: boolean): Item[] {
   const out: Item[] = [];
-  const add = (kind: Item['kind'], word: WordEntry) => out.push({ key: `${nextKey++}`, kind, word });
+  const add = (kind: Item['kind'], word: WordEntry) => out.push({ key: newKey(), kind, word });
   if (levelUpNow && mix.levelUp) add('levelup', mix.pool[0]);
   let last = prev[prev.length - 1]?.word;
   while (mix.pool.length && out.length < MIN_BATCH) {
@@ -80,6 +84,8 @@ export default function Feed() {
     levelUpShown,
     markLevelUpShown,
     devStrongLearner,
+    devQueued,
+    clearDevQueue,
   } = useAppState();
   const { isPremium, showPaywall } = usePremium();
   const snapCredit = useCredit('snap');
@@ -87,9 +93,10 @@ export default function Feed() {
 
   // Only the learning filters and Premium status matter here; changing the reminder
   // or answering a review must not reset the feed.
-  const filterKey = settings
-    ? `${settings.learningLang}|${settings.level}|${settings.categories.join()}|${isPremium}|${devStrongLearner}`
+  const learningKey = settings
+    ? `${settings.learningLang}|${settings.level}|${settings.categories.join()}|${devStrongLearner}`
     : '';
+  const filterKey = `${learningKey}|${isPremium}`;
   const mix = useMemo<Mix>(() => {
     if (!settings) {
       return { pool: [], stretchPool: [], stretchEvery: null, teaserPool: [], teaserEvery: null, earnedLevel: null, levelUp: null };
@@ -122,16 +129,47 @@ export default function Feed() {
   // `count` numbers the word cards so stretch and teaser cards keep their rate across batches.
   const newFeed = (m: Mix) => {
     const count = { words: 0 };
-    return { mix: m, count, items: nextBatch(m, [], count, false) };
+    return { mix: m, learningKey, count, items: nextBatch(m, [], count, false) };
   };
   const [feed, setFeed] = useState(() => newFeed(mix));
   // A review card on screen blocks swiping until it is answered or revealed.
   const [blockingKey, setBlockingKey] = useState<string | null>(null);
   const [doneReviews, setDoneReviews] = useState<Set<string>>(() => new Set());
-  if (feed.mix !== mix) {
+  // The card on screen, so a Premium change can keep the user's place.
+  const currentIndex = useRef(0);
+  // New learning filters start a new feed.
+  if (feed.mix !== mix && feed.learningKey !== learningKey) {
     setFeed(newFeed(mix));
     setBlockingKey(null);
   }
+  // Only Premium changed (a purchase, restore or lapse): keep the cards up to the
+  // one on screen and the next, unlock teasers in place, and refill the rest from
+  // the new mix. The card on screen (and Tutor on it) stays put.
+  useEffect(() => {
+    setFeed((f) => {
+      if (f.mix === mix || f.learningKey !== learningKey) return f;
+      const kept = f.items
+        .slice(0, currentIndex.current + 2)
+        .map((i) => (i.kind === 'locked' && !isLockedWord(i.word, isPremium) ? { ...i, kind: 'word' as const } : i));
+      return { ...f, mix, items: [...kept, ...nextBatch(mix, kept, f.count, false)] };
+    });
+  }, [mix, learningKey, isPremium]);
+
+  // Developer mode (filming): the queued card comes up after exactly 5 more swipes.
+  const handledQueue = useRef(0);
+  useEffect(() => {
+    if (!devQueued || devQueued.nonce === handledQueue.current) return;
+    handledQueue.current = devQueued.nonce;
+    const word = wordById(devQueued.wordId);
+    if (word) {
+      setFeed((f) => {
+        const items = [...f.items];
+        items.splice(Math.min(currentIndex.current + 5, items.length), 0, { key: newKey(), kind: devQueued.kind, word });
+        return { ...f, items };
+      });
+    }
+    clearDevQueue();
+  }, [devQueued, clearDevQueue]);
 
   const latest = useRef({ seenIds, learningLang: settings?.learningLang, level: settings?.level });
   useEffect(() => {
@@ -150,6 +188,7 @@ export default function Feed() {
     () =>
       ({ viewableItems }: { viewableItems: ViewToken<Item>[] }) => {
         for (const { item, index } of viewableItems) {
+          if (index != null) currentIndex.current = index;
           if (!item || index == null || viewedKeys.current.has(item.key)) continue;
           viewedKeys.current.add(item.key);
           recordCardView();
@@ -173,7 +212,7 @@ export default function Feed() {
               sinceReview.current = 0;
               setFeed((f) => {
                 const items = [...f.items];
-                items.splice(index + 1, 0, { key: `${nextKey++}`, kind: 'review', word });
+                items.splice(index + 1, 0, { key: newKey(), kind: 'review', word });
                 return { ...f, items };
               });
             }
@@ -206,6 +245,8 @@ export default function Feed() {
             nativeLang={settings.nativeLang}
             height={height}
             active={blockingKey === item.key || doneReviews.has(item.key)}
+            // Keeps Tutor below the header icons when the card is tall.
+            topInset={Spacing.xl}
             onFinished={() => {
               setDoneReviews((d) => new Set(d).add(item.key));
               setBlockingKey(null);
@@ -292,8 +333,9 @@ export default function Feed() {
               }
             }}
             onMomentumScrollEnd={(e) => {
+              currentIndex.current = Math.round(e.nativeEvent.contentOffset.y / height);
               // Once the feed settles on an unfinished review card, lock it there.
-              const item = feed.items[Math.round(e.nativeEvent.contentOffset.y / height)];
+              const item = feed.items[currentIndex.current];
               if (item?.kind === 'review' && !doneReviews.has(item.key)) setBlockingKey(item.key);
             }}
             viewabilityConfig={{ itemVisiblePercentThreshold: 60 }}

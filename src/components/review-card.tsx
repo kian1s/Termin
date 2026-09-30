@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -30,16 +30,20 @@ import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 // `onFinished` fires once the answer is rated (by Tutor or by the user), unlocking the feed.
 // `correct` is true for "Knew it" and for a correct or partly right Coach verdict.
 // `active`: the feed sets it once it settles on this card, and Tutor pops in then.
+// `topInset`: space kept clear at the top for controls drawn over the page (the feed header).
 type Props = {
   word: WordEntry;
   nativeLang: Lang;
   height: number;
   active?: boolean;
+  topInset?: number;
   onFinished: (correct: boolean) => void;
 };
 
 // Tutor sits on top of the card, over its left or right corner.
 const TUTOR_SIZE = 64;
+// How long the card waits for an answer before Tutor starts to fidget.
+const TUTOR_PATIENCE_MS = 8_000;
 const TUTOR_OVERHANG = TUTOR_SIZE * 0.7 + Spacing.sm;
 
 // Why the card fell back to Reveal and self-rating instead of Tutor.
@@ -51,7 +55,7 @@ const VERDICT_ICON = { correct: 'checkmark-circle', partly: 'remove-circle', inc
 
 // A saved word coming back as a question (SPEC 4.4). With Tutor the
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
-export function ReviewCard({ word, nativeLang, height, active = true, onFinished }: Props) {
+export function ReviewCard({ word, nativeLang, height, active = true, topInset = 0, onFinished }: Props) {
   const theme = useTheme();
   const { answer, settings } = useAppState();
   const { isPremium, showPaywall } = usePremium();
@@ -61,6 +65,16 @@ export function ReviewCard({ word, nativeLang, height, active = true, onFinished
   const [fallback, setFallback] = useState<Fallback>(null);
   const [revealed, setRevealed] = useState(false);
   const [next, setNext] = useState<{ correct: boolean; state: ReviewState } | null>(null);
+  // Tutor's corner. Each word starts in the same one, so the feed alternates.
+  const [tutorSide, setTutorSide] = useState<'left' | 'right'>(() =>
+    [...word.id].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 2 ? 'right' : 'left'
+  );
+  const flipTutor = () => setTutorSide((s) => (s === 'left' ? 'right' : 'left'));
+  // How far he travels between the corners, once the card has been measured.
+  const [tutorSpan, setTutorSpan] = useState<number | undefined>(undefined);
+  // A miss makes him sad or cross, picked once per card.
+  const [missMood] = useState<TutorMood>(() => (Math.random() < 0.5 ? 'sad' : 'angry'));
+  const [waitedLong, setWaitedLong] = useState(false);
 
   // Voice answers fill the text box, so the user can edit before checking.
   const voice = useVoiceAnswer(word, (spoken) => setText((t) => (t.trim() ? `${t.trim()} ${spoken}` : spoken)));
@@ -95,30 +109,48 @@ export function ReviewCard({ word, nativeLang, height, active = true, onFinished
     ? { correct: theme.correct, partly: theme.partly, incorrect: theme.wrong }[coach.verdict]
     : theme.border;
 
-  // Each word always gets the same corner, so the feed alternates without jumping around.
-  const tutorSide = [...word.id].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 2 ? 'right' : 'left';
   // Tutor reacts to the Coach's verdict or to the user's own rating. Otherwise he rests.
   const mood: TutorMood = checking
     ? 'thinking'
     : coach
       ? coach.verdict === 'incorrect'
-        ? 'sad'
+        ? missMood
         : 'happy'
       : next
         ? next.correct
           ? 'happy'
-          : 'sad'
+          : missMood
         : 'rest';
+
+  // Kept waiting: no answer (and no typing) for a while and he fidgets.
+  const waiting = active && !checking && !coach && !next;
+  useEffect(() => {
+    if (!waiting) return;
+    const timer = setTimeout(() => setWaitedLong(true), TUTOR_PATIENCE_MS);
+    return () => {
+      clearTimeout(timer);
+      setWaitedLong(false);
+    };
+  }, [waiting, text]);
+
+  // A right answer: after his hop, he leaps across to the other corner.
+  useEffect(() => {
+    if (mood !== 'happy') return;
+    const leap = setTimeout(flipTutor, 900);
+    return () => clearTimeout(leap);
+  }, [mood]);
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      style={[styles.page, { height }]}>
+      style={[styles.page, { height, paddingTop: Spacing.lg + topInset }]}>
       {/* Scrolls inside itself when the Coach's answer makes it taller than the screen. */}
-      <View style={coachAvailable && styles.withTutor}>
+      <View
+        style={coachAvailable && styles.withTutor}
+        onLayout={(e) => setTutorSpan(e.nativeEvent.layout.width - TUTOR_SIZE - Spacing.xl * 2)}>
         <Sticker outline={theme.accent} fill={theme.background}>
           <ScrollView
-            style={[styles.card, { maxHeight: height - Spacing.lg * 2 - 4 - (coachAvailable ? TUTOR_OVERHANG : 0) }]}
+            style={[styles.card, { maxHeight: height - topInset - Spacing.lg * 2 - 4 - (coachAvailable ? TUTOR_OVERHANG : 0) }]}
             contentContainerStyle={styles.cardContent}
             alwaysBounceVertical={false}
             bounces={false}
@@ -252,14 +284,18 @@ export function ReviewCard({ word, nativeLang, height, active = true, onFinished
             )}
           </ScrollView>
         </Sticker>
-        {/* Tutor sits on top of the card, leaning toward his corner. */}
-        {coachAvailable && (
+        {/* Tutor sits on top of the card, leaning toward his corner. He moves
+            himself between the corners, so he is placed at the left one. */}
+        {coachAvailable && tutorSpan !== undefined && (
           <Tutor
             mood={mood}
             size={TUTOR_SIZE}
-            lean={tutorSide}
+            side={tutorSide}
+            span={tutorSpan}
             visible={active}
-            style={[styles.tutor, tutorSide === 'left' ? { left: Spacing.xl } : { right: Spacing.xl }]}
+            impatient={waiting && waitedLong}
+            onWander={flipTutor}
+            style={styles.tutor}
           />
         )}
       </View>
@@ -296,7 +332,7 @@ const styles = StyleSheet.create({
   page: { justifyContent: 'center', padding: Spacing.lg },
   card: { flexGrow: 0 },
   withTutor: { marginTop: TUTOR_OVERHANG },
-  tutor: { position: 'absolute', top: -TUTOR_OVERHANG },
+  tutor: { position: 'absolute', top: -TUTOR_OVERHANG, left: Spacing.xl },
   cardContent: { padding: Spacing.xl, gap: Spacing.lg },
   reviewLabel: { fontWeight: '600' },
   labelRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

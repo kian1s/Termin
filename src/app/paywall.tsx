@@ -6,9 +6,12 @@ import { ActivityIndicator, Alert, Pressable, ScrollView, StyleSheet, Text, View
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Doodle, DoodleName } from '@/components/doodle-icons';
+import { Sticker } from '@/components/sticker';
+import { Tutor } from '@/components/tutor';
+import { useTutorMood } from '@/components/tutor-note';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
-import { Sticker } from '@/components/sticker';
 import { usePremium } from '@/lib/premium';
 
 // Termin's own paywall. Expo Go cannot show RevenueCat's dashboard paywalls,
@@ -17,13 +20,24 @@ import { usePremium } from '@/lib/premium';
 const TERMS_URL = 'https://github.com/kian1s/Termin/blob/main/TERMS.md';
 const PRIVACY_URL = 'https://github.com/kian1s/Termin/blob/main/PRIVACY.md';
 
-const BENEFITS = [
-  { icon: 'trending-up-outline', text: 'Access to all words and categories' },
-  { icon: 'sparkles-outline', text: 'Say it better, Describe it and AI reminders' },
-  { icon: 'camera-outline', text: 'Learn from photos, links and texts every day' },
-  { icon: 'chatbubbles-outline', text: '50 Tutor checks a day' },
-  { icon: 'layers-outline', text: 'Flashcards and unlimited sets' },
-] as const;
+// Termin's own doodles; the Tutor checks row shows Tutor himself, last so the
+// terracotta doodles stay together.
+const BENEFITS: { icon: DoodleName | 'tutor'; text: string }[] = [
+  { icon: 'categories', text: 'Access to all words and categories' },
+  { icon: 'pen', text: 'Say it better, Describe it and AI reminders' },
+  { icon: 'camera', text: 'Learn from photos, links and texts every day' },
+  { icon: 'book', text: 'Flashcards and unlimited sets' },
+  { icon: 'tutor', text: '50 Tutor checks a day' },
+];
+
+// What Tutor says above the plans, by how the purchase is going.
+const TUTOR_LINES = {
+  rest: "Stick with me and I'll make these words yours.",
+  thinking: 'One moment…',
+  happy: 'Welcome to Premium!',
+  sad: "That didn't go through. Try again?",
+  angry: "That didn't go through. Try again?",
+};
 
 export default function Paywall() {
   const theme = useTheme();
@@ -33,6 +47,7 @@ export default function Paywall() {
   const [selected, setSelected] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [tutorMood, setTutorReaction] = useTutorMood(busy);
 
   useEffect(() => {
     Purchases.getOfferings()
@@ -54,8 +69,11 @@ export default function Paywall() {
     try {
       const { customerInfo } = await Purchases.purchasePackage(pkg);
       await refresh();
-      if (customerInfo.entitlements.active.premium) router.back();
-      else if (__DEV__) {
+      if (customerInfo.entitlements.active.premium) {
+        // A moment for Tutor to celebrate before the paywall closes.
+        setTutorReaction('happy');
+        setTimeout(() => router.back(), 1200);
+      } else if (__DEV__) {
         Alert.alert(
           'Purchase finished, but no Premium',
           `Active entitlements: ${Object.keys(customerInfo.entitlements.active).join(', ') || 'none'}
@@ -64,7 +82,10 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
       }
     } catch (e) {
       const err = e as { userCancelled?: boolean; message?: string };
-      if (!err.userCancelled) Alert.alert('Purchase failed', err.message ?? String(e));
+      if (!err.userCancelled) {
+        setTutorReaction('sad');
+        Alert.alert('Purchase failed', err.message ?? String(e));
+      }
     } finally {
       setBusy(false);
     }
@@ -77,13 +98,25 @@ Active subscriptions: ${customerInfo.activeSubscriptions.join(', ') || 'none'}`
           <Ionicons name="close" size={26} color={theme.textSecondary} />
         </Pressable>
 
+        <View style={styles.hero}>
+          <Tutor mood={tutorMood} size={84} />
+          <Sticker lift={3} radius={Radius.card} style={styles.bubbleWrap} contentStyle={styles.bubble}>
+            <Text style={[styles.bubbleText, { color: theme.text }]}>{TUTOR_LINES[tutorMood]}</Text>
+          </Sticker>
+        </View>
+
         <Text style={[Type.label, { color: theme.premium }]}>TERMIN PREMIUM</Text>
-        <Text style={[styles.title, { color: theme.text }]}>Learn the words that matter</Text>
 
         <View style={styles.benefits}>
           {BENEFITS.map((b) => (
             <View key={b.text} style={styles.benefit}>
-              <Ionicons name={b.icon} size={22} color={theme.premium} />
+              <View style={styles.benefitIcon}>
+                {b.icon === 'tutor' ? (
+                  <Tutor size={34} idle={false} />
+                ) : (
+                  <Doodle name={b.icon} size={26} color={theme.premium} />
+                )}
+              </View>
               <Text style={[styles.benefitText, { color: theme.text }]}>{b.text}</Text>
             </View>
           ))}
@@ -180,9 +213,14 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { paddingHorizontal: Spacing.xl, gap: Spacing.md },
   close: { alignSelf: 'flex-end' },
-  title: { fontFamily: Fonts.title, fontSize: 32, lineHeight: 40 },
   benefits: { gap: Spacing.md, marginVertical: Spacing.lg },
   benefit: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
+  // Doodles and the small Tutor share one column, so the text lines up.
+  benefitIcon: { width: 34, alignItems: 'center' },
+  hero: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md, marginBottom: Spacing.md },
+  bubbleWrap: { flex: 1 },
+  bubble: { paddingHorizontal: Spacing.lg, paddingVertical: Spacing.md },
+  bubbleText: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 23 },
   // flexShrink lets a long line wrap instead of running off the screen.
   benefitText: { fontSize: 17, lineHeight: 22, flexShrink: 1 },
   plans: { gap: Spacing.md },

@@ -7,6 +7,7 @@ import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { ExplainLink } from '@/components/explain-link';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -43,6 +44,7 @@ export default function Snap() {
   const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState<WordEntry[] | null>(null);
   const snapCredit = useCredit('snap');
+  const [tutorMood, setTutorReaction] = useTutorMood(loading);
 
   if (!settings) return null;
   // The Worker's count when known; the phone's own count offline.
@@ -88,10 +90,13 @@ export default function Snap() {
       setFreeSnapsUsed(FREE_SNAPS);
       setPhoto(null);
     } else if (out === 'limit') {
+      setTutorReaction('sad');
       Alert.alert('Daily limit reached', "You've used today's 10 photos. Try again tomorrow.");
     } else if (out === 'network') {
+      setTutorReaction('sad');
       Alert.alert("Couldn't read the photo", 'Check your connection and try again.');
     } else {
+      setTutorReaction(out.cards.length ? 'happy' : 'sad');
       if (out.freeUsed !== undefined) setFreeSnapsUsed(out.freeUsed);
       const entries = out.cards.map((c, i) => toEntry(c, settings, i));
       // Known by ID for this session (Explain it differently); stored only once saved.
@@ -115,9 +120,11 @@ export default function Snap() {
           ],
         }}
       />
-      <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
-        Termin finds a word at your level in any photo.
-      </Text>
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
+          Tutor finds a word at your level in any photo.
+        </Text>
+      </TutorNote>
 
       <View style={styles.row}>
         <StickerButton

@@ -9,6 +9,7 @@ import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { ExplainLink } from '@/components/explain-link';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -95,6 +96,8 @@ export default function FromText() {
     text: useCredit('fromTextText'),
   };
 
+  const [tutorMood, setTutorReaction] = useTutorMood(loading);
+
   if (!settings) return null;
 
   const current = MODES.find((m) => m.id === mode)!;
@@ -154,12 +157,15 @@ export default function FromText() {
       // The count drops to 0, which shows the out-of-uses message in place of the button.
       setCreditLeft(current.credit, 0);
     } else if (out === 'unreadable') {
+      setTutorReaction('sad');
       Alert.alert("Couldn't read this page", 'Copy the text of the article and paste it under Text instead.');
     } else if (out === 'network') {
+      setTutorReaction('sad');
       Alert.alert("Couldn't read it", 'Check your connection and try again.');
     } else {
       if (out.remaining !== undefined) setCreditLeft(current.credit, out.remaining);
       const found = toFound(out.words, settings);
+      setTutorReaction(found.length ? 'happy' : 'sad');
       registerCustomWords(found.map((f) => f.word).filter((w) => w.source === 'ai'));
       setResult({ title: out.title, found, mode });
     }
@@ -204,9 +210,11 @@ export default function FromText() {
           ],
         }}
       />
-      <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
-        Termin finds the words worth learning in what you read.
-      </Text>
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.hint, styles.left, { color: theme.textSecondary }]}>
+          Tutor finds the words worth learning in what you read.
+        </Text>
+      </TutorNote>
 
       <View style={styles.modes}>
         {MODES.map((m) => {

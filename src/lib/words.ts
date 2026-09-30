@@ -1,4 +1,4 @@
-import { Category, Lang, Level, Settings, WordEntry } from '@/lib/types';
+import { Category, Lang, LANGS, Level, Settings, WordEntry } from '@/lib/types';
 
 // Words are bundled with the app, generated and checked by scripts/dataset.
 const WORDS: Record<Lang, WordEntry[]> = {
@@ -39,6 +39,36 @@ const BY_ID = new Map(Object.values(WORDS).flat().map((w) => [w.id, w]));
 
 export function wordById(id: string): WordEntry | undefined {
   return BY_ID.get(id);
+}
+
+// Termin, the app's own word. It is not in the dataset, so the feed never picks
+// it; developer mode queues it (for filming), and Tutor sits on its card.
+export function terminWord(lang: Lang): WordEntry {
+  const word: WordEntry = {
+    id: `termin-${lang}`,
+    lang,
+    level: 'B1',
+    category: 'everyday',
+    word: 'Termin',
+    partOfSpeech: 'verb',
+    // Not shown on its card (only the quote is); review cards and Tutor's grading use it.
+    definition: 'Find the word.',
+    example: 'The word you were looking for was here the whole time.',
+    // No translation: the card shows none.
+    translations: {},
+  };
+  BY_ID.set(word.id, word);
+  return word;
+}
+
+export const isTermin = (word: WordEntry) => word.id.startsWith('termin-');
+// Known by ID from the start, so a saved or seen Termin card is found after a restart.
+for (const lang of LANGS) terminWord(lang);
+
+// A dataset word by its spelling (any level or category), for developer tools.
+export function findWord(lang: Lang, spelling: string): WordEntry | undefined {
+  const wanted = spelling.trim().toLowerCase();
+  return WORDS[lang].find((w) => w.word.toLowerCase() === wanted);
 }
 
 // AI-made cards (SPEC 4.19) live in the app state; they are registered here so

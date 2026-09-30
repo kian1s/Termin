@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { CreditPill } from '@/components/credit-pill';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { ExplainMode, explainWord } from '@/lib/coach';
@@ -24,6 +25,7 @@ export default function Explain() {
   const [loading, setLoading] = useState<ExplainMode | null>(null);
   const [answer, setAnswer] = useState<{ mode: ExplainMode; text: string } | null>(null);
   const [problem, setProblem] = useState<'limit' | 'network' | null>(null);
+  const [tutorMood, setTutorReaction] = useTutorMood(!!loading);
 
   if (!word) return null;
   const outOfUses = problem === 'limit' || credit?.left === 0;
@@ -34,6 +36,7 @@ export default function Explain() {
     const out = await explainWord(word, mode, isPremium);
     setLoading(null);
     if (out === 'limit') setCreditLeft('explain', 0);
+    setTutorReaction(typeof out === 'string' ? 'sad' : 'happy');
     if (typeof out === 'string') {
       setProblem(out);
       return;
@@ -51,9 +54,11 @@ export default function Explain() {
         </Text>
         <CreditPill kind="explain" />
       </View>
-      <Text style={[styles.intro, { color: theme.textSecondary }]}>
-        Tutor rewrites the card definition or sample sentence for you.
-      </Text>
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.intro, { color: theme.textSecondary }]}>
+          Tutor rewrites the card definition or sample sentence for you.
+        </Text>
+      </TutorNote>
 
       {outOfUses ? (
         <View style={styles.block}>

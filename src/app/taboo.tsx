@@ -6,6 +6,7 @@ import { ActivityIndicator, Alert, Pressable, ScrollView, StyleSheet, Text, Text
 import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { Sticker, StickerButton } from '@/components/sticker';
+import { TutorNote, useTutorMood } from '@/components/tutor-note';
 import { WordHeading } from '@/components/word-card';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -61,6 +62,7 @@ export default function Taboo() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<TabooResult | null>(null);
   const [score, setScore] = useState<boolean[]>([]);
+  const [tutorMood, setTutorReaction] = useTutorMood(loading);
   const turn = round?.turns[index];
   const voice = useVoiceAnswer({ lang: settings?.learningLang ?? 'en', word: turn?.word.word }, (spoken) =>
     setText((t) => (t.trim() ? `${t.trim()} ${spoken}` : spoken).slice(0, 500))
@@ -158,11 +160,13 @@ export default function Taboo() {
       return;
     }
     if (out === 'network') {
+      setTutorReaction('sad');
       Alert.alert("Tutor couldn't guess", 'Check your connection and try again.');
       return;
     }
     if (out.remaining !== undefined) setCreditLeft('taboo', out.remaining);
     if (out.correct) answer(current.word.id, true);
+    setTutorReaction(out.correct ? 'happy' : 'sad');
     setResult(out);
     setScore((s) => [...s, out.correct]);
   };
@@ -172,6 +176,7 @@ export default function Taboo() {
     setText('');
     setHint(false);
     setResult(null);
+    setTutorReaction(null);
   };
 
   const guessed = result && current.options.find((o) => o.id === result.guessId);
@@ -198,9 +203,17 @@ export default function Taboo() {
         )}
       </Sticker>
 
+      <TutorNote mood={tutorMood}>
+        <Text style={[styles.body, { color: theme.text }]}>
+          {!result
+            ? 'Describe it without saying it. I’ll guess.'
+            : result.correct
+              ? 'Got it!'
+              : 'Hmm, not this time.'}
+        </Text>
+      </TutorNote>
       {!result ? (
         <>
-          <Text style={[styles.body, { color: theme.text }]}>Describe it without saying it.</Text>
           <View>
             <TextInput
               value={text}

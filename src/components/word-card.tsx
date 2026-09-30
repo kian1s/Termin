@@ -8,9 +8,11 @@ import { useTheme } from '@/hooks/use-theme';
 import { Doodle } from '@/components/doodle-icons';
 import { openExplain } from '@/components/explain-link';
 import { Sticker } from '@/components/sticker';
+import { Tutor } from '@/components/tutor';
 import { useAppState } from '@/lib/app-state';
 import { pronounce } from '@/lib/pronounce';
 import { CATEGORY_NAMES, FAVORITES_ID, Lang, WordEntry } from '@/lib/types';
+import { isTermin } from '@/lib/words';
 
 type Props = {
   word: WordEntry;
@@ -33,11 +35,14 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
   return (
     <View style={[styles.card, { height }]}>
       <View style={styles.content}>
-        <Text style={[Type.label, styles.label, { color: badge ? theme.accent : theme.textSecondary }]}>
-          {badge ?? `${word.level} · ${CATEGORY_NAMES[word.category]}`}
+        {/* The app's own word gets Tutor on its card. */}
+        {isTermin(word) && <Tutor size={88} style={styles.tutor} />}
+        <Text style={[Type.label, styles.label, { color: badge || isTermin(word) ? theme.accent : theme.textSecondary }]}>
+          {badge ?? (isTermin(word) ? 'Meet Tutor' : `${word.level} · ${CATEGORY_NAMES[word.category]}`)}
         </Text>
         <WordHeading word={word} />
-        <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>
+        {/* The Termin card is just the word and its quote. */}
+        {!isTermin(word) && <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>}
         <Example text={word.example} word={word} />
         <Translation word={word} nativeLang={nativeLang} />
       </View>
@@ -220,6 +225,7 @@ const styles = StyleSheet.create({
     gap: Spacing.xl,
   },
   label: { marginBottom: -6 }, // label sits closer to the word it describes
+  tutor: { marginBottom: Spacing.xs },
   heading: { marginBottom: Spacing.xs },
   action: { width: ACTION, height: ACTION, alignItems: 'center', justifyContent: 'center' },
   explain: { position: 'absolute', left: Spacing.xl, bottom: Spacing.xl },

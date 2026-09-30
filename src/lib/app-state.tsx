@@ -86,10 +86,22 @@ type AppState = {
   setFreeSnapsUsed: (n: number) => void;
   devStrongLearner: boolean;
   setDevStrongLearner: (on: boolean) => void;
+  // Developer mode (filming): a card for the feed to slot in 5 swipes ahead.
+  devQueued: DevQueued | null;
+  // Developer mode (filming): numbers shown on Progress instead of the real ones.
+  // Kept in memory only, so a restart shows the real numbers again.
+  devNumbers: DevNumbers;
+  setDevNumber: (key: keyof DevNumbers, value: number | null) => void;
+  devQueue: (card: Omit<DevQueued, 'nonce'>) => void;
+  clearDevQueue: () => void;
   devSetLastActive: (daysAgo: number) => void;
   devMakeAllDue: () => void;
   devRestartOnboarding: () => void;
 };
+
+// A card developer mode asks the feed to show: a word card or a review card.
+export type DevQueued = { kind: 'word' | 'review'; wordId: string; nonce: number };
+export type DevNumbers = { learned?: number; seen?: number; reviewsToday?: number };
 
 const Ctx = createContext<AppState | null>(null);
 
@@ -114,6 +126,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   const [data, setData] = useState<Data>(EMPTY);
   const [devStrongLearner, setDevStrongLearner] = useState(false);
+  const [devQueued, setDevQueued] = useState<DevQueued | null>(null);
+  const [devNumbers, setDevNumbers] = useState<DevNumbers>({});
   const dataRef = useRef(data);
 
   useEffect(() => {
@@ -317,6 +331,17 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         freeSnapsUsed: data.freeSnapsUsed,
         devStrongLearner,
         setDevStrongLearner,
+        devQueued,
+        devQueue: (card) => setDevQueued({ ...card, nonce: Date.now() }),
+        clearDevQueue: () => setDevQueued(null),
+        devNumbers,
+        setDevNumber: (key, value) =>
+          setDevNumbers((n) => {
+            const next = { ...n };
+            if (value === null) delete next[key];
+            else next[key] = value;
+            return next;
+          }),
         ...actions,
       }}>
       {children}

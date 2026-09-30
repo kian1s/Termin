@@ -15,7 +15,8 @@ import { useAppState } from '@/lib/app-state';
 import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
 import { describeScheduled, devTestAiReminder, formatTime } from '@/lib/reminder';
-import { AppearanceMode, Reminder } from '@/lib/types';
+import { AppearanceMode, LANG_NAMES, Reminder, WordEntry } from '@/lib/types';
+import { findWord, terminWord } from '@/lib/words';
 
 const APPEARANCES: { id: AppearanceMode; label: string }[] = [
   { id: 'system', label: 'Automatic' },
@@ -40,6 +41,9 @@ export default function SettingsScreen() {
     devRestartOnboarding,
     devStrongLearner,
     setDevStrongLearner,
+    devQueue,
+    devNumbers,
+    setDevNumber,
   } = useAppState();
   const { isPremium, plan, showPaywall, restore, debugInfo, devOverride, setDevOverride } = usePremium();
   // SPEC 4.11: show the voice used for the learning language. Re-check when the
@@ -79,6 +83,43 @@ export default function SettingsScreen() {
     }
   };
   if (!settings) return null;
+
+  // Filming: put a chosen card into the feed, 5 swipes ahead of the one on screen.
+  const queue = (kind: 'word' | 'review', word: WordEntry) => {
+    devQueue({ kind, wordId: word.id });
+    Alert.alert('Queued', `${kind === 'review' ? 'A review of ' : ''}"${word.word}" comes up after 5 swipes in the feed.`);
+  };
+  // Filming: the numbers on Progress. An empty answer goes back to the real number.
+  const PROGRESS_NUMBERS = [
+    { key: 'learned', label: 'Learned' },
+    { key: 'seen', label: 'Seen' },
+    { key: 'reviewsToday', label: 'Reviews today' },
+  ] as const;
+  const setProgressNumber = (key: (typeof PROGRESS_NUMBERS)[number]['key'], label: string) =>
+    Alert.prompt(
+      `Progress: ${label}`,
+      'The number to show. Leave empty for the real one.',
+      (text) => {
+        const n = parseInt(text.trim(), 10);
+        setDevNumber(key, text.trim() === '' || Number.isNaN(n) ? null : Math.max(0, n));
+      },
+      'plain-text',
+      devNumbers[key]?.toString() ?? '',
+      'number-pad'
+    );
+
+  const pickWord = (kind: 'word' | 'review') => {
+    const lang = settings.learningLang;
+    Alert.prompt(
+      kind === 'review' ? 'Review card in 5 swipes' : 'Word in 5 swipes',
+      `Type a ${LANG_NAMES[lang]} word from the word list, or Termin.`,
+      (text) => {
+        const word = text.trim().toLowerCase() === 'termin' ? terminWord(lang) : findWord(lang, text);
+        if (word) queue(kind, word);
+        else Alert.alert('Not found', `"${text.trim()}" is not in the ${LANG_NAMES[lang]} word list.`);
+      }
+    );
+  };
 
 
   return (
@@ -164,6 +205,21 @@ export default function SettingsScreen() {
           <Row label="Last active: yesterday" onPress={() => devSetLastActive(1)} chevron={false} />
           <Row label="Last active: 3 days ago" onPress={() => devSetLastActive(3)} chevron={false} />
           <Row label="Make all saved words due" onPress={devMakeAllDue} chevron={false} />
+          <Row
+            label="Termin card in 5 swipes"
+            onPress={() => queue('word', terminWord(settings.learningLang))}
+            chevron={false}
+          />
+          <Row label="Pick the word in 5 swipes" onPress={() => pickWord('word')} chevron={false} />
+          <Row label="Pick a review card in 5 swipes" onPress={() => pickWord('review')} chevron={false} />
+          {PROGRESS_NUMBERS.map(({ key, label }) => (
+            <Row
+              key={key}
+              label={`Progress · ${label}: ${devNumbers[key] ?? 'real'}`}
+              onPress={() => setProgressNumber(key, label)}
+              chevron={false}
+            />
+          ))}
           <Row
             label="Restart onboarding"
             onPress={() => {
