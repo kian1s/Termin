@@ -69,12 +69,22 @@ export default function SetScreen() {
 
       <Section>
         <Row
-          label="Add a word"
+          label="Add saved words"
+          icon={<Doodle name="heart" size={22} />}
+          onPress={() => router.push({ pathname: '/add-saved/[setId]', params: { setId: set.id } })}
+        />
+        <Row
+          label="Add a new word"
           icon={<Doodle name="plus" size={22} />}
           onPress={() => router.push({ pathname: '/add-word', params: { setId: set.id } })}
-          last={words.length === 0}
+          last
         />
-        {words.length === 0 ? null : (
+      </Section>
+
+      <Section>
+        {words.length === 0 ? (
+          <Row label="No words yet" subtitle="Add saved words or a new word above." last />
+        ) : (
           words.map((w, i) => (
             <Row
               key={w.id}
