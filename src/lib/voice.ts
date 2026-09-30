@@ -54,7 +54,7 @@ export function useVoiceAnswer(hint: VoiceHint, onText: (text: string) => void) 
       if ('text' in result) onText(result.text);
       else {
         Alert.alert(
-          'Could not transcribe',
+          "Couldn't transcribe",
           __DEV__ ? `${result.error}\nFile: ${uri ?? 'none'}` : 'Please try again, or type your answer.'
         );
       }
@@ -79,7 +79,7 @@ export function useVoiceAnswer(hint: VoiceHint, onText: (text: string) => void) 
       recorder.record();
       setState('recording');
     } catch (e) {
-      Alert.alert('Could not start recording', e instanceof Error ? e.message : String(e));
+      Alert.alert("Couldn't start recording", e instanceof Error ? e.message : String(e));
     }
   };
 
