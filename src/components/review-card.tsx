@@ -208,7 +208,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
               {!next ? (
                 <>
                   <View style={styles.row}>
-                    <Button label="Didn't" onPress={() => rate(false)} />
+                    <Button label="Didn't know" onPress={() => rate(false)} />
                     <Button label="Knew it" onPress={() => rate(true)} primary />
                   </View>
                   <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>

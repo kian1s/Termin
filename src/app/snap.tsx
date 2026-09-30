@@ -90,7 +90,7 @@ export default function Snap() {
     } else if (out === 'limit') {
       Alert.alert('Daily limit reached', "You've used today's 10 photos. Try again tomorrow.");
     } else if (out === 'network') {
-      Alert.alert('Could not read the photo', 'Check your connection and try again.');
+      Alert.alert("Couldn't read the photo", 'Check your connection and try again.');
     } else {
       if (out.freeUsed !== undefined) setFreeSnapsUsed(out.freeUsed);
       const entries = out.cards.map((c, i) => toEntry(c, settings, i));

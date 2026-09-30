@@ -81,7 +81,7 @@ export default function Taboo() {
   if (!isPremium) {
     return (
       <View style={[styles.center, { backgroundColor: theme.background }]}>
-        <Doodle name="learning" size={48} />
+        <Doodle name="guess" size={48} />
         <Text style={[styles.title, { color: theme.text }]}>Explain it</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
           Describe your words without saying them, and see if the AI can guess. Part of Termin Premium.
@@ -113,7 +113,7 @@ export default function Taboo() {
     return (
       <View style={[styles.center, { backgroundColor: theme.background }]}>
         {header}
-        <Doodle name="learning" size={48} />
+        <Doodle name="guess" size={48} />
         <Text style={[styles.title, { color: theme.text }]}>{played ? `${right} / ${played}` : 'Explain it'}</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
           {played

@@ -18,11 +18,11 @@ const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
 const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
 
 const BENEFITS = [
-  { icon: 'chatbubbles-outline', text: 'Idioms and Work vocabulary' },
-  { icon: 'trending-up-outline', text: 'Every C1 and C2 word' },
-  { icon: 'albums-outline', text: 'Unlimited sets' },
-  { icon: 'layers-outline', text: 'Flashcards for your sets' },
-  { icon: 'sparkles-outline', text: '50 AI Coach checks a day' },
+  { icon: 'trending-up-outline', text: 'Every word, including Idioms, Work, C1 and C2' },
+  { icon: 'sparkles-outline', text: 'Say it better, Explain it and AI reminders' },
+  { icon: 'camera-outline', text: 'Learn from photos, links and texts every day' },
+  { icon: 'chatbubbles-outline', text: '50 AI Coach checks a day' },
+  { icon: 'layers-outline', text: 'Flashcards and unlimited sets' },
 ] as const;
 
 export default function Paywall() {

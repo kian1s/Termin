@@ -104,7 +104,7 @@ export default function Practice() {
       </Tile>
 
       {/* SPEC 4.24: Premium. Free users see the lock and get the paywall. */}
-      <Tile icon="learning" label="Explain it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
+      <Tile icon="guess" label="Explain it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
         <View style={styles.tallBody}>
           <View style={styles.flexShrink}>
             <Text style={[styles.tileTitle, { color: theme.text }]}>Describe, don&apos;t say</Text>

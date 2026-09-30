@@ -14,7 +14,7 @@ const ICON: Record<CreditKind, DoodleName> = {
   fromTextPhoto: 'camera',
   fromTextText: 'book',
   addWord: 'plus',
-  taboo: 'learning',
+  taboo: 'guess',
 };
 const NOUN: Record<CreditKind, [string, string]> = {
   check: ['AI check', 'AI checks'],

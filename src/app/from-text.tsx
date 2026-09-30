@@ -17,7 +17,7 @@ import { coachAvailable, findWordsInText, FoundWord, FromTextMode } from '@/lib/
 import { CreditKind, setCreditLeft, useCredit } from '@/lib/credits';
 import { FREE_CUSTOM_SETS, levelAbove } from '@/lib/gating';
 import { usePremium } from '@/lib/premium';
-import { FAVORITES_ID, Settings, WordEntry } from '@/lib/types';
+import { FAVORITES_ID, LANG_NAMES, Settings, WordEntry } from '@/lib/types';
 import { allWords, registerCustomWords, wordById } from '@/lib/words';
 
 const MODES: { id: FromTextMode; label: string; max: number; credit: CreditKind; noun: string }[] = [
@@ -156,7 +156,7 @@ export default function FromText() {
     } else if (out === 'unreadable') {
       Alert.alert("Couldn't read this page", 'Copy the text of the article and paste it under Text instead.');
     } else if (out === 'network') {
-      Alert.alert('Could not read it', 'Check your connection and try again.');
+      Alert.alert("Couldn't read it", 'Check your connection and try again.');
     } else {
       if (out.remaining !== undefined) setCreditLeft(current.credit, out.remaining);
       const found = toFound(out.words, settings);
@@ -266,7 +266,7 @@ export default function FromText() {
           <TextInput
             value={text}
             onChangeText={(t) => setText(t.slice(0, MAX_TEXT))}
-            placeholder="Paste or type a text in the language you're learning."
+            placeholder={`Paste or type a text in ${LANG_NAMES[settings.learningLang]}.`}
             placeholderTextColor={theme.textSecondary}
             multiline
             editable={!loading}
@@ -339,7 +339,7 @@ export default function FromText() {
           {!!result.title && <Text style={[styles.resultTitle, { color: theme.text }]}>{result.title}</Text>}
           {!result.found.length ? (
             <Text style={[styles.hint, { color: theme.textSecondary }]}>
-              No words worth learning at your level here. Is the text in the language you&apos;re learning?
+              No words at your level here. Is the text in {LANG_NAMES[settings.learningLang]}?
             </Text>
           ) : (
             <StickerButton

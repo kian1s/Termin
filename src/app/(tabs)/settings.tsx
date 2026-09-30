@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useRef, useState } from 'react';
 import { Alert, AppState, ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -14,6 +15,9 @@ import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
 import { describeScheduled, devTestAiReminder, formatTime } from '@/lib/reminder';
 import { Reminder } from '@/lib/types';
+
+const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
+const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -76,7 +80,7 @@ export default function SettingsScreen() {
 
       <Section
         title="Termin Premium"
-        footer={isPremium ? undefined : 'Premium unlocks Idioms, Work, every C1 and C2 word, and unlimited sets.'}>
+        footer={isPremium ? undefined : 'Premium unlocks every word, the AI tools, flashcards and unlimited sets.'}>
         <Row
           label={isPremium ? 'Premium is active' : 'Free plan'}
           subtitle={
@@ -100,10 +104,10 @@ export default function SettingsScreen() {
 
       <Section
         title="Pronunciation"
-        footer={`Words and example sentences are read by natural voices recorded for Termin, and kept on your phone after the first play. Without internet, the phone's own voice is used.${
+        footer={`Natural voices read every word and example, and are saved after the first play. Offline, your iPhone's voice reads them instead.${
           voice?.quality === 'Premium'
             ? ''
-            : ' For a better phone voice, download a Premium or Enhanced voice for free in the iPhone Settings: Accessibility, Spoken Content, Voices.'
+            : ' For a better offline voice, download one in Settings > Accessibility > Spoken Content > Voices.'
         }`}>
         <Row label="Natural voices" value="On" chevron={false} />
         <Row
@@ -125,6 +129,8 @@ export default function SettingsScreen() {
       </Section>
 
       <Section title="About">
+        <Row label="Privacy Policy" onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)} />
+        <Row label="Terms of Use" onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)} />
         <Row
           label="Version"
           value={Constants.expoConfig?.version ?? '1.0.0'}

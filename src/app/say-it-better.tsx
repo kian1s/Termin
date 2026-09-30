@@ -121,7 +121,7 @@ export default function SayItBetter() {
     if (out === 'limit') setCreditLeft('rewrite', 0);
     if (typeof out !== 'string' && out.remaining !== undefined) setCreditLeft('rewrite', out.remaining);
     if (out === 'limit') Alert.alert('Daily limit reached', "You've used today's 30 rewrites. Try again tomorrow.");
-    else if (out === 'network') Alert.alert('Could not rewrite', 'Check your connection and try again.');
+    else if (out === 'network') Alert.alert("Couldn't rewrite", 'Check your connection and try again.');
     else setResult(out);
   };
 

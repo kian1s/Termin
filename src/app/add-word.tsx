@@ -86,7 +86,7 @@ export default function AddWord() {
     const out = await writeWordCard(word, settings.learningLang, settings.nativeLang, settings.level, isPremium);
     setLoading(false);
     if (out === 'limit') setCreditLeft('addWord', 0);
-    else if (out === 'network') Alert.alert('Could not write the card', 'Check your connection and try again.');
+    else if (out === 'network') Alert.alert("Couldn't write the card", 'Check your connection and try again.');
     else {
       setCreditLeft('addWord', out.remaining);
       setAiCard({ typed: word, entry: out.card ? aiEntry(out.card) : null });
@@ -234,7 +234,7 @@ export default function AddWord() {
             </View>
           ) : (
             <StickerButton
-              label="Write the card"
+              label="Write with AI"
               onPress={writeWithAi}
               loading={loading}
               disabled={!coachAvailable}

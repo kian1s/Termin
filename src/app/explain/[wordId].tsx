@@ -83,7 +83,7 @@ export default function Explain() {
 
       {problem === 'network' && (
         <Text style={[styles.small, { color: theme.textSecondary }]}>
-          Could not reach Termin. Check your connection and try again.
+          Couldn&apos;t reach Termin. Check your connection and try again.
         </Text>
       )}
 

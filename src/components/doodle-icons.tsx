@@ -18,6 +18,7 @@ export type DoodleName =
   | 'camera'
   | 'bulb'
   | 'book'
+  | 'guess'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -120,6 +121,14 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M6.4 9.4c1.3 0 2.5.3 3.7.8M6.4 12.5c1.3 0 2.5.3 3.7.8',
     ],
     dot: [16.4, 11.4],
+  },
+  // A speech bubble with a question mark (Explain it: the AI guesses your word).
+  guess: {
+    paths: [
+      'M5.2 5.4c4.6-.4 9.3-.3 13.8.1.8.1 1.3.7 1.3 1.5l-.1 7.4c0 .8-.6 1.4-1.4 1.4-2.6 0-5.2.1-7.8.2l-4 3.4.2-3.5c-.9-.1-1.8-.2-2-.9-.4-2.6-.4-5.4-.1-8.1.1-.9.9-1.5 1.8-1.5z',
+      'M10.1 8.9c.4-1.2 1.4-1.8 2.5-1.6 1.2.2 1.9 1.2 1.6 2.3-.3 1-1.4 1.3-1.9 2-.2.3-.2.7-.2 1',
+    ],
+    dot: [12.1, 14.1],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {

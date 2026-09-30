@@ -290,7 +290,7 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
 | Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | A number badge on each mode chip, and the screen header |
 | Add my own word with AI (plus) | 2 a month | 30 a month | Screen header |
-| Explain it (speech bubble) | locked, no pill | 10 rounds a day | Screen header, Practice tile |
+| Explain it (question bubble) | locked, no pill | 10 rounds a day | Screen header, Practice tile |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -329,7 +329,7 @@ The learner adds any word to a set.
 
 ### 4.24 Explain it (Premium, Sep 30)
 A speaking game from RESEARCH.md: describe a saved word without saying it; the AI guesses which one you meant.
-- **Where:** a full-width tile in Practice → Your learning (speech bubble doodle, "Describe, don't say"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
+- **Where:** a full-width tile in Practice → Your learning (a speech bubble with a question mark, "Describe, don't say"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
 - **A round:** up to 5 saved words in the learning language (due first, then the lowest boxes). Each shows the word (with the speaker) and an optional "Show the meaning" hint. The learner types or speaks (mic, 4.6) a description, then taps **Let the AI guess**. The AI picks one of 4 words (the word plus 3 others: saved words first, then words at the user's level) and adds one sentence in the Coach language on what was clear. Saying the word itself (any form) never counts. **Skip this word** moves on.
 - **Scoring:** a correct guess counts as a correct review (the word moves up a stage); a miss records nothing. The end screen shows the score and **Play again**.
 - **Limits:** Premium only, 10 rounds a day with a credit pill; a round's first guess uses it (skipping every word uses none).

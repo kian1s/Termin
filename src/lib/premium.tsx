@@ -84,7 +84,7 @@ export function PremiumProvider({ children }: { children: ReactNode }) {
       await RevenueCatUI.presentPaywallIfNeeded({ requiredEntitlementIdentifier: ENTITLEMENT });
       apply(await Purchases.getCustomerInfo());
     } catch (e) {
-      Alert.alert('Could not open the paywall', e instanceof Error ? e.message : String(e));
+      Alert.alert("Couldn't open the paywall", e instanceof Error ? e.message : String(e));
     }
   }, [apply]);
 
