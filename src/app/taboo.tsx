@@ -46,7 +46,7 @@ function buildRound(settings: Settings, savedIds: Set<string>, reviews: Record<s
   return { id: `r${Date.now().toString(36)}${Math.floor(Math.random() * 1e4)}`, turns };
 }
 
-// SPEC 4.24: describe a saved word without saying it; the AI guesses which of
+// SPEC 4.24, Describe it: describe a saved word without saying it; the AI guesses which of
 // 4 words you meant. Premium only, 10 rounds a day. A correct guess counts as
 // a correct review; a miss records nothing.
 export default function Taboo() {
@@ -82,7 +82,7 @@ export default function Taboo() {
     return (
       <View style={[styles.center, { backgroundColor: theme.background }]}>
         <Doodle name="guess" size={48} />
-        <Text style={[styles.title, { color: theme.text }]}>Explain it</Text>
+        <Text style={[styles.title, { color: theme.text }]}>Describe it</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
           Describe your words without saying them, and see if the AI can guess. Part of Termin Premium.
         </Text>
@@ -114,7 +114,7 @@ export default function Taboo() {
       <View style={[styles.center, { backgroundColor: theme.background }]}>
         {header}
         <Doodle name="guess" size={48} />
-        <Text style={[styles.title, { color: theme.text }]}>{played ? `${right} / ${played}` : 'Explain it'}</Text>
+        <Text style={[styles.title, { color: theme.text }]}>{played ? `${right} / ${played}` : 'Describe it'}</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
           {played
             ? 'Words the AI guessed moved up a stage.'

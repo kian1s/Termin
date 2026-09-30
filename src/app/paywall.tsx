@@ -19,7 +19,7 @@ const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
 
 const BENEFITS = [
   { icon: 'trending-up-outline', text: 'Every word, including Idioms, Work, C1 and C2' },
-  { icon: 'sparkles-outline', text: 'Say it better, Explain it and AI reminders' },
+  { icon: 'sparkles-outline', text: 'Say it better, Describe it and AI reminders' },
   { icon: 'camera-outline', text: 'Learn from photos, links and texts every day' },
   { icon: 'chatbubbles-outline', text: '50 AI Coach checks a day' },
   { icon: 'layers-outline', text: 'Flashcards and unlimited sets' },

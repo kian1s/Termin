@@ -301,13 +301,10 @@ export default function Feed() {
         )
       )}
 
-      {/* Top left: Snap a word (SPEC 4.19) and Add my own word (4.23). */}
+      {/* Top left: Snap a word (SPEC 4.19). */}
       <View style={[styles.headerLeft, { top: insets.top + Spacing.sm }]} pointerEvents="box-none">
         <Pressable onPress={() => router.push('/snap')} hitSlop={10} accessibilityLabel="Snap a word">
           {snapCredit ? <CreditPill kind="snap" /> : <Doodle name="camera" size={24} color={theme.textSecondary} />}
-        </Pressable>
-        <Pressable onPress={() => router.push('/add-word')} hitSlop={10} accessibilityLabel="Add my own word">
-          <Doodle name="plus" size={24} color={theme.textSecondary} />
         </Pressable>
       </View>
 

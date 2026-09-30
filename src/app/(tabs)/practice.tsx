@@ -11,8 +11,6 @@ import { Sticker } from '@/components/sticker';
 import { Fonts, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
-import { FREE_SNAPS } from '@/lib/coach';
-import { useCredit } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { dayKey } from '@/lib/progress';
 import { Field, LEVEL_HINTS } from '@/lib/questions';
@@ -25,9 +23,8 @@ import { wordById } from '@/lib/words';
 export default function Practice() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { settings, seenAt, freeSnapsUsed } = useAppState();
+  const { settings, seenAt } = useAppState();
   const { isPremium, showPaywall } = usePremium();
-  const snapCredit = useCredit('snap');
   if (!settings) return null;
 
   const edit = (field: Field) => router.push({ pathname: '/edit/[field]', params: { field } });
@@ -79,7 +76,7 @@ export default function Practice() {
         </View>
       </Tile>
 
-      <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Your learning</Text>
+      <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>AI practice</Text>
 
       {/* SPEC 4.18: Premium. Free users see the lock and get the paywall. */}
       <Tile
@@ -104,11 +101,11 @@ export default function Practice() {
       </Tile>
 
       {/* SPEC 4.24: Premium. Free users see the lock and get the paywall. */}
-      <Tile icon="guess" label="Explain it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
+      <Tile icon="guess" label="Describe it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
         <View style={styles.tallBody}>
           <View style={styles.flexShrink}>
-            <Text style={[styles.tileTitle, { color: theme.text }]}>Describe, don&apos;t say</Text>
-            <Text style={[styles.detail, { color: theme.textSecondary }]}>The AI guesses your word</Text>
+            <Text style={[styles.tileTitle, { color: theme.text }]}>Can the AI guess it?</Text>
+            <Text style={[styles.detail, { color: theme.textSecondary }]}>Describe a word without saying it</Text>
           </View>
           {isPremium ? (
             <View style={styles.tileEnd}>
@@ -121,23 +118,7 @@ export default function Practice() {
         </View>
       </Tile>
 
-      {/* SPEC 4.19: free users get 2 photos ever, then the paywall. */}
-      <Tile icon="camera" label="Snap a word" onPress={() => router.push('/snap')} tall>
-        <View style={styles.tallBody}>
-          <View style={styles.flexShrink}>
-            <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from a photo</Text>
-            <Text style={[styles.detail, { color: theme.textSecondary }]}>A word at your level in any photo</Text>
-          </View>
-          {isPremium || (snapCredit ? snapCredit.left > 0 : freeSnapsUsed < FREE_SNAPS) ? (
-            <View style={styles.tileEnd}>
-              <CreditPill kind="snap" />
-              <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
-            </View>
-          ) : (
-            <PremiumBadge lock />
-          )}
-        </View>
-      </Tile>
+      <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Your learning</Text>
 
       <View style={styles.row}>
         <Tile icon="learning" label="Learning" onPress={() => edit('learningLang')}>

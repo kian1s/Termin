@@ -264,7 +264,7 @@ Background and the research behind it: RESEARCH.md. An AI picks which saved word
 
 ### 4.18 Say it better (Premium, Sep 30)
 The learner writes (or says) a sentence in the learning language, and the AI rewrites it with stronger words from Termin's own dataset, so every new word can be saved and reviewed.
-- **Where:** a full-width tile in Practice → Your learning, with a pen doodle. Free users see a PREMIUM lock and the tile opens the paywall. The screen is `src/app/say-it-better.tsx`.
+- **Where:** a full-width tile in Practice → AI practice, with a pen doodle. Free users see a PREMIUM lock and the tile opens the paywall. The screen is `src/app/say-it-better.tsx`.
 - **Input:** a text box (max 300 characters) with the voice answer mic (4.6), and tone chips **Natural**, **Formal**, **Academic**. The default tone follows the user's categories: Academic if chosen, else Formal if Work is chosen, else Natural.
 - **Words the AI may use:** the user's saved words in the learning language first, then words at their level and categories, up to 200 in total. The AI may change a word's form (tense, plural, agreement, article).
 - **Result:** the rewritten sentence with the new words highlighted; below it, one row per swap ("didn't work → proved untenable") with a one-line reason in the Coach language and a Save button (adds the word to Favorites). If the sentence was not in the learning language, the AI translates it first.
@@ -273,7 +273,7 @@ The learner writes (or says) a sentence in the learning language, and the AI rew
 
 ### 4.19 Snap a word (Sep 30)
 Take or choose a photo; the AI writes a card for a word worth learning in it.
-- **Where:** a full-width tile in Practice → Your learning (camera doodle) and a small camera doodle at the top left of the feed. The screen is `src/app/snap.tsx`.
+- **Where:** Sets → Add words → **Snap a word** (camera doodle, with its credit pill) and a small camera doodle at the top left of the feed. The screen is `src/app/snap.tsx`.
 - **Photo:** **Take photo** (camera) or **Choose photo** (library), with `expo-image-picker`. The phone shrinks it to 1024 px wide (`expo-image-manipulator`) before sending.
 - **Cards:** usually **one** card, at the user's level, in the learning language; up to 3 only when more are clearly worth learning. Each has the word (nouns with their article), part of speech, a short definition (under 15 words), an example that fits the photo, and a translation into the native language. No basic A1/A2 words, never identifying real people, no card for unusable or inappropriate photos.
 - **AI-made cards** are stored on the phone only (`customWords` in the app state), marked with an outlined **AI** pill next to the part of speech wherever they show, and read aloud by the phone's voice (no recording). **Save** adds the card to Favorites; from then on it reviews like any saved word. They never enter the feed.
@@ -286,11 +286,11 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 |---|---|---|---|
 | AI Coach checks (sparkle) | 3 a day | 50 a day | Review card, next to "Review" |
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
-| Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
+| Snap a word (camera) | 2 ever | 10 a day | Screen header, Sets → Add words, feed top left (replaces the camera doodle) |
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
 | Words from a text (book) | 1 link, 2 photo runs, 2 texts ever | 3 links, 5 photo runs, 10 texts a day | A number badge on each mode chip, and the screen header |
 | Add my own word with AI (plus) | 2 a month | 30 a month | Screen header |
-| Explain it (question bubble) | locked, no pill | 10 rounds a day | Screen header, Practice tile |
+| Describe it (question bubble) | locked, no pill | 10 rounds a day | Screen header, Practice tile |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
 
 ### 4.21 Explain it differently (Sep 30)
@@ -319,7 +319,7 @@ Turn what the learner reads into word cards.
 
 ### 4.23 Add my own word (Sep 30)
 The learner adds any word to a set.
-- **Where:** Sets → Add words → **Add my own word** (plus doodle; adds to Favorites), an **Add a word** row at the top of every set (adds to that set), and a plus doodle next to the camera at the top left of the feed (Favorites). The screen is `src/app/add-word.tsx`.
+- **Where:** Sets → Add words → **Add my own word** (plus doodle; adds to Favorites), and an **Add a word** row at the top of every set (adds to that set). The screen is `src/app/add-word.tsx`.
 - **Termin has it:** while typing, the word is looked up in the learning language's dataset (ignoring case, "to", and articles). If found, Termin's own card shows with **Add to <set>**. Free and instant.
 - **Otherwise, two ways:**
   - **Write it myself:** the meaning (required), a translation into the native language and an example (both optional). Free and unlimited, no AI. Stored as an own card (`source: 'own'`); missing parts simply don't show.
@@ -327,9 +327,9 @@ The learner adds any word to a set.
 - Own and AI cards stay on the phone, review like any saved word and are read by the phone's voice.
 - **Done when:** typing "untenable" shows Termin's card; "serendipitous" with AI returns a C1 card that lands in the set; a made-up word returns "doesn't look like a word" and the pill doesn't change; a self-written card with only a meaning shows no empty example or translation.
 
-### 4.24 Explain it (Premium, Sep 30)
+### 4.24 Describe it (Premium, Sep 30)
 A speaking game from RESEARCH.md: describe a saved word without saying it; the AI guesses which one you meant.
-- **Where:** a full-width tile in Practice → Your learning (a speech bubble with a question mark, "Describe, don't say"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
+- **Where:** a full-width tile in Practice → AI practice (a speech bubble with a question mark, "Can the AI guess it?"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
 - **A round:** up to 5 saved words in the learning language (due first, then the lowest boxes). Each shows the word (with the speaker) and an optional "Show the meaning" hint. The learner types or speaks (mic, 4.6) a description, then taps **Let the AI guess**. The AI picks one of 4 words (the word plus 3 others: saved words first, then words at the user's level) and adds one sentence in the Coach language on what was clear. Saying the word itself (any form) never counts. **Skip this word** moves on.
 - **Scoring:** a correct guess counts as a correct review (the word moves up a stage); a miss records nothing. The end screen shows the score and **Play again**.
 - **Limits:** Premium only, 10 rounds a day with a credit pill; a round's first guess uses it (skipping every word uses none).
@@ -405,7 +405,7 @@ Rules:
 
 **`POST /add-word`** (Add my own word, 4.23): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `word` (max 80 characters); returns `{ "card": { "word", "partOfSpeech", "definition", "example", "translation", "level", "category" } | null, "remaining" }`. Free 2, Premium 30 per `deviceId` per UTC month; `null` (not a real word) gives the use back. Nothing is logged.
 
-**`POST /taboo`** (Explain it, 4.24): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `roundId`, `roundStart`, `target` and 2 to 4 `options` (`id`, `word`) and `description` (max 500 characters); returns `{ "guessId", "usedWord", "correct", "feedback", "remaining"? }`. Premium only, 10 rounds a day per `deviceId`; `roundStart` takes the use, and a round allows 5 guesses. Nothing is logged.
+**`POST /taboo`** (Describe it, 4.24): takes `deviceId`, `isPro`, `learningLang`, `feedbackLang`, `roundId`, `roundStart`, `target` and 2 to 4 `options` (`id`, `word`) and `description` (max 500 characters); returns `{ "guessId", "usedWord", "correct", "feedback", "remaining"? }`. Premium only, 10 rounds a day per `deviceId`; `roundStart` takes the use, and a round allows 5 guesses. Nothing is logged.
 
 **`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain", "fromTextLink", "fromTextPhoto", "fromTextText", "addWord", "taboo" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 

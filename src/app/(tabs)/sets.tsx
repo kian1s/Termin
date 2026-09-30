@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
 import { Row, Section } from '@/components/grouped-list';
 import { Fonts, Spacing } from '@/constants/theme';
@@ -42,6 +43,13 @@ export default function SetsScreen() {
       </Section>
 
       <Section title="Add words">
+        <Row
+          label="Snap a word"
+          subtitle="A word at your level in any photo"
+          icon={<Doodle name="camera" size={22} />}
+          right={<CreditPill kind="snap" />}
+          onPress={() => router.push('/snap')}
+        />
         <Row
           label="Words from a text"
           subtitle="A link, a photo of a page, or text"
