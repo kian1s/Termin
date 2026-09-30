@@ -14,7 +14,13 @@ import { useAppState } from '@/lib/app-state';
 import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
 import { describeScheduled, devTestAiReminder, formatTime } from '@/lib/reminder';
-import { Reminder } from '@/lib/types';
+import { AppearanceMode, Reminder } from '@/lib/types';
+
+const APPEARANCES: { id: AppearanceMode; label: string }[] = [
+  { id: 'system', label: 'Automatic' },
+  { id: 'light', label: 'Light' },
+  { id: 'dark', label: 'Dark' },
+];
 
 const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
 const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
@@ -24,6 +30,7 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const {
     settings,
+    saveSettings,
     savedIds,
     reviews,
     devSetLastActive,
@@ -100,6 +107,22 @@ export default function SettingsScreen() {
           />
         )}
         <Row label="Restore purchases" onPress={restore} chevron={false} last />
+      </Section>
+
+      <Section title="Appearance" footer="Automatic follows your iPhone's setting.">
+        {APPEARANCES.map((a, i) => {
+          const on = (settings.appearance ?? 'system') === a.id;
+          return (
+            <Row
+              key={a.id}
+              label={a.label}
+              onPress={() => saveSettings({ ...settings, appearance: a.id })}
+              chevron={false}
+              right={on ? <Ionicons name="checkmark" size={22} color={theme.accent} /> : undefined}
+              last={i === APPEARANCES.length - 1}
+            />
+          );
+        })}
       </Section>
 
       <Section

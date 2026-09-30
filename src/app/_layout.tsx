@@ -9,7 +9,7 @@ import { router, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef } from 'react';
-import { AppState } from 'react-native';
+import { Appearance, AppState } from 'react-native';
 
 import { useTheme } from '@/hooks/use-theme';
 import { AppStateProvider, useAppState } from '@/lib/app-state';
@@ -27,6 +27,7 @@ export default function RootLayout() {
         <RootStack />
         <ReminderSync />
         <CreditsSync />
+        <AppearanceSync />
       </PremiumProvider>
     </AppStateProvider>
   );
@@ -136,6 +137,17 @@ function ReminderSync() {
     return () => sub.remove();
   }, [loaded, reminderKey]);
 
+  return null;
+}
+
+// Light, dark or automatic (Settings > Appearance). "unspecified" hands the
+// choice back to the iPhone.
+function AppearanceSync() {
+  const { settings } = useAppState();
+  const mode = settings?.appearance ?? 'system';
+  useEffect(() => {
+    Appearance.setColorScheme(mode === 'system' ? 'unspecified' : mode);
+  }, [mode]);
   return null;
 }
 

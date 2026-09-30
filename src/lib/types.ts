@@ -95,6 +95,9 @@ export function migrateReminder(stored: unknown): Reminder {
 // Which language Tutor (the answer grader) writes its feedback in.
 export type CoachLanguage = 'native' | 'learning' | Lang;
 
+// Light or dark: follow the iPhone ('system', the default), or always one.
+export type AppearanceMode = 'system' | 'light' | 'dark';
+
 export type Settings = {
   learningLang: Lang;
   nativeLang: Lang;
@@ -102,6 +105,7 @@ export type Settings = {
   categories: Category[];
   reminder: Reminder;
   coachLanguage?: CoachLanguage; // missing means 'native'
+  appearance?: AppearanceMode; // missing means 'system'
 };
 
 export function coachFeedbackLang(s: Settings): Lang {

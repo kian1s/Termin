@@ -182,6 +182,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.10 Settings
 - Edit languages, level, and categories.
 - Show Premium status. **Restore purchases** button. Link to the paywall.
+- **Appearance (Sep 30):** Automatic (follows the iPhone, the default), Light or Dark, as a checkmark list. Applied app-wide with `Appearance.setColorScheme`, so native pickers, sheets, blur and the status bar follow too. Stored as `settings.appearance`.
 
 ### 4.11 Natural pronunciation
 - The speaker button should sound as human as possible instead of the default robotic voice.
