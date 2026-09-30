@@ -49,7 +49,7 @@ Review in the feed is always free. Uses left are shown as small credit pills.
 
 - **App:** Expo SDK 57, React Native 0.86, Expo Router, TypeScript. Runs in Expo Go. State in AsyncStorage (no accounts).
 - **Backend:** one Cloudflare Worker (`worker/`) with KV for daily limits, Workers AI Whisper for voice answers, and OpenRouter (GPT-6 Luna Pro) for every AI feature. It also serves the voice clips.
-- **Content:** `scripts/dataset` generated the words with one model and checked them with a second (see [DATASET.md](DATASET.md)); `scripts/voices` recorded the audio with Azure.
+- **Content:** `scripts/dataset` wrote the words with one model (GPT-6 Luna Pro), checked them with a second from another company (Gemini 3.8 Flash) plus a Wiktionary originality check, and every flag was reviewed by hand; `scripts/voices` recorded the audio with Azure.
 - Expo modules: expo-audio, expo-notifications, expo-image-picker, expo-image-manipulator, expo-clipboard, expo-haptics, expo-blur, react-native-svg.
 
 ## Setup
