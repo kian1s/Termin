@@ -16,6 +16,7 @@ const BASE = process.env.EXPO_PUBLIC_COACH_URL?.replace(/\/$/, '');
 export type Clip = 'w' | 'e';
 
 let current: AudioPlayer | null = null;
+let currentSub: { remove: () => void } | null = null;
 
 async function localClip(word: WordEntry, clip: Clip): Promise<string | null> {
   // Cards made on the phone have no recording; the phone's voice reads them.
@@ -42,7 +43,16 @@ let finishCurrent: (() => void) | null = null;
 export function stopPronouncing() {
   latest++;
   Speech.stop();
-  current?.remove();
+  // remove() only frees the player; pause first, or it can keep playing
+  // underneath the next sound.
+  currentSub?.remove();
+  currentSub = null;
+  if (current) {
+    try {
+      current.pause();
+    } catch {}
+    current.remove();
+  }
   current = null;
   const finish = finishCurrent;
   finishCurrent = null;
@@ -76,9 +86,13 @@ export async function pronounce(word: WordEntry, clip: Clip, onDone: () => void)
         if (!status.didJustFinish) return;
         sub.remove();
         player.remove();
-        if (current === player) current = null;
+        if (current === player) {
+          current = null;
+          currentSub = null;
+        }
         finish();
       });
+      currentSub = sub;
       player.play();
       return;
     } catch {
