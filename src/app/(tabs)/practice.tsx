@@ -103,25 +103,14 @@ export default function Practice() {
         </View>
       </Tile>
 
-      {/* SPEC 4.22: Premium. Free users see the lock and get the paywall. */}
-      <Tile
-        icon="page"
-        label="Words from a text"
-        onPress={isPremium ? () => router.push('/from-text') : showPaywall}
-        tall>
+      {/* SPEC 4.22: free users get a few uses of each way in; counts show inside. */}
+      <Tile icon="page" label="Words from a text" onPress={() => router.push('/from-text')} tall>
         <View style={styles.tallBody}>
           <View style={styles.flexShrink}>
             <Text style={[styles.tileTitle, { color: theme.text }]}>Learn from what you read</Text>
             <Text style={[styles.detail, { color: theme.textSecondary }]}>A link, a photo of a page, or text</Text>
           </View>
-          {isPremium ? (
-            <View style={styles.tileEnd}>
-              <CreditPill kind="fromText" />
-              <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
-            </View>
-          ) : (
-            <PremiumBadge lock />
-          )}
+          <Ionicons name="chevron-forward" size={20} color={theme.textSecondary} />
         </View>
       </Tile>
 

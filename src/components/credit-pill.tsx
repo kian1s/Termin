@@ -5,13 +5,23 @@ import { Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { CreditKind, useCredit } from '@/lib/credits';
 
-const ICON: Record<CreditKind, DoodleName> = { check: 'coach', rewrite: 'pen', snap: 'camera', explain: 'bulb', fromText: 'page' };
+const ICON: Record<CreditKind, DoodleName> = {
+  check: 'coach',
+  rewrite: 'pen',
+  snap: 'camera',
+  explain: 'bulb',
+  fromTextLink: 'page',
+  fromTextPhoto: 'camera',
+  fromTextText: 'page',
+};
 const NOUN: Record<CreditKind, [string, string]> = {
   check: ['AI check', 'AI checks'],
   rewrite: ['rewrite', 'rewrites'],
   snap: ['photo', 'photos'],
   explain: ['explanation', 'explanations'],
-  fromText: ['text', 'texts'],
+  fromTextLink: ['link', 'links'],
+  fromTextPhoto: ['photo run', 'photo runs'],
+  fromTextText: ['text', 'texts'],
 };
 
 // A small outlined pill with the feature's doodle and how many uses are left,

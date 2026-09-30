@@ -244,7 +244,7 @@ export async function findWordsInText(
   level: Level,
   candidates: WordEntry[],
   isPremium: boolean
-): Promise<FromTextResult | CoachError | 'unreadable'> {
+): Promise<FromTextResult | CoachError | 'unreadable' | 'free-used'> {
   if (!COACH_URL) return 'network';
   const controller = new AbortController();
   // Long articles and photos of pages take the model a while.
@@ -276,6 +276,7 @@ export async function findWordsInText(
       signal: controller.signal,
     });
     if (res.status === 422) return 'unreadable';
+    if (res.status === 402) return 'free-used';
     if (res.status === 429) return 'limit';
     if (!res.ok) return 'network';
     return (await res.json()) as FromTextResult;

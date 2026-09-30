@@ -14,16 +14,16 @@ import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { coachAvailable, findWordsInText, FoundWord, FromTextMode } from '@/lib/coach';
-import { setCreditLeft } from '@/lib/credits';
+import { CreditKind, setCreditLeft, useCredit } from '@/lib/credits';
 import { levelAbove } from '@/lib/gating';
 import { usePremium } from '@/lib/premium';
 import { Settings, WordEntry } from '@/lib/types';
 import { allWords, registerCustomWords, wordById } from '@/lib/words';
 
-const MODES: { id: FromTextMode; label: string; max: number }[] = [
-  { id: 'link', label: 'Link', max: 10 },
-  { id: 'photo', label: 'Photo', max: 8 },
-  { id: 'text', label: 'Text', max: 5 },
+const MODES: { id: FromTextMode; label: string; max: number; credit: CreditKind; noun: string }[] = [
+  { id: 'link', label: 'Link', max: 10, credit: 'fromTextLink', noun: 'links' },
+  { id: 'photo', label: 'Photo', max: 8, credit: 'fromTextPhoto', noun: 'photo runs' },
+  { id: 'text', label: 'Text', max: 5, credit: 'fromTextText', noun: 'texts' },
 ];
 const MAX_PHOTOS = 3;
 const MAX_TEXT = 20_000;
@@ -77,7 +77,7 @@ function setName(mode: FromTextMode, title: string, text: string) {
 }
 
 // SPEC 4.22: find the words worth learning in a link, photos of pages, or
-// pasted text. Premium only, 10 a day.
+// pasted text. Free: 1 link, 2 photo runs, 2 texts ever; Premium: 3, 5 and 10 a day.
 export default function FromText() {
   const theme = useTheme();
   const { settings, savedIds, toggleFavorite, addCustomWord, createSetWith } = useAppState();
@@ -89,23 +89,18 @@ export default function FromText() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ title: string; found: Found[]; mode: FromTextMode } | null>(null);
   const [savedSet, setSavedSet] = useState<string | null>(null);
+  const credits = {
+    link: useCredit('fromTextLink'),
+    photo: useCredit('fromTextPhoto'),
+    text: useCredit('fromTextText'),
+  };
 
   if (!settings) return null;
 
-  if (!isPremium) {
-    return (
-      <View style={[styles.locked, { backgroundColor: theme.background }]}>
-        <Doodle name="page" size={48} />
-        <Text style={[styles.title, { color: theme.text }]}>Words from a text</Text>
-        <Text style={[styles.hint, { color: theme.textSecondary }]}>
-          Turn any article, page or text into word cards. Part of Termin Premium.
-        </Text>
-        <StickerButton label="See Premium" variant="premium" onPress={showPaywall} style={styles.wide} />
-      </View>
-    );
-  }
-
-  const max = MODES.find((m) => m.id === mode)!.max;
+  const current = MODES.find((m) => m.id === mode)!;
+  const { max } = current;
+  // Out of uses for this way in: free users get the paywall, Premium waits for tomorrow.
+  const outOfUses = credits[mode]?.left === 0;
   const ready =
     mode === 'link' ? /^https?:\/\/\S+\.\S+/.test(url.trim()) : mode === 'text' ? text.trim().length >= 20 : photos.length > 0;
 
@@ -155,15 +150,15 @@ export default function FromText() {
       isPremium
     );
     setLoading(false);
-    if (out === 'limit') {
-      setCreditLeft('fromText', 0);
-      Alert.alert('Daily limit reached', "You've used today's 10 texts. Try again tomorrow.");
+    if (out === 'free-used' || out === 'limit') {
+      // The count drops to 0, which shows the out-of-uses message in place of the button.
+      setCreditLeft(current.credit, 0);
     } else if (out === 'unreadable') {
       Alert.alert("Couldn't read this page", 'Copy the text of the article and paste it under Text instead.');
     } else if (out === 'network') {
       Alert.alert('Could not read it', 'Check your connection and try again.');
     } else {
-      if (out.remaining !== undefined) setCreditLeft('fromText', out.remaining);
+      if (out.remaining !== undefined) setCreditLeft(current.credit, out.remaining);
       const found = toFound(out.words, settings);
       registerCustomWords(found.map((f) => f.word).filter((w) => w.source === 'ai'));
       setResult({ title: out.title, found, mode });
@@ -200,7 +195,7 @@ export default function FromText() {
       <Stack.Screen
         options={{
           unstable_headerRightItems: () => [
-            { type: 'custom', element: <CreditPill kind="fromText" />, hidesSharedBackground: true },
+            { type: 'custom', element: <CreditPill kind={current.credit} />, hidesSharedBackground: true },
           ],
         }}
       />
@@ -222,7 +217,15 @@ export default function FromText() {
                 styles.mode,
                 { backgroundColor: on ? theme.accentSoft : theme.background, borderColor: on ? theme.accent : theme.border },
               ]}>
-              <Text style={[styles.modeText, { color: on ? theme.text : theme.textSecondary }]}>{m.label}</Text>
+              <Text style={[styles.modeText, { color: on ? theme.text : theme.textSecondary }]}>
+                {m.label}
+                {credits[m.id] ? (
+                  <Text style={{ color: credits[m.id]!.left ? theme.textSecondary : theme.wrong }}>
+                    {' '}
+                    {credits[m.id]!.left}
+                  </Text>
+                ) : null}
+              </Text>
             </Pressable>
           );
         })}
@@ -300,7 +303,18 @@ export default function FromText() {
         </>
       )}
 
-      <StickerButton label={`Find up to ${max} words`} onPress={find} disabled={!ready || !coachAvailable} loading={loading} />
+      {outOfUses ? (
+        <View style={styles.outBlock}>
+          <Text style={[styles.hint, { color: theme.textSecondary }]}>
+            {isPremium
+              ? `No more ${current.noun} today. Try again tomorrow.`
+              : `You've used your free ${current.noun}. Premium gets more every day.`}
+          </Text>
+          {!isPremium && <StickerButton label="See Premium" variant="premium" onPress={showPaywall} />}
+        </View>
+      ) : (
+        <StickerButton label={`Find up to ${max} words`} onPress={find} disabled={!ready || !coachAvailable} loading={loading} />
+      )}
       {loading && (
         <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
           Reading… this can take up to a minute.
@@ -381,6 +395,5 @@ const styles = StyleSheet.create({
   fromText: { gap: Spacing.sm },
   cardFoot: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   save: { padding: Spacing.xs },
-  locked: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: Spacing.xl, gap: Spacing.lg },
-  title: { fontFamily: Fonts.title, fontSize: 28 },
+  outBlock: { gap: Spacing.md },
 });

@@ -23,7 +23,12 @@ const REWRITE_LIMIT = 30; // Say it better rewrites per device per day (SPEC 4.1
 const SNAP_LIMIT = 10; // Snap a word photos per Premium device per day (SPEC 4.19)
 const SNAP_FREE_LIFETIME = 2; // Snap a word photos per free device, ever
 const EXPLAIN_LIMIT = { free: 1, premium: 30 }; // Explain it differently per day (SPEC 4.21)
-const FROM_TEXT_LIMIT = 10; // Words from a text per Premium device per day (SPEC 4.22)
+// Words from a text (SPEC 4.22), per way in: Premium per day, free per device ever.
+const FROM_TEXT_LIMIT: Record<string, { premium: number; free: number }> = {
+  photo: { premium: 5, free: 2 },
+  link: { premium: 3, free: 1 },
+  text: { premium: 10, free: 2 },
+};
 const MAX_ANSWER = 500;
 const MAX_AUDIO_BYTES = 2_000_000;
 const VERDICTS = ['correct', 'partly', 'incorrect'] as const;
@@ -672,7 +677,6 @@ async function fromText(req: Request, env: Env) {
   }
   const { deviceId, isPro, learningLang, nativeLang, level, mode } = body;
   if (!deviceId || !UUID.test(deviceId)) return json({ error: 'Invalid deviceId' }, 400);
-  if (!isPro) return json({ error: 'Premium only' }, 403);
   if (!learningLang || !LANGS[learningLang] || !nativeLang || !LANGS[nativeLang]) {
     return json({ error: 'Unknown language' }, 400);
   }
@@ -698,8 +702,22 @@ async function fromText(req: Request, env: Env) {
     return json({ error: 'Photos missing or too large' }, 400);
   }
 
-  const used = await takeOne(env, 'fromtext', deviceId, FROM_TEXT_LIMIT);
-  if (used === null) return json({ error: 'Daily limit reached' }, 429);
+  // Premium: a daily count per way in. Free: a count per way in that never resets.
+  const limit = isPro ? FROM_TEXT_LIMIT[mode].premium : FROM_TEXT_LIMIT[mode].free;
+  const countKey = isPro
+    ? `fromtext-${mode}:${deviceId}:${new Date().toISOString().slice(0, 10)}`
+    : `fromtextfree-${mode}:${deviceId}`;
+  let used: number;
+  if (isPro) {
+    const n = await takeOne(env, `fromtext-${mode}`, deviceId, limit);
+    if (n === null) return json({ error: 'Daily limit reached' }, 429);
+    used = n;
+  } else {
+    const n = Number((await env.COACH_KV.get(countKey)) ?? 0);
+    if (n >= limit) return json({ error: 'Free uses gone' }, 402);
+    used = n + 1;
+    await env.COACH_KV.put(countKey, String(used));
+  }
 
   const max = FROM_TEXT_MAX[mode];
   const system = `You help a ${level} learner of ${LANGS[learningLang]} (native language: ${LANGS[nativeLang]}) learn vocabulary from something they are reading.
@@ -767,14 +785,17 @@ Return only JSON: {"words": [ ... ]}`;
         })
         .filter((w) => !!w)
         .slice(0, max);
-      return json({ title, words, remaining: FROM_TEXT_LIMIT - used });
+      return json({ title, words, remaining: limit - used });
     } catch {
       // Bad JSON or a network error: try once more.
     }
   }
   // Give the use back, since the learner got nothing for it.
-  const key = `fromtext:${deviceId}:${new Date().toISOString().slice(0, 10)}`;
-  await env.COACH_KV.put(key, String(Math.max(0, used - 1)), { expirationTtl: 60 * 60 * 48 });
+  await env.COACH_KV.put(
+    countKey,
+    String(Math.max(0, used - 1)),
+    isPro ? { expirationTtl: 60 * 60 * 48 } : undefined
+  );
   return json({ error: 'Words from a text unavailable' }, 502);
 }
 
@@ -795,9 +816,16 @@ async function usage(req: Request, env: Env) {
   const checkLimit = isPro ? CHECK_LIMIT.premium : CHECK_LIMIT.free;
   const explainLimit = isPro ? EXPLAIN_LIMIT.premium : EXPLAIN_LIMIT.free;
   return json({
-    fromText: isPro
-      ? { left: left(FROM_TEXT_LIMIT, await used(`fromtext:${deviceId}:${day}`)), limit: FROM_TEXT_LIMIT, period: 'day' }
-      : null,
+    ...Object.fromEntries(
+      await Promise.all(
+        Object.entries(FROM_TEXT_LIMIT).map(async ([mode, limits]) => {
+          const name = `fromText${mode[0].toUpperCase()}${mode.slice(1)}`; // fromTextPhoto, fromTextLink, fromTextText
+          return isPro
+            ? [name, { left: left(limits.premium, await used(`fromtext-${mode}:${deviceId}:${day}`)), limit: limits.premium, period: 'day' }]
+            : [name, { left: left(limits.free, await used(`fromtextfree-${mode}:${deviceId}`)), limit: limits.free, period: 'lifetime' }];
+        })
+      )
+    ),
     explain: { left: left(explainLimit, await used(`explain:${deviceId}:${day}`)), limit: explainLimit, period: 'day' },
     check: { left: left(checkLimit, await used(`check:${deviceId}:${day}`)), limit: checkLimit, period: 'day' },
     rewrite: isPro
