@@ -131,6 +131,8 @@ Actions:
 - No heavy shadows. Use `surface` plus a hairline `border` instead.
 - Motion: short fades (150 to 250 ms) for reveal and blur changes. The feed snaps one card per swipe.
 
+- **Haptics (Sep 30):** every sticker button gives a light impact on press-down (`Sticker` in `src/components/sticker.tsx`), as the face slides into its shadow.
+
 ## 9. App icon and name
 
 **Name:** Termin. **Icon (final, chosen by the owner):** a lowercase Fraunces ExtraBold "t" with a terracotta (`#C57B57`) dot after it, like "t." Two versions:

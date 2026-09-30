@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { ReactNode } from 'react';
 import {
   AccessibilityRole,
@@ -62,6 +63,8 @@ export function Sticker({
       {onPress ? (
         <Pressable
           onPress={onPress}
+          // A light tap the moment the sticker sinks into its shadow.
+          onPressIn={() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)}
           disabled={disabled}
           accessibilityLabel={accessibilityLabel}
           accessibilityRole={accessibilityRole ?? 'button'}

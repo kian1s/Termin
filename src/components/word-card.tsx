@@ -1,5 +1,4 @@
 import { BlurView } from 'expo-blur';
-import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Animated, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
@@ -27,7 +26,8 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
   const favorite = sets.find((s) => s.id === FAVORITES_ID)?.wordIds.includes(word.id);
 
   const onHeart = () => {
-    if (toggleFavorite(word.id)) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // The sticker itself gives the haptic tap.
+    toggleFavorite(word.id);
   };
 
   return (
