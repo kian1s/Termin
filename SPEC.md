@@ -303,7 +303,7 @@ Turn what the learner reads into word cards.
 - **Where:** the Sets tab, in an **Add words** section above Your sets (a row with a book doodle). The screen is `src/app/from-text.tsx`.
 - **Three ways in** (chips): **Link** (paste a web address; the Worker downloads the first 500 KB and keeps the text of headings, paragraphs and list items), **Photo** (up to 3 pages, camera or library, shrunk to 1400 px wide), **Text** (typed or pasted, max 20,000 characters). Link and Text have a **Paste** button (`expo-clipboard`).
 - **At most** 10 words for a link, 8 for photos, 5 for text; fewer when fewer are worth it. Termin's own words at the user's level and the level above come first (the model matches inflected forms and returns their IDs); then AI-made cards (marked AI, 4.19) for other useful words, in their dictionary form. Every card shows **From the text**: the sentence where the word appeared (for AI-made cards this is also their example).
-- **Saving:** a heart on each card (Favorites), and **Save all to a new set**, named after the page title, the first words of the text, or "Photo words, <date>". Free users past their own-set limit (5) get the paywall instead. Each card also has Explain it differently (4.21).
+- **Saving:** a heart on each card (Favorites), and **Save all to a new set**, named after the page title, the first words of the text, or "Photo words, <date>". Free users past their own-set limit (2) get the paywall instead. Each card also has Explain it differently (4.21).
 - **Limits, per way in:**
 
 | | Free (ever) | Premium (per day) |
