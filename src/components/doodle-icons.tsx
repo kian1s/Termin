@@ -16,6 +16,7 @@ export type DoodleName =
   | 'coach'
   | 'pen'
   | 'camera'
+  | 'bulb'
   | 'heart'
   | 'plus'
   | 'speaker'
@@ -99,6 +100,15 @@ const DOODLES: Record<DoodleName, { paths: string[]; dot?: [number, number]; fil
       'M12.1 16.9c-1.9.1-3.3-1.3-3.3-3.2 0-1.8 1.4-3.2 3.2-3.2 1.9 0 3.3 1.4 3.3 3.2-.1 1.8-1.4 3.1-3.2 3.2z',
     ],
     dot: [17.9, 10.6],
+  },
+  // A light bulb (Explain it differently), the dot is the glow.
+  bulb: {
+    paths: [
+      'M9.4 15.6c-1.8-1.2-3-3.2-2.9-5.4.1-3.2 2.6-5.7 5.6-5.7 3.1.1 5.5 2.6 5.5 5.8 0 2.1-1.2 4-2.9 5.2l-.1 1.8c-1.7.2-3.4.2-5.1 0z',
+      'M9.7 19.3c1.5.2 3 .2 4.5 0',
+      'M10.6 21.2c.9.1 1.8.1 2.7 0',
+    ],
+    dot: [12.1, 10.4],
   },
   // A slightly lopsided heart; filled terracotta once saved.
   heart: {

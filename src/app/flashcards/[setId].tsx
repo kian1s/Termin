@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ExplainLink } from '@/components/explain-link';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, mixColors, Spacing, Type } from '@/constants/theme';
@@ -112,6 +113,7 @@ export default function Flashcards() {
               <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
               <Example text={word.example} word={word} />
               <Translation word={word} nativeLang={settings.nativeLang} blurred={false} />
+              <ExplainLink wordId={word.id} />
             </Animated.View>
           ) : (
             <Text style={[styles.hint, { color: theme.textSecondary }]}>Tap to see the meaning</Text>

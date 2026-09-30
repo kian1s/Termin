@@ -7,6 +7,7 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { Doodle } from '@/components/doodle-icons';
+import { openExplain } from '@/components/explain-link';
 import { Sticker } from '@/components/sticker';
 import { useAppState } from '@/lib/app-state';
 import { pronounce } from '@/lib/pronounce';
@@ -42,6 +43,14 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
       </View>
 
       <View style={styles.actions}>
+        <Sticker
+          onPress={() => openExplain(word.id)}
+          radius={ACTION / 2}
+          lift={3}
+          contentStyle={styles.action}
+          accessibilityLabel="Explain it differently">
+          <Doodle name="bulb" size={28} />
+        </Sticker>
         <Sticker
           onPress={onHeart}
           radius={ACTION / 2}

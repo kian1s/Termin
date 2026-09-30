@@ -287,7 +287,15 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 | AI Coach checks (sparkle) | 3 a day | 50 a day | Review card, next to "Review" |
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
 | Snap a word (camera) | 2 ever | 10 a day | Screen header, Practice tile, feed top left (replaces the camera doodle) |
+| Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
 - The Worker's `POST /usage` returns the counts; the app asks on launch, when Premium changes and whenever it returns to the foreground. Each feature's own response updates its pill right after a use. Offline, pills hide (Snap a word falls back to the phone's own free count). Daily counts reset at 00:00 UTC.
+
+### 4.21 Explain it differently (Sep 30)
+One tap on any card for help understanding it.
+- **Where:** a round sticker button with a light bulb doodle on feed word cards (next to the heart and plus), and an "Explain it differently" link on revealed review cards, flashcard backs and Snap a word cards. Both open a half-height sheet, `src/app/explain/[wordId].tsx`.
+- **Options:** **Easier** (the meaning in the easiest possible learning language, A2 to B1 words, at most 2 sentences, never using the word itself) and **Another example** (a new 8 to 20 word sentence in a different situation). Each tap asks again.
+- **Limits:** free 1 a day, Premium 30 a day, shown as a credit pill (4.20) with the bulb doodle. Out of uses: a short message, and for free users a See Premium button.
+- **Done when:** on a feed card, the bulb opens the sheet, Easier and Another example each return a line, the pill counts down, and a free user's second tap of the day shows the Premium message.
 
 ## 5. Monetization (RevenueCat)
 
@@ -353,7 +361,9 @@ Rules:
 
 **`POST /snap`** (Snap a word, 4.19): takes `deviceId`, `isPro`, `learningLang`, `nativeLang`, `level` and `image` (base64 JPEG, max about 1.5 MB). Returns `{ "cards": [{ "word", "partOfSpeech", "definition", "example", "translation": { "word", "definition" } }], "freeUsed"? }`, 0 to 3 cards. Free: 2 per `deviceId`, ever (HTTP 402 after); Premium: 10 a day. A failed call gives the photo back. The photo is never logged or stored.
 
-**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
+**`POST /explain`** (Explain it differently, 4.21): takes `deviceId`, `isPro`, `learningLang`, `mode` (`simpler` or `example`), `word`, `definition` and `example`; returns `{ "text", "remaining" }`. Free 1 a day, Premium 30 a day per `deviceId`. Nothing is logged.
+
+**`POST /usage`** (credit pills, 4.20): takes `deviceId` and `isPro`; returns `{ "check", "rewrite", "snap", "explain" }`, each `{ "left", "limit", "period": "day" | "lifetime" }` or `null` when locked. `/rewrite` and `/snap` also return `remaining` after a use.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

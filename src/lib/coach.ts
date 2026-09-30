@@ -184,3 +184,40 @@ export async function snapWords(
     clearTimeout(timer);
   }
 }
+
+export type ExplainMode = 'simpler' | 'example';
+
+// SPEC 4.21, Explain it differently: an easier explanation or another example
+// for one card. Free: 1 a day; Premium: 30 a day.
+export async function explainWord(
+  word: WordEntry,
+  mode: ExplainMode,
+  isPremium: boolean
+): Promise<{ text: string; remaining: number } | CoachError> {
+  if (!COACH_URL) return 'network';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 45_000);
+  try {
+    const res = await fetch(`${COACH_URL}/explain`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        deviceId: await getDeviceId(),
+        isPro: isPremium,
+        learningLang: word.lang,
+        mode,
+        word: word.word,
+        definition: word.definition,
+        example: word.example,
+      }),
+      signal: controller.signal,
+    });
+    if (res.status === 429) return 'limit';
+    if (!res.ok) return 'network';
+    return (await res.json()) as { text: string; remaining: number };
+  } catch {
+    return 'network';
+  } finally {
+    clearTimeout(timer);
+  }
+}

@@ -8,7 +8,7 @@ import { getDeviceId } from '@/lib/coach';
 
 const COACH_URL = process.env.EXPO_PUBLIC_COACH_URL?.replace(/\/$/, '');
 
-export type CreditKind = 'check' | 'rewrite' | 'snap';
+export type CreditKind = 'check' | 'rewrite' | 'snap' | 'explain';
 export type Credit = { left: number; limit: number; period: 'day' | 'lifetime' };
 type Credits = Partial<Record<CreditKind, Credit | null>>;
 

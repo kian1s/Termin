@@ -5,6 +5,7 @@ import { Alert, Image, Linking, Pressable, ScrollView, StyleSheet, Text, View } 
 
 import { CreditPill } from '@/components/credit-pill';
 import { Doodle } from '@/components/doodle-icons';
+import { ExplainLink } from '@/components/explain-link';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Fonts, Radius, Spacing } from '@/constants/theme';
@@ -14,6 +15,7 @@ import { coachAvailable, FREE_SNAPS, SnapCard, snapWords } from '@/lib/coach';
 import { setCreditLeft, useCredit } from '@/lib/credits';
 import { usePremium } from '@/lib/premium';
 import { Settings, WordEntry } from '@/lib/types';
+import { registerCustomWords } from '@/lib/words';
 
 // An AI-made card as a normal word entry, so saving and reviewing work as usual.
 function toEntry(card: SnapCard, settings: Settings, index: number): WordEntry {
@@ -91,7 +93,10 @@ export default function Snap() {
       Alert.alert('Could not read the photo', 'Check your connection and try again.');
     } else {
       if (out.freeUsed !== undefined) setFreeSnapsUsed(out.freeUsed);
-      setCards(out.cards.map((c, i) => toEntry(c, settings, i)));
+      const entries = out.cards.map((c, i) => toEntry(c, settings, i));
+      // Known by ID for this session (Explain it differently); stored only once saved.
+      registerCustomWords(entries);
+      setCards(entries);
     }
   };
 
@@ -155,6 +160,7 @@ export default function Snap() {
             <Text style={[styles.definition, { color: theme.text }]}>{word.definition}</Text>
             <Example text={word.example} word={word} />
             <Translation word={word} nativeLang={settings.nativeLang} />
+            <ExplainLink wordId={word.id} />
             <Pressable
               onPress={() => save(word)}
               hitSlop={8}

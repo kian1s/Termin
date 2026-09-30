@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { CreditPill } from '@/components/credit-pill';
+import { ExplainLink } from '@/components/explain-link';
 import { Example, Translation, WordHeading } from '@/components/word-card';
 import { Sticker, StickerButton } from '@/components/sticker';
 import { Fonts, Radius, Spacing, Type } from '@/constants/theme';
@@ -202,6 +203,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
               <Text style={[Type.body, { color: theme.text }]}>{word.definition}</Text>
               {!coach && <Example text={word.example} word={word} />}
               <Translation word={word} nativeLang={nativeLang} />
+              <ExplainLink wordId={word.id} />
 
               {!next ? (
                 <>
