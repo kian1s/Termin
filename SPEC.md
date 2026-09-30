@@ -142,9 +142,9 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 
 ### 4.4 Review cards in the feed
 - Every **5th card** in the feed is a review card for a saved word that is due, if one exists.
-- The review card asks: "What does **X** mean? Use it in a sentence."
+- The review card asks: "What does **X** mean?"
 - While a review card is on screen, the feed cannot be swiped until the answer is rated: by Tutor after Check, or by the user with Didn't / Knew it after Reveal. Revealing alone does not unlock it.
-- The user answers by voice (4.6) or text. With Tutor available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
+- The card asks what the word means; a sentence using it is optional (changed Sep 30). The user answers by voice (4.6) or text. With Tutor available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
 - **Scheduling (Leitner boxes):** Box 1 is due after 5 more cards. Box 2 is due after 1 day, box 3 after 3 days, and box 4 after 7 days. A correct answer moves the word up one box. A wrong answer moves it back to box 1.
 - **Done when:** a saved word reliably reappears as a review card and its box changes with the answer.
 
@@ -332,7 +332,7 @@ The learner adds any word to a set.
 
 ### 4.24 Describe it (Premium, Sep 30)
 A speaking game from RESEARCH.md: describe a saved word without saying it; the AI guesses which one you meant.
-- **Where:** a full-width tile in Practice → AI practice (a speech bubble with a question mark, "Can the AI guess it?"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
+- **Where:** a full-width tile in Practice → AI practice (a speech bubble with a question mark, "Can Tutor guess it?"). Free users see the PREMIUM lock and get the paywall. The screen is `src/app/taboo.tsx`.
 - **A round:** up to 5 saved words in the learning language (due first, then the lowest boxes). Each shows the word (with the speaker) and an optional "Show the meaning" hint. The learner types or speaks (mic, 4.6) a description, then taps **Let the AI guess**. The AI picks one of 4 words (the word plus 3 others: saved words first, then words at the user's level) and adds one sentence in the Coach language on what was clear. Saying the word itself (any form) never counts. **Skip this word** moves on.
 - **Scoring:** a correct guess counts as a correct review (the word moves up a stage); a miss records nothing. The end screen shows the score and **Play again**.
 - **Limits:** Premium only, 10 rounds a day with a credit pill; a round's first guess uses it (skipping every word uses none).

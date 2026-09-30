@@ -104,7 +104,7 @@ export default function Practice() {
       <Tile icon="guess" label="Describe it" onPress={isPremium ? () => router.push('/taboo') : showPaywall} tall>
         <View style={styles.tallBody}>
           <View style={styles.flexShrink}>
-            <Text style={[styles.tileTitle, { color: theme.text }]}>Can the AI guess it?</Text>
+            <Text style={[styles.tileTitle, { color: theme.text }]}>Can Tutor guess it?</Text>
             <Text style={[styles.detail, { color: theme.textSecondary }]}>Describe a word without saying it</Text>
           </View>
           {isPremium ? (

@@ -109,14 +109,13 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
                   {' '}
                   {word.word}{' '}
                 </Text>{' '}
-                mean? Use it in a
-                sentence.
+                mean?
               </Text>
               <View>
                 <TextInput
                   value={text}
                   onChangeText={setText}
-                  placeholder={coachAvailable ? 'Type or speak your answer…' : 'Type your answer…'}
+                  placeholder={coachAvailable ? 'Say or type what it means. Add a sentence if you like.' : 'Type what it means…'}
                   placeholderTextColor={theme.textSecondary}
                   multiline
                   maxLength={500}

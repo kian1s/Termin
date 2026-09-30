@@ -46,7 +46,7 @@ function buildRound(settings: Settings, savedIds: Set<string>, reviews: Record<s
   return { id: `r${Date.now().toString(36)}${Math.floor(Math.random() * 1e4)}`, turns };
 }
 
-// SPEC 4.24, Describe it: describe a saved word without saying it; the AI guesses which of
+// SPEC 4.24, Describe it: describe a saved word without saying it; Tutor guesses which of
 // 4 words you meant. Premium only, 10 rounds a day. A correct guess counts as
 // a correct review; a miss records nothing.
 export default function Taboo() {
@@ -84,7 +84,7 @@ export default function Taboo() {
         <Doodle name="guess" size={48} />
         <Text style={[styles.title, { color: theme.text }]}>Describe it</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
-          Describe your words without saying them, and see if the AI can guess. Part of Termin Premium.
+          Describe your words without saying them, and see if Tutor can guess. Part of Termin Premium.
         </Text>
         <StickerButton label="See Premium" variant="premium" onPress={showPaywall} style={styles.wide} />
       </View>
@@ -117,8 +117,8 @@ export default function Taboo() {
         <Text style={[styles.title, { color: theme.text }]}>{played ? `${right} / ${played}` : 'Describe it'}</Text>
         <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
           {played
-            ? 'Words the AI guessed moved up a stage.'
-            : `Describe ${WORDS_PER_ROUND} of your saved words without saying them. The AI guesses which one you mean.`}
+            ? 'Words Tutor guessed moved up a stage.'
+            : `Describe ${WORDS_PER_ROUND} of your saved words without saying them. Tutor guesses which one you mean.`}
         </Text>
         {out ? (
           <Text style={[styles.hint, styles.centerText, { color: theme.textSecondary }]}>
@@ -158,7 +158,7 @@ export default function Taboo() {
       return;
     }
     if (out === 'network') {
-      Alert.alert('The AI could not guess', 'Check your connection and try again.');
+      Alert.alert("Tutor couldn't guess", 'Check your connection and try again.');
       return;
     }
     if (out.remaining !== undefined) setCreditLeft('taboo', out.remaining);
@@ -228,7 +228,7 @@ export default function Taboo() {
             <Text style={[styles.small, { color: theme.wrong }]}>Recording… {voice.seconds}s of 30. Tap to stop.</Text>
           )}
           <StickerButton
-            label="Let the AI guess"
+            label="Let Tutor guess"
             onPress={guess}
             loading={loading}
             disabled={!text.trim() || busy}
@@ -246,8 +246,8 @@ export default function Taboo() {
                 {result.usedWord
                   ? 'You said the word itself'
                   : result.correct
-                    ? `The AI guessed it: ${current.word.word}`
-                    : `The AI guessed: ${guessed?.word ?? '…'}`}
+                    ? `Tutor guessed it: ${current.word.word}`
+                    : `Tutor guessed: ${guessed?.word ?? '…'}`}
               </Text>
             </View>
             <Text style={[styles.body, { color: theme.text }]}>{result.feedback}</Text>

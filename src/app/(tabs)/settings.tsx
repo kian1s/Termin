@@ -125,13 +125,7 @@ export default function SettingsScreen() {
         })}
       </Section>
 
-      <Section
-        title="Pronunciation"
-        footer={`Natural voices read every word and example, and are saved after the first play. Offline, your iPhone's voice reads them instead.${
-          voice?.quality === 'Premium'
-            ? ''
-            : ' For a better offline voice, download one in Settings > Accessibility > Spoken Content > Voices.'
-        }`}>
+      <Section title="Pronunciation">
         <Row label="Natural voices" value="On" chevron={false} />
         <Row
           label="Offline voice"
