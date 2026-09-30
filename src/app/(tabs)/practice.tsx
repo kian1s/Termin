@@ -152,7 +152,7 @@ export default function Practice() {
         </Tile>
       </View>
 
-      <Tile icon="coach" label="AI Coach" onPress={() => edit('coachLanguage')}>
+      <Tile icon="coach" label="Tutor" onPress={() => edit('coachLanguage')}>
         <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
           Answers in {LANG_NAMES[coachFeedbackLang(settings)]}
         </Text>

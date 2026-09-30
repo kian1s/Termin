@@ -10,7 +10,7 @@ Your settings, saved words and sets, review progress, streak, history and remind
 
 ## What leaves your phone
 
-- **AI Coach (Check button):** your typed answer, the word, its definition and your languages are sent to Termin's server (a Cloudflare Worker), which asks an AI model through OpenRouter to grade it. Answers are not logged or stored. The server keeps only a daily count of checks per random device ID, which expires after 48 hours.
+- **Tutor (Check button):** your typed answer, the word, its definition and your languages are sent to Termin's server (a Cloudflare Worker), which asks an AI model through OpenRouter to grade it. Answers are not logged or stored. The server keeps only a daily count of checks per random device ID, which expires after 48 hours.
 - **Voice answers (microphone):** the recording is sent to the same server and transcribed by Cloudflare Workers AI (Whisper). The audio is not stored, on the server or on your phone.
 - **Say it better (Premium):** when you tap Say it better, your sentence and a list of words it may use (including your saved words in that language) are sent to the same server and AI model to rewrite it. They are not logged or stored; the server keeps only a daily count per random device ID, which expires after 48 hours.
 - **Explain it differently:** the card's word, definition and example are sent to the same server and AI model. Nothing about you is sent besides the random device ID for the daily count.

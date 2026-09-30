@@ -92,7 +92,7 @@ export function migrateReminder(stored: unknown): Reminder {
   };
 }
 
-// Which language the AI Coach writes its feedback in.
+// Which language Tutor (the answer grader) writes its feedback in.
 export type CoachLanguage = 'native' | 'learning' | Lang;
 
 export type Settings = {

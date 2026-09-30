@@ -17,7 +17,7 @@ const ICON: Record<CreditKind, DoodleName> = {
   taboo: 'guess',
 };
 const NOUN: Record<CreditKind, [string, string]> = {
-  check: ['AI check', 'AI checks'],
+  check: ['Tutor check', 'Tutor checks'],
   rewrite: ['rewrite', 'rewrites'],
   snap: ['photo', 'photos'],
   explain: ['explanation', 'explanations'],

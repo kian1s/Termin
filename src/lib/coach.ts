@@ -4,7 +4,7 @@ import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 
 import { Category, Lang, Level, WordEntry } from '@/lib/types';
 
-// The AI Coach Worker (SPEC 6). Without a URL the review card falls back to
+// The AI Worker (SPEC 6): Tutor and the other AI features. Without a URL the review card falls back to
 // Reveal and self-rating.
 const COACH_URL = process.env.EXPO_PUBLIC_COACH_URL?.replace(/\/$/, '');
 export const coachAvailable = !!COACH_URL;

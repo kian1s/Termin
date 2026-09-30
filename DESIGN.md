@@ -49,9 +49,9 @@ Principles:
 | `accentSoft` | `#E3E3D5` | `#5B4D4A` | Selected chip fill, Leitner bar start |
 | `premium` | `#9B4F34` | `#EFA27C` | Premium badge, lock icon, paywall button, Premium-only features |
 | `premiumSoft` | `#F1E5DA` | `#553F3C` | Premium badge background, selected paywall plan |
-| `correct` | `#345830` | `#B3D1A4` | AI Coach "correct" (always with a checkmark icon) |
-| `partly` | `#8A5A0F` | `#EDBE6A` | AI Coach "partly" |
-| `wrong` | `#A93D2C` | `#F5A08F` | AI Coach "incorrect", destructive actions |
+| `correct` | `#345830` | `#B3D1A4` | Tutor "correct" (always with a checkmark icon) |
+| `partly` | `#8A5A0F` | `#EDBE6A` | Tutor "partly" |
+| `wrong` | `#A93D2C` | `#F5A08F` | Tutor "incorrect", destructive actions |
 | `shadow` | `#403233` | `#1A1213` | Shadows of raised tiles only (Practice). Never for text or fills |
 
 - All text colors pass WCAG AA (4.5:1) on both `background` and `surface`; `spark` passes 3:1 for icons.

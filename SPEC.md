@@ -141,15 +141,15 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 ### 4.4 Review cards in the feed
 - Every **5th card** in the feed is a review card for a saved word that is due, if one exists.
 - The review card asks: "What does **X** mean? Use it in a sentence."
-- While a review card is on screen, the feed cannot be swiped until the answer is rated: by the AI Coach after Check, or by the user with Didn't / Knew it after Reveal. Revealing alone does not unlock it.
-- The user answers by voice (4.6) or text. With AI Coach available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
+- While a review card is on screen, the feed cannot be swiped until the answer is rated: by Tutor after Check, or by the user with Didn't / Knew it after Reveal. Revealing alone does not unlock it.
+- The user answers by voice (4.6) or text. With Tutor available, the answer is graded (4.5). Otherwise the user taps **Reveal** and rates themselves **Knew it** or **Didn't**.
 - **Scheduling (Leitner boxes):** Box 1 is due after 5 more cards. Box 2 is due after 1 day, box 3 after 3 days, and box 4 after 7 days. A correct answer moves the word up one box. A wrong answer moves it back to box 1.
 - **Done when:** a saved word reliably reappears as a review card and its box changes with the answer.
 
-### 4.5 AI Coach (grading)
+### 4.5 Tutor (grading, formerly AI Coach)
 - The app sends the answer to the Worker (section 6) and shows the verdict, a short piece of feedback in the native language, and an improved example sentence.
 - The verdict counts as correct or wrong for the Leitner schedule. A "partly" verdict counts as correct.
-- **Free:** 3 AI checks per day. **Premium:** up to 50 per day.
+- **Free:** 3 Tutor checks per day. **Premium:** up to 50 per day.
 - On a network error, fall back to Reveal plus self-rating.
 
 ### 4.6 Voice answers
@@ -284,7 +284,7 @@ Take or choose a photo; the AI writes a card for a word worth learning in it.
 Every feature with limited uses shows how many are left, as a small outlined pill with the feature's doodle and the number (`src/components/credit-pill.tsx`); at 0 the pill turns `wrong` red.
 | Feature | Free | Premium | Where the pill shows |
 |---|---|---|---|
-| AI Coach checks (sparkle) | 3 a day | 50 a day | Review card, next to "Review" |
+| Tutor checks (sparkle) | 3 a day | 50 a day | Review card, next to "Review" |
 | Say it better (pen) | locked, no pill | 30 a day | Screen header, Practice tile |
 | Snap a word (camera) | 2 ever | 10 a day | Screen header, Sets → Add words, feed top left (replaces the camera doodle) |
 | Explain it differently (bulb) | 1 a day | 30 a day | The explain sheet |
@@ -345,7 +345,7 @@ A speaking game from RESEARCH.md: describe a saved word without saying it; the A
 | Words | All B1 and B2; 2/3 of C1 Everyday, 1/4 of C1 Academic; half of C2 Academic and Everyday | Every word |
 | Categories | Academic, Everyday, plus 3 fixed sample words of Idioms and Work per level | plus Idioms and Work |
 | Sets | Favorites + 2 custom | Unlimited |
-| AI Coach checks | 3 per day | 50 per day |
+| Tutor checks | 3 per day | 50 per day |
 | Flashcards for sets (4.15) | No | Yes |
 
 The free share is fixed (the first words of each language, category and level group), so free users always see the same words. Locked words appear in the feed as a blurred teaser card with a lock icon, at most one in every 15 cards. Tapping it opens the paywall. This is the main conversion moment, so it should be clear in the demo video.
@@ -364,7 +364,7 @@ Use the RevenueCat AI Toolkit MCP where possible.
 
 A comment in the code and a line in the README must say that the Test Store key is replaced with platform keys before any store release.
 
-## 6. AI Coach backend (Cloudflare Worker)
+## 6. AI backend (Cloudflare Worker)
 
 Folder `worker/`, deployed with Wrangler. Secrets are set with `wrangler secret put OPENROUTER_API_KEY`. The model name comes from an environment variable, and the choice is a cheap, fast model.
 

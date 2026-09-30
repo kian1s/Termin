@@ -21,7 +21,7 @@ const BENEFITS = [
   { icon: 'trending-up-outline', text: 'Access to all words and categories' },
   { icon: 'sparkles-outline', text: 'Say it better, Describe it and AI reminders' },
   { icon: 'camera-outline', text: 'Learn from photos, links and texts every day' },
-  { icon: 'chatbubbles-outline', text: '50 AI Coach checks a day' },
+  { icon: 'chatbubbles-outline', text: '50 Tutor checks a day' },
   { icon: 'layers-outline', text: 'Flashcards and unlimited sets' },
 ] as const;
 

@@ -26,18 +26,18 @@ import { describeNext } from '@/lib/progress';
 import { useVoiceAnswer } from '@/lib/voice';
 import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
-// `onFinished` fires once the answer is rated (by the AI Coach or by the user), unlocking the feed.
+// `onFinished` fires once the answer is rated (by Tutor or by the user), unlocking the feed.
 // `correct` is true for "Knew it" and for a correct or partly right Coach verdict.
 type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: (correct: boolean) => void };
 
-// Why the card fell back to Reveal and self-rating instead of the AI Coach.
+// Why the card fell back to Reveal and self-rating instead of Tutor.
 type Fallback = 'limit' | 'network' | null;
 
 const VERDICT_TITLE = { correct: 'Correct', partly: 'Partly right', incorrect: 'Not quite' };
 // DESIGN.md 3: verdicts always come with an icon, not color alone.
 const VERDICT_ICON = { correct: 'checkmark-circle', partly: 'remove-circle', incorrect: 'close-circle' } as const;
 
-// A saved word coming back as a question (SPEC 4.4). With the AI Coach the
+// A saved word coming back as a question (SPEC 4.4). With Tutor the
 // answer is graded (SPEC 4.5); otherwise the user reveals and rates themselves.
 export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
   const theme = useTheme();
@@ -166,7 +166,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
                 )}
               </View>
               <Text style={[styles.small, styles.center, { color: theme.textSecondary }]}>
-                {checking ? 'The AI Coach is reading your answer…' : 'Answer or reveal, then rate yourself to keep scrolling.'}
+                {checking ? 'Tutor is reading your answer…' : 'Answer or reveal, then rate yourself to keep scrolling.'}
               </Text>
             </>
           ) : (
@@ -180,7 +180,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
                   <Text style={[styles.resultText, { color: theme.text }]}>{coach.feedback}</Text>
                   <Example text={coach.improvedSentence} />
                   <Text style={[styles.small, { color: theme.textSecondary }]}>
-                    {coach.remainingToday} AI {coach.remainingToday === 1 ? 'check' : 'checks'} left today
+                    {coach.remainingToday} Tutor {coach.remainingToday === 1 ? 'check' : 'checks'} left today
                   </Text>
                 </View>
               )}
@@ -188,8 +188,8 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
                 <View style={[styles.result, { backgroundColor: theme.surface, borderColor: theme.border }]}>
                   <Text style={[styles.resultText, { color: theme.text }]}>
                     {fallback === 'limit'
-                      ? `You've used today's ${isPremium ? 50 : 3} AI checks. Rate yourself instead.`
-                      : 'The AI Coach is offline. Rate yourself instead.'}
+                      ? `You've used today's ${isPremium ? 50 : 3} Tutor checks. Rate yourself instead.`
+                      : 'Tutor is offline. Rate yourself instead.'}
                   </Text>
                   {fallback === 'limit' && !isPremium && (
                     <Pressable onPress={showPaywall} hitSlop={8}>

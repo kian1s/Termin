@@ -53,7 +53,7 @@ export function questionFor(field: Field, draft: Partial<Settings>, isPremium: b
       const native = draft.nativeLang;
       const learning = draft.learningLang;
       return {
-        question: 'Which language should the AI Coach answer in?',
+        question: 'Which language should Tutor answer in?',
         hint: 'Its feedback is written in this language. Example sentences stay in the language you are learning.',
         multi: false,
         options: [

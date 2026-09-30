@@ -1,4 +1,4 @@
-// Termin AI Coach (SPEC section 6). Grades review answers with an OpenRouter
+// Termin AI backend (SPEC section 6). Tutor grades review answers with an OpenRouter
 // model, transcribes voice answers with Workers AI Whisper, and plans AI
 // reminders. Answers, audio and saved words are never logged or stored.
 
@@ -116,7 +116,7 @@ Return only JSON: {"verdict": "correct" | "partly" | "incorrect", "feedback": ".
         headers: {
           Authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'X-Title': 'Termin AI Coach',
+          'X-Title': 'Termin Tutor',
         },
         body: JSON.stringify({
           model: env.MODEL,
@@ -1056,7 +1056,7 @@ export default {
     if (req.method === 'POST' && pathname === '/from-text') return fromText(req, env);
     if (req.method === 'POST' && pathname === '/add-word') return addWord(req, env);
     if (req.method === 'POST' && pathname === '/taboo') return taboo(req, env);
-    if (req.method === 'GET' && pathname === '/') return json({ ok: true, service: 'Termin AI Coach' });
+    if (req.method === 'GET' && pathname === '/') return json({ ok: true, service: 'Termin AI' });
     return json({ error: 'Not found' }, 404);
   },
 } satisfies ExportedHandler<Env>;
