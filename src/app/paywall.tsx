@@ -18,7 +18,7 @@ const TERMS_URL = 'https://github.com/kian1s/wordloop/blob/main/TERMS.md';
 const PRIVACY_URL = 'https://github.com/kian1s/wordloop/blob/main/PRIVACY.md';
 
 const BENEFITS = [
-  { icon: 'trending-up-outline', text: 'Every word, including Idioms, Work, C1 and C2' },
+  { icon: 'trending-up-outline', text: 'Access to all words and categories' },
   { icon: 'sparkles-outline', text: 'Say it better, Describe it and AI reminders' },
   { icon: 'camera-outline', text: 'Learn from photos, links and texts every day' },
   { icon: 'chatbubbles-outline', text: '50 AI Coach checks a day' },
@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
   title: { fontFamily: Fonts.title, fontSize: 32, lineHeight: 40 },
   benefits: { gap: Spacing.md, marginVertical: Spacing.lg },
   benefit: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
-  benefitText: { fontSize: 17 },
+  // flexShrink lets a long line wrap instead of running off the screen.
+  benefitText: { fontSize: 17, lineHeight: 22, flexShrink: 1 },
   plans: { gap: Spacing.md },
   plan: { flexDirection: 'row', alignItems: 'center', padding: Spacing.lg },
   planText: { flex: 1, gap: 2 },
