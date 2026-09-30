@@ -45,33 +45,24 @@ export default function SetsScreen() {
       <Section title="Add words">
         <Row
           label="Snap a word"
-          subtitle="A word at your level in any photo"
           icon={<Doodle name="camera" size={22} />}
           right={<CreditPill kind="snap" />}
           onPress={() => router.push('/snap')}
         />
         <Row
           label="Words from a text"
-          subtitle="A link, a photo of a page, or text"
           icon={<Doodle name="book" size={22} />}
           onPress={() => router.push('/from-text')}
         />
         <Row
           label="Add my own word"
-          subtitle="Write it yourself, or let the AI write it"
           icon={<Doodle name="plus" size={22} />}
           onPress={() => router.push('/add-word')}
           last
         />
       </Section>
 
-      <Section
-        title="Your sets"
-        footer={
-          isPremium
-            ? 'Group words by purpose, like “Debate” or “Essay on climate”.'
-            : `Free includes ${FREE_CUSTOM_SETS} sets of your own. Premium makes them unlimited.`
-        }>
+      <Section title="Your sets">
         {custom.map((set) => (
           <Row
             key={set.id}

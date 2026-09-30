@@ -41,7 +41,6 @@ export default function Practice() {
       contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.lg }]}>
       <View style={styles.titleBlock}>
         <Text style={[styles.title, { color: theme.text }]}>Practice</Text>
-        <Text style={[styles.subtitle, { color: theme.textSecondary }]}>Your tools and your learning setup.</Text>
       </View>
 
       <Text style={[Type.label, styles.section, { color: theme.textSecondary }]}>Explore</Text>
@@ -194,7 +193,6 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.sm },
   titleBlock: { paddingHorizontal: Spacing.xs, gap: Spacing.xs, marginBottom: Spacing.sm },
   title: { fontFamily: Fonts.title, fontSize: 28 },
-  subtitle: { fontSize: 15 },
   section: { paddingHorizontal: Spacing.xs, marginTop: Spacing.md },
   row: { flexDirection: 'row', gap: Spacing.sm },
   flex: { flex: 1 },

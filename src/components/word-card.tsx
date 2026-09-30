@@ -42,7 +42,13 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
         <Translation word={word} nativeLang={nativeLang} />
       </View>
 
-      <View style={styles.actions}>
+      {/* Bottom left: Explain it differently, with a caption saying what it does (SPEC 4.21). */}
+      <Pressable
+        onPress={() => openExplain(word.id)}
+        style={styles.explain}
+        accessibilityRole="button"
+        accessibilityLabel="Explain it differently">
+        {/* The sticker has its own tap so it slides down like the other buttons; the caption opens it too. */}
         <Sticker
           onPress={() => openExplain(word.id)}
           radius={ACTION / 2}
@@ -51,6 +57,12 @@ export function WordCard({ word, nativeLang, height, badge }: Props) {
           accessibilityLabel="Explain it differently">
           <Doodle name="bulb" size={28} />
         </Sticker>
+        <Text style={[styles.explainText, { color: theme.textSecondary }]}>
+          Explain it{'\n'}differently
+        </Text>
+      </Pressable>
+
+      <View style={styles.actions}>
         <Sticker
           onPress={onHeart}
           radius={ACTION / 2}
@@ -214,6 +226,15 @@ const styles = StyleSheet.create({
   label: { marginBottom: -6 }, // label sits closer to the word it describes
   heading: { marginBottom: Spacing.xs },
   action: { width: ACTION, height: ACTION, alignItems: 'center', justifyContent: 'center' },
+  explain: {
+    position: 'absolute',
+    left: Spacing.xl,
+    bottom: Spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  explainText: { fontFamily: Fonts.italic, fontSize: 15, lineHeight: 19 },
   wordRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md },
   word: { fontFamily: Fonts.word, fontSize: 44, lineHeight: 54, flexShrink: 1 },
   pos: { fontFamily: Fonts.italic, fontSize: 17, lineHeight: 22 },

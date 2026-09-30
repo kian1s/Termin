@@ -298,7 +298,7 @@ Every feature with limited uses shows how many are left, as a small outlined pil
 
 ### 4.21 Explain it differently (Sep 30)
 One tap on any card for help understanding it.
-- **Where:** a round sticker button with a light bulb doodle on feed word cards (next to the heart and plus), and an "Explain it differently" link on revealed review cards, flashcard backs and Snap a word cards. Both open a half-height sheet, `src/app/explain/[wordId].tsx`.
+- **Where:** a round sticker button with a light bulb doodle at the bottom left of feed word cards, captioned *Explain it differently* in Fraunces italic (the heart and plus stay bottom right), and an "Explain it differently" link on revealed review cards, flashcard backs and Snap a word cards. Both open a half-height sheet, `src/app/explain/[wordId].tsx`.
 - **Options:** **Easier** (the meaning in the easiest possible learning language, A2 to B1 words, at most 2 sentences, never using the word itself) and **Another example** (a new 8 to 20 word sentence in a different situation). Each tap asks again.
 - **Limits:** free 1 a day, Premium 30 a day, shown as a credit pill (4.20) with the bulb doodle. Out of uses: a short message, and for free users a See Premium button.
 - **Done when:** on a feed card, the bulb opens the sheet, Easier and Another example each return a line, the pill counts down, and a free user's second tap of the day shows the Premium message.

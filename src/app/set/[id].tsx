@@ -140,7 +140,7 @@ export default function SetScreen() {
 
       <Section>
         {words.length === 0 ? (
-          <Row label="No words yet" subtitle="Add saved words or a new word above." last />
+          <Row label="No words yet" last />
         ) : (
           words.map((w, i) => {
             const on = selected.has(w.id);

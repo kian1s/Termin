@@ -44,7 +44,6 @@ export default function ProgressScreen() {
       contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.lg }]}>
       <View style={styles.titleBlock}>
         <Text style={[styles.title, { color: theme.text }]}>Progress</Text>
-        <Text style={[styles.subtitle, { color: theme.textSecondary }]}>A little every day adds up.</Text>
       </View>
 
       {/* Streak and this week */}
@@ -152,7 +151,6 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.xxl, gap: Spacing.sm },
   titleBlock: { paddingHorizontal: Spacing.xs, gap: Spacing.xs, marginBottom: Spacing.md },
   title: { fontFamily: Fonts.title, fontSize: 28 },
-  subtitle: { fontSize: 15 },
   flex: { flex: 1 },
   row: { flexDirection: 'row', gap: Spacing.sm },
   card: { padding: Spacing.lg, gap: Spacing.md },

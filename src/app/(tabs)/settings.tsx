@@ -85,9 +85,7 @@ export default function SettingsScreen() {
       contentContainerStyle={[styles.content, { paddingTop: insets.top + Spacing.lg }]}>
       <Text style={[styles.title, { color: theme.text }]}>Settings</Text>
 
-      <Section
-        title="Termin Premium"
-        footer={isPremium ? undefined : 'Premium unlocks every word, the AI tools, flashcards and unlimited sets.'}>
+      <Section title="Termin Premium">
         <Row
           label={isPremium ? 'Premium is active' : 'Free plan'}
           subtitle={
@@ -109,7 +107,7 @@ export default function SettingsScreen() {
         <Row label="Restore purchases" onPress={restore} chevron={false} last />
       </Section>
 
-      <Section title="Appearance" footer="Automatic follows your iPhone's setting.">
+      <Section title="Appearance">
         {APPEARANCES.map((a, i) => {
           const on = (settings.appearance ?? 'system') === a.id;
           return (

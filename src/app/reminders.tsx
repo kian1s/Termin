@@ -86,7 +86,7 @@ export default function Reminders() {
 
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
-      <Section footer="Get a daily word to test yourself on.">
+      <Section>
         <Row
           label="Reminders"
           last
@@ -139,7 +139,7 @@ export default function Reminders() {
           </Section>
           )}
 
-          <Section title="Days" footer="Reminders only on selected days.">
+          <Section title="Days">
             <View style={styles.days}>
               {WEEK.map(({ day, label }) => {
                 const on = reminder.days.includes(day);
