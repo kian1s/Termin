@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { Alert, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Row, Section, Toggle } from '@/components/grouped-list';
+import { PremiumBadge } from '@/components/pro-cards';
 import { Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
+import { usePremium } from '@/lib/premium';
 import { ensureNotificationPermission, formatTime } from '@/lib/reminder';
 import { Reminder, ReminderTime } from '@/lib/types';
 
@@ -33,9 +35,11 @@ const EXTRA_TIMES: ReminderTime[] = [
 export default function Reminders() {
   const theme = useTheme();
   const { settings, saveSettings } = useAppState();
+  const { isPremium, showPaywall } = usePremium();
   const [androidPicker, setAndroidPicker] = useState<number | null>(null);
   if (!settings) return null;
   const { reminder } = settings;
+  const aiOn = isPremium && reminder.aiGuided;
 
   const update = (next: Partial<Reminder>) => saveSettings({ ...settings, reminder: { ...reminder, ...next } });
 
@@ -156,13 +160,49 @@ export default function Reminders() {
           </Section>
 
           <Section
+            title="AI reminders"
+            footer={
+              aiOn
+                ? `The AI picks the saved words that most need practice, writes each reminder, and a tap opens a 1-minute test. Your own times never move.${
+                    reminder.smartSpacing
+                      ? ' Intelligent spacing adds up to 3 more a day, when words fall due: 9:00 to 21:00, at least 2 hours apart.'
+                      : ''
+                  } While this is on, your saved words and how well you know them are sent to the AI (see Privacy).`
+                : 'The AI picks the saved words that most need practice and writes each reminder. A tap opens a 1-minute test.'
+            }>
+            <Row
+              label="AI reminders"
+              onPress={isPremium ? undefined : showPaywall}
+              chevron={false}
+              last={!aiOn}
+              right={
+                isPremium ? (
+                  <Toggle value={reminder.aiGuided} onValueChange={(v) => update({ aiGuided: v })} />
+                ) : (
+                  <PremiumBadge lock />
+                )
+              }
+            />
+            {aiOn && (
+              <Row
+                label="Intelligent spacing"
+                subtitle={reminder.smartSpacing ? 'The AI also picks when to remind you' : 'Only at your own times'}
+                last
+                right={<Toggle value={reminder.smartSpacing} onValueChange={(v) => update({ smartSpacing: v })} />}
+              />
+            )}
+          </Section>
+
+          <Section
             title="Options"
             footer="The streak saver sends one more nudge at 21:00 when a streak of 2 days or more is at risk, and disappears once today counts.">
-            <Row
-              label="Include a word"
-              subtitle={reminder.includeWord ? 'A word to test yourself on' : 'A plain nudge'}
-              right={<Toggle value={reminder.includeWord} onValueChange={(v) => update({ includeWord: v })} />}
-            />
+            {!aiOn && (
+              <Row
+                label="Include a word"
+                subtitle={reminder.includeWord ? 'A word to test yourself on' : 'A plain nudge'}
+                right={<Toggle value={reminder.includeWord} onValueChange={(v) => update({ includeWord: v })} />}
+              />
+            )}
             <Row
               label="Vary the time slightly"
               subtitle={reminder.vary ? 'Within 30 minutes of each time' : 'Exactly on time'}

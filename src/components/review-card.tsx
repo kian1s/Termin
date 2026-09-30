@@ -24,7 +24,8 @@ import { useVoiceAnswer } from '@/lib/voice';
 import { coachFeedbackLang, Lang, ReviewState, WordEntry } from '@/lib/types';
 
 // `onFinished` fires once the answer is rated (by the AI Coach or by the user), unlocking the feed.
-type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: () => void };
+// `correct` is true for "Knew it" and for a correct or partly right Coach verdict.
+type Props = { word: WordEntry; nativeLang: Lang; height: number; onFinished: (correct: boolean) => void };
 
 // Why the card fell back to Reveal and self-rating instead of the AI Coach.
 type Fallback = 'limit' | 'network' | null;
@@ -53,7 +54,7 @@ export function ReviewCard({ word, nativeLang, height, onFinished }: Props) {
   // Rating is what unlocks the feed: Reveal alone is not enough.
   const rate = (correct: boolean) => {
     setNext({ correct, state: answer(word.id, correct) });
-    onFinished();
+    onFinished(correct);
   };
 
   const check = async () => {

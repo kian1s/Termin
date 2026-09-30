@@ -53,6 +53,8 @@ export type Reminder = {
   includeWord: boolean; // quiz a word, or a plain nudge
   vary: boolean; // +/- 30 minutes, or exact times
   streakSaver: boolean; // an extra 21:00 nudge while a streak of 2+ is at risk
+  aiGuided: boolean; // SPEC 4.17 (Premium): the AI picks and words each reminder
+  smartSpacing: boolean; // SPEC 4.17: the AI also adds reminders timed to when words fall due
 };
 
 export const DEFAULT_REMINDER: Reminder = {
@@ -62,6 +64,8 @@ export const DEFAULT_REMINDER: Reminder = {
   includeWord: true,
   vary: true,
   streakSaver: true,
+  aiGuided: false,
+  smartSpacing: false,
 };
 
 // Reads any stored reminder, including the old { enabled, hour, minute } shape.
@@ -80,6 +84,8 @@ export function migrateReminder(stored: unknown): Reminder {
     includeWord: r.includeWord ?? true,
     vary: r.vary ?? true,
     streakSaver: r.streakSaver ?? true,
+    aiGuided: r.aiGuided ?? false,
+    smartSpacing: r.smartSpacing ?? false,
   };
 }
 
@@ -106,7 +112,8 @@ export type WordSet = { id: string; name: string; wordIds: string[] };
 
 // Leitner box for a saved word. Box 1 is due after a number of feed cards,
 // boxes 2–4 after a number of days.
-export type ReviewState = { box: 1 | 2 | 3 | 4; dueAtCard: number; dueAt: number };
+// `misses` counts wrong answers (AI reminders, SPEC 4.17); older states have none.
+export type ReviewState = { box: 1 | 2 | 3 | 4; dueAtCard: number; dueAt: number; misses?: number };
 
 export type Stats = {
   cardsViewed: number; // all-time feed cards viewed, used for box 1 scheduling

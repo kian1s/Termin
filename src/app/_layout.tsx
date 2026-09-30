@@ -13,8 +13,9 @@ import { AppState } from 'react-native';
 
 import { useTheme } from '@/hooks/use-theme';
 import { AppStateProvider, useAppState } from '@/lib/app-state';
-import { PremiumProvider } from '@/lib/premium';
-import { scheduleReminders } from '@/lib/reminder';
+import { refreshAiPlan } from '@/lib/ai-reminders';
+import { PremiumProvider, usePremium } from '@/lib/premium';
+import { scheduleReminders, upcomingReminderTimes } from '@/lib/reminder';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -73,43 +74,74 @@ function RootStack() {
         <Stack.Screen name="level-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
         <Stack.Screen name="reminders" options={{ headerShown: true, title: 'Reminders', headerBackTitle: 'Settings' }} />
         <Stack.Screen name="history" options={{ headerShown: true, title: 'History', headerBackTitle: 'Feed' }} />
+        <Stack.Screen name="quick-test" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
       </Stack>
+      <NotificationTaps />
     </>
   );
 }
 
-// Keeps the week of smart reminders (SPEC 4.9, 4.16) up to date: on launch, when
-// the reminder settings change, and when the app goes to the background.
+// Keeps the week of smart reminders (SPEC 4.9, 4.16, 4.17) up to date: on
+// launch, when the reminder settings change, and when the app goes to the
+// background. With AI reminders on, a fresh AI plan is fetched when the app
+// opens (at most every 2 hours), since Expo Go cannot run code in the background.
 function ReminderSync() {
   const { loaded, settings, savedIds, reviews, seenIds, stats } = useAppState();
-  const latest = useRef({ settings, savedIds, reviews, seenIds, stats });
+  const { isPremium } = usePremium();
+  const latest = useRef({ settings, savedIds, reviews, seenIds, stats, isPremium });
   useEffect(() => {
-    latest.current = { settings, savedIds, reviews, seenIds, stats };
+    latest.current = { settings, savedIds, reviews, seenIds, stats, isPremium };
   });
 
   // Reschedule when the reminder options or learning language change, and when
   // today starts counting toward the streak (which removes the streak saver).
   const reminderKey = settings
-    ? `${JSON.stringify(settings.reminder)}|${settings.learningLang}|${stats.lastActive}|${stats.streak}`
+    ? `${JSON.stringify(settings.reminder)}|${settings.learningLang}|${stats.lastActive}|${stats.streak}|${isPremium}`
     : '';
 
   useEffect(() => {
     const sync = () => {
       const l = latest.current;
-      if (l.settings) scheduleReminders(l.settings, l.savedIds, l.reviews, l.seenIds, l.stats);
+      if (l.settings) scheduleReminders(l.settings, l.savedIds, l.reviews, l.seenIds, l.stats, l.isPremium);
     };
-    if (loaded) sync();
+    const refreshAi = async () => {
+      const l = latest.current;
+      if (!l.settings) return;
+      const fixed = await upcomingReminderTimes(l.settings);
+      if (await refreshAiPlan(l.settings, l.savedIds, l.reviews, fixed, l.isPremium)) sync();
+    };
+    if (loaded) {
+      sync();
+      refreshAi();
+    }
     const sub = AppState.addEventListener('change', (state) => {
       if (state === 'background') sync();
+      if (state === 'active') refreshAi();
     });
     return () => sub.remove();
   }, [loaded, reminderKey]);
 
-  // Tapping a reminder opens the feed.
+  return null;
+}
+
+// Tapping a reminder: AI reminders open the quick test for their word
+// (SPEC 4.17), all others the feed. Rendered inside the navigator, so a tap
+// that launched the app is handled once the screens exist.
+function NotificationTaps() {
   useEffect(() => {
-    const sub = Notifications.addNotificationResponseReceivedListener(() => router.navigate('/'));
+    const open = (response: Notifications.NotificationResponse | null) => {
+      if (!response) return;
+      Notifications.clearLastNotificationResponse();
+      const data = response.notification.request.content.data as { url?: string; wordId?: string } | undefined;
+      if (data?.url === '/quick-test' && typeof data.wordId === 'string') {
+        router.push({ pathname: '/quick-test', params: { word: data.wordId } });
+      } else {
+        router.navigate('/');
+      }
+    };
+    open(Notifications.getLastNotificationResponse());
+    const sub = Notifications.addNotificationResponseReceivedListener(open);
     return () => sub.remove();
   }, []);
-
   return null;
 }

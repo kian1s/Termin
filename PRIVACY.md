@@ -1,17 +1,18 @@
 # Termin: Privacy
 
-Last updated: September 29, 2026
+Last updated: September 30, 2026
 
 Termin is a vocabulary app built for the RevenueCat Shipaton 2026. It has no accounts and collects as little as possible.
 
 ## What stays on your phone
 
-Your settings, saved words and sets, review progress, streak, history and reminder times are stored only on your device (AsyncStorage). They are never uploaded. Deleting the app deletes them.
+Your settings, saved words and sets, review progress, streak, history and reminder times are stored only on your device (AsyncStorage). They are never uploaded, except for the AI reminders data described below, and only while you have AI reminders switched on. Deleting the app deletes them.
 
 ## What leaves your phone
 
 - **AI Coach (Check button):** your typed answer, the word, its definition and your languages are sent to Termin's server (a Cloudflare Worker), which asks an AI model through OpenRouter to grade it. Answers are not logged or stored. The server keeps only a daily count of checks per random device ID, which expires after 48 hours.
 - **Voice answers (microphone):** the recording is sent to the same server and transcribed by Cloudflare Workers AI (Whisper). The audio is not stored, on the server or on your phone.
+- **AI reminders (Premium, off by default):** while switched on, up to 8 of your saved words are sent to the same server and AI model when you open the app (at most every 2 hours), together with how well you know each one (its review stage, when it is due, and how often you got it wrong), your reminder times and your phone's local time. The AI uses them to pick and word your reminders. They are not logged or stored; the server keeps only a daily count of these requests per random device ID, which expires after 48 hours. Switch AI reminders off in Settings → Reminders to stop this.
 - **Purchases:** subscriptions are handled by RevenueCat, which uses an anonymous app user ID. Termin never sees payment details.
 - **Reminders** are local notifications scheduled on your phone. No push server is involved.
 

@@ -245,6 +245,23 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 - All options are free.
 - **Done when:** with two times and only today's weekday on, exactly two reminders are scheduled for today and none for the other days; the streak saver disappears after answering a card.
 
+### 4.17 AI reminders (Premium, Sep 30)
+Background and the research behind it: RESEARCH.md. An AI picks which saved words most need practice, writes each reminder, and a tap opens a short quick test.
+- **Settings → Reminders** gets an **AI reminders** section with a PREMIUM badge, shown while reminders are on:
+  - **AI reminders** toggle, off by default. Free users who tap it get the paywall.
+  - **Intelligent spacing** toggle, shown only while AI reminders are on, off by default.
+- **The user's own reminders never move.** Their times, days and "Vary the time slightly" work exactly as in 4.16, with no gap rule applied to them. With AI reminders on, each of these reminders gets a saved word chosen by the AI and a line the AI wrote (the "Include a word" row is hidden, since AI reminders always include a word).
+- **Intelligent spacing:** the AI also adds its own reminders, timed for when each word falls due. The app enforces: 09:00 to 21:00, only on the chosen weekdays, at least 2 hours from every other Termin notification (the user's reminders and the streak saver included), at most 3 AI-timed reminders a day, never before the word is due, and only for words that are still due when the reminder fires.
+- **Same word:** at most once per calendar day across all notifications.
+- **Planning:** Expo Go cannot run code in the background, so the plan is fetched when the app opens (at most every 2 hours, or sooner when the reminder settings change), stored on the phone, and used whenever the week is rescheduled (4.9). The app scores saved words in the learning language (days overdue + 2 × misses + (4 − box), where misses counts wrong answers) and sends the top 8 to the Worker's `POST /plan-reminders`, which returns the order, one line per word, and suggested times. The app checks every rule itself, so the model can never break the spacing.
+- **Offline, a Worker error, or the daily limit:** the local score order, the fixed text "Do you remember what “untenable” means? Tap for a 1-minute test.", and local times (at the word's due time, moved into the allowed window).
+- **Tapping an AI reminder** (app open or closed) opens `src/app/quick-test.tsx` with that word, never straight into a test:
+  - A **start card** shows the word with **Start test** and **Skip, keep scrolling**. Skip goes to the feed; nothing is recorded, and the word stays due.
+  - The test is up to **5 review cards in a row** (4.4): the notified word first, then other due saved words, then the lowest boxes, no repeats. Each answer goes through the same `answer()` as the feed, so boxes, reviews today and the streak update the same way. A **Skip** link stays on every question; leaving early keeps the answers already given.
+  - An end screen shows the score ("4 / 5") and **Back to feed**.
+- **Privacy:** while AI reminders are on, the top 8 saved words with their box, due time and miss count are sent to the Worker and the AI model (PRIVACY.md). Nothing is stored on the server except the daily call count.
+- **Done when:** with AI reminders and Intelligent spacing on and 3 due saved words, the developer list of scheduled reminders shows AI lines, AI-timed reminders at least 2 hours apart inside 09:00 to 21:00, and no word twice on one day; tapping one opens the start card; Skip changes no boxes; Start test updates boxes; with the Worker unreachable, reminders still schedule with the fallback text.
+
 ## 5. Monetization (RevenueCat)
 
 ### Free vs Premium
@@ -302,6 +319,8 @@ Rules:
 - Do not log answers.
 - `deviceId` is a random UUID stored locally in the app. The app's Worker URL comes from `EXPO_PUBLIC_COACH_URL`.
 **`POST /transcribe`**: accepts the recorded audio (max 30 seconds, max about 2 MB) plus `deviceId` and `learningLang`. It transcribes with Cloudflare Workers AI Whisper (`@cf/openai/whisper-large-v3-turbo`, with the learning language and the reviewed word as hints, so the key word is spelled correctly), which runs inside the same Worker and needs no extra key. It returns `{ "text": "..." }`. Apply a daily limit per `deviceId` (for example 60 per day). Do not store audio.
+
+**`POST /plan-reminders`** (AI reminders, 4.17): takes `deviceId`, `isPro`, `learningLang`, the phone's local time, the user's reminder times for the next 48 hours, whether intelligent spacing is on, and up to 8 candidate words (`id`, `word`, `box`, due time, `misses`). Returns `{ "order": [ids], "lines": { id: text }, "slots": [{ "id", "at": "YYYY-MM-DD HH:MM" }] }`. Only for Premium (`isPro`); 12 calls a day per `deviceId`. Lines are English, at most 90 characters, and must contain the word. The Worker validates the JSON (known IDs only) and logs nothing.
 
 - **Known limitation, to note in the README:** the client sends `isPro` itself, so it can't be fully trusted. That is acceptable for a hackathon. A production version would verify it through RevenueCat's REST API or webhooks.
 

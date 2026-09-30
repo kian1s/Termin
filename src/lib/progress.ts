@@ -11,9 +11,10 @@ export function newReviewState(cardsViewed: number): ReviewState {
 }
 
 export function answerReview(state: ReviewState, correct: boolean, cardsViewed: number): ReviewState {
-  if (!correct) return newReviewState(cardsViewed);
+  const misses = (state.misses ?? 0) + (correct ? 0 : 1);
+  if (!correct) return { ...newReviewState(cardsViewed), misses };
   const box = Math.min(state.box + 1, 4) as 2 | 3 | 4;
-  return { box, dueAtCard: 0, dueAt: Date.now() + BOX_DAYS[box] * DAY_MS };
+  return { box, dueAtCard: 0, dueAt: Date.now() + BOX_DAYS[box] * DAY_MS, misses };
 }
 
 export function isDue(state: ReviewState, cardsViewed: number, now = Date.now()) {

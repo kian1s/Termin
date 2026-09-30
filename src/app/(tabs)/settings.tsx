@@ -12,7 +12,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
-import { describeScheduled, formatTime } from '@/lib/reminder';
+import { describeScheduled, devTestAiReminder, formatTime } from '@/lib/reminder';
 import { Reminder } from '@/lib/types';
 
 export default function SettingsScreen() {
@@ -20,6 +20,8 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const {
     settings,
+    savedIds,
+    reviews,
     devSetLastActive,
     devMakeAllDue,
     devRestartOnboarding,
@@ -155,6 +157,11 @@ export default function SettingsScreen() {
           <Row
             label="Scheduled reminders"
             onPress={async () => Alert.alert('Scheduled reminders', await describeScheduled())}
+            chevron={false}
+          />
+          <Row
+            label="AI reminder in 1 minute"
+            onPress={async () => Alert.alert('AI reminder', await devTestAiReminder(settings, savedIds, reviews))}
             chevron={false}
           />
           <Row
