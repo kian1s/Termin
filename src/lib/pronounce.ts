@@ -72,6 +72,9 @@ export async function pronounce(word: WordEntry, clip: Clip, onDone: () => void)
     onDone();
   };
   finishCurrent = finish;
+  // Safety net: a clip that never reports finishing can't leave its button
+  // stuck (taps are ignored while it plays). Every clip is shorter than this.
+  setTimeout(finish, 15_000);
 
   const uri = await localClip(word, clip);
   if (mine !== latest) return;
