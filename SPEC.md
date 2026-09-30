@@ -137,7 +137,7 @@ The full plan, models and cost limits are in `DATASET.md`. Scripts live in `scri
 - The user can create, rename, and delete sets, and remove a word from a set.
 - A word can be in several sets. "Favorites" always exists.
 - **Done when:** sets and their contents survive an app restart.
-- **Adding to a set (Sep 30):** each set screen starts with **Add saved words** (a sheet listing every saved word not yet in the set, learning language first, with a search field when there are more than 8; tick several and tap **Add n words**) and **Add a new word** (4.23).
+- **Adding to a set (Sep 30):** each set screen starts with **Add saved words** (a sheet listing every saved word not yet in the set, learning language first, with a search field when there are more than 8; tick several and tap **Add** at the top right) and **Add a new word** (4.23).
 
 ### 4.4 Review cards in the feed
 - Every **5th card** in the feed is a review card for a saved word that is due, if one exists.
