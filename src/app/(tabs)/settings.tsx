@@ -14,7 +14,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { useAppState } from '@/lib/app-state';
 import { usePremium } from '@/lib/premium';
 import { bestVoice, forgetVoices, VoiceChoice } from '@/lib/voices';
-import { describeScheduled, devTestAiReminder, formatTime } from '@/lib/reminder';
+import { describeScheduled, devTestAiReminder, devTutorReminder, formatTime } from '@/lib/reminder';
 import { AppearanceMode, LANG_NAMES, Reminder, WordEntry } from '@/lib/types';
 import { findWord, terminWord } from '@/lib/words';
 
@@ -27,6 +27,14 @@ const APPEARANCES: { id: AppearanceMode; label: string }[] = [
 const PRIVACY_URL = 'https://github.com/kian1s/Termin/blob/main/PRIVACY.md';
 const TERMS_URL = 'https://github.com/kian1s/Termin/blob/main/TERMS.md';
 const SOURCE_URL = 'https://github.com/kian1s/Termin';
+
+// Filming: English words with their own developer buttons, and the line
+// Tutor's reminder shows for each.
+const FILM_WORDS = [
+  { spelling: 'palimpsest', line: '“Palimpsest” has layers. Can you still read what it means?' },
+  { spelling: 'wistful', line: 'Thinking of you. Do you remember what “wistful” means?' },
+  { spelling: 'ineffable', line: 'Can you put “ineffable” into words? Tap and try.' },
+];
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -212,6 +220,28 @@ export default function SettingsScreen() {
           />
           <Row label="Pick the word in 5 swipes" onPress={() => pickWord('word')} chevron={false} />
           <Row label="Pick a review card in 5 swipes" onPress={() => pickWord('review')} chevron={false} />
+          {FILM_WORDS.map(({ spelling }) => (
+            <Row
+              key={spelling}
+              label={`"${spelling}" in 5 swipes`}
+              onPress={() => {
+                const word = findWord('en', spelling);
+                if (word) queue('word', word);
+              }}
+              chevron={false}
+            />
+          ))}
+          {FILM_WORDS.map(({ spelling, line }) => (
+            <Row
+              key={spelling}
+              label={`Tutor notification: "${spelling}"`}
+              onPress={async () => {
+                const word = findWord('en', spelling);
+                if (word) Alert.alert('Tutor notification', await devTutorReminder(word, line));
+              }}
+              chevron={false}
+            />
+          ))}
           {PROGRESS_NUMBERS.map(({ key, label }) => (
             <Row
               key={key}

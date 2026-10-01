@@ -221,15 +221,33 @@ async function schedule(
   }
 
   if (saver) await notify(saverAt, `Keep your ${streak}-day streak. One card is enough.`);
-  if (devTest && devTest.at.getTime() > Date.now()) await notify(devTest.at, devTest.body, devTest.wordId);
+  devTests = devTests.filter((t) => t.at.getTime() > Date.now());
+  for (const t of devTests) await notify(t.at, t.body, t.wordId);
 
   await AsyncStorage.setItem(PLAN_KEY, JSON.stringify({ base: plan.base, minutes }));
 }
 
-// Development only: an AI reminder for the most needed saved word in one
-// minute, to test the tap and the quick test. Kept across reschedules.
-let devTest: { at: Date; body: string; wordId: string } | null = null;
+// Development only: reminders sent by the developer tools. Kept across reschedules.
+let devTests: { at: Date; body: string; wordId: string }[] = [];
 
+async function devNotify(at: Date, body: string, wordId: string) {
+  devTests.push({ at, body, wordId });
+  await Notifications.scheduleNotificationAsync({
+    content: { title: 'Termin', body, data: { url: '/quick-test', wordId } },
+    trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: at },
+  });
+}
+
+// Development only (filming): Tutor's reminder for a chosen word in 10 seconds,
+// enough time to lock the phone. Tapping it opens the quick test on that word.
+export async function devTutorReminder(word: WordEntry, body: string): Promise<string> {
+  if (!(await ensureNotificationPermission())) return 'Notifications are turned off for Termin.';
+  await devNotify(new Date(Date.now() + 10_000), body, word.id);
+  return `In 10 seconds: ${body}`;
+}
+
+// Development only: an AI reminder for the most needed saved word in one
+// minute, to test the tap and the quick test.
 export async function devTestAiReminder(
   settings: Settings,
   savedIds: Set<string>,
@@ -238,13 +256,9 @@ export async function devTestAiReminder(
   const top = candidates(settings, savedIds, reviews)[0];
   if (!top) return 'Save a word in the learning language first.';
   const plan = await loadAiPlan(settings);
-  const at = new Date(Date.now() + 60_000);
-  devTest = { at, body: plan?.lines[top.word.id] ?? fallbackLine(top.word), wordId: top.word.id };
-  await Notifications.scheduleNotificationAsync({
-    content: { title: 'Termin', body: devTest.body, data: { url: '/quick-test', wordId: top.word.id } },
-    trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: at },
-  });
-  return `In 1 minute: ${devTest.body}${plan ? '' : ' (fallback text: no AI plan yet)'}`;
+  const body = plan?.lines[top.word.id] ?? fallbackLine(top.word);
+  await devNotify(new Date(Date.now() + 60_000), body, top.word.id);
+  return `In 1 minute: ${body}${plan ? '' : ' (fallback text: no AI plan yet)'}`;
 }
 
 // Development only: a readable list of what is scheduled, for testing on the phone.

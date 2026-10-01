@@ -26,7 +26,8 @@ function deckFor(
   lang: string,
   cardsViewed: number
 ): WordEntry[] {
-  const first = wordId && savedIds.has(wordId) ? wordById(wordId) : undefined;
+  // Developer reminders (filming) may name a word that is not saved.
+  const first = wordId && (savedIds.has(wordId) || __DEV__) ? wordById(wordId) : undefined;
   const others = [...savedIds]
     .filter((id) => id !== first?.id && reviews[id])
     .map((id) => wordById(id))

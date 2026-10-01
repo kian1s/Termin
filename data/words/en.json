@@ -26878,5 +26878,33 @@
         "definition": "Vitória sem benefício real."
       }
     }
+  },
+  {
+    "id": "en-c2-everyday-m61",
+    "lang": "en",
+    "level": "C2",
+    "category": "everyday",
+    "word": "ineffable",
+    "partOfSpeech": "adjective",
+    "definition": "Too great or too strong to be described in words.",
+    "example": "She felt an ineffable joy when she held her daughter for the first time.",
+    "translations": {
+      "fr": {
+        "word": "ineffable",
+        "definition": "Trop grand ou trop fort pour être décrit par des mots."
+      },
+      "de": {
+        "word": "unsagbar",
+        "definition": "Zu groß oder zu stark, um es in Worte zu fassen."
+      },
+      "es": {
+        "word": "inefable",
+        "definition": "Demasiado grande o intenso para describirlo con palabras."
+      },
+      "pt": {
+        "word": "inefável",
+        "definition": "Demasiado grande ou intenso para ser descrito por palavras."
+      }
+    }
   }
 ]

@@ -7,7 +7,7 @@ Built with Expo for the RevenueCat Shipaton 2026 (Next Gen).
 ## Features
 
 **Learning**
-- **Word feed:** 2,747 checked word cards (Academic, Everyday, Work, Idioms) at your level, with definition, example, and a translation that stays blurred until you tap it. Strong learners get "stretch" words from the level above.
+- **Word feed:** 2,748 checked word cards (Academic, Everyday, Work, Idioms) at your level, with definition, example, and a translation that stays blurred until you tap it. Strong learners get "stretch" words from the level above.
 - **Review cards in the feed:** saved words come back as questions, spaced with Leitner boxes (New, Learning, Familiar, Learned). Answer by typing or speaking.
 - **Tutor:** grades your answer (the meaning; an optional sentence is checked too) and suggests a better sentence.
 - **Natural voices:** every word and example recorded with Azure neural voices, cached on the phone.
