@@ -76,7 +76,7 @@ npx wrangler kv namespace create COACH_KV   # put the id in wrangler.jsonc
 npx wrangler secret put OPENROUTER_API_KEY
 npx wrangler deploy
 ```
-For local development, copy `worker/.dev.vars.example` to `worker/.dev.vars`. The voice clips (about 150 MB) are not in the repo; generate them with `node scripts/voices/generate.ts` into `worker/public/audio` before deploying. Without them the app uses the phone's voice.
+For local development, copy `worker/.dev.vars.example` to `worker/.dev.vars`. The voice clips (about 120 MB) are in `worker/public/audio` and are deployed with the Worker; `node scripts/voices/generate.ts` records clips for words added later. Without them the app uses the phone's voice.
 
 Checks: `npx tsc --noEmit` and `npx expo lint`.
 
