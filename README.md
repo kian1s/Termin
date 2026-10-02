@@ -68,6 +68,20 @@ npx expo start              # open in Expo Go on your phone
 | `OPENROUTER_API_KEY` | scripts only: `sk-or-v1-your-key-here` |
 | `AZURE_SPEECH_KEY`, `AZURE_SPEECH_REGION` | scripts only: voice recording |
 
+**What works without these values**
+
+The repo contains no keys, and `.env.example` has placeholders only. With the placeholders (or no `.env` at all):
+
+| Works | Does not work |
+|---|---|
+| Onboarding, the word feed with all 2,748 cards, translations | **Tutor:** review answers are not graded; the card shows the answer and you rate yourself |
+| Saving words, sets, history, progress, streaks | **Voice answers:** nothing is transcribed (typing still works) |
+| Review cards with spaced repetition | **AI tools:** Say it better, Describe it, Explain it differently, Snap a word, Words from a text, Add my own word with AI, AI reminders |
+| The level test and local reminders | **Recorded voices:** the phone's own voice reads the words instead |
+| Locked cards in the feed | **Purchases:** the paywall cannot load the plans or buy, so Premium cannot be unlocked |
+
+The AI features and the recorded voices need `EXPO_PUBLIC_COACH_URL` to point at a deployed Worker with its own OpenRouter key (steps below). Purchases need a RevenueCat Test Store key in `EXPO_PUBLIC_REVENUECAT_API_KEY`. Judges: the values for the live demo are in the Devpost testing instructions.
+
 **Worker**
 ```bash
 cd worker
